@@ -1,7 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-const LogInBtn = () => {
-  return <div>LogInBtn</div>;
-};
+const LoginBtn = () => {
+  return (
+    <div>LoginBtn</div>
+  )
+}
 
-export default LogInBtn;
+export default LoginBtn;

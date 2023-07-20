@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import RegisterBtn from '../../Buttons/RegisterBtn/RegisterBtn';
 import css from './AuthNav.module.css';
-import LogInBtn from '../../Buttons/LogInBtn/LogInBtn';
+import LoginBtn from '../../Buttons/LoginBtn/LoginBtn';
 
 const AuthNav = () => {
   return (
@@ -13,10 +13,8 @@ const AuthNav = () => {
         className={({ isActive }) =>
           isActive ? `${css.active}` : `${css.link}`
         }
-      >
-        <LogInBtn />
-      </NavLink>
-
+      ></NavLink>
+      <LoginBtn />
       <NavLink
         key={'register'}
         to={'register'}
