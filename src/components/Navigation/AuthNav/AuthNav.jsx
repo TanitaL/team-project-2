@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import RegisterBtn from '../../Buttons/RegisterBtn';
-import LogInBtn from '../../Buttons/LogInBtn/LoginBtn';
+import RegisterBtn from '../../Buttons/RegisterBtn/RegisterBtn';
 import css from './AuthNav.module.css';
+import LogInBtn from '../../Buttons/LogInBtn/LogInBtn';
 
 const AuthNav = () => {
   return (

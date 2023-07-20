@@ -1,7 +1,7 @@
 import React from 'react';
 
 const LogInBtn = () => {
-  return <div>LoginBtn</div>;
+  return <div>LogInBtn</div>;
 };
 
 export default LogInBtn;
