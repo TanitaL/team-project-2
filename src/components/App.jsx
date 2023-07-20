@@ -1,10 +1,10 @@
+import LoginPage from 'pages/AuthNavPages/LoginPage';
+import RegisterPage from 'pages/AuthNavPages/RegisterPage';
+import MainPage from 'pages/NavPages/MainPage';
+import NewsPage from 'pages/NavPages/NewsPage';
+import NoticesPage from 'pages/NavPages/NoticesPage';
+import OurFriendsPage from 'pages/NavPages/OurFriendsPage';
 import { Route, Routes } from 'react-router-dom';
-import MainPage from './pages/NavPages/MainPage';
-import NewsPage from './pages/NavPages/NewsPage';
-import NoticesPage from './pages/NavPages/NoticesPage';
-import OurFriendsPage from './pages/NavPages/OurFriendsPage';
-import RegisterPage from './pages/AuthNavPages/RegisterPage';
-import LoginPage from './pages/AuthNavPages/LoginPage';
 
 export const App = () => {
   return (
