@@ -1,0 +1,17 @@
+.bgImgMobile {
+  background-image: url(../../../../assets/images/bg-paws-mobile-1-x-opt.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.textMainPage {
+  color: #000;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.375;
+
+  margin-top: 60px;
+  margin-bottom: 20px;
+}

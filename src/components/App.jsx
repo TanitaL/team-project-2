@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/AuthNavPages/LoginPage';
-import MainPage from './pages/NavPages/MainPage';
 import NewsPage from './pages/NavPages/NewsPage';
 import NoticesPage from './pages/NavPages/NoticesPage';
 import OurFriendsPage from './pages/NavPages/OurFriendsPage';
 import RegisterPage from './pages/AuthNavPages/RegisterPage';
 import SharedLayout from './SharedLayout/SharedLayout';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
+import MainPage from './pages/NavPages/MainPage/MainPage';
 
 export const App = () => {
   return (

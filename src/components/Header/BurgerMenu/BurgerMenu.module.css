@@ -1,0 +1,22 @@
+.headerBurgerMenu {
+  background-color: transparent;
+  border: transparent;
+}
+
+.burgerAuthNav {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  outline: currentColor;
+  max-width: 100%;
+  align-items: center;
+  min-width: 0;
+  min-height: 0;
+
+  z-index: 100;
+}
