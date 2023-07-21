@@ -1,0 +1,70 @@
+.stepWrap {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.step {
+position: relative;
+padding-bottom: 20px;
+}
+
+.step::after {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 8px;
+  left: 0;
+  bottom: 0;
+  border-radius: 2px;
+  background: #CCE4FB;
+  
+}
+
+.current {
+  composes: step;
+  color: #54adff;
+}
+
+.compleated {
+  composes: step;
+  color: #00c3ad;
+}
+
+.next {
+  composes: step;
+  color: #888888;
+}
+
+.current::after {
+    position: absolute;
+  content: '';
+  width: 100%;
+  height: 8px;
+  left: 0;
+  bottom: 0;
+  border-radius: 2px;
+  background: #54adff;
+}
+
+.compleated::after {
+    position: absolute;
+  content: '';
+  width: 100%;
+  height: 8px;
+  left: 0;
+  bottom: 0;
+  border-radius: 2px;
+  background: #00c3ad;
+}
+
+.next::after {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 8px;
+  left: 0;
+  bottom: 0;
+  border-radius: 2px;
+  color: #CCE4FB
+}
