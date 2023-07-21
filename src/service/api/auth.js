@@ -4,7 +4,7 @@ export const login = async ({ email, password }) => {
   const { data } = await instance.post(`users/login`, { email, password });
   setToken(data.token);
   localStorage.setItem('token', data.token);
-  return data;
+  return data.user;
 };
 
 export const refresh = async token => {
