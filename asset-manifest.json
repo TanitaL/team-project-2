@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/team-project-2/static/css/main.d22f86f6.css",
-    "main.js": "/team-project-2/static/js/main.83600f98.js",
+    "main.css": "/team-project-2/static/css/main.c1fcda2d.css",
+    "main.js": "/team-project-2/static/js/main.ba26b0b5.js",
     "static/media/bg-pets-mobile-1x-cut-opt.png": "/team-project-2/static/media/bg-pets-mobile-1x-cut-opt.3febdac4ee5edb20c372.png",
     "static/media/logo-mobile-optimized.svg": "/team-project-2/static/media/logo-mobile-optimized.1831dfd0a186e519aaa095fff8b89442.svg",
     "index.html": "/team-project-2/index.html",
     "static/media/menu-hamburger-optimized.svg": "/team-project-2/static/media/menu-hamburger-optimized.41cfbdb5ea2a6c6865f87ffe9fa6cbdb.svg",
     "static/media/menu-hamburger-cross-optimized.svg": "/team-project-2/static/media/menu-hamburger-cross-optimized.737a9aa53a41c5bfec6f5a5e0d144e1a.svg",
-    "main.d22f86f6.css.map": "/team-project-2/static/css/main.d22f86f6.css.map",
-    "main.83600f98.js.map": "/team-project-2/static/js/main.83600f98.js.map"
+    "main.c1fcda2d.css.map": "/team-project-2/static/css/main.c1fcda2d.css.map",
+    "main.ba26b0b5.js.map": "/team-project-2/static/js/main.ba26b0b5.js.map"
   },
   "entrypoints": [
-    "static/css/main.d22f86f6.css",
-    "static/js/main.83600f98.js"
+    "static/css/main.c1fcda2d.css",
+    "static/js/main.ba26b0b5.js"
   ]
 }
