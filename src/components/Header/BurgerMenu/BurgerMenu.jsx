@@ -4,6 +4,8 @@ import BurgerMenuClose from '../../../assets/svg/menu-hamburger-cross-optimized.
 import css from './BurgerMenu.module.css';
 import AuthNav from 'components/Navigation/AuthNav/AuthNav';
 import Nav from 'components/Navigation/Nav/Nav';
+import PublicRoute from 'routes/PublicRoute';
+import PrivateRoute from 'routes/PrivateRoute';
 
 const BurgerMenu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,9 +35,12 @@ const BurgerMenu = () => {
             />
           </button>
 
-          <div className={css.burgerAuthNav}>
-            <AuthNav />
-            <Nav />
+          <div className={css.burgerNavigation}>
+            <PublicRoute>
+              <AuthNav closeBurgerMenu={closeBurgerMenu} />
+            </PublicRoute>
+            <Nav closeBurgerMenu={closeBurgerMenu} />
+            <PrivateRoute>AddComponentUserNav</PrivateRoute>
           </div>
         </div>
       ) : (

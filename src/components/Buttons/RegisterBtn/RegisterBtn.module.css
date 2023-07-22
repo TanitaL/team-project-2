@@ -2,6 +2,7 @@
   @media screen and (min-width: 320px) {
     display: flex;
     width: 165px;
+    height: 40px;
     padding: 7px 20px;
     justify-content: center;
     align-items: center;
@@ -21,6 +22,7 @@
     letter-spacing: 0.64px;
 
     margin-top: 12px;
+    cursor: pointer;
   }
 
   @media screen and (min-width: 768px) {
@@ -28,4 +30,14 @@
 
   @media screen and (min-width: 1280px) {
   }
+}
+
+.registerBtn:hover {
+  background-color: #ffc107;
+  color: #fef9f9;
+}
+
+.registerBtn:focus {
+  background-color: #ffc107;
+  color: #fef9f9;
 }
