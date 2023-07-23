@@ -13,10 +13,7 @@ const MainPage = () => {
   );
   return (
     <div className={css.bgImgMobile}>
-      <Container>
-        <h1 className={css.textMainPage}>Take good care of your small pets</h1>
-      </Container>
-
+      <h1 className={css.textMainPage}>Take good care of your small pets</h1>
       {isSmallScreen && <img src={Pets} alt="pets" />}
       {isMediumScreen && <img src={PetsTablet} alt="pets" />}
     </div>

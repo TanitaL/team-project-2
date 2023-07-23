@@ -14,11 +14,7 @@ const Logo = () => {
   );
 
   return (
-    <NavLink
-      key={'/'}
-      to={'/'}
-      className={({ isActive }) => (isActive ? `${css.active}` : `${css.link}`)}
-    >
+    <NavLink key={'/'} to={'/'}>
       {isSmallScreen && <img src={LogoSvg} alt="logo" className={css.logo} />}
       {isMediumScreen && (
         <img src={LogoBigSvg} alt="logo" className={css.logo} />

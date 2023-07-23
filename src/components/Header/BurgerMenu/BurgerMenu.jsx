@@ -13,8 +13,6 @@ import { useMediaQuery } from '@react-hook/media-query';
 import { useBurgerContext } from 'context/BurgerProvider';
 
 const BurgerMenu = () => {
-  // const [menuOpen, setMenuOpen] = useState(false);
-
   const { menuOpen, setMenuOpen } = useBurgerContext();
 
   const { name } = useSelector(userSelector);
@@ -33,9 +31,9 @@ const BurgerMenu = () => {
   };
 
   return (
-    <div>
+    <>
       {menuOpen ? (
-        <div>
+        <>
           <button
             type="button"
             onClick={closeBurgerMenu}
@@ -60,9 +58,8 @@ const BurgerMenu = () => {
               </div>
             </PrivateRoute>
             <Nav closeBurgerMenu={closeBurgerMenu} />
-            {/* <LogoutBtn /> */}
           </div>
-        </div>
+        </>
       ) : (
         <div className={css.burgerHeader}>
           {isMediumScreen && (
@@ -93,7 +90,7 @@ const BurgerMenu = () => {
           </button>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
