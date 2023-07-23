@@ -1,17 +1,21 @@
 {
   "files": {
-    "main.css": "/team-project-2/static/css/main.c1fcda2d.css",
-    "main.js": "/team-project-2/static/js/main.5dfc6341.js",
+    "main.css": "/team-project-2/static/css/main.5bfe0e90.css",
+    "main.js": "/team-project-2/static/js/main.e2e04e64.js",
+    "static/media/bg-pets-tablet-1x-opt.png": "/team-project-2/static/media/bg-pets-tablet-1x-opt.62779fedc8551712ac49.png",
     "static/media/bg-pets-mobile-1x-cut-opt.png": "/team-project-2/static/media/bg-pets-mobile-1x-cut-opt.3febdac4ee5edb20c372.png",
+    "static/media/cat-404-min.png": "/team-project-2/static/media/cat-404-min.ab8ed5309e8656863916.png",
+    "static/media/logo-desktop-tablet-opt.svg": "/team-project-2/static/media/logo-desktop-tablet-opt.30c4305a11a554ab5690f988122fa1b9.svg",
     "static/media/logo-mobile-optimized.svg": "/team-project-2/static/media/logo-mobile-optimized.1831dfd0a186e519aaa095fff8b89442.svg",
     "index.html": "/team-project-2/index.html",
     "static/media/menu-hamburger-optimized.svg": "/team-project-2/static/media/menu-hamburger-optimized.41cfbdb5ea2a6c6865f87ffe9fa6cbdb.svg",
+    "static/media/cross-blue-mobile-opt.svg": "/team-project-2/static/media/cross-blue-mobile-opt.b36ab9f0e9d33d33cdd43857f5b7c4e7.svg",
     "static/media/menu-hamburger-cross-optimized.svg": "/team-project-2/static/media/menu-hamburger-cross-optimized.737a9aa53a41c5bfec6f5a5e0d144e1a.svg",
-    "main.c1fcda2d.css.map": "/team-project-2/static/css/main.c1fcda2d.css.map",
-    "main.5dfc6341.js.map": "/team-project-2/static/js/main.5dfc6341.js.map"
+    "main.5bfe0e90.css.map": "/team-project-2/static/css/main.5bfe0e90.css.map",
+    "main.e2e04e64.js.map": "/team-project-2/static/js/main.e2e04e64.js.map"
   },
   "entrypoints": [
-    "static/css/main.c1fcda2d.css",
-    "static/js/main.5dfc6341.js"
+    "static/css/main.5bfe0e90.css",
+    "static/js/main.e2e04e64.js"
   ]
 }
