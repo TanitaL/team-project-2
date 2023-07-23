@@ -3,7 +3,6 @@ import Pets from '../../../assets/images/bg-pets-mobile-1x-cut-opt.png';
 import PetsTablet from '../../../assets/images/bg-pets-tablet-1x-opt.png';
 
 import css from './MainPage.module.css';
-import Container from 'components/Container/Container';
 import { useMediaQuery } from '@react-hook/media-query';
 
 const MainPage = () => {
