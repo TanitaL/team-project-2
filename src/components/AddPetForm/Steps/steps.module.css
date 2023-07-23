@@ -12,17 +12,26 @@
   composes: flex;
   align-items: flex-start;
   gap: 12px;
+  margin-bottom: 91px;
 }
 
 .btn {
   display: inline-block;
-  background-color: #cce4fb;
+  background-color: var(--light-blue-color);
   padding: 8px 16px;
-  border: 1px solid #cce4fb;
+  border: 1px solid var(--light-blue-color);
   border-radius: 40px;
-  
-  
 }
+
+input[type='radio']:checked + .btn {
+  background-color: var(--blue-color);
+}
+
+/* .visually-hidden:checked + .btn {
+  background-color: var(
+    --blue-color
+  ); 
+} */
 
 .inptWrapper {
   composes: flex;
@@ -41,4 +50,59 @@
   border: 1px solid #54adff;
   border-radius: 40px;
   padding: 8px 16px;
+}
+
+.error {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--red-color);
+}
+
+.genderWrapper {
+  display: flex;
+  gap: 16px;
+}
+
+.gender {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: var(--grey-color);
+}
+
+.genderText {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.04em;
+  text-align: left;
+}
+
+.iconFemale {
+  color: var(--red-color)
+}
+
+.iconMale {
+  rotate: -45deg;
+  color: #54ADFF;
+}
+
+input[type='radio']:checked + .gender {
+  background-color: var(--blue-color);
+  color: var(--white-color);
+  padding: 8px 16px 8px 16px;
+  border-radius: 40px;
+}
+
+
+
+input[type='radio']:checked ~ .iconMale {
+  color: var(--white-color);
+}
+
+input[type='radio']:checked ~ .iconFemale {
+  color: var(--white-color);
 }
