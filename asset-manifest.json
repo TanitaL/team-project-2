@@ -1,8 +1,9 @@
 {
   "files": {
-    "main.css": "/team-project-2/static/css/main.4cfb3a82.css",
-    "main.js": "/team-project-2/static/js/main.636494b5.js",
+    "main.css": "/team-project-2/static/css/main.4feee145.css",
+    "main.js": "/team-project-2/static/js/main.8daf9044.js",
     "static/media/bg-pets-tablet-1x-opt.png": "/team-project-2/static/media/bg-pets-tablet-1x-opt.62779fedc8551712ac49.png",
+    "static/media/Manrope.ttf": "/team-project-2/static/media/Manrope.4afb283bba326df875f6.ttf",
     "static/media/bg-pets-mobile-1x-cut-opt.png": "/team-project-2/static/media/bg-pets-mobile-1x-cut-opt.3febdac4ee5edb20c372.png",
     "static/media/cat-404-min.png": "/team-project-2/static/media/cat-404-min.ab8ed5309e8656863916.png",
     "static/media/logo-desktop-tablet-opt.svg": "/team-project-2/static/media/logo-desktop-tablet-opt.30c4305a11a554ab5690f988122fa1b9.svg",
@@ -11,11 +12,11 @@
     "static/media/menu-hamburger-optimized.svg": "/team-project-2/static/media/menu-hamburger-optimized.41cfbdb5ea2a6c6865f87ffe9fa6cbdb.svg",
     "static/media/cross-blue-mobile-opt.svg": "/team-project-2/static/media/cross-blue-mobile-opt.b36ab9f0e9d33d33cdd43857f5b7c4e7.svg",
     "static/media/menu-hamburger-cross-optimized.svg": "/team-project-2/static/media/menu-hamburger-cross-optimized.737a9aa53a41c5bfec6f5a5e0d144e1a.svg",
-    "main.4cfb3a82.css.map": "/team-project-2/static/css/main.4cfb3a82.css.map",
-    "main.636494b5.js.map": "/team-project-2/static/js/main.636494b5.js.map"
+    "main.4feee145.css.map": "/team-project-2/static/css/main.4feee145.css.map",
+    "main.8daf9044.js.map": "/team-project-2/static/js/main.8daf9044.js.map"
   },
   "entrypoints": [
-    "static/css/main.4cfb3a82.css",
-    "static/js/main.636494b5.js"
+    "static/css/main.4feee145.css",
+    "static/js/main.8daf9044.js"
   ]
 }
