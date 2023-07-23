@@ -1,4 +1,4 @@
-.bgImgMobile {
+/* .bgImgMobile {
   @media screen and (min-width: 320px) {
     background-image: url(assets/images/bg-paws-mobile-1-x-opt.png);
     background-repeat: no-repeat;
@@ -11,30 +11,38 @@
   }
 
   @media screen and (min-width: 1280px) {
-    /* padding: 0px 16px 0px 16px; */
+  }
+} */
+.bgImgMobile {
+  background-image: url(assets/images/bg-paws-mobile-1-x-opt.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+@media screen and (min-width: 768px) {
+  .bgImgMobile {
+    background-image: url(assets/images/bg-paws-tablet-1x-opt.png);
   }
 }
 
 .textMainPage {
-  @media screen and (min-width: 320px) {
-    font-family: Manrope;
-    color: #000;
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 1.375;
+  font-family: Manrope;
+  color: #000;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.375;
 
-    padding: 60px 20px 20px 20px;
-  }
+  padding: 60px 20px 20px 20px;
+}
 
-  @media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
+  .textMainPage {
     font-size: 68px;
     line-height: 1.47;
 
     padding-top: 80px;
     padding-bottom: 27px;
-  }
-
-  @media screen and (min-width: 1280px) {
   }
 }
