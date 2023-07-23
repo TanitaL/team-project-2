@@ -1,17 +1,42 @@
 .bgImgMobile {
-  background-image: url(assets/images/bg-paws-mobile-1-x-opt.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  @media screen and (min-width: 320px) {
+    background-image: url(assets/images/bg-paws-mobile-1-x-opt.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  @media screen and (min-width: 768px) {
+    background-image: url(assets/images/bg-paws-tablet-1x-opt.png);
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding: 0px 16px 0px 16px;
+  }
 }
 
 .textMainPage {
-  color: #000;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 1.375;
+  @media screen and (min-width: 320px) {
+    font-family: Manrope;
+    color: #000;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.375;
 
-  margin-top: 60px;
-  margin-bottom: 20px;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    /* margin-bottom: 20px; */
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 68px;
+    line-height: 1.47;
+
+    padding-top: 80px;
+    padding-bottom: 27px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
 }

@@ -1,10 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+// import { useMediaQuery } from '@react-hook/media-query';
 import RegisterBtn from '../../Buttons/RegisterBtn/RegisterBtn';
-import css from './AuthNav.module.css';
 import LoginBtn from '../../Buttons/LoginBtn/LoginBtn';
+import css from './AuthNav.module.css';
+// import BurgerMenu from 'components/Header/BurgerMenu/BurgerMenu';
+// import UserBtn from 'components/Buttons/UserBtn/UserBtn';
 
 const AuthNav = ({ closeBurgerMenu }) => {
+  //   const isSmallScreen = useMediaQuery('(max-width: 767px)');
+
   return (
     <nav className={css.authNav}>
       <NavLink

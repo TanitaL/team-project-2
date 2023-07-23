@@ -5,20 +5,17 @@
     justify-content: center;
     align-items: center;
 
-    margin-top: 40px;
     margin-bottom: 219px;
     gap: 20px;
   }
 
   @media screen and (min-width: 768px) {
+    padding-top: 92px;
+    padding-bottom: 715px;
+    gap: 60px;
   }
 
   @media screen and (min-width: 1280px) {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    /* gap: 40px; */
   }
 }
 
@@ -36,35 +33,25 @@
   }
 
   @media screen and (min-width: 768px) {
+    font-size: 48px;
+    letter-spacing: 1.92px;
   }
 
   @media screen and (min-width: 1280px) {
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: 0.8px;
   }
 }
 
 .link:hover {
   color: var(--yellow-color);
-  font-family: Manrope;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: 1.28px;
+  text-decoration: none;
+}
 
+.link:focus {
+  color: var(--yellow-color);
   text-decoration: none;
 }
 
 .active {
   color: var(--yellow-color);
-  font-family: Manrope;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: 1.28px;
-
   text-decoration: none;
 }
