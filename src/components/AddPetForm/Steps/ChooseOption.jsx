@@ -1,7 +1,10 @@
+import ArrowLeftBtn from 'components/Buttons/ArrowLeftBtn/ArrowLeftBtn';
+import PawPrintBtn from 'components/Buttons/PawPrintBtn/PawPrintBtn';
+import { petCategory } from 'constants/petCategory';
 import { Field, Form, Formik } from 'formik';
 import css from './steps.module.css';
 
-const petCategory = ['your pet', 'sell', 'lost/found', 'in good hands'];
+// const petCategory = ['your pet', 'sell', 'lost/found', 'in good hands'];
 
 const ChooseOption = ({ data, next }) => {
   const handleSubmit = (values, helpers) => {
@@ -18,21 +21,28 @@ const ChooseOption = ({ data, next }) => {
             aria-labelledby="my-radio-group"
           >
             {petCategory.map(category => {
+              const uniqueId = `category-${category}`;
               return (
-                <label className={css.btn} key={category}>
+                <div key={category}>
                   <Field
                     className="visually-hidden"
                     type="radio"
                     name="category"
                     value={category}
+                    id={uniqueId}
                   />
-                  {category}
-                </label>
+                  <label htmlFor={uniqueId} className={css.btn} key={category}>
+                    {category}
+                  </label>
+                </div>
               );
             })}
           </div>
-          <button type="button">Cansel</button>
-          <button type="submit">Next</button>
+
+          <PawPrintBtn title="Next" type="submit" />
+          <ArrowLeftBtn title="Cansel" type="button"/>
+          {/* <button type="button">Cansel</button> */}
+          {/* <button type="submit">Next</button> */}
         </Form>
       )}
     </Formik>
