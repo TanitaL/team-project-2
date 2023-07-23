@@ -38,7 +38,7 @@ const UserNav = ({ closeBurgerMenu }) => {
               />
             </NavLink>
           </nav>
-          <Logout isOpenModal={isOpenModal} />
+          <Logout isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
         </>
       )}
     </div>

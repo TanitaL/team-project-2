@@ -3,7 +3,7 @@ import css from './LogoutBtn.module.css';
 
 const LogoutBtn = ({ closeBurgerMenu, setIsOpenModal }) => {
   const handleClick = () => {
-    closeBurgerMenu();
+    // closeBurgerMenu();
     setIsOpenModal(true);
   };
 

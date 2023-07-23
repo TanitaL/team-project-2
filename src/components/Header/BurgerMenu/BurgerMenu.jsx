@@ -65,14 +65,20 @@ const BurgerMenu = () => {
         </div>
       ) : (
         <div className={css.burgerHeader}>
-          <PublicRoute>{isMediumScreen && <AuthNav />}</PublicRoute>
-          <PrivateRoute>
-            {isMediumScreen && (
-              <div className={css.userNav}>
-                <UserNav /> <p>{name}</p>
-              </div>
-            )}
-          </PrivateRoute>
+          {isMediumScreen && (
+            <PublicRoute>
+              <AuthNav />
+            </PublicRoute>
+          )}
+
+          {isMediumScreen && (
+            <div className={css.userNav}>
+              <PrivateRoute>
+                <UserNav />
+                <p>{name}</p>
+              </PrivateRoute>
+            </div>
+          )}
           <button
             type="button"
             className={css.headerBurgerMenu}

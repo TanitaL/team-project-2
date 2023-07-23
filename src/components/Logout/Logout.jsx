@@ -1,20 +1,25 @@
 import ModalApproveAction from 'components/Modals/ModalApproveAction/ModalApproveAction';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { logoutThunk } from 'redux/auth/thunks';
 
-const Logout = ({ isLogoutModal }) => {
+const Logout = ({ isOpenModal, setIsOpenModal }) => {
+  const dispatch = useDispatch();
+
   const handleSuccess = () => {
-    //   third;
+    dispatch(logoutThunk());
   };
   const handleCancel = second => {
-    //   third;
+    setIsOpenModal(false);
   };
 
   return (
-    isLogoutModal && (
+    isOpenModal && (
       <ModalApproveAction
         handleSuccess={handleSuccess}
         handleCancel={handleCancel}
         content={'Already leaving?'}
+        successButtonText={'Logout'}
       />
     )
   );
