@@ -1,9 +1,13 @@
+/* .burgerWraper {
+  position: fixed;
+} */
+
 .headerBurgerMenu {
   background-color: transparent;
   border: transparent;
 }
 
-.burgerAuthNav {
+.burgerNavigation {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

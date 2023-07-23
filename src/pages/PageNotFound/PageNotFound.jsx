@@ -3,7 +3,7 @@ import React from 'react';
 const PageNotFound = () => {
   return (
     <div>
-      <p>Ooops! This page not found :(</p>
+      <img src="../../assets/images/cat-404-min.png" alt="page-not-found"/>
     </div>
   );
 };

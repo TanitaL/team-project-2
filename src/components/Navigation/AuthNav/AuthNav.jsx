@@ -4,7 +4,7 @@ import RegisterBtn from '../../Buttons/RegisterBtn/RegisterBtn';
 import css from './AuthNav.module.css';
 import LoginBtn from '../../Buttons/LoginBtn/LoginBtn';
 
-const AuthNav = () => {
+const AuthNav = ({ closeBurgerMenu }) => {
   return (
     <nav className={css.authNav}>
       <NavLink
@@ -13,8 +13,9 @@ const AuthNav = () => {
         className={({ isActive }) =>
           isActive ? `${css.active}` : `${css.link}`
         }
-      ></NavLink>
-      <LoginBtn />
+      >
+        <LoginBtn closeBurgerMenu={closeBurgerMenu} />
+      </NavLink>
       <NavLink
         key={'register'}
         to={'register'}
@@ -22,7 +23,7 @@ const AuthNav = () => {
           isActive ? `${css.active}` : `${css.link}`
         }
       >
-        <RegisterBtn />
+        <RegisterBtn closeBurgerMenu={closeBurgerMenu} />
       </NavLink>
     </nav>
   );
