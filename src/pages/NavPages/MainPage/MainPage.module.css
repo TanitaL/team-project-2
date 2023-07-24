@@ -1,4 +1,4 @@
-.bgImgMobile {
+.bgImg {
   background-image: url(assets/images/bg-paws-mobile-1-x-opt.png);
   background-repeat: no-repeat;
   background-position: center;
@@ -6,19 +6,21 @@
 }
 
 @media screen and (min-width: 768px) {
-  .bgImgMobile {
+  .bgImg {
     background-image: url(assets/images/bg-paws-tablet-1x-opt.png);
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .bgImgMobile {
+  .bgImg {
     background-image: url(assets/images/bg-paws-desktop-1x-opt.png);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 30px;
   }
+}
+
+.bgWrap {
+  position: relative;
+  padding-top: 30px;
+  margin: 0px;
 }
 
 .textMainPage {
@@ -40,14 +42,28 @@
 
 @media screen and (min-width: 1280px) {
   .textMainPage {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
     color: var(--text-color);
     font-size: 68px;
     font-weight: 800;
     line-height: 130%;
 
-    width: 501px;
+    width: 505px;
     height: 264px;
 
-    padding-left: 16px;
+    padding: 0px 0px 0px 16px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .imgPets {
+    display: inline-block;
+    margin: 0px;
+    width: 917px;
+    height: 670px;
   }
 }

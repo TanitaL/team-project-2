@@ -13,11 +13,15 @@ const MainPage = () => {
   const isBigScreen = useMediaQuery('(min-width: 1280px)');
 
   return (
-    <div className={css.bgImgMobile}>
-      <h1 className={css.textMainPage}>Take good care of your small pets</h1>
-      {isSmallScreen && <img src={Pets} alt="pets" />}
-      {isMediumScreen && <img src={PetsTablet} alt="pets" />}
-      {isBigScreen && <img src={PetsDesktop} alt="pets" />}
+    <div className={css.bgImg}>
+      <div className={css.bgWrap}>
+        <h1 className={css.textMainPage}>Take good care of your small pets</h1>
+        {isSmallScreen && <img src={Pets} alt="pets" />}
+        {isMediumScreen && <img src={PetsTablet} alt="pets" />}
+        {isBigScreen && (
+          <img src={PetsDesktop} alt="pets" className={css.imgPets} />
+        )}
+      </div>
     </div>
   );
 };
