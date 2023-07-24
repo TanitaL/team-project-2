@@ -1,0 +1,56 @@
+.text-error{
+    display: block;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.375;
+    margin-top: 128px;
+    margin-left: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+.PageNotFoundBtn{
+    @media screen and (min-width: 320px) {
+        display: flex;
+        width: 248px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+        /* top: 457px;
+        left: 36px; */
+        padding: 8px 28px;
+        border-radius: 40px;
+        gap: 12px;
+        border: 2px solid #54ADFF;
+        background: #54ADFF;
+
+        font-family: Manrope;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 0.64px;
+        color: #fef9f9;
+    
+        margin-top: 12px;
+        cursor: pointer;
+
+    }
+
+    @media screen and (min-width: 768px) {
+    }
+    
+    @media screen and (min-width: 1280px) {
+    }
+}
+
+.PageNotFoundBtn:hover{
+    background-color: transparent;
+    color: #54ADFF;
+    stroke: #54ADFF;
+}
+
+.PageNotFoundBtn:focus{
+        background-color: transparent;
+        color: #54ADFF;
+        stroke: #54ADFF;
+}
