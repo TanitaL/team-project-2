@@ -12,6 +12,7 @@ const SharedLayout = () => {
       <ContainerHeader>
         <Header />
       </ContainerHeader>
+
       {!menuOpen && <Outlet />}
     </div>
   );
