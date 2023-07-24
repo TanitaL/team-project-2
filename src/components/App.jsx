@@ -6,6 +6,7 @@ import NoticesPage from './pages/NavPages/NoticesPage';
 import OurFriendsPage from './pages/NavPages/OurFriendsPage';
 import RegisterPage from './pages/AuthNavPages/RegisterPage';
 import SharedLayout from './SharedLayout/SharedLayout';
+import UserData from './UserData/UserData';
 
 export const App = () => {
   return (
@@ -17,6 +18,7 @@ export const App = () => {
         <Route path="/friends" element={<OurFriendsPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/user" element={<UserData />} />
       </Route>
     </Routes>
   );
