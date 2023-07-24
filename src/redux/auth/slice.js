@@ -32,7 +32,7 @@ const authSlice = createSlice({
       name: 'John',
     },
     isLoading: false,
-    token: '123',
+    token: false,
     error: null,
   },
   extraReducers: builder => {
