@@ -44,8 +44,6 @@
     width: 501px;
     height: 264px;
 
-    padding-top: 188px;
-    padding-bottom: 250px;
-    padding-right: 763px;
+    padding: 188px 763px 250px 16px;
   }
 }
