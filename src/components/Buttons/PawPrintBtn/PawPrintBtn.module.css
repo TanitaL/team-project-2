@@ -1,35 +1,38 @@
 .btn {
-  @media screen and (min-width: 320px) {
-    display: flex;
-    width: 248px;
-    padding: 9px 86.5px;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  min-width: 248px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: auto;
+  padding-right: auto;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
 
-    border-radius: 40px;
-    border: 2px solid var(--blue-color);
-    background: var(--blue-color);
+  border-radius: 40px;
+  border: 2px solid var(--blue-color);
+  background: var(--blue-color);
 
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 0.64px;
-    color: var(--background-color);
-
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.64px;
+  color: var(--background-color);
+  cursor: pointer;
+  /* @media screen and (min-width: 320px) {
   }
 
   @media screen and (min-width: 768px) {
   }
 
   @media screen and (min-width: 1280px) {
-  }
+  } */
 }
 
-.btn:hover {
+.btn:hover,
+.btn:focus {
   color: var(--blue-color);
+  stroke: var(--blue-color);
   background-color: var(--white-color);
 }
-
-

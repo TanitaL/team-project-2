@@ -51,6 +51,7 @@ const NewsPage = () => {
       <NewsList news={newsItems} />
     </div>
   );
+
 };
 
 export default NewsPage;

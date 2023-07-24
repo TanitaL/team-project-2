@@ -4,10 +4,15 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { stepThreeValidationSchema } from './addFormValidation';
 import { BsGenderFemale, BsGenderMale } from 'react-icons/bs';
 import css from './steps.module.css';
+import ArrowLeftBtn from 'components/Buttons/ArrowLeftBtn/ArrowLeftBtn';
 
 const MoreInfo = ({ errors, values, handleChange, data, next, prev }) => {
   const handleSubmit = (values, helpers) => {
     next(values, true);
+  };
+
+  const handleBackClick = values => {
+    prev(values);
   };
 
   return (
@@ -46,8 +51,10 @@ const MoreInfo = ({ errors, values, handleChange, data, next, prev }) => {
                 <BsGenderMale size="24px" className={css.iconMale} />
                 <span className={css.genderText}>Male</span>
               </label>
+              <ErrorMessage className={css.error} name="sex" component="div" />
             </div>
           )}
+          <ErrorMessage className={css.error} name="sex" component="div" />
           {values.category !== petCategory[0] && (
             <div className={css.inptWrapper}>
               <label className={css.label} htmlFor="location">
@@ -61,6 +68,7 @@ const MoreInfo = ({ errors, values, handleChange, data, next, prev }) => {
               />
             </div>
           )}
+          <ErrorMessage className={css.error} name="location" component="div" />
           {values.category === petCategory[1] && (
             <div className={css.inptWrapper}>
               <label className={css.label} htmlFor="price">
@@ -74,21 +82,28 @@ const MoreInfo = ({ errors, values, handleChange, data, next, prev }) => {
               />
             </div>
           )}
+          <ErrorMessage className={css.error} name="price" component="div" />
           <div className={css.inptWrapper}>
             <label className={css.label} htmlFor="comments">
               Comments
             </label>
-            <Field className={css.input} name="comments" as="textarea" />
+            <Field className={css.textarea} name="comments" as="textarea" />
             <ErrorMessage
               className={css.error}
               name="comments"
               component="div"
             />
-          </div>
-          <button type="button" onClick={() => prev(values)}>
+          </div>{' '}
+          <ErrorMessage className={css.error} name="comments" component="div" />
+          {/* <button type="button" onClick={() => prev(values)}>
             Back
-          </button>
-          <PawPrintBtn title="Next" type="submit" />
+          </button> */}
+          <PawPrintBtn title="Done" type="submit" />
+          <ArrowLeftBtn
+            title="Back"
+            type="button"
+            handleBackClick={handleBackClick}
+          />
           {/* <button type="submit">Next</button> */}
         </Form>
       )}

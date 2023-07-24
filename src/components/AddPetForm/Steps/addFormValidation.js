@@ -12,7 +12,16 @@ export const stepOneValidationSchema = Yup.object().shape({
 });
 
 export const stepTwoValidationSchema = Yup.object().shape({
-  title: Yup.string().required('Title is required'),
+  title: Yup.string().test(
+    'titleRequired',
+    'Title is required for this category',
+    function (value) {
+      if (petCategory.includes(this.parent.category)) {
+        return this.parent.category !== 'your pet' ? !!value : true;
+      }
+      return true;
+    }
+  ),
   name: Yup.string().required('Pet name is required'),
   date: Yup.string()
     .matches(
@@ -32,7 +41,10 @@ export const stepThreeValidationSchema = Yup.object().shape({
   //     value => !value || (value && value.size <= 3 * 1024 * 1024)
   //   ),
   sex: Yup.string().test('sexRequired', 'Sex is required.', function (value) {
-    if (petCategory.includes(this.parent.category)) {
+    if (
+      petCategory.includes(this.parent.category) &&
+      this.parent.category !== 'your pet'
+    ) {
       return sexValues.includes(value);
     }
     return true;
@@ -42,7 +54,7 @@ export const stepThreeValidationSchema = Yup.object().shape({
     'Location is required.',
     function (value) {
       if (petCategory.includes(this.parent.category)) {
-        return !!value;
+        return this.parent.category !== 'your pet' ? !!value : true;
       }
       return true;
     }

@@ -14,14 +14,37 @@ const MainPage = () => {
 
   return (
     <div className={css.bgImg}>
-      <div className={css.bgWrap}>
-        <h1 className={css.textMainPage}>Take good care of your small pets</h1>
-        {isSmallScreen && <img src={Pets} alt="pets" />}
-        {isMediumScreen && <img src={PetsTablet} alt="pets" />}
-        {isBigScreen && (
-          <img src={PetsDesktop} alt="pets" className={css.imgPets} />
-        )}
-      </div>
+      {isSmallScreen && (
+        <>
+          <h1 className={css.textMainPage}>
+            Take good care of your small pets
+          </h1>
+          <img src={Pets} alt="pets" />
+        </>
+      )}
+
+      {isMediumScreen && (
+        <>
+          <h1 className={css.textMainPage}>
+            Take good care of your small pets
+          </h1>
+          <img src={PetsTablet} alt="pets" />
+        </>
+      )}
+
+      {isBigScreen && (
+        <div className={css.bgWrap}>
+          <h1 className={css.textMainPage}>
+            Take good care of your small pets
+          </h1>
+          <img
+            src={PetsDesktop}
+            alt="pets"
+            className={css.imgPets}
+            align="right"
+          />
+        </div>
+      )}
     </div>
   );
 };

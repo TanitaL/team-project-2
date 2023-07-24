@@ -5,6 +5,8 @@ import MoreInfo from '../Steps/MoreInfo';
 import PersonalDetails from '../Steps/PersonalDetails';
 import css from './AddPetForm.module.css';
 import { petCategory } from 'constants/petCategory';
+import { useDispatch } from 'react-redux';
+import { addPet } from 'redux/pets/operations';
 
 const initialValues = {
   category: 'your pet',
@@ -28,9 +30,47 @@ const stepsLable = [
 const AddPetForm = () => {
   const [data, setData] = useState(initialValues);
   const [currentStep, setCurrentStep] = useState(0);
+  const dispatsh = useDispatch();
 
   const makeRequest = formData => {
-    console.log('🚀 ~ makeRequest ~ formData:', formData);
+    const {
+      category,
+      title,
+      name,
+      date,
+      sex,
+      file,
+      location,
+      price,
+      type,
+      comments,
+    } = formData;
+    console.log('🚀 ~ makeRequest ~ formData:', {
+      category,
+      title,
+      name,
+      date,
+      sex,
+      file,
+      location,
+      price,
+      type,
+      comments,
+    });
+    dispatsh(
+      addPet({
+        category,
+        title,
+        name,
+        date,
+        sex,
+        file,
+        location,
+        price,
+        type,
+        comments,
+      })
+    );
   };
 
   const handleNextStep = (newData, final = false) => {
@@ -58,7 +98,9 @@ const AddPetForm = () => {
 
   return (
     <section className={css.section}>
-      {(currentStep === 0 || data.category === petCategory[0]) && <h1 className={css.title}>Add pet</h1>}
+      {(currentStep === 0 || data.category === petCategory[0]) && (
+        <h1 className={css.title}>Add pet</h1>
+      )}
       {/* { data.category === petCategory[0] && <h1 className={css.title}>Add pet</h1>} */}
       {currentStep !== 0 && data.category === petCategory[1] && (
         <h1 className={css.title}>Add pet for sale</h1>
@@ -76,4 +118,3 @@ const AddPetForm = () => {
 };
 
 export default AddPetForm;
-
