@@ -1,5 +1,16 @@
 import { deleteToken, instance, setToken } from './api';
 
+export const authFetch = async (endpoint, object) => {
+  try {
+    const { data } = await instance.post(
+      `/users/${endpoint}`, object
+    );
+    setToken(data.token);
+  } catch (error) {
+    console.log(error.response.data.message);
+  }
+};
+
 export const login = async ({ email, password }) => {
   const { data } = await instance.post(`users/login`, { email, password });
   setToken(data.token);
