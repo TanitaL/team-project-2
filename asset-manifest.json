@@ -1,22 +1,26 @@
 {
   "files": {
-    "main.css": "/team-project-2/static/css/main.1710b64b.css",
-    "main.js": "/team-project-2/static/js/main.8daf9044.js",
+    "main.css": "/team-project-2/static/css/main.0a648fdd.css",
+    "main.js": "/team-project-2/static/js/main.7f3ec7c3.js",
     "static/media/bg-pets-tablet-1x-opt.png": "/team-project-2/static/media/bg-pets-tablet-1x-opt.62779fedc8551712ac49.png",
+    "static/media/bg-pets-desktop-1x-opt.png": "/team-project-2/static/media/bg-pets-desktop-1x-opt.c973ff526912b737282d.png",
     "static/media/Manrope.ttf": "/team-project-2/static/media/Manrope.4afb283bba326df875f6.ttf",
-    "static/media/bg-pets-mobile-1x-cut-opt.png": "/team-project-2/static/media/bg-pets-mobile-1x-cut-opt.3febdac4ee5edb20c372.png",
+    "static/media/bg-pets-mobile-1x-opt.png": "/team-project-2/static/media/bg-pets-mobile-1x-opt.3febdac4ee5edb20c372.png",
     "static/media/cat-404-min.png": "/team-project-2/static/media/cat-404-min.ab8ed5309e8656863916.png",
     "static/media/logo-desktop-tablet-opt.svg": "/team-project-2/static/media/logo-desktop-tablet-opt.30c4305a11a554ab5690f988122fa1b9.svg",
-    "static/media/logo-mobile-optimized.svg": "/team-project-2/static/media/logo-mobile-optimized.1831dfd0a186e519aaa095fff8b89442.svg",
+    "static/media/logo-mobile-opt.svg": "/team-project-2/static/media/logo-mobile-opt.1831dfd0a186e519aaa095fff8b89442.svg",
+    "static/media/bg-paws-desktop-1x-opt.png": "/team-project-2/static/media/bg-paws-desktop-1x-opt.2587ce18d791dcadf919.png",
     "index.html": "/team-project-2/index.html",
-    "static/media/menu-hamburger-optimized.svg": "/team-project-2/static/media/menu-hamburger-optimized.41cfbdb5ea2a6c6865f87ffe9fa6cbdb.svg",
+    "static/media/user-btn-header-opt.svg": "/team-project-2/static/media/user-btn-header-opt.e61dde01485d52c7214b0791f2efc313.svg",
+    "static/media/logout-opt.svg": "/team-project-2/static/media/logout-opt.d82779416d368f18bff10c946fd2d39a.svg",
+    "static/media/menu-hamburger-opt.svg": "/team-project-2/static/media/menu-hamburger-opt.41cfbdb5ea2a6c6865f87ffe9fa6cbdb.svg",
     "static/media/cross-blue-mobile-opt.svg": "/team-project-2/static/media/cross-blue-mobile-opt.b36ab9f0e9d33d33cdd43857f5b7c4e7.svg",
-    "static/media/menu-hamburger-cross-optimized.svg": "/team-project-2/static/media/menu-hamburger-cross-optimized.737a9aa53a41c5bfec6f5a5e0d144e1a.svg",
-    "main.1710b64b.css.map": "/team-project-2/static/css/main.1710b64b.css.map",
-    "main.8daf9044.js.map": "/team-project-2/static/js/main.8daf9044.js.map"
+    "static/media/menu-hamburger-cross-opt.svg": "/team-project-2/static/media/menu-hamburger-cross-opt.737a9aa53a41c5bfec6f5a5e0d144e1a.svg",
+    "main.0a648fdd.css.map": "/team-project-2/static/css/main.0a648fdd.css.map",
+    "main.7f3ec7c3.js.map": "/team-project-2/static/js/main.7f3ec7c3.js.map"
   },
   "entrypoints": [
-    "static/css/main.1710b64b.css",
-    "static/js/main.8daf9044.js"
+    "static/css/main.0a648fdd.css",
+    "static/js/main.7f3ec7c3.js"
   ]
 }
