@@ -1,13 +1,8 @@
-.userNav {
+/* .userNav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* gap: 415px; */
 }
-
-/* .logoutBtnNav{
-
-} */
 
 .link {
   color: #111;
@@ -17,4 +12,4 @@
 .active {
   color: #ffc107;
   text-decoration: none;
-}
+} */

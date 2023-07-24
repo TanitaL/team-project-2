@@ -1,22 +1,27 @@
 .modalContainer {
   position: relative;
-
   display: flex;
   flex-direction: column;
 
-    padding: 12px;
+  padding: 12px;
 
   width: 280px;
   height: 302px;
 
   border-radius: 20px;
-  background: #fff;
+  background: var(--white-color);
 }
 
 .modalBtn {
   background-color: transparent;
-  border: none;
+  border-radius: 40px;
+  border: 2px solid var(--blue-color);
   cursor: pointer;
+
+  color: var(--blue-color);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.64px;
 }
 
 .modalOverlay {
@@ -28,11 +33,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(97, 97, 97, 0.6);
+  backdrop-filter: blur(4px);
+
   z-index: 1050;
 }
-
-
 
 .modalHeader {
   display: flex;
@@ -54,10 +59,7 @@
 
   color: var(--text-color);
   text-align: center;
-  font-family: Manrope;
   font-size: 24px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
   letter-spacing: 0.96px;
 }

@@ -1,7 +1,7 @@
-import ModalApproveAction from 'components/Modals/ModalApproveAction/ModalApproveAction';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { logoutThunk } from 'redux/auth/thunks';
+import ModalApproveAction from 'components/Modals/ModalApproveAction/ModalApproveAction';
 
 const Logout = ({ isOpenModal, setIsOpenModal }) => {
   const dispatch = useDispatch();
@@ -9,7 +9,8 @@ const Logout = ({ isOpenModal, setIsOpenModal }) => {
   const handleSuccess = () => {
     dispatch(logoutThunk());
   };
-  const handleCancel = second => {
+
+  const handleCancel = () => {
     setIsOpenModal(false);
   };
 

@@ -1,13 +1,8 @@
-/* .logoutBtnWrap {
-  width: 100%;
-  height: 100%;
-  background-color: var(--background-color);
-} */
-
 .logoutBtn {
-  padding: 8px 20px;
-  justify-content: center;
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
+  padding: 8px 20px;
   gap: 8px;
 
   width: 135px;
@@ -17,20 +12,13 @@
   border: none;
   border-color: var(--blue-color);
   background: var(--blue-color);
-
   color: var(--background-color);
-  font-family: Manrope;
+
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.64px;
-
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-
-  /* margin-top: 415px; */
 
   position: fixed;
   left: 20px;
@@ -39,4 +27,14 @@
   box-sizing: border-box;
   outline: var(--background-color);
   z-index: 20;
+}
+
+.logoutBtn:hover {
+  background: var(--yellow-color);
+  border-color: var(--yellow-color);
+}
+
+.logoutBtn:focus {
+  background: var(--yellow-color);
+  border-color: var(--yellow-color);
 }

@@ -1,20 +1,19 @@
 import React from 'react';
-import BurgerMenuSvg from '../../../assets/svg/menu-hamburger-optimized.svg';
-import BurgerMenuClose from '../../../assets/svg/menu-hamburger-cross-optimized.svg';
-import css from './BurgerMenu.module.css';
+import { useSelector } from 'react-redux';
+import { userSelector } from 'redux/auth/selectors';
+import { useMediaQuery } from '@react-hook/media-query';
+import { ReactComponent as BurgerOpenSvg } from '../../../assets/svg/menu-hamburger-opt.svg';
+import { ReactComponent as BurgerCloseSvg } from '../../../assets/svg/menu-hamburger-cross-opt.svg';
 import AuthNav from 'components/Navigation/AuthNav/AuthNav';
 import Nav from 'components/Navigation/Nav/Nav';
 import PublicRoute from 'routes/PublicRoute';
 import PrivateRoute from 'routes/PrivateRoute';
 import UserNav from 'components/Navigation/UserNav/UserNav';
-import { useSelector } from 'react-redux';
-import { userSelector } from 'redux/auth/selectors';
-import { useMediaQuery } from '@react-hook/media-query';
 import { useBurgerContext } from 'context/BurgerProvider';
+import css from './BurgerMenu.module.css';
 
 const BurgerMenu = () => {
   const { menuOpen, setMenuOpen } = useBurgerContext();
-
   const { name } = useSelector(userSelector);
 
   const isSmallScreen = useMediaQuery('(max-width: 767px)');
@@ -37,17 +36,12 @@ const BurgerMenu = () => {
           <button
             type="button"
             onClick={closeBurgerMenu}
-            className={css.headerBurgerMenu}
+            className={css.burgerMenuBtn}
           >
-            <img
-              src={BurgerMenuClose}
-              alt="burger-menu-button"
-              width={24}
-              height={24}
-            />
+            <BurgerCloseSvg />
           </button>
 
-          <div className={css.burgerNavigation}>
+          <div className={css.burgerOpenNavigation}>
             <PublicRoute>
               {isSmallScreen && <AuthNav closeBurgerMenu={closeBurgerMenu} />}
             </PublicRoute>
@@ -78,15 +72,10 @@ const BurgerMenu = () => {
           )}
           <button
             type="button"
-            className={css.headerBurgerMenu}
+            className={css.burgerMenuBtn}
             onClick={openBurgerMenu}
           >
-            <img
-              src={BurgerMenuSvg}
-              alt="burger-menu-button"
-              width={24}
-              height={24}
-            />
+            <BurgerOpenSvg />
           </button>
         </div>
       )}

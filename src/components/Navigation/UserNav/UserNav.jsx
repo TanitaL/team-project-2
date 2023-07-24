@@ -1,33 +1,22 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import css from './UserNav.module.css';
-import UserBtn from 'components/Buttons/UserBtn/UserBtn';
 import { useSelector } from 'react-redux';
 import { authSelector } from 'redux/auth/selectors';
+import UserBtn from 'components/Buttons/UserBtn/UserBtn';
 import LogoutBtn from 'components/Buttons/LogoutBtn/LogoutBtn';
 import Logout from 'components/Logout/Logout';
-// import { useMediaQuery } from '@react-hook/media-query';
+import css from './UserNav.module.css';
 
 const UserNav = ({ closeBurgerMenu }) => {
   const isAuth = useSelector(authSelector);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
-  //   const isMediumScreen = useMediaQuery(
-  //     '(min-width: 768px) and (max-width: 1280px)'
-  //   );
-
   return (
-    <div className={css.userNavWrap}>
+    <>
       {isAuth && (
         <>
           <nav className={css.userNav}>
-            <NavLink
-              key={'user'}
-              to={'user'}
-              className={({ isActive }) =>
-                isActive ? `${css.active}` : `${css.link}`
-              }
-            >
+            <NavLink key={'user'} to={'user'}>
               <UserBtn closeBurgerMenu={closeBurgerMenu} />
             </NavLink>
 
@@ -41,7 +30,7 @@ const UserNav = ({ closeBurgerMenu }) => {
           <Logout isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
         </>
       )}
-    </div>
+    </>
   );
 };
 
