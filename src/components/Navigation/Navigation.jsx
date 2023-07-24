@@ -11,8 +11,8 @@ const Navigation = () => {
 
   return (
     <div className={css.navigation}>
-      {!isAuth ? <AuthNav /> : <UserNav />}
       <Nav />
+      {!isAuth ? <AuthNav /> : <UserNav />}
     </div>
   );
 };

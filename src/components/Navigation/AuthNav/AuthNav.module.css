@@ -19,8 +19,8 @@
 
 @media screen and (min-width: 1280px) {
   .authNav {
-    padding-bottom: 38px;
-    padding-bottom: 40px;
+    padding-bottom: 0px;
+    padding-bottom: 0px;
   }
 }
 
