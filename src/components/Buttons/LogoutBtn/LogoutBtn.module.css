@@ -29,6 +29,12 @@
   z-index: 20;
 }
 
+@media screen and (min-width: 768px) {
+  .logoutBtn {
+    position: static;
+  }
+}
+
 .logoutBtn:hover {
   background: var(--yellow-color);
   border-color: var(--yellow-color);

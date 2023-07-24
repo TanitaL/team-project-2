@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logoutThunk } from 'redux/auth/thunks';
 import ModalApproveAction from 'components/Modals/ModalApproveAction/ModalApproveAction';
+import { NavLink } from 'react-router-dom';
+import LogoutBtn from 'components/Buttons/LogoutBtn/LogoutBtn';
 
-const Logout = ({ isOpenModal, setIsOpenModal }) => {
+const Logout = () => {
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const dispatch = useDispatch();
 
   const handleSuccess = () => {
@@ -15,14 +18,19 @@ const Logout = ({ isOpenModal, setIsOpenModal }) => {
   };
 
   return (
-    isOpenModal && (
-      <ModalApproveAction
-        handleSuccess={handleSuccess}
-        handleCancel={handleCancel}
-        content={'Already leaving?'}
-        successButtonText={'Logout'}
-      />
-    )
+    <>
+      <NavLink key={'/'} to={'/'}>
+        <LogoutBtn setIsOpenModal={setIsOpenModal} />
+      </NavLink>
+      {isOpenModal && (
+        <ModalApproveAction
+          handleSuccess={handleSuccess}
+          handleCancel={handleCancel}
+          content={'Already leaving?'}
+          successButtonText={'Logout'}
+        />
+      )}
+    </>
   );
 };
 

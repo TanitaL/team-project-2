@@ -42,20 +42,25 @@ const BurgerMenu = () => {
           </button>
 
           <div className={css.burgerOpenNavigation}>
-            <PublicRoute>
-              {isSmallScreen && <AuthNav closeBurgerMenu={closeBurgerMenu} />}
-            </PublicRoute>
-            <PrivateRoute>
-              <div className={css.userNav}>
-                <UserNav closeBurgerMenu={closeBurgerMenu} />
-                <p>{name}</p>
-              </div>
-            </PrivateRoute>
+            {isSmallScreen && (
+              <PublicRoute>
+                <AuthNav closeBurgerMenu={closeBurgerMenu} />{' '}
+              </PublicRoute>
+            )}
+            {isSmallScreen && (
+              <PrivateRoute>
+                <div className={css.userNav}>
+                  <UserNav closeBurgerMenu={closeBurgerMenu} />
+                  <p>{name}</p>
+                </div>
+              </PrivateRoute>
+            )}
+
             <Nav closeBurgerMenu={closeBurgerMenu} />
           </div>
         </>
       ) : (
-        <div className={css.burgerHeader}>
+        <>
           {isMediumScreen && (
             <PublicRoute>
               <AuthNav />
@@ -70,14 +75,16 @@ const BurgerMenu = () => {
               </PrivateRoute>
             </div>
           )}
-          <button
-            type="button"
-            className={css.burgerMenuBtn}
-            onClick={openBurgerMenu}
-          >
-            <BurgerOpenSvg />
-          </button>
-        </div>
+          <div className={css.burgerHeader}>
+            <button
+              type="button"
+              className={css.burgerMenuBtn}
+              onClick={openBurgerMenu}
+            >
+              <BurgerOpenSvg />
+            </button>
+          </div>
+        </>
       )}
     </>
   );
