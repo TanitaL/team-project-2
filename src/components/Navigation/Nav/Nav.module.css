@@ -25,6 +25,7 @@
 
     padding-top: 0px;
     padding-bottom: 0px;
+    margin-left: 159px;
   }
 }
 
@@ -36,20 +37,6 @@
   line-height: normal;
   letter-spacing: 1.28px;
   text-decoration: none;
-}
-
-@media screen and (min-width: 768px) {
-  .link {
-    font-size: 48px;
-    letter-spacing: 1.92px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .link {
-    font-size: 20px;
-    letter-spacing: 0.8px;
-  }
 }
 
 .link:hover {
@@ -68,4 +55,54 @@
   font-weight: 500;
   color: var(--yellow-color);
   text-decoration: none;
+}
+
+@media screen and (min-width: 768px) {
+  .link {
+    font-size: 48px;
+    letter-spacing: 1.92px;
+  }
+
+  .link:hover {
+    font-weight: 500;
+    color: var(--yellow-color);
+    text-decoration: none;
+  }
+
+  .link:focus {
+    font-weight: 500;
+    color: var(--yellow-color);
+    text-decoration: none;
+  }
+
+  .active {
+    font-weight: 500;
+    color: var(--yellow-color);
+    text-decoration: none;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .link {
+    font-size: 20px;
+    letter-spacing: 0.8px;
+  }
+
+  .link:hover {
+    font-weight: 500;
+    color: var(--yellow-color);
+    text-decoration: none;
+  }
+
+  .link:focus {
+    font-weight: 500;
+    color: var(--yellow-color);
+    text-decoration: none;
+  }
+
+  .active {
+    font-weight: 500;
+    color: var(--yellow-color);
+    text-decoration: none;
+  }
 }
