@@ -1,4 +1,5 @@
 import React from 'react';
+import NotFound from '../../assets/images/cat-404-min.png';
 
 import NotFoundMax from '../../assets/images/cat-404-max-opt.png';
 
@@ -28,6 +29,7 @@ const PageNotFound = () => {
       </svg>
     </button >
       
+      <img src={NotFound} alt="page-not-found" />
     </div>
   );
 };

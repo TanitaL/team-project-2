@@ -1,17 +1,17 @@
+import ArrowLeftBtn from 'components/Buttons/ArrowLeftBtn/ArrowLeftBtn';
+import PawPrintBtn from 'components/Buttons/PawPrintBtn/PawPrintBtn';
+import { petCategory } from 'constants/petCategory';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { stepTwoValidationSchema } from './addFormValidation';
 import css from './steps.module.css';
 
-const PersonalDetails = ({
-  errors,
-  values,
-  handleChange,
-  data,
-  next,
-  prev,
-}) => {
+const PersonalDetails = ({ data, next, prev }) => {
   const handleSubmit = (values, helpers) => {
     next(values);
+  };
+
+  const handleBackClick = values => {
+    prev(values);
   };
 
   return (
@@ -22,17 +22,24 @@ const PersonalDetails = ({
     >
       {({ values }) => (
         <Form className={css.wrapper}>
-          <div className={css.inptWrapper}>
-            <label className={css.lable} htmlFor="title">
-              Title of add
-            </label>
-            <Field
-              className={css.input}
-              name="title"
-              placeholder="Title of add"
-            />
-            <ErrorMessage name="title" component="div" />
-          </div>
+          {values.category !== petCategory[0] && (
+            <div className={css.inptWrapper}>
+              <label className={css.lable} htmlFor="title">
+                Title of add
+              </label>
+              <Field
+                className={css.input}
+                name="title"
+                placeholder="Title of add"
+              />
+              <ErrorMessage
+                className={css.error}
+                name="title"
+                component="div"
+              />
+            </div>
+          )}
+
           <div className={css.inptWrapper}>
             <label className={css.lable} htmlFor="name">
               Pet’s name
@@ -42,7 +49,7 @@ const PersonalDetails = ({
               name="name"
               placeholder="Type name pet"
             />
-            <ErrorMessage name="name" component="div" />
+            <ErrorMessage className={css.error} name="name" component="div" />
           </div>
           <div className={css.inptWrapper}>
             <label className={css.lable} htmlFor="date">
@@ -54,7 +61,7 @@ const PersonalDetails = ({
               type="data"
               placeholder="Type date of birth"
             />
-            <ErrorMessage name="data" component="div" />
+            <ErrorMessage className={css.error} name="data" component="div" />
           </div>
           <div className={css.inptWrapper}>
             <label className={css.lable} htmlFor="type">
@@ -65,12 +72,21 @@ const PersonalDetails = ({
               name="type"
               placeholder="Type of pet"
             />
-            <ErrorMessage name="type" component="div" />
+            <ErrorMessage className={css.error} name="type" component="div" />
           </div>
-          <button type="button" onClick={() => prev(values)}>
+          <div className={css.btnWrapper}>
+            <PawPrintBtn title="Next" type="submit" />
+            <ArrowLeftBtn
+              title="Back"
+              type="button"
+              handleBackClick={handleBackClick}
+            />
+          </div>
+
+          {/* <button type="submit">Next</button> */}
+          {/* <button type="button" onClick={handleBackClick}>
             Back
-          </button>
-          <button type="submit">Next</button>
+          </button> */}
         </Form>
       )}
     </Formik>

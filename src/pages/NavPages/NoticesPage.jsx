@@ -1,7 +1,8 @@
 import React from 'react';
+import Container from 'components/Container/Container';
 
 const NoticesPage = () => {
-  return <div>NoticesPage</div>;
+  return <Container>Notices Page</Container>;
 };
 
 export default NoticesPage;

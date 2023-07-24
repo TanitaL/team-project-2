@@ -28,7 +28,9 @@ const handleRejected = (state, { payload }) => {
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: {},
+    user: {
+      name: 'John',
+    },
     isLoading: false,
     token: false,
     error: null,
