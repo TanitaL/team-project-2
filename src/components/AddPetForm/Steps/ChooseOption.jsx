@@ -14,7 +14,7 @@ const ChooseOption = ({ data, next }) => {
   return (
     <Formik initialValues={data} onSubmit={handleSubmit}>
       {({ values }) => (
-        <Form>
+        <Form className={css.radioForm}>
           <div
             className={css.radioWrap}
             role="group"
@@ -38,9 +38,10 @@ const ChooseOption = ({ data, next }) => {
               );
             })}
           </div>
-
-          <PawPrintBtn title="Next" type="submit" />
-          <ArrowLeftBtn title="Cansel" type="button"/>
+          <div className={css.btnWrapper}>
+            <PawPrintBtn title="Next" type="submit" />
+            <ArrowLeftBtn title="Cansel" type="button" />
+          </div>
           {/* <button type="button">Cansel</button> */}
           {/* <button type="submit">Next</button> */}
         </Form>

@@ -30,7 +30,8 @@ const authSlice = createSlice({
   initialState: {
     user: {},
     isLoading: false,
-    token: false,
+    token:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YmUzNTAxYzU3MjI3NjE2YmY5Y2JmMCIsImlhdCI6MTY5MDE4NzAxMCwiZXhwIjoxNjkwMjY5ODEwfQ.52F_BBq5D4KfJCipDwZn-7cQG5c4VE9JRU4aoDM-jfw',
     error: null,
   },
   extraReducers: builder => {
