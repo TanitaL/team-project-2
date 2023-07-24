@@ -5,16 +5,13 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { stepTwoValidationSchema } from './addFormValidation';
 import css from './steps.module.css';
 
-const PersonalDetails = ({
-  errors,
-  values,
-  handleChange,
-  data,
-  next,
-  prev,
-}) => {
+const PersonalDetails = ({ data, next, prev }) => {
   const handleSubmit = (values, helpers) => {
     next(values);
+  };
+
+  const handleBackClick = values => {
+    prev(values);
   };
 
   return (
@@ -42,6 +39,7 @@ const PersonalDetails = ({
               />
             </div>
           )}
+
           <div className={css.inptWrapper}>
             <label className={css.lable} htmlFor="name">
               Pet’s name
@@ -76,17 +74,19 @@ const PersonalDetails = ({
             />
             <ErrorMessage className={css.error} name="type" component="div" />
           </div>
-          <PawPrintBtn title="Next" type="submit" />
-          {/* <ArrowLeftBtn
-            title="Back"
-            type="button"
-            onClick={() => prev(values)}
-          /> */}
+          <div className={css.btnWrapper}>
+            <PawPrintBtn title="Next" type="submit" />
+            <ArrowLeftBtn
+              title="Back"
+              type="button"
+              handleBackClick={handleBackClick}
+            />
+          </div>
 
           {/* <button type="submit">Next</button> */}
-          <button type="button" onClick={() => prev(values)}>
+          {/* <button type="button" onClick={handleBackClick}>
             Back
-          </button>
+          </button> */}
         </Form>
       )}
     </Formik>
