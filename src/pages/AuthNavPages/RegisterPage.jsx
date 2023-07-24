@@ -1,7 +1,8 @@
 import React from 'react';
+import Container from 'components/Container/Container';
 
 const RegisterPage = () => {
-  return <div>RegisterPage</div>;
+  return <Container>Register Page</Container>;
 };
 
 export default RegisterPage;

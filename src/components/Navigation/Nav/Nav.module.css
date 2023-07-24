@@ -101,6 +101,8 @@
   }
 
   .active {
+    font-size: 20px;
+    letter-spacing: 0.8px;
     font-weight: 500;
     color: var(--yellow-color);
     text-decoration: none;
