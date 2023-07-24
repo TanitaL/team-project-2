@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/team-project-2/static/css/main.75880844.css",
-    "main.js": "/team-project-2/static/js/main.9014ec18.js",
+    "main.css": "/team-project-2/static/css/main.ae3017b1.css",
+    "main.js": "/team-project-2/static/js/main.1683c683.js",
     "static/media/bg-pets-tablet-1x-opt.png": "/team-project-2/static/media/bg-pets-tablet-1x-opt.62779fedc8551712ac49.png",
     "static/media/bg-pets-desktop-1x-opt.png": "/team-project-2/static/media/bg-pets-desktop-1x-opt.c973ff526912b737282d.png",
     "static/media/Manrope.ttf": "/team-project-2/static/media/Manrope.4afb283bba326df875f6.ttf",
@@ -16,11 +16,11 @@
     "static/media/menu-hamburger-opt.svg": "/team-project-2/static/media/menu-hamburger-opt.41cfbdb5ea2a6c6865f87ffe9fa6cbdb.svg",
     "static/media/cross-blue-mobile-opt.svg": "/team-project-2/static/media/cross-blue-mobile-opt.b36ab9f0e9d33d33cdd43857f5b7c4e7.svg",
     "static/media/menu-hamburger-cross-opt.svg": "/team-project-2/static/media/menu-hamburger-cross-opt.737a9aa53a41c5bfec6f5a5e0d144e1a.svg",
-    "main.75880844.css.map": "/team-project-2/static/css/main.75880844.css.map",
-    "main.9014ec18.js.map": "/team-project-2/static/js/main.9014ec18.js.map"
+    "main.ae3017b1.css.map": "/team-project-2/static/css/main.ae3017b1.css.map",
+    "main.1683c683.js.map": "/team-project-2/static/js/main.1683c683.js.map"
   },
   "entrypoints": [
-    "static/css/main.75880844.css",
-    "static/js/main.9014ec18.js"
+    "static/css/main.ae3017b1.css",
+    "static/js/main.1683c683.js"
   ]
 }
