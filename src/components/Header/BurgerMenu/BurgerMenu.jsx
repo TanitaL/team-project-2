@@ -31,6 +31,20 @@ const BurgerMenu = () => {
 
   return (
     <>
+      {isMediumScreen && (
+        <PublicRoute>
+          <AuthNav />
+        </PublicRoute>
+      )}
+
+      {isMediumScreen && (
+        <div className={css.userNav}>
+          <PrivateRoute>
+            <UserNav />
+            <p>{name}</p>
+          </PrivateRoute>
+        </div>
+      )}
       {menuOpen ? (
         <>
           <button
@@ -61,20 +75,6 @@ const BurgerMenu = () => {
         </>
       ) : (
         <>
-          {isMediumScreen && (
-            <PublicRoute>
-              <AuthNav />
-            </PublicRoute>
-          )}
-
-          {isMediumScreen && (
-            <div className={css.userNav}>
-              <PrivateRoute>
-                <UserNav />
-                <p>{name}</p>
-              </PrivateRoute>
-            </div>
-          )}
           <div className={css.burgerHeader}>
             <button
               type="button"
