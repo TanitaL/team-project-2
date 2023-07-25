@@ -13,7 +13,7 @@ function DataPicker(props) {
               {({form, field}) => {
                   const { setFildValue } = form 
                   const { value } = field
-                  return <DateView/>
+                  return <DateView />
               }}
           </Field>
     </div>

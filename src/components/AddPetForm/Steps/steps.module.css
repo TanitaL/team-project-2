@@ -75,7 +75,7 @@ input[type='radio']:checked + .btn {
 }
 
 .input {
-  border: 1px solid #54adff;
+  border: 1px solid var(--blue-color);
   border-radius: 40px;
   padding: 9.5px 16px;
   width: 100%;
@@ -130,7 +130,7 @@ input[type='radio']:checked + .btn {
 
 .iconMale {
   rotate: -45deg;
-  color: #54adff;
+  color: var(--blue-color);
 }
 
 input[type='radio']:checked + .gender {
@@ -147,6 +147,47 @@ input[type='radio']:checked ~ .iconMale {
 
 input[type='radio']:checked ~ .iconFemale {
   color: var(--white-color);
+}
+
+/* Add Image */
+
+.addImgWrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 14px;
+
+  @media screen and (min: width 768px;) {
+    gap: 16px;
+  }
+}
+
+.addImgText {
+  max-width: 81px;
+font-size: 14px;
+font-weight: 500;
+line-height: 19px;
+letter-spacing: 0px;
+text-align: left;
+color: var(--text-color);
+
+}
+
+.addImgBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 112px;
+  height: 112px;
+  background-color: var(--light-blue-color);
+  border: none;
+border-radius: 40px;
+
+
+  @media screen and (min-width: 768px) {
+    width: 182px;
+    height: 182px;
+  }
 }
 
 .textarea {

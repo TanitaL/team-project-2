@@ -14,7 +14,7 @@ const initialValues = {
   name: '',
   date: '',
   sex: '',
-  file: '',
+  file: null,
   location: '',
   price: '',
   type: '',
@@ -32,7 +32,7 @@ const AddPetForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const dispatsh = useDispatch();
 
-  const makeRequest = formData => {
+  const makeRequest = values => {
     const {
       category,
       title,
@@ -44,33 +44,17 @@ const AddPetForm = () => {
       price,
       type,
       comments,
-    } = formData;
-    console.log('🚀 ~ makeRequest ~ formData:', {
-      category,
-      title,
-      name,
-      date,
-      sex,
-      file,
-      location,
-      price,
-      type,
-      comments,
-    });
-    dispatsh(
-      addPet({
-        category,
-        title,
-        name,
-        date,
-        sex,
-        file,
-        location,
-        price,
-        type,
-        comments,
-      })
-    );
+    } = values;
+    const formData = new FormData();
+    for (let value in values) {
+      formData.append(value, values[value]);
+    }
+    
+    for (let property of formData.entries()) {
+      console.log(property[0], property[1]);
+    }
+
+    dispatsh(addPet(formData));
   };
 
   const handleNextStep = (newData, final = false) => {

@@ -6,6 +6,7 @@ import PetsDesktop from '../../../assets/images/bg-pets-desktop-1x-opt.png';
 import css from './MainPage.module.css';
 import BgContainer from 'components/Container/BgContainer/BgContainer';
 
+
 const MainPage = () => {
   const isSmallScreen = useMediaQuery('(max-width: 767px)');
   const isMediumScreen = useMediaQuery(
@@ -14,8 +15,7 @@ const MainPage = () => {
   const isBigScreen = useMediaQuery('(min-width: 1280px)');
 
   return (
-    // <div className={css.bgImg}>
-
+    <div className={css.bgImg}>
     <BgContainer>
       {isSmallScreen && (
         <>
