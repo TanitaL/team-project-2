@@ -17,15 +17,15 @@
     font-family: Manrope;
     font-size: 28px;
     font-weight: 500;
-    line-height: 38px;
-    letter-spacing: 0em;
+    line-height: 1.37;
+    letter-spacing: 4%;
     text-align: left;
     color: var(--text-color);
     }
 
 .section {
     position: relative;
-    width: 100%;
+  
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -34,13 +34,26 @@
     gap: 21px;
     margin-top: 30px;
     width: 395px;
-    left: 16px;
     border-radius: 40px;
     background-color: #ffffff;
     box-shadow: 3px 8px 14px 0px #88C6FD30;
     }
     
+    .avatar {
+        align-items: center;
+    }
+
+    .img {
+        
+        width: 182px;
+        height: 182px;
+        top: 20px;
+        left: 107px;
+        border-radius: 40px;
+        
+    }
     .item {
+        /* display: flex; */
         justify-content: flex-start;
         /* background-color: aqua; */
         width: 100%;
@@ -67,5 +80,10 @@
     left: 132px;
     padding: 4px 12px 4px 12px;
     gap: 191px; */
+    }
+
+    .ErrorMessage {
+        color: red;
+        font-size: 12px;
     }
     
