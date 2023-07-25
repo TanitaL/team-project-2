@@ -6,7 +6,6 @@ import PetsDesktop from '../../../assets/images/bg-pets-desktop-1x-opt.png';
 import css from './MainPage.module.css';
 import BgContainer from 'components/Container/BgContainer/BgContainer';
 
-
 const MainPage = () => {
   const isSmallScreen = useMediaQuery('(max-width: 767px)');
   const isMediumScreen = useMediaQuery(
@@ -16,41 +15,40 @@ const MainPage = () => {
 
   return (
     <div className={css.bgImg}>
-    <BgContainer>
-      {isSmallScreen && (
-        <>
-          <h1 className={css.textMainPage}>
-            Take good care of your small pets
-          </h1>
-          <img src={Pets} alt="pets" />
-        </>
-      )}
+      <BgContainer>
+        {isSmallScreen && (
+          <>
+            <h1 className={css.textMainPage}>
+              Take good care of your small pets
+            </h1>
+            <img src={Pets} alt="pets" />
+          </>
+        )}
 
-      {isMediumScreen && (
-        <>
-          <h1 className={css.textMainPage}>
-            Take good care of your small pets
-          </h1>
-          <img src={PetsTablet} alt="pets" />
-        </>
-      )}
+        {isMediumScreen && (
+          <>
+            <h1 className={css.textMainPage}>
+              Take good care of your small pets
+            </h1>
+            <img src={PetsTablet} alt="pets" />
+          </>
+        )}
 
-      {isBigScreen && (
-        <div className={css.bgWrap}>
-          <h1 className={css.textMainPage}>
-            Take good care of your small pets
-          </h1>
-          <img
-            src={PetsDesktop}
-            alt="pets"
-            className={css.imgPets}
-            align="right"
-          />
-        </div>
-      )}
-    </BgContainer>
-
-    // </div>
+        {isBigScreen && (
+          <div className={css.bgWrap}>
+            <h1 className={css.textMainPage}>
+              Take good care of your small pets
+            </h1>
+            <img
+              src={PetsDesktop}
+              alt="pets"
+              className={css.imgPets}
+              align="right"
+            />
+          </div>
+        )}
+      </BgContainer>
+    </div>
   );
 };
 

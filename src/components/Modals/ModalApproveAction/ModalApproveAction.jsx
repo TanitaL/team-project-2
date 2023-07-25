@@ -27,14 +27,22 @@ const ModalApproveAction = ({
     <div className={css.modalOverlay} onClick={handleOverlay}>
       <div className={css.modalContainer}>
         <div className={css.modalHeader}>
-          <button type="button" className={css.modalBtn} onClick={handleCancel}>
+          <button
+            type="button"
+            className={css.modalCrossBtn}
+            onClick={handleCancel}
+          >
             <CrossBlue />
           </button>
         </div>
         <div className={css.modalBody}>
           <p className={css.modalText}>{content}</p>
-          <button type="button" onClick={handleCancel}>
-            Close
+          <button
+            type="button"
+            onClick={handleCancel}
+            className={css.modalCancelBtn}
+          >
+            Cancel
           </button>
           <button type="button" onClick={handleSuccess}>
             {successButtonText}
