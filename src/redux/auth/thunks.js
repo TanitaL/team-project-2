@@ -27,9 +27,12 @@ export const refreshThunk = createAsyncThunk(
 
 export const logoutThunk = createAsyncThunk(
   'auth/logout',
-  async (userId, { rejectWithValue }) => {
+  async (_, { rejectWithValue, getState }) => {
     try {
-      const data = await logout(userId);
+      const {
+        auth: { user },
+      } = getState();
+      const data = await logout(user._id);
       return data;
     } catch (error) {
       return rejectWithValue(error);

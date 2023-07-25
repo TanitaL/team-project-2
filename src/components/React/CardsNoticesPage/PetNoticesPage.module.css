@@ -1,0 +1,26 @@
+.petLocation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding-bottom: 100px; */
+  position: relative;
+}
+
+.mapWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.locationIcon {
+  background-image: url('../../../assets/svg/location-1.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+}

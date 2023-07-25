@@ -1,24 +1,58 @@
-.headerBurgerMenu {
+.burgerMenuBtn {
   background-color: transparent;
-  border: transparent;
+  border: none;
+  border-color: transparent;
+  width: fit-content;
+  height: fit-content;
 }
 
-.burgerAuthNav {
+.burgerOpenNavigation {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 
   position: fixed;
-  left: 0;
-  right: 0;
+  top: 38px;
+  left: 50%;
   box-sizing: border-box;
   outline: currentColor;
   max-width: 100%;
-  align-items: center;
   min-width: 0;
   min-height: 0;
+  width: 100%;
 
-  background-color: #fef9f9;
+  transform: translate(-50%, 38px);
 
+  background-color: var(--background-color);
   z-index: 100;
+}
+
+.burgerHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+@media screen and (min-width: 768px) {
+  .burgerHeader {
+    gap: 22px;
+  }
+}
+
+.userNav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+
+  padding: 8px 16px;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.64px;
+  color: var(--yellow-color);
 }
