@@ -1,12 +1,12 @@
 import React from 'react';
 import { ErrorMessage, useField } from 'formik';
 import css from './AuthNavPage.module.css';
-import eyeClosedIcon from '../../../assets/svg/register-form-eye-closed.svg';
-import crossSmall from '../../../assets/svg/register-form-cross-small.svg';
+import eyeClosedIcon from '../../assets/svg/register-form-eye-closed.svg';
+import crossSmall from '../../assets/svg/register-form-cross-small.svg';
 
 export const PasswordField = ({ ...props }) => {
   const [field, meta] = useField(props);
-  
+
   const handelChangeTypeInput = e => {
     const inputPassword = document.querySelector('#password');
     const inputConfirmPassword = document.querySelector('#confirmPassword');
