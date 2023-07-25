@@ -59,13 +59,13 @@ const RegisterPage = () => {
               <PasswordField
                 placeholder="Password"
                 name="password"
-                id="password"
+                id="imgPasswordInput"
                 type="password"
               />
               <PasswordField
                 placeholder="Confirm Password"
                 name="confirmPassword"
-                id="confirmPassword"
+                id="imgConfirmPasswordInput"
                 type="password"
               />
               <button className={css.FormRegister__Button} type="submit">
