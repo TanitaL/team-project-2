@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginThunk, logoutThunk, refreshThunk } from './thunks';
+import { loginThunk, logoutThunk, refreshThunk, registerThunk } from './thunks';
 
 const fullfiled = (state, { payload }) => {
   state.user = payload.user;
@@ -37,6 +37,7 @@ const authSlice = createSlice({
   },
   extraReducers: builder => {
     builder
+      .addCase(registerThunk.fulfilled)
       .addCase(loginThunk.fulfilled, fullfiled)
       .addCase(refreshThunk.fulfilled, fullfiled)
       .addCase(logoutThunk.fulfilled, logoutFullfiled)
