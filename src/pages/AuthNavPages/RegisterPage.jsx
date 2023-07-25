@@ -3,12 +3,13 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import css from './AuthNavPage.module.css';
 import { NavLink } from 'react-router-dom';
-
-import { authFetch } from 'service/api/auth';
 import TextField from './TextField';
 import PasswordField from './PasswordField';
+import { useDispatch } from 'react-redux';
+import { registerThunk } from 'redux/auth/thunks';
 
 const RegisterPage = () => {
+  const dispatch = useDispatch();
   const validate = Yup.object({
     name: Yup.string()
       .required('Name is required')
@@ -39,7 +40,13 @@ const RegisterPage = () => {
       validationSchema={validate}
       onSubmit={(values, actions) => {
         const { name, email, password } = values;
-        authFetch('register', { name, email, password });
+        dispatch(
+          registerThunk({
+            name,
+            email,
+            password,
+          })
+        );
 
         actions.resetForm();
       }}
@@ -68,9 +75,11 @@ const RegisterPage = () => {
                 id="imgConfirmPasswordInput"
                 type="password"
               />
+
               <button className={css.FormRegister__Button} type="submit">
                 Registration
               </button>
+
               <p className={css.FormRegister__Text}>
                 Already have an account?{' '}
                 <NavLink to={`/login`} className={css.FormRegister__Link}>
