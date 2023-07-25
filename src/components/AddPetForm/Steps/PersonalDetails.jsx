@@ -5,6 +5,14 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { stepTwoValidationSchema } from './addFormValidation';
 import css from './steps.module.css';
 
+// import { DatePicker } from 'react-datepicker'; // Импортируем компонент DatePicker
+// import 'react-datepicker/dist/react-datepicker.css'; // Подключаем стили для DatePicker
+// import { parse, format } from 'date-fns'; // Импортируем функции для работы с датами
+
+// const formatDateForFormik = date => {
+//   return date ? format(date, 'dd-MM-yyyy') : '';
+// };
+
 const PersonalDetails = ({ data, next, prev }) => {
   const handleSubmit = (values, helpers) => {
     next(values);
@@ -20,7 +28,7 @@ const PersonalDetails = ({ data, next, prev }) => {
       onSubmit={handleSubmit}
       validationSchema={stepTwoValidationSchema}
     >
-      {({ values }) => (
+      {({ values, setFieldValue }) => (
         <Form className={css.wrapper}>
           {values.category !== petCategory[0] && (
             <div className={css.inptWrapper}>
@@ -58,10 +66,25 @@ const PersonalDetails = ({ data, next, prev }) => {
             <Field
               className={css.input}
               name="date"
-              type="data"
+              type="date"
               placeholder="Type date of birth"
             />
-            <ErrorMessage className={css.error} name="data" component="div" />
+            {/* <DatePicker
+              selected={
+                values.date
+                  ? parse(values.date, 'dd-MM-yyyy', new Date())
+                  : null
+              }
+              dateFormat="dd-MM-yyyy"
+              className={css.input}
+              name="date"
+              placeholderText="Type date of birth"
+              onChange={date => {
+                // При изменении даты обновляем значение в Formik
+                setFieldValue('date', formatDateForFormik(date));
+              }}
+            /> */}
+            <ErrorMessage className={css.error} name="date" component="div" />
           </div>
           <div className={css.inptWrapper}>
             <label className={css.lable} htmlFor="type">
@@ -70,6 +93,7 @@ const PersonalDetails = ({ data, next, prev }) => {
             <Field
               className={css.input}
               name="type"
+              type="text"
               placeholder="Type of pet"
             />
             <ErrorMessage className={css.error} name="type" component="div" />

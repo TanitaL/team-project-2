@@ -2,11 +2,15 @@ import PawPrintBtn from 'components/Buttons/PawPrintBtn/PawPrintBtn';
 import { petCategory } from 'constants/petCategory';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { stepThreeValidationSchema } from './addFormValidation';
-import { BsGenderFemale, BsGenderMale } from 'react-icons/bs';
+import { BsGenderFemale, BsGenderMale,BsPlusLg } from 'react-icons/bs';
 import css from './steps.module.css';
 import ArrowLeftBtn from 'components/Buttons/ArrowLeftBtn/ArrowLeftBtn';
+import { useRef } from 'react';
+import PreviewImage from 'components/PreviewImage/PreviewImage';
 
 const MoreInfo = ({ errors, values, handleChange, data, next, prev }) => {
+  const fileRef = useRef(null);
+
   const handleSubmit = (values, helpers) => {
     next(values, true);
   };
@@ -21,8 +25,34 @@ const MoreInfo = ({ errors, values, handleChange, data, next, prev }) => {
       onSubmit={handleSubmit}
       validationSchema={stepThreeValidationSchema}
     >
-      {({ values }) => (
+      {({ values, setFieldValue }) => (
         <Form className={css.wrapper}>
+          <div className={css.addImgWrapper}>
+            <input
+              ref={fileRef}
+              hidden
+              type="file"
+              // name="file"
+              onChange={event => {
+                setFieldValue('file', event.target.files[0]);
+              }}
+            />
+            <label className={css.addImgText}>Load the pet’s image:</label>
+            {values.file && (
+              <PreviewImage file={values.file} width="112" height="112" />
+            )}
+            {!values.file && (
+              <button
+                className={css.addImgBtn}
+                onClick={() => {
+                  fileRef.current.click();
+                }}
+              >
+                <BsPlusLg color="#54ADFF" size="30px" />
+              </button>
+            )}
+            <ErrorMessage name='file'/>
+          </div>
           {values.category !== petCategory[0] && (
             <div
               className={css.genderWrapper}
@@ -54,7 +84,6 @@ const MoreInfo = ({ errors, values, handleChange, data, next, prev }) => {
               <ErrorMessage className={css.error} name="sex" component="div" />
             </div>
           )}
-          <ErrorMessage className={css.error} name="sex" component="div" />
           {values.category !== petCategory[0] && (
             <div className={css.inptWrapper}>
               <label className={css.label} htmlFor="location">
@@ -68,7 +97,6 @@ const MoreInfo = ({ errors, values, handleChange, data, next, prev }) => {
               />
             </div>
           )}
-          <ErrorMessage className={css.error} name="location" component="div" />
           {values.category === petCategory[1] && (
             <div className={css.inptWrapper}>
               <label className={css.label} htmlFor="price">
@@ -82,7 +110,7 @@ const MoreInfo = ({ errors, values, handleChange, data, next, prev }) => {
               />
             </div>
           )}
-          <ErrorMessage className={css.error} name="price" component="div" />
+          {/* <ErrorMessage className={css.error} name="price" component="div" /> */}
           <div className={css.inptWrapper}>
             <label className={css.label} htmlFor="comments">
               Comments
@@ -94,7 +122,6 @@ const MoreInfo = ({ errors, values, handleChange, data, next, prev }) => {
               component="div"
             />
           </div>{' '}
-          <ErrorMessage className={css.error} name="comments" component="div" />
           {/* <button type="button" onClick={() => prev(values)}>
             Back
           </button> */}

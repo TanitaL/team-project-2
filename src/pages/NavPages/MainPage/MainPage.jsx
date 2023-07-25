@@ -4,6 +4,7 @@ import Pets from '../../../assets/images/bg-pets-mobile-1x-opt.png';
 import PetsTablet from '../../../assets/images/bg-pets-tablet-1x-opt.png';
 import PetsDesktop from '../../../assets/images/bg-pets-desktop-1x-opt.png';
 import css from './MainPage.module.css';
+import AddPetForm from 'components/AddPetForm/AddPetForm/AddPetForm';
 
 const MainPage = () => {
   const isSmallScreen = useMediaQuery('(max-width: 767px)');
@@ -14,6 +15,7 @@ const MainPage = () => {
 
   return (
     <div className={css.bgImg}>
+      <AddPetForm/>
       {isSmallScreen && (
         <>
           <h1 className={css.textMainPage}>
