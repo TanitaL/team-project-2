@@ -26,7 +26,7 @@ const LoginPage = () => {
       onSubmit={(values, actions) => {
         const { email, password } = values;
         authFetch('login', { email, password });
-        // actions.resetForm();
+        actions.resetForm();
       }}
     >
       {formik => (

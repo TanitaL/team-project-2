@@ -7,9 +7,13 @@ import crossSmall from '../../assets/svg/register-form-cross-small.svg';
 export const PasswordField = ({ ...props }) => {
   const [field, meta] = useField(props);
 
+  // console.log(pr)
   const handelChangeTypeInput = e => {
-    const inputPassword = document.querySelector('#password');
-    const inputConfirmPassword = document.querySelector('#confirmPassword');
+    const inputPassword = document.querySelector('#imgPasswordInput');
+    const inputConfirmPassword = document.querySelector(
+      '#imgConfirmPasswordInput'
+    );
+
     if (e.target.id === 'imgPasswordInput') {
       if (inputPassword.type === 'password') {
         inputPassword.type = 'text';
@@ -50,7 +54,8 @@ export const PasswordField = ({ ...props }) => {
         >
           {
             <img
-              id="imgPasswordInput"
+              
+              id={props.id}
               src={meta.touched && meta.error ? crossSmall : eyeClosedIcon}
               alt="eyeClosedIcon"
             />
