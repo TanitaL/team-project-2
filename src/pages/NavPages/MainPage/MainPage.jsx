@@ -4,7 +4,8 @@ import Pets from '../../../assets/images/bg-pets-mobile-1x-opt.png';
 import PetsTablet from '../../../assets/images/bg-pets-tablet-1x-opt.png';
 import PetsDesktop from '../../../assets/images/bg-pets-desktop-1x-opt.png';
 import css from './MainPage.module.css';
-import AddPetForm from 'components/AddPetForm/AddPetForm/AddPetForm';
+import BgContainer from 'components/Container/BgContainer/BgContainer';
+
 
 const MainPage = () => {
   const isSmallScreen = useMediaQuery('(max-width: 767px)');
@@ -15,7 +16,7 @@ const MainPage = () => {
 
   return (
     <div className={css.bgImg}>
-      <AddPetForm/>
+    <BgContainer>
       {isSmallScreen && (
         <>
           <h1 className={css.textMainPage}>
@@ -47,7 +48,9 @@ const MainPage = () => {
           />
         </div>
       )}
-    </div>
+    </BgContainer>
+
+    // </div>
   );
 };
 

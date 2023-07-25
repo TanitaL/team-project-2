@@ -15,9 +15,6 @@
   .bgImg {
     width: 1280px;
     height: 850px;
-    /* position: ab; */
-    /* right: 0px; */
-    /* width: 100%; */
 
     background-image: url(assets/images/bg-paws-desktop-1x-opt.png);
   }
