@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { instance } from '../../service/api/api';
 
 const AfterVerifEmail = () => {
   const navigate = useNavigate();
@@ -8,8 +9,8 @@ const AfterVerifEmail = () => {
 
   useEffect(() => {
     const redirect = async () => {
-      const verify_url = `/users/verify/${verificationToken}`;
-      const { data } = await axios.get(verify_url);
+      const verify_endpoint = `/users/verify/${verificationToken}`;
+      const { data } = await instance.get(verify_endpoint);
       if (data.token) {
         // *-* Тут повинні бути дії, які зберігають jwt token *-*
         navigate('/', { replace: true });

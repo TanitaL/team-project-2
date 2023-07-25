@@ -9,7 +9,7 @@ export const fetchPets = createAsyncThunk(
 
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('/notices');
+      const response = await instance.get('/notices');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -18,26 +18,25 @@ export const fetchPets = createAsyncThunk(
 );
 
 export const addPet = createAsyncThunk(
-    'pets/addPets',
-    async (data, thunkAPI) => {
-        console.log("🚀 ~ data:", data)
-        try {
-          const response = await instance.post('/notices', data);
-          console.log("🚀 ~ response.data:", response.data)
-          return response.data;
-        } catch (error) {
-          console.log("🚀 ~ error:", error)
-          return thunkAPI.rejectWithValue(error.message);
-        }
+  'pets/addPets',
+  async (data, thunkAPI) => {
+    console.log('🚀 ~ data:', data);
+    try {
+      const response = await instance.post('/notices', data);
+      console.log('🚀 ~ response.data:', response.data);
+      return response.data;
+    } catch (error) {
+      console.log('🚀 ~ error:', error);
+      return thunkAPI.rejectWithValue(error.message);
     }
-
-)
+  }
+);
 
 export const deletePet = createAsyncThunk(
   'pets/deletePets',
   async (id, thunkAPI) => {
     try {
-      const response = await axios.delete(`/notices/${id}`);
+      const response = await instance.delete(`/notices/${id}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
