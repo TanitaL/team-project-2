@@ -28,8 +28,6 @@ const RegisterPage = () => {
       .oneOf([Yup.ref(`password`), null], 'Password must match'),
   });
 
-  console.log(validate);
-
   return (
     <Formik
       initialValues={{
