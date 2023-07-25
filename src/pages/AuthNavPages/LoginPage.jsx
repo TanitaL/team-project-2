@@ -2,20 +2,21 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import css from './AuthNavPage.module.css';
-import { NavLink } from 'react-router-dom';
-
-import { authFetch } from 'service/api/auth';
+import { NavLink } from 'react-router-dom'
 import TextField from './TextField';
 import PasswordField from './PasswordField';
+import { useDispatch } from 'react-redux';
+import { loginThunk } from 'redux/auth/thunks';
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
   const validate = Yup.object({
     email: Yup.string()
       .required('Email is required')
       .email('Invalid email address'),
     password: Yup.string().required('Password is required'),
   });
-  
+
   return (
     <Formik
       initialValues={{
@@ -25,7 +26,12 @@ const LoginPage = () => {
       validationSchema={validate}
       onSubmit={(values, actions) => {
         const { email, password } = values;
-        authFetch('login', { email, password });
+        dispatch(
+          loginThunk({
+            email,
+            password,
+          })
+        );
         actions.resetForm();
       }}
     >
