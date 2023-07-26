@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
-import BurgerMenuSvg from '../../../assets/svg/menu-hamburger-optimized.svg';
-import BurgerMenuClose from '../../../assets/svg/menu-hamburger-cross-optimized.svg';
-import css from './BurgerMenu.module.css';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { userSelector } from 'redux/auth/selectors';
+import { useMediaQuery } from '@react-hook/media-query';
+import { ReactComponent as BurgerOpenSvg } from '../../../assets/svg/menu-hamburger-opt.svg';
+import { ReactComponent as BurgerCloseSvg } from '../../../assets/svg/menu-hamburger-cross-opt.svg';
 import AuthNav from 'components/Navigation/AuthNav/AuthNav';
 import Nav from 'components/Navigation/Nav/Nav';
 import PublicRoute from 'routes/PublicRoute';
 import PrivateRoute from 'routes/PrivateRoute';
+import UserNav from 'components/Navigation/UserNav/UserNav';
+import { useBurgerContext } from 'context/BurgerProvider';
+import css from './BurgerMenu.module.css';
+import Logout from 'components/Logout/Logout';
+
 
 const BurgerMenu = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const { menuOpen, setMenuOpen } = useBurgerContext();
+  const { name } = useSelector(userSelector);
+
+  const isSmallScreen = useMediaQuery('(max-width: 767px)');
+  const isMediumScreen = useMediaQuery(
+    '(min-width: 768px) and (max-width: 1280px)'
+  );
 
   const openBurgerMenu = event => {
     setMenuOpen(true);
@@ -19,45 +32,63 @@ const BurgerMenu = () => {
   };
 
   return (
-    <div>
+    <>
       {menuOpen ? (
-        <div>
+        <>
+          <div className={css.headerNav}>
+            {isMediumScreen && (
+              <>
+                <PrivateRoute>
+                  <div className={css.userNav}>
+                    <Logout />
+                  </div>
+                </PrivateRoute>
+              </>
+            )}
+
+            <button
+              type="button"
+              onClick={closeBurgerMenu}
+              className={css.burgerMenuBtn}
+            >
+              <BurgerCloseSvg />
+            </button>
+          </div>
+
+          <div className={css.burgerOpenNavigation}>
+            {isSmallScreen && (
+              <PublicRoute>
+                <AuthNav closeBurgerMenu={closeBurgerMenu} />
+              </PublicRoute>
+            )}
+            {isSmallScreen && (
+              <PrivateRoute>
+                <div className={css.userNav}>
+                  <UserNav closeBurgerMenu={closeBurgerMenu} />
+                  <p>{name}</p>
+                </div>
+              </PrivateRoute>
+            )}
+            <Nav closeBurgerMenu={closeBurgerMenu} />
+            {isSmallScreen && (
+              <PrivateRoute>
+                <Logout />
+              </PrivateRoute>
+            )}
+          </div>
+        </>
+      ) : (
+        <div className={css.burgerHeader}>
           <button
             type="button"
-            onClick={closeBurgerMenu}
-            className={css.headerBurgerMenu}
+            className={css.burgerMenuBtn}
+            onClick={openBurgerMenu}
           >
-            <img
-              src={BurgerMenuClose}
-              alt="burger-menu-button"
-              width={24}
-              height={24}
-            />
+            <BurgerOpenSvg />
           </button>
-
-          <div className={css.burgerNavigation}>
-            <PublicRoute>
-              <AuthNav closeBurgerMenu={closeBurgerMenu} />
-            </PublicRoute>
-            <Nav closeBurgerMenu={closeBurgerMenu} />
-            <PrivateRoute>AddComponentUserNav</PrivateRoute>
-          </div>
         </div>
-      ) : (
-        <button
-          type="button"
-          className={css.headerBurgerMenu}
-          onClick={openBurgerMenu}
-        >
-          <img
-            src={BurgerMenuSvg}
-            alt="burger-menu-button"
-            width={24}
-            height={24}
-          />
-        </button>
       )}
-    </div>
+    </>
   );
 };
 

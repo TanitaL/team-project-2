@@ -1,0 +1,14 @@
+.previewPetImg {
+  border-radius: 20px;
+  width: 112px;
+  height: 112px;
+
+  @media screen and (min-width: 768px) {
+    width: 182px;
+    height: 182px;
+  }
+}
+
+.previewProfileImg {
+  /* Write styles for profile */
+}

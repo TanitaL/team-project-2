@@ -1,7 +1,8 @@
 import React from 'react';
+import Container from 'components/Container/Container';
 
 const OurFriendsPage = () => {
-  return <div>OurFriendsPage</div>;
+  return <Container>Our friends Page</Container>;
 };
 
 export default OurFriendsPage;

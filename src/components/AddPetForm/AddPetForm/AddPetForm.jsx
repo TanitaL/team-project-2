@@ -3,6 +3,10 @@ import ChooseOption from '../Steps/ChooseOption';
 import FormStepper from '../FormStepper/FormStepper';
 import MoreInfo from '../Steps/MoreInfo';
 import PersonalDetails from '../Steps/PersonalDetails';
+import css from './AddPetForm.module.css';
+import { petCategory } from 'constants/petCategory';
+import { useDispatch } from 'react-redux';
+import { addPet } from 'redux/pets/operations';
 
 const initialValues = {
   category: 'your pet',
@@ -10,6 +14,7 @@ const initialValues = {
   name: '',
   date: '',
   sex: '',
+  file: null,
   location: '',
   price: '',
   type: '',
@@ -25,9 +30,31 @@ const stepsLable = [
 const AddPetForm = () => {
   const [data, setData] = useState(initialValues);
   const [currentStep, setCurrentStep] = useState(0);
+  const dispatsh = useDispatch();
 
-  const makeRequest = formData => {
-    console.log('🚀 ~ makeRequest ~ formData:', formData);
+  const makeRequest = values => {
+    // const {
+    //   category,
+    //   title,
+    //   name,
+    //   date,
+    //   sex,
+    //   file,
+    //   location,
+    //   price,
+    //   type,
+    //   comments,
+    // } = values;
+    const formData = new FormData();
+    for (let value in values) {
+      formData.append(value, values[value]);
+    }
+    
+    for (let property of formData.entries()) {
+      console.log(property[0], property[1]);
+    }
+
+    dispatsh(addPet(formData));
   };
 
   const handleNextStep = (newData, final = false) => {
@@ -54,12 +81,30 @@ const AddPetForm = () => {
   console.log('🚀 ~ handleNextStep ~ data:', data);
 
   return (
-    <>
+    <section
+      className={
+        (currentStep === 2 && data.category !== petCategory[0])
+          ? css.notMyPetstep3Section
+          : css.section
+      }
+    >
+      {(currentStep === 0 || data.category === petCategory[0]) && (
+        <h1 className={css.title}>Add pet</h1>
+      )}
+      {/* { data.category === petCategory[0] && <h1 className={css.title}>Add pet</h1>} */}
+      {currentStep !== 0 && data.category === petCategory[1] && (
+        <h1 className={css.title}>Add pet for sale</h1>
+      )}
+      {currentStep !== 0 && data.category === petCategory[2] && (
+        <h1 className={css.title}>Add lost pet</h1>
+      )}
+      {currentStep !== 0 && data.category === petCategory[3] && (
+        <h1 className={css.title}>Add pet in good hands</h1>
+      )}
       <FormStepper currentStep={currentStep} steps={stepsLable} />
       {steps[currentStep]}
-    </>
+    </section>
   );
 };
 
 export default AddPetForm;
-

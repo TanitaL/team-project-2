@@ -8,13 +8,22 @@ import SharedLayout from './SharedLayout/SharedLayout';
 import PageNotFound from '../pages/PageNotFound/PageNotFound';
 import MainPage from '../pages/NavPages/MainPage/MainPage';
 import UserPage from 'pages/UserPage/UserPage';
+import AfterVerifEmail from '../pages/Other/AfterVerifEmail';
 import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
+import BurgerProvider from 'context/BurgerProvider';
 
 export const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<SharedLayout />}>
+      <Route
+        path="/"
+        element={
+          <BurgerProvider>
+            <SharedLayout />
+          </BurgerProvider>
+        }
+      >
         <Route index element={<MainPage />} />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/notices" element={<NoticesPage />} />
@@ -44,6 +53,11 @@ export const App = () => {
               <UserPage />
             </PrivateRoute>
           }
+        />
+
+        <Route
+          path="/afterverify/:verificationToken"
+          element={<AfterVerifEmail />}
         />
 
         <Route path="*" element={<PageNotFound />} />

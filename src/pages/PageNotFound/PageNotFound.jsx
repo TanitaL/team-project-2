@@ -1,4 +1,5 @@
 import React from 'react';
+import NotFound from '../../assets/images/cat-404-min-opt.png';
 
 import NotFoundMax from '../../assets/images/cat-404-max-opt.png';
 import NotFoundMin from '../../assets/images/cat-404-min-opt.png';

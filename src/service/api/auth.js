@@ -2,14 +2,14 @@ import { deleteToken, instance, setToken } from './api';
 
 export const register = async body => {
   const { data } = await instance.post(`users/register`, body);
-  return data.user;
+  return data;
 };
 
 export const login = async body => {
   const { data } = await instance.post(`users/login`, body);
   setToken(data.token);
   localStorage.setItem('token', data.token);
-  return data.user;
+  return data;
 };
 
 export const refresh = async token => {
