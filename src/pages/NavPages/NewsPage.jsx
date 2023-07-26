@@ -9,7 +9,7 @@ const NewsPage = () => {
   useEffect(() => {
     const fetchNewsData = async () => {
       try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+        const response = await fetch('https://final-project-node-5vh7.onrender.com/allArticles.json');
         if (!response.ok) {
           throw new Error('Error loading data');
         }

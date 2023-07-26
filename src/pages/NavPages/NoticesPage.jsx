@@ -1,29 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import CategoriesList from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCategoriesList';
+import CategoryList from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCategoriesList';
+import css from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCategoriesItem/NoticesCategoriesItem.module.css';
 
-const NewsPage = () => {
-  const [newsItems, setNewsItems] = useState([]);
+import { instance } from 'service/api/api';
+
+const NoticesPage = () => {
+  const [noticesData, setNoticesData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    const fetchNewsData = async () => {
-      try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-        if (!response.ok) {
-          throw new Error('Error loading data');
-        }
+  const getAllNotices = async () => {
+    try {
+      const response = await instance.get('notices');
+      // console.log(response.data.notices);
+      return response.data.notices;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error;
+    }
+  };
 
-        const data = await response.json();
-        setNewsItems(data);
+  useEffect(() => {
+    const fetchNoticesData = async () => {
+      try {
+        const data = await getAllNotices();
+        setNoticesData(data);
         setIsLoading(false);
-      } catch (err) {
+      } catch (error) {
         setError('404');
         setIsLoading(false);
       }
     };
 
-    fetchNewsData();
+    fetchNoticesData();
   }, []);
 
   if (isLoading) {
@@ -47,10 +56,10 @@ const NewsPage = () => {
 
   return (
     <div>
-      <h1>Find your favorite pet</h1>
-      <CategoriesList news={newsItems} />
+      <h1 className={css.textNoticesPage}>Find your favorite pet</h1>
+      <CategoryList data={noticesData} />
     </div>
   );
 };
 
-export default NewsPage;
+export default NoticesPage;

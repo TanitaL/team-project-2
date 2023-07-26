@@ -44,6 +44,7 @@
   height: 252px;
   border-radius: 20px;
   margin-bottom: 16px;
+  object-fit: cover;
 
   @media screen and (min-width: 480px) {
     height: 180px;

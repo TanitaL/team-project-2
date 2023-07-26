@@ -1,23 +1,21 @@
+import React from 'react';
 import CategoryItem from './NoticesCategoriesItem/NoticesCategoriesItem';
 import css from './NoticesCategoriesList.module.css';
 
-const CategoryList = ({ news }) => {
-  const sortedNews = [...news].sort(
-    (a, b) => new Date(b.date) - new Date(a.date)
-  );
-
+const CategoryList = ({ data }) => {
   return (
     <ul className={css.list}>
-      {sortedNews.map(({ id, title, text, date, imgUrl, url }) => (
+      {data.map(({ _id, title, text, date, file, location, name, sex }) => (
         <CategoryItem
-          key={id}
-          id={id}
+          key={_id}
+          _id={_id}
           title={title}
           text={text}
           date={date}
-          imgUrl={imgUrl}
-          url={url}
-          loading="lazy"
+          file={file}
+          location={location}
+          name={name}
+          sex={sex}
         />
       ))}
     </ul>
