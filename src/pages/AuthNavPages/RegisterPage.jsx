@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import TextField from './TextField';
 import PasswordField from './PasswordField';
 import { useDispatch } from 'react-redux';
-import { registerThunk } from 'redux/auth/thunks';
+import { austOperationThunk } from 'redux/auth/thunks';
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -41,13 +41,15 @@ const RegisterPage = () => {
       onSubmit={(values, actions) => {
         const { name, email, password } = values;
         dispatch(
-          registerThunk({
-            name,
-            email,
-            password,
+          austOperationThunk({
+            endpoint: 'register',
+            userInfo: {
+              name,
+              email,
+              password,
+            },
           })
         );
-
         actions.resetForm();
       }}
     >
