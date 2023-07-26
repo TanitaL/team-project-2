@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { logoutThunk } from 'redux/auth/thunks';
+import { austOperationThunk } from 'redux/auth/thunks';
 import ModalApproveAction from 'components/Modals/ModalApproveAction/ModalApproveAction';
 import { NavLink } from 'react-router-dom';
 import LogoutBtn from 'components/Buttons/LogoutBtn/LogoutBtn';
@@ -10,7 +10,7 @@ const Logout = () => {
   const dispatch = useDispatch();
 
   const handleSuccess = () => {
-    dispatch(logoutThunk());
+    dispatch(austOperationThunk({ endpoint: 'logout' }));
   };
 
   const handleCancel = () => {
