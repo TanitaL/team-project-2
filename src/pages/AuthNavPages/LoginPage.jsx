@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
 import TextField from './TextField';
 import PasswordField from './PasswordField';
 import { useDispatch } from 'react-redux';
-import { loginThunk } from 'redux/auth/thunks';
+import { austOperationThunk } from 'redux/auth/thunks';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -27,9 +27,12 @@ const LoginPage = () => {
       onSubmit={(values, actions) => {
         const { email, password } = values;
         dispatch(
-          loginThunk({
-            email,
-            password,
+          austOperationThunk({
+            endpoint: 'login',
+            userInfo: {
+              email,
+              password,
+            },
           })
         );
         actions.resetForm();
