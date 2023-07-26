@@ -7,6 +7,49 @@
   composes: flex;
   gap: 20px;
   margin-top: 16px;
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    gap: 24px;
+  }
+}
+
+.moreInfoWrapper {
+  composes: flex;
+  gap: 20px;
+  margin-top: 16px;
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    /* width: 704px; */
+    gap: 24px;
+    align-items: center;
+    /* flex-direction: row; */
+    /* flex-wrap: wrap; */
+  }
+}
+
+.fieldContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.notMyPetfieldContainer {
+  display: flex;
+  gap: 72px;
+  width: 100%;
+}
+
+.radioAndFileWrapper {
+  /* display: flex;
+  flex-direction: column;
+  gap: 48px; */
+}
+
+.textInputsWrapper {
+  display: flex;
+  width: 395px;
+  flex-direction: column;
+  gap: 20px;
 
   @media screen and (min-width: 768px) {
     gap: 24px;
@@ -63,10 +106,10 @@ input[type='radio']:checked + .btn {
 }
 
 .lable {
-  weight: 500;
-  size: 14px;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 19px;
-  color: #111111;
+  color: var(--text-color);
 
   @media screen and (min-width: 768px) {
     font-size: 20px;
@@ -75,6 +118,7 @@ input[type='radio']:checked + .btn {
 }
 
 .input {
+  outline: none;
   border: 1px solid var(--blue-color);
   border-radius: 40px;
   padding: 9.5px 16px;
@@ -94,6 +138,28 @@ input[type='radio']:checked + .btn {
   }
 }
 
+.inputError {
+  composes: input;
+  border: 1px solid var(--red-color);
+}
+
+/* .ErrorTextInput {
+  outline: none;
+  color: var(--grey-color);
+  width: 256px;
+  height: 48px;
+  border-radius: 40px;
+  border: 1px solid #ff7d87;
+  padding: 12px 16px 12px 16px;
+
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 150%;
+  letter-spacing: 0.64px;
+  list-style: none;
+} */
+
 .error {
   font-size: 12px;
   font-weight: 400;
@@ -105,7 +171,13 @@ input[type='radio']:checked + .btn {
 
 .genderWrapper {
   display: flex;
-  gap: 16px;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.radioWrapper {
+  display: flex;
 }
 
 .gender {
@@ -162,18 +234,30 @@ input[type='radio']:checked ~ .iconFemale {
   }
 }
 
-.addImgText {
-  max-width: 81px;
-font-size: 14px;
-font-weight: 500;
-line-height: 19px;
-letter-spacing: 0px;
-text-align: left;
-color: var(--text-color);
+.notMyPetaddImgWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 14px;
 
+  @media screen and (min: width 768px;) {
+    gap: 16px;
+  }
 }
 
+/* .addImgText {
+  max-width: 81px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: var(--text-color);
+} */
+
 .addImgBtn {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -181,13 +265,39 @@ color: var(--text-color);
   height: 112px;
   background-color: var(--light-blue-color);
   border: none;
-border-radius: 40px;
-
+  border-radius: 20px;
+  padding: 0;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
     width: 182px;
     height: 182px;
   }
+}
+
+.editIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0; /* Начальное значение прозрачности - иконка скрыта */
+  visibility: hidden; /* Иконка скрыта, но занимает место */
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавное появление */
+}
+
+.addImgBtn:hover,
+.addImgBtn:focus {
+  box-shadow: 2px 6px 6px rgba(0, 0, 0, 0.12), 2px 8px 8px rgba(0, 0, 0, 0.06),
+    4px 8px 10px rgba(0, 0, 0, 0.16);
+
+  transform: scale(1.02);
+}
+
+.addImgBtn:hover .editIcon,
+.addImgBtn:focus .editIcon {
+  opacity: 1; /* При ховере на кнопку, иконка становится видимой */
+  visibility: visible;
 }
 
 .textarea {
@@ -196,7 +306,12 @@ border-radius: 40px;
 
   height: 92px;
   border-radius: 20px;
+  @media screen and (min-width: 768px) {
+    height: 79px;
+  }
 }
+
+/* Button group */
 
 .btnWrapper {
   display: flex;

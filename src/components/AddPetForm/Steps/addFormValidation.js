@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 const petCategory = ['your pet', 'sell', 'lost/found', 'in good hands'];
 const sexValues = ['male', 'female'];
-const SUPPORTED_FORMATS=["image/jpg", "image/jpeg", "image/png"]
+const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
 
 export const stepOneValidationSchema = Yup.object().shape({
   category: Yup.string()
@@ -24,6 +24,7 @@ export const stepTwoValidationSchema = Yup.object().shape({
     }
   ),
   name: Yup.string().required('Pet name is required'),
+  date:Yup.date().required('Birth date is required').nullable(),
   // date: Yup.string()
   //   .matches(
   //     /^(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[0-2])-\d{4}$/,
@@ -40,8 +41,12 @@ export const stepThreeValidationSchema = Yup.object().shape({
       'fileSize',
       'File size must be less than 3MB.',
       value => !value || (value && value.size <= 3 * 1024 * 1024)
-  ).test("FILE_FORMAT", "Uplouded file is to big",
-  (value)=>!value || (value&& SUPPORTED_FORMATS.includes(value?.type))),
+    )
+    .test(
+      'FILE_FORMAT',
+      'Uplouded file has unsupported format',
+      value => !value || (value && SUPPORTED_FORMATS.includes(value?.type))
+    ),
   sex: Yup.string().test('sexRequired', 'Sex is required.', function (value) {
     if (
       petCategory.includes(this.parent.category) &&
