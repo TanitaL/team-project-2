@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
 
-  height: 456px;
+  height: 100%;
   width: 288px;
   position: relative;
 }
@@ -22,7 +22,6 @@
 }
 
 .item::after {
-  /* background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%); */
   border-radius: 40px;
   margin-bottom: 12px;
 
@@ -41,9 +40,10 @@
 .image {
   align-self: flex-start;
   width: 100%;
-  height: 252px;
-  border-radius: 20px;
+  /* height: 252px; */
+  height: 100px;
   margin-bottom: 16px;
+  object-fit: cover;
 
   @media screen and (min-width: 480px) {
     height: 180px;
@@ -52,6 +52,24 @@
   @media screen and (min-width: 768px) {
     height: 252px;
   }
+}
+
+.addToFavoritesButton {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  top: 12px;
+  left: 236px;
+  background-color: #cce4fb;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  fill: #54adff;
+  transition: background-color 0.3s;
 }
 
 .itemBox {
@@ -86,59 +104,187 @@
   }
 }
 
-.text {
-  font-family: 'Manrope';
+/* .text {
+  color: var(--unnamed, #111);
+  font-family: Manrope;
+  font-size: 12px;
   font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  margin-bottom: 40px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.48px;
 
-  width: 100%;
-  height: auto;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  padding: 20px;
 
-  @media screen and (min-width: 480px) {
-    -webkit-line-clamp: 3;
-  }
-
-  @media screen and (min-width: 768px) {
-    -webkit-line-clamp: 5;
-  }
-}
-
-.itemWrapper {
-  margin-left: 10px;
-}
-
-.date {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  color: #888888;
-}
-
-.link {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  color: #54adff;
-  text-decoration: none;
-}
-.link:hover {
-  color: #ffc107;
+  background-color: #cce4fb;
+  border-radius: 16px;
   cursor: pointer;
+  transition: background-color 0.3s;
+} */
+
+/* .imageWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+} */
+
+.infoWrapper {
+  color: var(--unnamed, #111);
+  font-family: Manrope;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.48px;
+
+  display: flex;
+  position: absolute;
+  gap: 12px;
+  top: 218px;
+  left: 12px;
 }
 
-.button {
+.location {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 28px;
+  padding: 2px 4px;
+
+  background-color: #cce4fb;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.location:hover {
+  background: var(--unnamed, #54adff);
+  color: rgb(253, 247, 242);
+  border: none;
+}
+
+.location svg {
+  width: 24px;
+  height: 24px;
+  fill: #54adff;
+}
+
+.location:hover svg {
+  fill: #ffffff;
+}
+
+.year {
+  display: flex;
+  padding: 2px 4px;
+  width: 80px;
+  height: 28px;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 16px;
+  background: #cce4fb;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.year:hover {
+  background: var(--unnamed, #54adff);
+  color: rgb(253, 247, 242);
+  border: none;
+}
+
+.year svg {
+  width: 24px;
+  height: 24px;
+  fill: #54adff;
+}
+
+.year:hover svg {
+  fill: #ffffff;
+}
+
+.sex {
+  display: flex;
+  padding: 2px 4px;
+  width: 80px;
+  height: 28px;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 16px;
+  background: #cce4fb;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sex:hover {
+  background: var(--unnamed, #54adff);
+  color: rgb(253, 247, 242);
+  border: none;
+}
+
+.sex.icon-male {
+  width: 24px;
+  height: 24px;
+  fill: #54adff;
+}
+
+.sex.icon-male:hover {
+  fill: #ffffff;
+}
+
+.learnMoreButton {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+
+  display: flex;
+  align-items: center;
+  /* letter-spacing: 0.04em; */
+  position: relative;
+
+  background-color: #ffffff;
+  color: var(--unnamed, #54adff);
+
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 28px;
+  gap: 10px;
+  width: 248px;
+  height: 38px;
+  border: 2px solid var(--unnamed, #54adff);
+  border-radius: 40px;
+
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.learnMoreButton:hover {
+  background: var(--unnamed, #54adff);
+  color: rgb(253, 247, 242);
+  border: none;
+}
+
+.learnMoreButton svg {
+  width: 24px;
+  height: 24px;
+  fill: #54adff;
+  display: none;
+}
+
+.learnMoreButton:hover svg {
+  fill: #ffffff;
+  display: inline-block;
+}
+
+/* .button {
   color: var(--unnamed, #fef9f9);
   font-family: Manrope;
   font-size: 16px;
@@ -157,4 +303,17 @@
   border-radius: 40px;
   background: var(--unnamed, #54adff);
   border: none;
+} */
+
+.textNoticesPage {
+  color: var(--unnamed, #111);
+  font-family: Manrope;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 394px;
+
+  width: 492px;
+  height: 66px;
 }
