@@ -1,17 +1,9 @@
 import React from 'react';
 import Container from 'components/Container/Container';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import LogoutBtn from 'components/Buttons/LogoutBtn/LogoutBtn';
 import css from '../UserPage/UserPage.module.css';
-
-const initialValues = {
-  name: '',
-  email: '',
-  birthday: '',
-  phone: '',
-  city: '',
-  photo: null,
-  
-};
 
 const onSubmit = (values) => {
  
@@ -19,17 +11,52 @@ const onSubmit = (values) => {
 };
 
 const UserPage = () => {
+  const validate = Yup.object({
+    avatar: Yup.mixed()
+    .required('Edit poto')
+    .test(
+      'fileSize',
+      'Photo must be up to 3MB',
+      (value) => value && value.size <= 3000000),
+    name: Yup.string()
+    .required('Name is required'),
+    email: Yup.string()
+    .required('Email is required')
+    .email('Invalid email address'),
+    birthday: Yup.string()
+    .required('Birthday is required'),
+    phone: Yup.string()
+    .required('Phone is required')
+    .matches(/^\+380\d{9}$/, 'Phone number must be in theformat +380XXXXXXXXX'),
+    city: Yup.string()
+    .required('City is required'),
+  });
   return (
     <Container>
       <div className={css.conteiner}>
       <div className={css.conteinerTitle}>
       <h2 className={css.title}> My information:</h2>
-      <Formik initialValues={initialValues} onSubmit={onSubmit}>
+      <Formik 
+       initialValues={{
+        avatar: '',
+        name: '',
+        email: '',
+        birthday: '',
+        phone: '',
+        city: '',
+       }}
+       validationSchema={validate}
+       onSubmit={onSubmit}>
+
       {({ setFieldValue }) => (
         <Form className={css.section}>
-          {/* <div>
-            <label htmlFor="photo"></label>
-            <input
+          <div className={css.avatar}>
+            <picture>
+              <img src="/avatar/Photodefault.jpg" alt="" className={css.img}/>
+            </picture>
+
+            {/* <label htmlFor="photo"></label> */}
+            {/* <input
               type="file"
               name="photo"
               id="photo"
@@ -37,40 +64,41 @@ const UserPage = () => {
               onChange={(event) => {
                 setFieldValue("photo", event.currentTarget.files[0]);
               }}
-            />
+            /> */}
             <ErrorMessage name="photo" component="div" />
-          </div> */}
+          </div>
+          
           <div className={css.item}>
             <label htmlFor="name" className={css.label}>Name: </label>
             <Field type="text" name="name" id="name" className={css.input} placeholder="Enter your name"/>
-            <ErrorMessage name="name" component="div" />
+            <ErrorMessage name="name" component="div" className={css.ErrorMessage}/>
           </div>
 
           <div className={css.item}>
             <label htmlFor="email" className={css.label}>Email: </label>
             <Field type="email" name="email" id="email" className={css.input} placeholder="youremail@gmail.com"/>
-            <ErrorMessage name="email" component="div" />
+            <ErrorMessage name="email" component="div" className={css.ErrorMessage}/>
           </div>
 
           <div className={css.item}>
             <label htmlFor="birthday" className={css.label}>Birthday: </label>
             <Field type="date" name="birthday" id="birthday" className={css.input} placeholder="00.00.0000"/>
-            <ErrorMessage name="birthday" component="div" />
+            <ErrorMessage name="birthday" component="div" className={css.ErrorMessage}/>
           </div>
 
           <div className={css.item}>
             <label htmlFor="phone" className={css.label}>Phone: </label>
             <Field type="tel" name="phone" id="phone" className={css.input} placeholder="+380000000000"/>
-            <ErrorMessage name="phone" component="div" />
+            <ErrorMessage name="phone" component="div" className={css.ErrorMessage}/>
           </div>
 
           <div className={css.item}>
             <label htmlFor="city" className={css.label}>City: </label>
-            <Field type="text" name="city" id="city" className={css.input} placeholder="your city"/>
-            <ErrorMessage name="city" component="div" />
+            <Field type="text" name="city" id="city" className={css.input} placeholder="Kyiv"/>
+            <ErrorMessage name="city" component="div" className={css.ErrorMessage}/>
           </div>
 
-          <button type="submit" className={css.button}>Log out</button>
+          <button src='' type="submit" className={css.button}>Log out</button>
         </Form>
       )}
     </Formik>
@@ -80,84 +108,7 @@ const UserPage = () => {
     </div>
     </div>
     </Container>
-   );
-};
+  )
+}
 
 export default UserPage;
-
- 
-
-
-// const UserPage = () => {
-//     const  formik = useFormik({
-//         initialValues: {
-//             name: '',
-//             email: '',
-//             birthday: '',
-//             phone: '', 
-//             city: '',
-//             photo: '',
-//             refresh: '',
-//         }
-//     });
-//   return (
-//     <Container >
-//         <h2 className={css.title}>My information:</h2>
-
-//     <form onSubmit={formik.handleSubmit} className={css.section}>
-    
-//        <ul>
-//         <li><label htmlFor="name" className={css.label}>Name:</label>
-//        <input className={css.input}
-//          id="name"
-//          name="name"
-//          type="text"
-//          placeholder="Enter your name"
-//          onChange={formik.handleChange}
-//          value={formik.values.name}
-//        /> </li>
-//        <li><label htmlFor="email" className={css.label}>Email:</label>
-//        <input className={css.input}
-//          id="email"
-//          name="email"
-//          type="text"
-//          placeholder="youremail@gmail.com"
-//          onChange={formik.handleChange}
-//          value={formik.values.email}
-//        /></li>
-//        <li><label htmlFor="birthday" className={css.label}>Birthday:</label>
-//        <input className={css.input}
-//          id="birthday"
-//          name="birthday"
-//          type="date"
-//          placeholder="00.00.0000"
-//          onChange={formik.handleChange}
-//          value={formik.values.birthday}
-//        /></li>
-//        <li><label htmlFor="phone" className={css.label}>Phone:</label>
-//        <input className={css.input}
-//          id="phone"
-//          name="phone"
-//          type="tel"
-//          placeholder="+380000000000"
-//          onChange={formik.handleChange}
-//          value={formik.values.phone}
-//        /></li>
-//        <li><label htmlFor="city" className={css.label}>City:</label>
-//        <input className={css.input}
-//          id="city"
-//          name="city"
-//          type="text"
-//          placeholder="your city"
-//          onChange={formik.handleChange}
-//          value={formik.values.city}
-//        /></li>
-//        </ul>
-//        {/* <button type="submit">Log Out</button> */}
-//      </form>
-     
-//      </Container>
-//   );
-// };
-
-// export default UserPage;
