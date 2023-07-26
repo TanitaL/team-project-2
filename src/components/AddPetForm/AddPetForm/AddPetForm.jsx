@@ -33,18 +33,18 @@ const AddPetForm = () => {
   const dispatsh = useDispatch();
 
   const makeRequest = values => {
-    const {
-      category,
-      title,
-      name,
-      date,
-      sex,
-      file,
-      location,
-      price,
-      type,
-      comments,
-    } = values;
+    // const {
+    //   category,
+    //   title,
+    //   name,
+    //   date,
+    //   sex,
+    //   file,
+    //   location,
+    //   price,
+    //   type,
+    //   comments,
+    // } = values;
     const formData = new FormData();
     for (let value in values) {
       formData.append(value, values[value]);
@@ -81,7 +81,13 @@ const AddPetForm = () => {
   console.log('🚀 ~ handleNextStep ~ data:', data);
 
   return (
-    <section className={css.section}>
+    <section
+      className={
+        (currentStep === 2 && data.category !== petCategory[0])
+          ? css.notMyPetstep3Section
+          : css.section
+      }
+    >
       {(currentStep === 0 || data.category === petCategory[0]) && (
         <h1 className={css.title}>Add pet</h1>
       )}
