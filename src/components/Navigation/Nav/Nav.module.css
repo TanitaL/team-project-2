@@ -19,13 +19,11 @@
   .nav {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
     gap: 40px;
+    min-width: 329px;
 
     padding-top: 0px;
     padding-bottom: 0px;
-    margin-left: 159px;
   }
 }
 
@@ -36,25 +34,25 @@
   font-weight: 500;
   line-height: normal;
   letter-spacing: 1.28px;
-  text-decoration: none;
+  cursor: pointer;
 }
 
 .link:hover {
-  font-weight: 500;
+  font-weight: 700;
   color: var(--yellow-color);
-  text-decoration: none;
 }
 
 .link:focus {
-  font-weight: 500;
+  font-weight: 700;
   color: var(--yellow-color);
-  text-decoration: none;
 }
 
 .active {
+  font-size: 32px;
   font-weight: 500;
+  letter-spacing: 1.28px;
+  font-weight: 700;
   color: var(--yellow-color);
-  text-decoration: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -66,19 +64,18 @@
   .link:hover {
     font-weight: 500;
     color: var(--yellow-color);
-    text-decoration: none;
   }
 
   .link:focus {
     font-weight: 500;
     color: var(--yellow-color);
-    text-decoration: none;
   }
 
   .active {
+    font-size: 48px;
+    letter-spacing: 1.92px;
     font-weight: 500;
     color: var(--yellow-color);
-    text-decoration: none;
   }
 }
 
@@ -91,13 +88,11 @@
   .link:hover {
     font-weight: 500;
     color: var(--yellow-color);
-    text-decoration: none;
   }
 
   .link:focus {
     font-weight: 500;
     color: var(--yellow-color);
-    text-decoration: none;
   }
 
   .active {
@@ -105,6 +100,5 @@
     letter-spacing: 0.8px;
     font-weight: 500;
     color: var(--yellow-color);
-    text-decoration: none;
   }
 }

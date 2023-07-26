@@ -25,16 +25,11 @@
 @media screen and (min-width: 768px) {
   .registerBtn {
     width: 142px;
-    height: 38px;
+    height: 40px;
   }
 }
 
 .registerBtn:hover {
-  background-color: var(--yellow-color);
-  color: var(--background-color);
-}
-
-.registerBtn:focus {
   background-color: var(--yellow-color);
   color: var(--background-color);
 }

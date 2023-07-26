@@ -1,6 +1,11 @@
 .header {
-
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+@media screen and (min-width: 1280px) {
+  .header {
+    justify-content: inherit;
+  }
 }

@@ -11,6 +11,8 @@ import PrivateRoute from 'routes/PrivateRoute';
 import UserNav from 'components/Navigation/UserNav/UserNav';
 import { useBurgerContext } from 'context/BurgerProvider';
 import css from './BurgerMenu.module.css';
+import Logout from 'components/Logout/Logout';
+
 
 const BurgerMenu = () => {
   const { menuOpen, setMenuOpen } = useBurgerContext();
@@ -31,34 +33,32 @@ const BurgerMenu = () => {
 
   return (
     <>
-      {isMediumScreen && (
-        <PublicRoute>
-          <AuthNav />
-        </PublicRoute>
-      )}
-
-      {isMediumScreen && (
-        <div className={css.userNav}>
-          <PrivateRoute>
-            <UserNav />
-            <p>{name}</p>
-          </PrivateRoute>
-        </div>
-      )}
       {menuOpen ? (
         <>
-          <button
-            type="button"
-            onClick={closeBurgerMenu}
-            className={css.burgerMenuBtn}
-          >
-            <BurgerCloseSvg />
-          </button>
+          <div className={css.headerNav}>
+            {isMediumScreen && (
+              <>
+                <PrivateRoute>
+                  <div className={css.userNav}>
+                    <Logout />
+                  </div>
+                </PrivateRoute>
+              </>
+            )}
+
+            <button
+              type="button"
+              onClick={closeBurgerMenu}
+              className={css.burgerMenuBtn}
+            >
+              <BurgerCloseSvg />
+            </button>
+          </div>
 
           <div className={css.burgerOpenNavigation}>
             {isSmallScreen && (
               <PublicRoute>
-                <AuthNav closeBurgerMenu={closeBurgerMenu} />{' '}
+                <AuthNav closeBurgerMenu={closeBurgerMenu} />
               </PublicRoute>
             )}
             {isSmallScreen && (
@@ -69,22 +69,24 @@ const BurgerMenu = () => {
                 </div>
               </PrivateRoute>
             )}
-
             <Nav closeBurgerMenu={closeBurgerMenu} />
+            {isSmallScreen && (
+              <PrivateRoute>
+                <Logout />
+              </PrivateRoute>
+            )}
           </div>
         </>
       ) : (
-        <>
-          <div className={css.burgerHeader}>
-            <button
-              type="button"
-              className={css.burgerMenuBtn}
-              onClick={openBurgerMenu}
-            >
-              <BurgerOpenSvg />
-            </button>
-          </div>
-        </>
+        <div className={css.burgerHeader}>
+          <button
+            type="button"
+            className={css.burgerMenuBtn}
+            onClick={openBurgerMenu}
+          >
+            <BurgerOpenSvg />
+          </button>
+        </div>
       )}
     </>
   );

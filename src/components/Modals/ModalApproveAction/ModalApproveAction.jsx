@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { ReactComponent as CrossBlue } from '../../../assets/svg/cross-blue-mobile-opt.svg';
+import { ReactComponent as LogoutSvg } from '../../../assets/svg/logout-opt.svg';
+
 import css from './ModalApproveAction.module.css';
 
 const ModalApproveAction = ({
@@ -44,8 +46,13 @@ const ModalApproveAction = ({
           >
             Cancel
           </button>
-          <button type="button" onClick={handleSuccess}>
+          <button
+            type="button"
+            onClick={handleSuccess}
+            className={css.modalYesBtn}
+          >
             {successButtonText}
+            <LogoutSvg />
           </button>
         </div>
       </div>

@@ -14,41 +14,39 @@ const MainPage = () => {
   const isBigScreen = useMediaQuery('(min-width: 1280px)');
 
   return (
-    <div className={css.bgImg}>
-      <BgContainer>
-        {isSmallScreen && (
-          <>
-            <h1 className={css.textMainPage}>
-              Take good care of your small pets
-            </h1>
-            <img src={Pets} alt="pets" />
-          </>
-        )}
+    <BgContainer>
+      {isSmallScreen && (
+        <>
+          <h1 className={css.textMainPage}>
+            Take good care of your small pets
+          </h1>
+          <img src={Pets} alt="pets" />
+        </>
+      )}
 
-        {isMediumScreen && (
-          <>
-            <h1 className={css.textMainPage}>
-              Take good care of your small pets
-            </h1>
-            <img src={PetsTablet} alt="pets" />
-          </>
-        )}
+      {isMediumScreen && (
+        <>
+          <h1 className={css.textMainPage}>
+            Take good care of your small pets
+          </h1>
+          <img src={PetsTablet} alt="pets" />
+        </>
+      )}
 
-        {isBigScreen && (
-          <div className={css.bgWrap}>
-            <h1 className={css.textMainPage}>
-              Take good care of your small pets
-            </h1>
-            <img
-              src={PetsDesktop}
-              alt="pets"
-              className={css.imgPets}
-              align="right"
-            />
-          </div>
-        )}
-      </BgContainer>
-    </div>
+      {isBigScreen && (
+        <div className={css.bgWrap}>
+          <h1 className={css.textMainPage}>
+            Take good care of your small pets
+          </h1>
+          <img
+            src={PetsDesktop}
+            alt="pets"
+            className={css.imgPets}
+            align="right"
+          />
+        </div>
+      )}
+    </BgContainer>
   );
 };
 

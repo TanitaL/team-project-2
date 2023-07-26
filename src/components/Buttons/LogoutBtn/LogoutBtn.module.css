@@ -1,9 +1,9 @@
 .logoutBtn {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   padding: 8px 20px;
-  gap: 8px;
+  gap: 7px;
 
   width: 135px;
   height: 40px;
@@ -22,11 +22,12 @@
 
   position: fixed;
   left: 20px;
-  top: 541px;
-  right: 0;
+  bottom: 20px;
   box-sizing: border-box;
   outline: var(--background-color);
   z-index: 20;
+
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
@@ -36,11 +37,9 @@
 }
 
 .logoutBtn:hover {
-  background: var(--yellow-color);
-  border-color: var(--yellow-color);
+  background: var(--gradient-blue);
 }
 
 .logoutBtn:focus {
-  background: var(--yellow-color);
-  border-color: var(--yellow-color);
+  background: var(--gradient-blue);
 }

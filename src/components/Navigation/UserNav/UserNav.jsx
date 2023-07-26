@@ -1,24 +1,29 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { authSelector } from 'redux/auth/selectors';
+import { authSelector, userSelector } from 'redux/auth/selectors';
 import UserBtn from 'components/Buttons/UserBtn/UserBtn';
 import Logout from 'components/Logout/Logout';
 import css from './UserNav.module.css';
+import { useMediaQuery } from '@react-hook/media-query';
 
 const UserNav = ({ closeBurgerMenu }) => {
   const isAuth = useSelector(authSelector);
+  const { name } = useSelector(userSelector);
+  const isBigScreen = useMediaQuery('(min-width: 1280px)');
 
   return (
     <>
       {isAuth && (
         <>
+          {isBigScreen && <Logout />}
+
           <nav className={css.userNav}>
             <NavLink key={'user'} to={'user'}>
               <UserBtn closeBurgerMenu={closeBurgerMenu} />
             </NavLink>
+            {isBigScreen && <p className={css.userName}>{name}</p>}
           </nav>
-          <Logout />
         </>
       )}
     </>

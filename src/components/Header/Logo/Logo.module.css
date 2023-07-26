@@ -9,3 +9,9 @@
     height: 28px;
   }
 }
+
+@media screen and (min-width: 1280px) {
+  .logo {
+    margin-right: 159px;
+  }
+}
