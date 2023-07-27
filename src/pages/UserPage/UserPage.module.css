@@ -7,9 +7,8 @@
     top: 130px;
     margin-top: 40px;
     margin-left: 40px;
-   
-   
 }
+
 .title {
     width: 207px;
     height: 38px; 
@@ -25,7 +24,6 @@
 
 .section {
     position: relative;
-  
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -39,26 +37,36 @@
     box-shadow: 3px 8px 14px 0px #88C6FD30;
     }
     
-    .avatar {
-        align-items: center;
+.avatar {
+    align-items: center;
     }
 
-    .img {
+.img {
         
-        width: 182px;
-        height: 182px;
-        top: 20px;
-        left: 107px;
-        border-radius: 40px;
-        
+    width: 182px;
+    height: 182px;
+    top: 20px;
+    left: 107px;
+    border-radius: 40px;    
     }
-    .item {
-        /* display: flex; */
-        justify-content: flex-start;
-        /* background-color: aqua; */
+
+.profileInput {
+        position: relative;
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: space-between;
+        align-self: flex-start;
+        gap: 12px;
     }
-  
+
+   
+    
+.flexContainer {
+    display: flex;
+    justify-content: space-between;
+  }
     .label {
         justify-content: flex-start;
     font-family: Manrope;
@@ -81,9 +89,20 @@
     padding: 4px 12px 4px 12px;
     gap: 191px; */
     }
-
     .ErrorMessage {
         color: red;
         font-size: 12px;
     }
     
+    .button {
+    font-family: Manrope;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: 0.04em;
+    text-align: left;
+    color: rgba(136, 136, 136, 1);
+    background-color: #fff;
+    border: none;
+    
+    }
