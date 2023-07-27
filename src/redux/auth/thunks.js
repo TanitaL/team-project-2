@@ -27,7 +27,7 @@ import { setToken } from 'service/api/api';
 
 export const austOperationThunk = createAsyncThunk(
   'auth/operations',
-  async ({ endpoint, userInfo = {} }, thunkAPI) => {
+  async ({ endpoint, userInfo = {}, urlToken }, thunkAPI) => {
     const { token } = thunkAPI.getState().auth;
     if (
       endpoint === 'register' ||
@@ -53,6 +53,14 @@ export const austOperationThunk = createAsyncThunk(
       setToken(token);
       try {
         const { data } = await instance.get(`users/${endpoint}`);
+        return data;
+      } catch (error) {
+        return thunkAPI.rejectWithValue(error);
+      }
+    }
+    if (endpoint === 'verify') {
+      try {
+        const { data } = await instance.get(`users/${endpoint}/${urlToken}`);
         return data;
       } catch (error) {
         return thunkAPI.rejectWithValue(error);

@@ -3,7 +3,9 @@ import css from './LoginBtn.module.css';
 
 const LoginBtn = ({ closeBurgerMenu }) => {
   return (
-    <button type="button" className={css.loginBtn} onClick={closeBurgerMenu}>
+    <button type="button" className={css.loginBtn} onClick={closeBurgerMenu
+    
+    }>
       Log IN
       <svg
         xmlns="http://www.w3.org/2000/svg"

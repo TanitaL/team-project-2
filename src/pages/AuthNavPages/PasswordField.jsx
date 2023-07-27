@@ -6,15 +6,16 @@ import crossSmall from '../../assets/svg/register-form-cross-small.svg';
 
 export const PasswordField = ({ ...props }) => {
   const [field, meta] = useField(props);
+  const inputPassword = document.querySelector('#imgPasswordInput');
+  const inputConfirmPassword = document.querySelector(
+    '#imgConfirmPasswordInput'
+  );
 
-  // console.log(pr)
   const handelChangeTypeInput = e => {
-    const inputPassword = document.querySelector('#imgPasswordInput');
-    const inputConfirmPassword = document.querySelector(
-      '#imgConfirmPasswordInput'
-    );
+    const id = e.target.id;
+    const inputValue = field.value;
 
-    if (e.target.id === 'imgPasswordInput') {
+    if (id === 'imgPasswordInput' && inputValue !== '') {
       if (inputPassword.type === 'password') {
         inputPassword.type = 'text';
       } else {
@@ -22,7 +23,7 @@ export const PasswordField = ({ ...props }) => {
       }
     }
 
-    if (e.target.id === 'imgConfirmPasswordInput') {
+    if (id === 'imgConfirmPasswordInput' && inputValue !== '') {
       if (inputConfirmPassword.type === 'password') {
         inputConfirmPassword.type = 'text';
       } else {
@@ -31,10 +32,27 @@ export const PasswordField = ({ ...props }) => {
     }
   };
 
+  const handelClearInputValue = e => {
+    const id = e.target.id;
+    switch (id) {
+      case 'imgPasswordInput':
+        inputPassword.value = '';
+        field.value = '';
+        break;
+      case 'imgConfirmPasswordInput':
+        inputConfirmPassword.value = '';
+        field.value = '';
+        break;
+      default:
+        return;
+    }
+  };
+
   return (
     <>
       <label htmlFor={field.name} />
       <div
+        name={field.name}
         className={
           meta.touched && meta.error
             ? css.ErrorPasswordInput
@@ -49,12 +67,15 @@ export const PasswordField = ({ ...props }) => {
         />
         <button
           type="button"
-          onClick={meta.touched && meta.error ? null : handelChangeTypeInput}
+          onClick={
+            meta.touched && meta.error
+              ? handelClearInputValue
+              : handelChangeTypeInput
+          }
           className={css.Button__EyeClosedIcon}
         >
           {
             <img
-              
               id={props.id}
               src={meta.touched && meta.error ? crossSmall : eyeClosedIcon}
               alt="eyeClosedIcon"
@@ -62,6 +83,7 @@ export const PasswordField = ({ ...props }) => {
           }
         </button>
       </div>
+
       <ErrorMessage
         component={'div'}
         name={field.name}

@@ -20,6 +20,7 @@
   text-align: center;
 }
 
+
 .ContainerForm__Title {
   text-align: center;
   font-family: Manrope;
@@ -57,6 +58,10 @@
   letter-spacing: 0.64px;
   outline: none;
 }
+div[name='confirmPassword'] {
+  margin-bottom: 0;
+  margin-top: 12px;
+}
 .ImputContainer {
   padding: 12px 16px 12px 16px;
   margin-right: auto;
@@ -66,7 +71,6 @@
   height: 48px;
   border-radius: 40px;
   border: 1px solid var(--blue-color);
-  margin-bottom: 12px;
   justify-content: center;
   align-items: center;
 }
@@ -74,7 +78,7 @@
 .FormRegister__Button {
   width: 256px;
   height: 48px;
-  margin-top: 28px;
+  margin-top: 40px;
   margin-bottom: 8px;
   padding: 10px 28px;
   border-radius: 40px;
@@ -141,13 +145,13 @@
 }
 
 .ErrorText {
-  display: flex;
-  color: red;
-  font-size: 12px;
-  justify-content: flex-start;
-  align-items: center;
-  padding-left: 28px;
-  margin-bottom: 12px;
+ color: red;
+ font-size: 12px;
+ padding-right: 28px;
+ padding-left: 28px;
+ margin-top: 4px;
+
+ text-align: initial;
 }
 
 .ErrorTextInput {

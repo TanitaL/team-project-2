@@ -19,6 +19,9 @@ const fullfiled = (state, { meta, payload = {} }) => {
       state.user = user;
       state.token = token;
       break;
+    case 'verify':
+      state.token = token;
+      break;
     default:
       return;
   }
@@ -46,6 +49,11 @@ const authSlice = createSlice({
     token: false,
     error: null,
   },
+  reducers: {
+    deletError(state) {
+      state.error = null;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(austOperationThunk.fulfilled, fullfiled)
@@ -55,5 +63,5 @@ const authSlice = createSlice({
       .addMatcher(action => action.type.endsWith('/rejected'), handleRejected);
   },
 });
-
+export const { deletError } = authSlice.actions;
 export const authReducer = authSlice.reducer;
