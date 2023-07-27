@@ -135,10 +135,10 @@
 
 .modalActions {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 18px;
-  padding: 0 154px;
-  /* width: 274px; */
+  padding: 0px 0px;
+  width: 256px;
   align-items: center;
 }
 
