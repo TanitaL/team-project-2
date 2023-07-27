@@ -2,20 +2,15 @@ import NewsItems from './NewsItems/NewsItems';
 import css from './NewsList.module.css';
 
 const NewsList = ({ news }) => {
-  const sortedNews = [...news].sort(
-    (a, b) => new Date(b.date) - new Date(a.date)
-  );
-
   return (
     <ul className={css.list}>
-      {sortedNews.map(({ id, title, text, date, imgUrl, url }) => (
+      {news.map(({ url, title, body, date, image }) => (
         <NewsItems
-          key={id}
-          id={id}
+          key={url}
           title={title}
-          text={text}
+          body={body}
           date={date}
-          imgUrl={imgUrl}
+          image={image}
           url={url}
           loading="lazy"
         />
