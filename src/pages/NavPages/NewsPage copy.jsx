@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import NewsList from '../../components/Cards/News/NewsList/NewsList';
 import SearchComponent from 'components/SearchComponent/SearchComponent';
 import { fetchNews } from 'service/api/apiNews';
@@ -14,19 +13,45 @@ const NewsPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSearch = searchTerm => {
-    if (searchTerm.trim() !== '') {
-      const correctedSearch = searchTerm.toLowerCase();
-      setSearchNews(correctedSearch);
-    } else {
-      Notify.warning('Please, Enter the correct data for the search', {
-        timeout: 3000,
-        position: 'center-top',
-      });
+  const handleSearch = async searchTerm => {
+    try {
+      setIsLoading(true);
+      const { articles } = await fetchNews();
+
+      if (searchTerm.trim() !== '') {
+        setSearchNews(searchTerm);
+        const filteredNews = articles.filter(news =>
+          news.title.toLowerCase().includes(searchNews.toLowerCase())
+        );
+        setNewsItems(filteredNews);
+      } else {
+        setNewsItems(articles);
+      }
+
+      setIsLoading(false);
+    } catch (error) {
+      setError('404');
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
+    const getNews = async () => {
+      try {
+        const { articles } = await fetchNews(searchNews);
+        setNewsItems(articles);
+        setIsLoading(false);
+      } catch (error) {
+        setError('404');
+        setIsLoading(false);
+      }
+    };
+
+    getNews();
+  }, []);
+
+  useEffect(() => {
+    setSearchNews('pet');
     setPage(1);
     setPerPage(9);
     try {
