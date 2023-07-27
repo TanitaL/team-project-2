@@ -4,6 +4,7 @@ import { austOperationThunk } from 'redux/auth/thunks';
 import ModalApproveAction from 'components/Modals/ModalApproveAction/ModalApproveAction';
 import { NavLink } from 'react-router-dom';
 import LogoutBtn from 'components/Buttons/LogoutBtn/LogoutBtn';
+import { ReactComponent as LogoutSvg } from 'assets/svg/logout-opt.svg';
 
 const Logout = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -26,9 +27,17 @@ const Logout = () => {
         <ModalApproveAction
           handleSuccess={handleSuccess}
           handleCancel={handleCancel}
-          content={'Already leaving?'}
-          successButtonText={'Yes'}
-        />
+          successButtonText={
+            <>
+              <p>Yes</p>
+              <LogoutSvg />
+            </>
+          }
+        >
+          <div>
+            <p>Already leaving?</p>
+          </div>
+        </ModalApproveAction>
       )}
     </>
   );

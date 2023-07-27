@@ -1,16 +1,14 @@
-
 import React, { useState, useEffect } from 'react';
 import CategoryList from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCategoriesList';
 import css from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCategoriesItem/NoticesCategoriesItem.module.css';
 
 import { instance } from 'service/api/api';
-import SearchComponent from '../../components/SearchComponent/SearchComponent'; 
+import SearchComponent from '../../components/SearchComponent/SearchComponent';
 
 const NoticesPage = () => {
   const [noticesData, setNoticesData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
 
   const getAllNotices = async () => {
     try {
@@ -22,13 +20,13 @@ const NoticesPage = () => {
     }
   };
 
-  const handleSearch = async (searchTerm) => {
+  const handleSearch = async searchTerm => {
     try {
       setIsLoading(true);
       const data = await getAllNotices();
 
       if (searchTerm.trim() !== '') {
-        const filteredNotices = data.filter((notice) =>
+        const filteredNotices = data.filter(notice =>
           notice.title.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setNoticesData(filteredNotices);
@@ -60,7 +58,14 @@ const NoticesPage = () => {
 
   if (isLoading) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+        }}
+      >
         <div className="spinner-border text-primary" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
