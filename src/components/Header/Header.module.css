@@ -9,3 +9,7 @@
     justify-content: inherit;
   }
 }
+
+.headerNav {
+  display: flex;
+}

@@ -11,8 +11,10 @@ const Header = () => {
   return (
     <header className={css.header}>
       <Logo />
-      <Navigation />
-      {isMediumScreen && <BurgerMenu />}
+      <div className={css.headerNav}>
+        <Navigation />
+        {isMediumScreen && <BurgerMenu />}
+      </div>
     </header>
   );
 };

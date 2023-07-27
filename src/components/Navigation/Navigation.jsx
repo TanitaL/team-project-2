@@ -11,6 +11,7 @@ const Navigation = ({ closeBurgerMenu }) => {
   const isAuth = useSelector(authSelector);
   const isTabletScreen = useMediaQuery('(min-width: 768px)');
   const isDesktopScreen = useMediaQuery('(min-width: 1280px)');
+  console.log(isAuth);
 
   return (
     // <div className={css.navigationWrap}>
