@@ -4,12 +4,30 @@
   justify-content: space-between;
 }
 
+@media screen and (min-width: 768px) {
+  .header {
+    padding: 2px 0;
+  }
+}
 @media screen and (min-width: 1280px) {
   .header {
     justify-content: inherit;
+    padding: 4px 0px 0px 0px;
   }
 }
 
 .headerNav {
   display: flex;
+}
+
+@media screen and (min-width: 768px) {
+  .headerNav {
+    gap: 22px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .headerNav {
+    gap: 322px;
+  }
 }

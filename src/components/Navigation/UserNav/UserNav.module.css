@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 768px) {
   .userNav {
     flex-direction: row;
     justify-content: space-between;
@@ -29,8 +29,7 @@
 
 .userName {
   min-width: 41px;
-
-  max-width: 55px;
+  max-width: 90px;
 
   overflow: hidden;
   text-overflow: ellipsis;
