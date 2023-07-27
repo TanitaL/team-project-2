@@ -4,7 +4,7 @@ import React from 'react';
 import DateView from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-function DataPicker(props) {
+function DatePicker(props) {
   const { lable, name, ...rest } = props;
   return (
     <div className="form-control">
@@ -29,4 +29,4 @@ function DataPicker(props) {
   );
 }
 
-export default DataPicker;
+export default DatePicker;

@@ -32,11 +32,33 @@ const AddPetForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const dispatsh = useDispatch();
 
-  const makeRequest = (values,actions) => {
+  const makeRequest = (values) => {
+    const {category,
+  title,
+  name,
+  date,
+  sex,
+  file,
+  location,
+  price,
+  type,
+      comments, } = values
+    const newValues = {
+      category,
+      title,
+      name,
+      date,
+      sex,
+      file,
+      location,
+      price,
+      type,
+      comments,
+    };
    
     const formData = new FormData();
-    for (let value in values) {
-      formData.append(value, values[value]);
+    for (let value in newValues) {
+      formData.append(value, newValues[value]);
     }
     
     for (let property of formData.entries()) {
@@ -44,14 +66,15 @@ const AddPetForm = () => {
     }
 
     dispatsh(addPet(formData));
-    actions.resetForm();
+    
   };
 
-  const handleNextStep = (newData, final = false,actions) => {
+  const handleNextStep = (newData, final = false) => {
     setData(prev => ({ ...prev, ...newData }));
 
     if (final) {
-      makeRequest(newData,actions);
+      makeRequest(newData);
+      // actions.resetForm();
       return;
     }
 
@@ -69,7 +92,7 @@ const AddPetForm = () => {
     <MoreInfo next={handleNextStep} data={data} prev={handlePrevStep} />,
   ];
   console.log('🚀 ~ handleNextStep ~ data:', data);
-  console.log('🚀 ~ handleNextStep ~ typeof(data.price):', typeof data.price);
+  console.log('🚀 ~ handleNextStep ~ typeof(data.date):', typeof data.date);
 
   return (
     <section
