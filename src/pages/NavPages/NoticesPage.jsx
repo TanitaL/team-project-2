@@ -3,6 +3,7 @@ import CategoryList from '../../components/Cards/Notices/NoticesCategoriesList/N
 import css from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCategoriesItem/NoticesCategoriesItem.module.css';
 
 import { instance } from 'service/api/api';
+import SearchComponent from '../../components/SearchComponent/SearchComponent';
 
 const NoticesPage = () => {
   const [noticesData, setNoticesData] = useState([]);
@@ -12,11 +13,31 @@ const NoticesPage = () => {
   const getAllNotices = async () => {
     try {
       const response = await instance.get('notices');
-      // console.log(response.data.notices);
       return response.data.notices;
     } catch (error) {
       console.error('Error fetching data:', error);
       throw error;
+    }
+  };
+
+  const handleSearch = async searchTerm => {
+    try {
+      setIsLoading(true);
+      const data = await getAllNotices();
+
+      if (searchTerm.trim() !== '') {
+        const filteredNotices = data.filter(notice =>
+          notice.title.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setNoticesData(filteredNotices);
+      } else {
+        setNoticesData(data);
+      }
+
+      setIsLoading(false);
+    } catch (error) {
+      setError('404');
+      setIsLoading(false);
     }
   };
 
@@ -37,7 +58,14 @@ const NoticesPage = () => {
 
   if (isLoading) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+        }}
+      >
         <div className="spinner-border text-primary" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
@@ -57,6 +85,7 @@ const NoticesPage = () => {
   return (
     <div>
       <h1 className={css.textNoticesPage}>Find your favorite pet</h1>
+      <SearchComponent onSearch={handleSearch} />
       <CategoryList data={noticesData} />
     </div>
   );

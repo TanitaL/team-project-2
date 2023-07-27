@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { ReactComponent as CrossBlue } from '../../../assets/svg/cross-blue-mobile-opt.svg';
-import { ReactComponent as LogoutSvg } from '../../../assets/svg/logout-opt.svg';
-
 import css from './ModalApproveAction.module.css';
 
 const ModalApproveAction = ({
-  content,
+  children,
   handleCancel,
   handleSuccess,
   successButtonText,
@@ -25,7 +24,7 @@ const ModalApproveAction = ({
     event.target === event.currentTarget && handleCancel();
   };
 
-  return (
+  return createPortal(
     <div className={css.modalOverlay} onClick={handleOverlay}>
       <div className={css.modalContainer}>
         <div className={css.modalHeader}>
@@ -38,26 +37,60 @@ const ModalApproveAction = ({
           </button>
         </div>
         <div className={css.modalBody}>
-          <p className={css.modalText}>{content}</p>
-          <button
-            type="button"
-            onClick={handleCancel}
-            className={css.modalCancelBtn}
-          >
-            Cancel
-          </button>
-          <button
-            type="button"
-            onClick={handleSuccess}
-            className={css.modalYesBtn}
-          >
-            {successButtonText}
-            <LogoutSvg />
-          </button>
+          <div className={css.modalText}>{children}</div>
+          <div className={css.modalActions}>
+            <button
+              type="button"
+              onClick={handleCancel}
+              className={css.modalCancelBtn}
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={handleSuccess}
+              className={css.modalYesBtn}
+            >
+              {successButtonText}
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
 export default ModalApproveAction;
+
+//  <div className={css.modalOverlay} onClick={handleOverlay}>
+//    <div className={css.modalContainer}>
+//      <div className={css.modalHeader}>
+//        <button
+//          type="button"
+//          className={css.modalCrossBtn}
+//          onClick={handleCancel}
+//        >
+//          <CrossBlue />
+//        </button>
+//      </div>
+//      <div className={css.modalBody}>
+//        <p className={css.modalText}>{content}</p>
+//        <button
+//          type="button"
+//          onClick={handleCancel}
+//          className={css.modalCancelBtn}
+//        >
+//          Cancel
+//        </button>
+//        <button
+//          type="button"
+//          onClick={handleSuccess}
+//          className={css.modalYesBtn}
+//        >
+//          {successButtonText}
+//          <LogoutSvg />
+//        </button>
+//      </div>
+//    </div>
+//  </div>;

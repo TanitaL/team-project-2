@@ -1,11 +1,19 @@
 import React from 'react';
 import css from './LoginBtn.module.css';
+import { useBurgerContext } from 'context/BurgerProvider';
+import { useNavigate } from 'react-router-dom';
 
-const LoginBtn = ({ closeBurgerMenu }) => {
+const LoginBtn = () => {
+  const { setMenuOpen } = useBurgerContext();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    setMenuOpen(false);
+    navigate('/login');
+  };
+
   return (
-    <button type="button" className={css.loginBtn} onClick={closeBurgerMenu
-    
-    }>
+    <button type="button" className={css.loginBtn} onClick={handleClick}>
       Log IN
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -13,7 +13,6 @@ import { useBurgerContext } from 'context/BurgerProvider';
 import css from './BurgerMenu.module.css';
 import Logout from 'components/Logout/Logout';
 
-
 const BurgerMenu = () => {
   const { menuOpen, setMenuOpen } = useBurgerContext();
   const { name } = useSelector(userSelector);
@@ -35,6 +34,12 @@ const BurgerMenu = () => {
     <>
       {menuOpen ? (
         <>
+          {isMediumScreen && (
+            <PublicRoute>
+              <AuthNav closeBurgerMenu={closeBurgerMenu} />
+            </PublicRoute>
+          )}
+
           <div className={css.headerNav}>
             {isMediumScreen && (
               <>
@@ -78,15 +83,29 @@ const BurgerMenu = () => {
           </div>
         </>
       ) : (
-        <div className={css.burgerHeader}>
-          <button
-            type="button"
-            className={css.burgerMenuBtn}
-            onClick={openBurgerMenu}
-          >
-            <BurgerOpenSvg />
-          </button>
-        </div>
+        <>
+          {isMediumScreen && (
+            <PublicRoute>
+              <AuthNav closeBurgerMenu={closeBurgerMenu} />
+            </PublicRoute>
+          )}
+          {isMediumScreen && (
+            <PrivateRoute>
+              <div className={css.userNav}>
+                <UserNav closeBurgerMenu={closeBurgerMenu} />
+              </div>
+            </PrivateRoute>
+          )}
+          <div className={css.burgerHeader}>
+            <button
+              type="button"
+              className={css.burgerMenuBtn}
+              onClick={openBurgerMenu}
+            >
+              <BurgerOpenSvg />
+            </button>
+          </div>
+        </>
       )}
     </>
   );

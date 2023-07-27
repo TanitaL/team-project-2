@@ -32,36 +32,25 @@ const AddPetForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const dispatsh = useDispatch();
 
-  const makeRequest = values => {
-    // const {
-    //   category,
-    //   title,
-    //   name,
-    //   date,
-    //   sex,
-    //   file,
-    //   location,
-    //   price,
-    //   type,
-    //   comments,
-    // } = values;
+  const makeRequest = (values, actions) => {
     const formData = new FormData();
     for (let value in values) {
       formData.append(value, values[value]);
     }
-    
+
     for (let property of formData.entries()) {
       console.log(property[0], property[1]);
     }
 
     dispatsh(addPet(formData));
+    actions.resetForm();
   };
 
-  const handleNextStep = (newData, final = false) => {
+  const handleNextStep = (newData, final = false, actions) => {
     setData(prev => ({ ...prev, ...newData }));
 
     if (final) {
-      makeRequest(newData);
+      makeRequest(newData, actions);
       return;
     }
 
@@ -79,11 +68,12 @@ const AddPetForm = () => {
     <MoreInfo next={handleNextStep} data={data} prev={handlePrevStep} />,
   ];
   console.log('🚀 ~ handleNextStep ~ data:', data);
+  console.log('🚀 ~ handleNextStep ~ typeof(data.price):', typeof data.price);
 
   return (
     <section
       className={
-        (currentStep === 2 && data.category !== petCategory[0])
+        currentStep === 2 && data.category !== petCategory[0]
           ? css.notMyPetstep3Section
           : css.section
       }

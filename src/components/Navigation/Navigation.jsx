@@ -9,24 +9,23 @@ import { useMediaQuery } from '@react-hook/media-query';
 
 const Navigation = ({ closeBurgerMenu }) => {
   const isAuth = useSelector(authSelector);
-  const isTabletScreen = useMediaQuery('(min-width: 768px)');
   const isDesktopScreen = useMediaQuery('(min-width: 1280px)');
 
   return (
-    // <div className={css.navigationWrap}>
     <>
-      {isDesktopScreen && <Nav />}
-      {isTabletScreen && (
-        <div className={css.navigation}>
-          {!isAuth ? (
-            <AuthNav closeBurgerMenu={closeBurgerMenu} />
-          ) : (
-            <UserNav closeBurgerMenu={closeBurgerMenu} />
-          )}
-        </div>
+      {isDesktopScreen && (
+        <>
+          <Nav />
+          <div className={css.navigation}>
+            {!isAuth ? (
+              <AuthNav closeBurgerMenu={closeBurgerMenu} />
+            ) : (
+              <UserNav closeBurgerMenu={closeBurgerMenu} />
+            )}
+          </div>
+        </>
       )}
     </>
-    // </div>
   );
 };
 

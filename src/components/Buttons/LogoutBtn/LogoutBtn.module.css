@@ -36,10 +36,7 @@
   }
 }
 
-.logoutBtn:hover {
-  background: var(--gradient-blue);
-}
-
+.logoutBtn:hover,
 .logoutBtn:focus {
   background: var(--gradient-blue);
 }

@@ -8,11 +8,18 @@ import TextField from './TextFielf';
 
 // import { DatePicker } from 'react-datepicker'; // Импортируем компонент DatePicker
 // import 'react-datepicker/dist/react-datepicker.css'; // Подключаем стили для DatePicker
-// import { parse, format } from 'date-fns'; // Импортируем функции для работы с датами
+import { parse, format } from 'date-fns'; // Импортируем функции для работы с датами
 
 // const formatDateForFormik = date => {
 //   return date ? format(date, 'dd-MM-yyyy') : '';
 // };
+const formatDate = date => {
+  const formattedDate = date ? format(new Date(date), 'dd-MM-yyyy') : null;
+  console.log('🚀 ~ formatDate ~ formattedDate:', formattedDate);
+  console.log('🚀 ~ formatDate ~ typeof(formattedDate):', typeof formattedDate);
+
+  return formattedDate;
+};
 
 const PersonalDetails = ({ data, next, prev }) => {
   const handleSubmit = (values, helpers) => {
@@ -76,11 +83,25 @@ const PersonalDetails = ({ data, next, prev }) => {
             <label className={css.lable} htmlFor="date">
               Date of birth
             </label>
-            <Field
+            {/* <Field
               className={css.input}
               name="date"
               type="date"
               placeholder="Type date of birth"
+            /> */}
+            <input
+              className={css.input}
+              name="date"
+              type="date"
+              placeholder="Type date of birth"
+              onChange={event => {
+                console.log(
+                  '🚀 ~ PersonalDetails ~ event.target:',
+                  event.target.value
+                );
+
+                setFieldValue('date', formatDate(event.target.value));
+              }}
             />
             {/* <DatePicker
               selected={
