@@ -4,6 +4,7 @@ import css from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCat
 
 import { instance } from 'service/api/api';
 import SearchComponent from '../../components/SearchComponent/SearchComponent';
+import AddPetForm from 'components/AddPetForm/AddPetForm/AddPetForm';
 
 const NoticesPage = () => {
   const [noticesData, setNoticesData] = useState([]);
@@ -85,6 +86,7 @@ const NoticesPage = () => {
   return (
     <div>
       <h1 className={css.textNoticesPage}>Find your favorite pet</h1>
+      <AddPetForm/>
       <SearchComponent onSearch={handleSearch} />
       <CategoryList data={noticesData} />
     </div>

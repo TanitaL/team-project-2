@@ -12,8 +12,8 @@ import PreviewImage from 'components/PreviewImage/PreviewImage';
 const MoreInfo = ({ data, next, prev }) => {
   const fileRef = useRef(null);
 
-  const handleSubmit = (values, helpers) => {
-    next(values, true);
+  const handleSubmit = (values, helpers,actions) => {
+    next(values, true,actions);
   };
 
   const handleBackClick = values => {
