@@ -59,8 +59,8 @@ const UserPage = () => {
                     />
                   </picture>
 
-                  {/* <label htmlFor="photo"></label> */}
-                  {/* <input
+                  { <label htmlFor="photo"></label> }
+                  {<input
               type="file"
               name="photo"
               id="photo"
@@ -68,11 +68,12 @@ const UserPage = () => {
               onChange={(event) => {
                 setFieldValue("photo", event.currentTarget.files[0]);
               }}
-            /> */}
+            /> }
                   <ErrorMessage name="photo" component="div" />
                 </div>
-
+                <div className={css.profileInput}>
                 <div className={css.item}>
+                  <div className={css.flexContainer}>
                   <label htmlFor="name" className={css.label}>
                     Name:{' '}
                   </label>
@@ -83,6 +84,7 @@ const UserPage = () => {
                     className={css.input}
                     placeholder="Enter your name"
                   />
+                  </div>
                   <ErrorMessage
                     name="name"
                     component="div"
@@ -91,6 +93,7 @@ const UserPage = () => {
                 </div>
 
                 <div className={css.item}>
+                <div className={css.flexContainer}>
                   <label htmlFor="email" className={css.label}>
                     Email:{' '}
                   </label>
@@ -101,6 +104,7 @@ const UserPage = () => {
                     className={css.input}
                     placeholder="youremail@gmail.com"
                   />
+                  </div>
                   <ErrorMessage
                     name="email"
                     component="div"
@@ -109,6 +113,7 @@ const UserPage = () => {
                 </div>
 
                 <div className={css.item}>
+                <div className={css.flexContainer}>
                   <label htmlFor="birthday" className={css.label}>
                     Birthday:{' '}
                   </label>
@@ -119,6 +124,7 @@ const UserPage = () => {
                     className={css.input}
                     placeholder="00.00.0000"
                   />
+                  </div>
                   <ErrorMessage
                     name="birthday"
                     component="div"
@@ -127,6 +133,7 @@ const UserPage = () => {
                 </div>
 
                 <div className={css.item}>
+                <div className={css.flexContainer}>
                   <label htmlFor="phone" className={css.label}>
                     Phone:{' '}
                   </label>
@@ -137,6 +144,7 @@ const UserPage = () => {
                     className={css.input}
                     placeholder="+380000000000"
                   />
+                  </div>
                   <ErrorMessage
                     name="phone"
                     component="div"
@@ -145,6 +153,7 @@ const UserPage = () => {
                 </div>
 
                 <div className={css.item}>
+                <div className={css.flexContainer}>
                   <label htmlFor="city" className={css.label}>
                     City:{' '}
                   </label>
@@ -155,11 +164,13 @@ const UserPage = () => {
                     className={css.input}
                     placeholder="Kyiv"
                   />
+                  </div>
                   <ErrorMessage
                     name="city"
                     component="div"
                     className={css.ErrorMessage}
                   />
+                </div>
                 </div>
 
                 <button src="" type="submit" className={css.button}>
