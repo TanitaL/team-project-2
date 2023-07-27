@@ -1,17 +1,17 @@
 import css from './NoticesCategoriesNav.module.css';
-import { useSelector } from 'react-redux';
-import {  authSelector } from '../../redux/auth/selectors';
+// import { useSelector } from 'react-redux';
+// import {  authSelector } from '../../redux/auth/selectors';
 import { NavLink, useLocation } from 'react-router-dom';
 
 const NoticesCategoriesNav = ({ setpage }) => {
   const location = useLocation();
   const from = location.state?.from || '/';
 
-  const { isLogin } = useSelector(authSelector);
+  // const { isLogin } = useSelector(authSelector);
 
   return (
     <>
-      {!isLogin ? (
+      {/* {!isLogin ? ( */}
         <ul className={css.list}>
           <li className={css.item} onClick={setpage}>
             <NavLink className={css.link} to="sell" state={{ from }}>
@@ -29,7 +29,7 @@ const NoticesCategoriesNav = ({ setpage }) => {
             </NavLink>
           </li>
         </ul>
-      ) : (
+       {/* ) : (  */}
         <ul className={css.list}>
           <li className={css.item}>
             <NavLink className={css.link} to="sell" state={{ from }}>
@@ -57,7 +57,7 @@ const NoticesCategoriesNav = ({ setpage }) => {
             </NavLink>
           </li>
         </ul>
-      )} 
+      {/* )}   */}
     </>
   );
 };
