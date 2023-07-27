@@ -12,8 +12,8 @@ import PreviewImage from 'components/PreviewImage/PreviewImage';
 const MoreInfo = ({ data, next, prev }) => {
   const fileRef = useRef(null);
 
-  const handleSubmit = (values, helpers) => {
-    next(values, true);
+  const handleSubmit = (values, helpers,actions) => {
+    next(values, true,actions);
   };
 
   const handleBackClick = values => {
@@ -103,6 +103,7 @@ const MoreInfo = ({ data, next, prev }) => {
 
                   <button
                     className={css.addImgBtn}
+                    type="button"
                     onClick={() => {
                       fileRef.current.click();
                     }}
@@ -151,7 +152,7 @@ const MoreInfo = ({ data, next, prev }) => {
                   <label className={css.lable} htmlFor="price">
                     Price
                   </label>
-                  <Field className={css.input} name="price" />
+                  <Field className={css.input} name="price" type="number"/>
                   <ErrorMessage
                     className={css.error}
                     name="price"

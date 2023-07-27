@@ -26,7 +26,7 @@ export const addPet = createAsyncThunk(
       console.log('🚀 ~ response.data:', response.data);
       return response.data;
     } catch (error) {
-      console.log('🚀 ~ error:', error);
+      console.log('🚀 ~ error.message:', error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

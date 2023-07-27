@@ -13,24 +13,27 @@ export const stepOneValidationSchema = Yup.object().shape({
 });
 
 export const stepTwoValidationSchema = Yup.object().shape({
-  title: Yup.string().test(
-    'titleRequired',
-    'Title is required for this category',
-    function (value) {
-      if (petCategory.includes(this.parent.category)) {
-        return this.parent.category !== 'your pet' ? !!value : true;
+  title: Yup.string()
+    .min(2)
+    .max(16)
+    .test(
+      'titleRequired',
+      'Title is required for this category',
+      function (value) {
+        if (petCategory.includes(this.parent.category)) {
+          return this.parent.category !== 'your pet' ? !!value : true;
+        }
+        return true;
       }
-      return true;
-    }
-  ),
-  name: Yup.string().required('Pet name is required'),
-  date:Yup.date().required('Birth date is required').nullable(),
-  // date: Yup.string()
-  //   .matches(
-  //     /^(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[0-2])-\d{4}$/,
-  //     'Birth date must be in the format DD-MM-YYYY'
-  //   )
-  //   .required('Birth date is required'),
+    ),
+  name: Yup.string().min(2,'2 symbols minimum').max(16,'16 symbols maximum').required('Pet name is required'),
+  // date: Yup.date().required('Birth date is required').nullable(),
+  date: Yup.string()
+    .matches(
+      /^(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[0-2])-\d{4}$/,
+      'Birth date must be in the format DD-MM-YYYY'
+    )
+    .required('Birth date is required'),
   type: Yup.string().required('Type is required'),
 });
 
