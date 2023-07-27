@@ -2,13 +2,17 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import css from './AuthNavPage.module.css';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 import TextField from './TextField';
 import PasswordField from './PasswordField';
 import { useDispatch } from 'react-redux';
 import { austOperationThunk } from 'redux/auth/thunks';
+import { useSelector } from 'react-redux';
+import { errorSelector } from 'redux/auth/selectors';
+import { deletError } from 'redux/auth/slice';
 
 const LoginPage = () => {
+  const error = useSelector(errorSelector);
   const dispatch = useDispatch();
   const validate = Yup.object({
     email: Yup.string()
@@ -35,7 +39,11 @@ const LoginPage = () => {
             },
           })
         );
-        actions.resetForm();
+        if (!error) {
+          return async () => {
+            actions.resetForm();
+          };
+        }
       }}
     >
       {formik => (
@@ -55,13 +63,17 @@ const LoginPage = () => {
                 id="password"
                 type="password"
               />
-
+              {error && <p className={css.ErrorText}>{error.data.message}</p>}
               <button className={css.FormRegister__Button_Login} type="submit">
                 Login
               </button>
               <p className={css.FormRegister__Text}>
                 Don't have an account?
-                <NavLink to={`/register`} className={css.FormRegister__Link}>
+                <NavLink
+                  onClick={() => dispatch(deletError())}
+                  to={`/register`}
+                  className={css.FormRegister__Link}
+                >
                   Register
                 </NavLink>
               </p>

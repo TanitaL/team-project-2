@@ -12,8 +12,21 @@ import AfterVerifEmail from '../pages/Other/AfterVerifEmail';
 import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
 import BurgerProvider from 'context/BurgerProvider';
+import { useDispatch } from 'react-redux';
+import { austOperationThunk } from '../redux/auth/thunks';
+import { useEffect } from 'react';
+
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      austOperationThunk({
+        endpoint: 'current',
+      })
+    );
+  }, [dispatch]);
   return (
     <Routes>
       <Route
