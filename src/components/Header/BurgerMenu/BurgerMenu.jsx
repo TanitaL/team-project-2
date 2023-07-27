@@ -36,7 +36,7 @@ const BurgerMenu = () => {
         <>
           {isMediumScreen && (
             <PublicRoute>
-              <AuthNav closeBurgerMenu={closeBurgerMenu} />
+              <AuthNav />
             </PublicRoute>
           )}
 

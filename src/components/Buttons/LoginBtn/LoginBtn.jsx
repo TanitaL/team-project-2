@@ -13,7 +13,7 @@ const LoginBtn = () => {
   };
 
   return (
-    <button type="button" className={css.loginBtn} onClick={handleClick}>
+    <button type="button" className={css.loginBtn} handleClick={handleClick}>
       Log IN
       <svg
         xmlns="http://www.w3.org/2000/svg"
