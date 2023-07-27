@@ -103,6 +103,7 @@ const MoreInfo = ({ data, next, prev }) => {
 
                   <button
                     className={css.addImgBtn}
+                    type="button"
                     onClick={() => {
                       fileRef.current.click();
                     }}
@@ -151,7 +152,7 @@ const MoreInfo = ({ data, next, prev }) => {
                   <label className={css.lable} htmlFor="price">
                     Price
                   </label>
-                  <Field className={css.input} name="price" />
+                  <Field className={css.input} name="price" type="number"/>
                   <ErrorMessage
                     className={css.error}
                     name="price"

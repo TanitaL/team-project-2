@@ -33,18 +33,7 @@ const AddPetForm = () => {
   const dispatsh = useDispatch();
 
   const makeRequest = values => {
-    // const {
-    //   category,
-    //   title,
-    //   name,
-    //   date,
-    //   sex,
-    //   file,
-    //   location,
-    //   price,
-    //   type,
-    //   comments,
-    // } = values;
+   
     const formData = new FormData();
     for (let value in values) {
       formData.append(value, values[value]);
@@ -79,6 +68,7 @@ const AddPetForm = () => {
     <MoreInfo next={handleNextStep} data={data} prev={handlePrevStep} />,
   ];
   console.log('🚀 ~ handleNextStep ~ data:', data);
+  console.log('🚀 ~ handleNextStep ~ typeof(data.price):', typeof data.price);
 
   return (
     <section

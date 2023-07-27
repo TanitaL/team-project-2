@@ -3,6 +3,7 @@ import CategoryList from '../../components/Cards/Notices/NoticesCategoriesList/N
 import css from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCategoriesItem/NoticesCategoriesItem.module.css';
 
 import { instance } from 'service/api/api';
+import AddPetForm from 'components/AddPetForm/AddPetForm/AddPetForm';
 
 const NoticesPage = () => {
   const [noticesData, setNoticesData] = useState([]);
@@ -56,6 +57,7 @@ const NoticesPage = () => {
 
   return (
     <div>
+      <AddPetForm/>
       <h1 className={css.textNoticesPage}>Find your favorite pet</h1>
       <CategoryList data={noticesData} />
     </div>
