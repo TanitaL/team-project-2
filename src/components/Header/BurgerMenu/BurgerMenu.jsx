@@ -15,7 +15,7 @@ import Logout from 'components/Logout/Logout';
 
 const BurgerMenu = () => {
   const { menuOpen, setMenuOpen } = useBurgerContext();
-  const { name } = useSelector(userSelector);
+  const user = useSelector(userSelector);
 
   const isSmallScreen = useMediaQuery('(max-width: 767px)');
   const isMediumScreen = useMediaQuery(
@@ -70,7 +70,7 @@ const BurgerMenu = () => {
               <PrivateRoute>
                 <div className={css.userNav}>
                   <UserNav closeBurgerMenu={closeBurgerMenu} />
-                  <p>{name}</p>
+                  <p>{user.name}</p>
                 </div>
               </PrivateRoute>
             )}
@@ -86,13 +86,13 @@ const BurgerMenu = () => {
         <>
           {isMediumScreen && (
             <PublicRoute>
-              <AuthNav closeBurgerMenu={closeBurgerMenu} />
+              <AuthNav />
             </PublicRoute>
           )}
           {isMediumScreen && (
             <PrivateRoute>
               <div className={css.userNav}>
-                <UserNav closeBurgerMenu={closeBurgerMenu} />
+                <UserNav />
               </div>
             </PrivateRoute>
           )}

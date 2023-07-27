@@ -16,7 +16,6 @@ import { useDispatch } from 'react-redux';
 import { austOperationThunk } from '../redux/auth/thunks';
 import { useEffect } from 'react';
 
-
 export const App = () => {
   const dispatch = useDispatch();
 
