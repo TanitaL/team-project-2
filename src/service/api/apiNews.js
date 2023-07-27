@@ -10,7 +10,7 @@ export const fetchNews = async (searchNews, page, perPage) => {
     articlesCount: perPage,
     articlesSortBy: 'date',
     articlesSortByAsc: false,
-    articlesArticleBodyLen: -1,
+    articlesArticleBodyLen: 99,
     resultType: 'articles',
     dataType: ['news'],
     lang: 'eng',
@@ -22,7 +22,7 @@ export const fetchNews = async (searchNews, page, perPage) => {
     return {
       articles: response.data.articles.results,
       totalResults: response.data.articles.totalResults,
-      isLastPage: page > response.data.articles.totalResults / perPage,
+      pages: response.data.articles.pages,
     };
   });
 };
