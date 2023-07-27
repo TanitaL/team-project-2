@@ -32,13 +32,12 @@ const AddPetForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const dispatsh = useDispatch();
 
-  const makeRequest = (values,actions) => {
-   
+  const makeRequest = (values, actions) => {
     const formData = new FormData();
     for (let value in values) {
       formData.append(value, values[value]);
     }
-    
+
     for (let property of formData.entries()) {
       console.log(property[0], property[1]);
     }
@@ -47,11 +46,11 @@ const AddPetForm = () => {
     actions.resetForm();
   };
 
-  const handleNextStep = (newData, final = false,actions) => {
+  const handleNextStep = (newData, final = false, actions) => {
     setData(prev => ({ ...prev, ...newData }));
 
     if (final) {
-      makeRequest(newData,actions);
+      makeRequest(newData, actions);
       return;
     }
 
@@ -74,7 +73,7 @@ const AddPetForm = () => {
   return (
     <section
       className={
-        (currentStep === 2 && data.category !== petCategory[0])
+        currentStep === 2 && data.category !== petCategory[0]
           ? css.notMyPetstep3Section
           : css.section
       }
