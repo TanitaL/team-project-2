@@ -15,7 +15,6 @@ export const fetchNews = async (searchNews, page, perPage) => {
     dataType: ['news'],
     lang: 'eng',
     apiKey: YOUR_API_KEY,
-    forceMaxDataTimeWindow: 31,
   });
 
   return await axios.get(`/?${searchParams}`).then(response => {
