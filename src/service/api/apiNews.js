@@ -1,5 +1,5 @@
 import axios from 'axios';
-axios.defaults.baseURL = 'http://eventregistry.org/api/v1/article/getArticles';
+axios.defaults.baseURL = 'https://eventregistry.org/api/v1/article/getArticles';
 const YOUR_API_KEY = '2da62d3c-4d43-49a3-b513-7097a7b6bb72';
 
 export const fetchNews = async (searchNews, page, perPage) => {
