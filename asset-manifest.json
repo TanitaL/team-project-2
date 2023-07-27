@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/team-project-2/static/css/main.b538d3fb.css",
-    "main.js": "/team-project-2/static/js/main.9980fc39.js",
+    "main.js": "/team-project-2/static/js/main.2344dd2e.js",
     "static/media/bg-pets-tablet-1x-opt.png": "/team-project-2/static/media/bg-pets-tablet-1x-opt.62779fedc8551712ac49.png",
     "static/media/bg-pets-desktop-1x-opt.png": "/team-project-2/static/media/bg-pets-desktop-1x-opt.dcebb19b34e6b1571dc9.png",
     "static/media/Manrope.ttf": "/team-project-2/static/media/Manrope.4afb283bba326df875f6.ttf",
@@ -22,10 +22,10 @@
     "static/media/cross-blue-mobile-opt.svg": "/team-project-2/static/media/cross-blue-mobile-opt.b36ab9f0e9d33d33cdd43857f5b7c4e7.svg",
     "static/media/menu-hamburger-cross-opt.svg": "/team-project-2/static/media/menu-hamburger-cross-opt.737a9aa53a41c5bfec6f5a5e0d144e1a.svg",
     "main.b538d3fb.css.map": "/team-project-2/static/css/main.b538d3fb.css.map",
-    "main.9980fc39.js.map": "/team-project-2/static/js/main.9980fc39.js.map"
+    "main.2344dd2e.js.map": "/team-project-2/static/js/main.2344dd2e.js.map"
   },
   "entrypoints": [
     "static/css/main.b538d3fb.css",
-    "static/js/main.9980fc39.js"
+    "static/js/main.2344dd2e.js"
   ]
 }
