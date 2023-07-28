@@ -84,7 +84,7 @@ const BurgerMenu = () => {
         </>
       ) : (
         <>
-          {isMediumScreen && (
+          {/* {isMediumScreen && (
             <PublicRoute>
               <AuthNav />
             </PublicRoute>
@@ -95,7 +95,7 @@ const BurgerMenu = () => {
                 <UserNav />
               </div>
             </PrivateRoute>
-          )}
+          )} */}
           <div className={css.burgerHeader}>
             <button
               type="button"
