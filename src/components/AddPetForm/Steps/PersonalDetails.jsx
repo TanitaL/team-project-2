@@ -1,30 +1,28 @@
 import ArrowLeftBtn from 'components/Buttons/ArrowLeftBtn/ArrowLeftBtn';
 import PawPrintBtn from 'components/Buttons/PawPrintBtn/PawPrintBtn';
 import { petCategory } from 'constants/petCategory';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { ErrorMessage, Form, Formik } from 'formik';
 import { stepTwoValidationSchema } from './addFormValidation';
 import css from './steps.module.css';
 import TextField from './TextFielf';
 
 // import { DatePicker } from 'react-datepicker'; // Импортируем компонент DatePicker
 // import 'react-datepicker/dist/react-datepicker.css'; // Подключаем стили для DatePicker
-import { parse, format } from 'date-fns'; // Импортируем функции для работы с датами
-import DatePicker from 'components/DatePicker/DatePicker';
 
+import { format } from 'date-fns'; // Импортируем функции для работы с датами
 
-const formatDateForFormik = date => {
-  return date ? format(date, 'dd-MM-yyyy') : '';
-};
+// const formatDateForFormik = date => {
+//   return date ? format(date, 'dd-MM-yyyy') : '';
+// };
+
 const formatDate = date => {
   const formattedDate = date ? format(new Date(date), 'dd-MM-yyyy') : null;
-  console.log('🚀 ~ formatDate ~ formattedDate:', formattedDate);
-  console.log('🚀 ~ formatDate ~ typeof(formattedDate):', typeof formattedDate);
 
   return formattedDate;
 };
 
 const PersonalDetails = ({ data, next, prev }) => {
-  const handleSubmit = (values, helpers) => {
+  const handleSubmit = values => {
     next(values);
   };
 
@@ -85,13 +83,13 @@ const PersonalDetails = ({ data, next, prev }) => {
             <label className={css.lable} htmlFor="date">
               Date of birth
             </label>
-            <Field
+            {/* <Field
               className={css.input}
               name="date"
               type="date"
               placeholder="Type date of birth"
-            />
-            {/* <input
+            /> */}
+            <input
               className={css.input}
               name="date"
               type="date"
@@ -99,7 +97,7 @@ const PersonalDetails = ({ data, next, prev }) => {
               onChange={event => {
                 setFieldValue('date', formatDate(event.target.value));
               }}
-            /> */}
+            />
             {/* <DatePicker
               autoComplete="off"
               selected={
