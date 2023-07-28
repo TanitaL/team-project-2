@@ -15,6 +15,7 @@ import BurgerProvider from 'context/BurgerProvider';
 import { useDispatch } from 'react-redux';
 import { austOperationThunk } from '../redux/auth/thunks';
 import { useEffect } from 'react';
+import AddPetPage from 'pages/AddPetPage/AddPetPage';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -63,6 +64,15 @@ export const App = () => {
           element={
             <PrivateRoute>
               <UserPage />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/add-pet"
+          element={
+            <PrivateRoute>
+              <AddPetPage />
             </PrivateRoute>
           }
         />
