@@ -48,7 +48,7 @@ const NewsPage = () => {
     };
 
     getNews();
-  }, []);
+  }, [searchNews]);
 
   useEffect(() => {
     setSearchNews('pet');
