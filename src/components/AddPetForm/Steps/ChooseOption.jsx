@@ -6,6 +6,8 @@ import css from './steps.module.css';
 
 // const petCategory = ['your pet', 'sell', 'lost/found', 'in good hands'];
 
+
+
 const ChooseOption = ({ data, next }) => {
   const handleSubmit = (values, helpers) => {
     next(values);

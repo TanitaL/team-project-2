@@ -7,6 +7,8 @@ import css from './AddPetForm.module.css';
 import { petCategory } from 'constants/petCategory';
 import { useDispatch } from 'react-redux';
 import { addPet } from 'redux/pets/operations';
+import stepsLable from 'constants/stepsLable';
+import transformFormData from 'service/addPetHelpers/transformFormData';
 
 const initialValues = {
   category: 'your pet',
@@ -17,25 +19,51 @@ const initialValues = {
   file: null,
   location: '',
   price: '',
-  type: '',
+  typePet: '',
   comments: '',
 };
 
-const stepsLable = [
-  { label: 'Choose option', value: 'choose_option' },
-  { label: 'Personal details', value: 'personal_details' },
-  { label: 'More info', value: 'more_info' },
-];
+// const stepsLable = [
+//   { label: 'Choose option', value: 'choose_option' },
+//   { label: 'Personal details', value: 'personal_details' },
+//   { label: 'More info', value: 'more_info' },
+// ];
 
 const AddPetForm = () => {
   const [data, setData] = useState(initialValues);
   const [currentStep, setCurrentStep] = useState(0);
   const dispatsh = useDispatch();
 
-  const makeRequest = (values, actions) => {
+  const makeRequest = values => {
+    // const {
+    //   category,
+    //   title,
+    //   name,
+    //   date,
+    //   sex,
+    //   file,
+    //   location,
+    //   price,
+    //   typePet: type,
+    //   comments,
+    // } = values;
+    // const newValues = {
+    //   category,
+    //   title,
+    //   name,
+    //   date,
+    //   sex,
+    //   file,
+    //   location,
+    //   price,
+    //   type,
+    //   comments,
+    // };
+const newValues = transformFormData(values);
+    console.log("🚀 ~ makeRequest ~ newValues:", newValues)
     const formData = new FormData();
-    for (let value in values) {
-      formData.append(value, values[value]);
+    for (let value in newValues) {
+      formData.append(value, newValues[value]);
     }
 
     for (let property of formData.entries()) {
@@ -43,14 +71,14 @@ const AddPetForm = () => {
     }
 
     dispatsh(addPet(formData));
-    actions.resetForm();
   };
 
   const handleNextStep = (newData, final = false, actions) => {
     setData(prev => ({ ...prev, ...newData }));
 
     if (final) {
-      makeRequest(newData, actions);
+      makeRequest(newData);
+      actions.resetForm();
       return;
     }
 
@@ -68,8 +96,7 @@ const AddPetForm = () => {
     <MoreInfo next={handleNextStep} data={data} prev={handlePrevStep} />,
   ];
   console.log('🚀 ~ handleNextStep ~ data:', data);
-  console.log('🚀 ~ handleNextStep ~ typeof(data.price):', typeof data.price);
-
+  
   return (
     <section
       className={

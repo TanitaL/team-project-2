@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { userSelector } from 'redux/auth/selectors';
 import { useMediaQuery } from '@react-hook/media-query';
@@ -16,11 +16,10 @@ import Logout from 'components/Logout/Logout';
 const BurgerMenu = () => {
   const { menuOpen, setMenuOpen } = useBurgerContext();
   const auth = useSelector(userSelector);
-  const [name, setName] = useState(auth ?? '');
 
   const isSmallScreen = useMediaQuery('(max-width: 767px)');
   const isMediumScreen = useMediaQuery(
-    '(min-width: 768px) and (max-width: 1280px)'
+    '(min-width: 768px) and (max-width: 1279px)'
   );
 
   const openBurgerMenu = event => {
@@ -64,14 +63,14 @@ const BurgerMenu = () => {
           <div className={css.burgerOpenNavigation}>
             {isSmallScreen && (
               <PublicRoute>
-                <AuthNav closeBurgerMenu={closeBurgerMenu} />
+                <AuthNav />
               </PublicRoute>
             )}
             {isSmallScreen && (
               <PrivateRoute>
                 <div className={css.userNav}>
                   <UserNav closeBurgerMenu={closeBurgerMenu} />
-                  <p>{name}</p>
+                  {auth.name ?? <p>{auth.name}</p>}
                 </div>
               </PrivateRoute>
             )}

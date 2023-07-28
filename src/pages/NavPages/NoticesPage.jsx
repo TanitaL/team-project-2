@@ -8,6 +8,7 @@ import NoticesCategoriesNav from '../../components/NoticesCategoriesNav/NoticesC
 import NoticesFilters from 'components/NoticesFilters/NoticesFilters';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
 
+
 const NoticesPage = () => {
   const [noticesData, setNoticesData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
