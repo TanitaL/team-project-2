@@ -1,0 +1,258 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  display: grid;
+  place-items: center;
+
+  cursor: pointer;
+  background: rgba(97, 97, 97, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+}
+
+.box {
+  position: relative;
+  padding: 32px 32px 24px;
+  border-radius: 40px;
+  background-color: #fff;
+}
+
+.deleteBtn {
+  position: absolute;
+  top: 23px;
+  left: calc(100% - 26px);
+  transform: translate(-100%, 0);
+
+  background-color: transparent;
+  border: none;
+}
+
+.upperBox {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 12px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 24px;
+  }
+}
+
+.thumb {
+  position: relative;
+}
+
+.image {
+  width: 240px;
+  height: 240px;
+
+  object-fit: cover;
+  object-fit: center;
+  border-radius: 0px 0px 40px 40px;
+
+  @media screen and (min-width: 1280px) {
+    width: 262px;
+    height: 298px;
+  }
+}
+
+.category {
+  position: absolute;
+  top: 16px;
+  left: 0;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  color: var(--unnamed, #111);
+
+  padding: 11px 22px 11px 11px;
+  border-radius: 0px 40px 40px 0px;
+  background-color: #cce4fb;
+}
+
+.afterImage {
+}
+
+.title {
+  max-width: 250px;
+
+  font-family: Manrope;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.24px;
+  color: #000;
+
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.28px;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  margin-top: 20px;
+}
+
+.field {
+  display: grid;
+  grid-template-columns: minmax(0, 80px) auto;
+  gap: 0 40px;
+  margin: 0 auto;
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: normal;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.value {
+  font-size: 12px;
+  font-weight: 500;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.goldValue {
+  composes: value;
+  color: var(--yellow, #ffc107);
+  text-decoration-line: underline;
+}
+
+/**
+  |============================
+  | Lower
+  |============================
+*/
+
+.lowerBox {
+  margin-top: 28px;
+  width: 256px;
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.56px;
+
+  @media screen and (min-width: 768px) {
+    width: 620px;
+
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.64px;
+  }
+}
+
+.lowerBoxComment {
+  font-weight: 500;
+}
+
+.lowerBtns {
+  margin-top: 12px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    margin-top: 70px;
+    justify-content: end;
+    gap: 17px;
+  }
+}
+
+.addToFavotiteBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 20px;
+
+  background-color: var(--unnamed, #54adff); 
+  border: none;
+  border-radius: 40px;
+
+  @media screen and (min-width: 768px) {
+    width: auto;
+  }
+}
+
+.addToFavotiteBtn:hover {
+}
+
+.addToFavotiteBtn svg {
+  display: inline-block;
+  fill: none;
+  stroke: #fff;
+}
+
+.addToFavotiteBtn:hover svg {
+  fill: red;
+}
+
+.contactBtn {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+
+  display: flex;
+  align-items: center;
+  /* letter-spacing: 0.04em; */
+  position: relative;
+
+  background-color: #ffffff;
+  color: var(--unnamed, #54adff);
+
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 28px;
+  gap: 10px;
+  width: 248px;
+  height: 38px;
+  border: 2px solid var(--unnamed, #54adff);
+  border-radius: 40px;
+
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contactBtn:hover {
+  background: var(--unnamed, #54adff);
+  color: rgb(253, 247, 242);
+  border: none;
+}
+
+/* 
+
+
+  @media screen and (min-width: 768px) {
+
+  }
+
+  @media screen and (min-width: 1280px) {
+ 
+  } 
+  
+
+*/
