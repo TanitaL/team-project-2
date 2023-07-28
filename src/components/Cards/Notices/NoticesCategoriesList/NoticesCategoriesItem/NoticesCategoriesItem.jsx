@@ -1,25 +1,85 @@
-import React, { useState } from 'react';
-import css from './NoticesCategoriesItem.module.css';
-import sprite from '../../../../../assets/svg/sprite-cards.svg'
+import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
-const CategoryItem = ({ _id, title, text, date, file, location, sex }) => {
+import { useSelector } from 'react-redux';
+import { authSelector } from '../../../../../redux/auth/selectors';
+
+import 'react-toastify/dist/ReactToastify.css';
+import css from './NoticesCategoriesItem.module.css';
+
+import sprite from '../../../../../assets/svg/sprite-cards.svg';
+import { instance } from '../../../../../service/api/api';
+
+const addDelPet = async (noticeId) => {
+  try {
+    const response = await instance.post(`/notices/${noticeId}/favorite`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
+
+const CategoryItem = ({ _id, title, file, location, age, sex, category, noticeId }) => {
   const [imageError, setImageError] = useState(false);
-  const [favorites, setFavorites] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [sexIcon, setSexIcon] = useState('icon-male');
+
+  const isUserRegistered = useSelector(authSelector);
+
+  useEffect(() => {
+    if (sex === 'female') {
+      setSexIcon('icon-female');
+    } else {
+      setSexIcon('icon-male');
+    }
+  }, [sex]);
 
   const handleImageError = () => {
     setImageError(true);
   };
 
+  useEffect(() => {
+    instance
+      .post(`/notices/${noticeId}/favorite`)
+      .then((response) => {
+        setIsFavorite(response.data.isFavorite);
+      })
+      .catch((error) => {
+        console.error('Error getting favorite status:', error);
+      });
+  }, [noticeId]);
+
   const addToFavorites = () => {
+    if (!isUserRegistered) {
+      toast.warning('Please register to add to favorites!', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+
     if (isFavorite) {
-      // Если объявление уже в списке понравившихся, удаляем его
-      setFavorites(favorites.filter((id) => id !== _id));
-      setIsFavorite(false);
+        addDelPet(_id)
+    .then(() => {
+      setIsFavorite(!isFavorite);
+    })
+    .catch((error) => {
+      console.error('Error adding/removing from favorites:', error);
+    });
     } else {
-      // Если объявление не в списке понравившихся, добавляем его
-      setFavorites([...favorites, _id]);
-      setIsFavorite(true);
+      addDelPet(_id)
+        .then(() => {
+          setIsFavorite(true);
+        })
+        .catch((error) => {
+          console.error('Error adding to favorites:', error);
+        });
     }
   };
 
@@ -33,7 +93,6 @@ const CategoryItem = ({ _id, title, text, date, file, location, sex }) => {
           src={imageError ? 'https://http.cat/407' : file}
           onError={handleImageError}
         />
-        {/* <p className={css.type}>{text}</p> */}
         <button className={css.addToFavoritesButton} onClick={addToFavorites}>
           {isFavorite ? (
             <svg width="24" height="24">
@@ -50,26 +109,38 @@ const CategoryItem = ({ _id, title, text, date, file, location, sex }) => {
       <div className={css.itemBox}>
         <h2 className={css.title}>{title}</h2>
         <div className={css.infoWrapper}>
-          <p className={css.location}><svg width="24" height="24">
-            <use href={`${sprite}#icon-location-1`}></use>
-          </svg>{location}</p>
-          <p className={css.year}><svg width="24" height="24">
-            <use href={`${sprite}#icon-clock`}></use>
-          </svg>{date}</p>
-          <p className={css.sex}><svg width="24" height="24">
-            <use href={`${sprite}#icon-male`}></use>
-          </svg>{sex}</p>
+          <p className={css.category}>{category}</p>
+          <p className={css.location}>
+            <svg className={css.iconSvg} width="24" height="24">
+              <use href={`${sprite}#icon-location-1`}></use>
+            </svg><span className={css.texProperty}>
+            {location}
+          </span></p>
+          <p className={css.year}>
+            <svg className={css.iconSvg} width="24" height="24">
+              <use href={`${sprite}#icon-clock`}></use>
+            </svg><span className={css.texProperty}>
+            {age}
+          </span></p>
+          <p className={css.sex}>
+            <svg className={css.iconSvg} width="24" height="24">
+              <use href={`${sprite}#${sexIcon}`}></use>
+            </svg><span className={css.texProperty}>
+            {sex}
+          </span></p>
         </div>
-        <div>
-          <button className={css.learnMoreButton}>Learn More<svg width="24" height="24">
-            <use href={`${sprite}#icon-pawprint-lapka`}></use>
-          </svg>
+        <div className={css.learnContainerButton}>
+          <button className={css.learnMoreButton}>
+            Learn More
+            <svg width="24" height="24">
+              <use href={`${sprite}#icon-pawprint-lapka`}></use>
+            </svg>
           </button>
         </div>
       </div>
+      <ToastContainer />
     </li>
   );
 };
 
 export default CategoryItem;
-
