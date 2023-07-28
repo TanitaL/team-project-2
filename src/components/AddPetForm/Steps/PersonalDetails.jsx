@@ -121,13 +121,13 @@ const PersonalDetails = ({ data, next, prev }) => {
             <ErrorMessage className={css.error} name="date" component="div" />
           </div>
           <div className={css.inptWrapper}>
-            <label className={css.lable} htmlFor="type">
+            <label className={css.lable} htmlFor="typePet">
               Type
             </label>
             <TextField
               placeholder="Type of pet"
-              name="type"
-              id="type"
+              name="typePet"
+              id="typePet"
               type="text"
             />
             {/* <Field

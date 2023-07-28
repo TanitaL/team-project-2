@@ -14,7 +14,7 @@ export const stepOneValidationSchema = Yup.object().shape({
 
 export const stepTwoValidationSchema = Yup.object().shape({
   title: Yup.string()
-    .min(3)
+    .min(4)
     .max(32)
     .test(
       'titleRequired',
@@ -26,7 +26,10 @@ export const stepTwoValidationSchema = Yup.object().shape({
         return true;
       }
     ),
-  name: Yup.string().min(2,'2 symbols minimum').max(16,'16 symbols maximum').required('Pet name is required'),
+  name: Yup.string()
+    .min(2, '2 symbols minimum')
+    .max(16, '16 symbols maximum')
+    .required('Pet name is required'),
   date: Yup.date().required('Birth date is required').nullable(),
   // date: Yup.string()
   //   .matches(
@@ -34,7 +37,7 @@ export const stepTwoValidationSchema = Yup.object().shape({
   //     'Birth date must be in the format DD-MM-YYYY'
   //   )
   //   .required('Birth date is required'),
-  type: Yup.string().required('Type is required'),
+  typePet: Yup.string().required('Type is required'),
 });
 
 export const stepThreeValidationSchema = Yup.object().shape({

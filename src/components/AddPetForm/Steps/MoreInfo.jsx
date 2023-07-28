@@ -12,7 +12,7 @@ import PreviewImage from 'components/PreviewImage/PreviewImage';
 const MoreInfo = ({ data, next, prev }) => {
   const fileRef = useRef(null);
 
-  const handleSubmit = (values, helpers, actions) => {
+  const handleSubmit = (values, actions) => {
     next(values, true, actions);
   };
 
@@ -23,7 +23,10 @@ const MoreInfo = ({ data, next, prev }) => {
   return (
     <Formik
       initialValues={data}
-      onSubmit={handleSubmit}
+      // onSubmit={(values, actions) => {
+      //   console.log('🚀 ~ MoreInfo ~ actions:', actions);
+      // }}
+      onSubmit={(values, actions) => handleSubmit(values, actions)}
       validationSchema={stepThreeValidationSchema}
     >
       {({ values, setFieldValue }) => (
