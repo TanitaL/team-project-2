@@ -5,6 +5,7 @@
 // import 'react-datepicker/dist/react-datepicker.css';
 
 // function DatePicker(props) {
+
 //   const { lable, name, ...rest } = props;
 //   return (
 //     <div className="form-control">

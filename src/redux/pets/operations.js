@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+// import axios from 'axios';
 import { instance } from 'service/api/api';
 
 // axios.defaults.baseURL = 'https://final-project-node-5vh7.onrender.com';
