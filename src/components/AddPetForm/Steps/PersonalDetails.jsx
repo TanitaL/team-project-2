@@ -1,18 +1,19 @@
 import ArrowLeftBtn from 'components/Buttons/ArrowLeftBtn/ArrowLeftBtn';
 import PawPrintBtn from 'components/Buttons/PawPrintBtn/PawPrintBtn';
 import { petCategory } from 'constants/petCategory';
-import { ErrorMessage,  Form, Formik } from 'formik';
+import { ErrorMessage, Form, Formik } from 'formik';
 import { stepTwoValidationSchema } from './addFormValidation';
 import css from './steps.module.css';
 import TextField from './TextFielf';
 
 // import { DatePicker } from 'react-datepicker'; // Импортируем компонент DatePicker
 // import 'react-datepicker/dist/react-datepicker.css'; // Подключаем стили для DatePicker
-import {  format } from 'date-fns'; // Импортируем функции для работы с датами
 
-// const formatDateForFormik = date => {
-//   return date ? format(date, 'dd-MM-yyyy') : '';
-// };
+import { format } from 'date-fns'; // Импортируем функции для работы с датами
+
+const formatDateForFormik = date => {
+  return date ? format(date, 'dd-MM-yyyy') : '';
+};
 const formatDate = date => {
   const formattedDate = date ? format(new Date(date), 'dd-MM-yyyy') : null;
 
@@ -81,27 +82,23 @@ const PersonalDetails = ({ data, next, prev }) => {
             <label className={css.lable} htmlFor="date">
               Date of birth
             </label>
-            {/* <Field
+            <Field
               className={css.input}
               name="date"
               type="date"
               placeholder="Type date of birth"
-            /> */}
-            <input
+            />
+            {/* <input
               className={css.input}
               name="date"
               type="date"
               placeholder="Type date of birth"
               onChange={event => {
-                console.log(
-                  '🚀 ~ PersonalDetails ~ event.target:',
-                  event.target.value
-                );
-
                 setFieldValue('date', formatDate(event.target.value));
               }}
-            />
+            /> */}
             {/* <DatePicker
+              autoComplete="off"
               selected={
                 values.date
                   ? parse(values.date, 'dd-MM-yyyy', new Date())
@@ -112,20 +109,22 @@ const PersonalDetails = ({ data, next, prev }) => {
               name="date"
               placeholderText="Type date of birth"
               onChange={date => {
+                console.log('🚀 ~ DatePicker ~ date:', date);
                 // При изменении даты обновляем значение в Formik
-                setFieldValue('date', formatDateForFormik(date));
+                setFieldValue('date', date);
+                // setFieldValue('date', formatDateForFormik(date));
               }}
             /> */}
             <ErrorMessage className={css.error} name="date" component="div" />
           </div>
           <div className={css.inptWrapper}>
-            <label className={css.lable} htmlFor="type">
+            <label className={css.lable} htmlFor="typePet">
               Type
             </label>
             <TextField
               placeholder="Type of pet"
-              name="type"
-              id="type"
+              name="typePet"
+              id="typePet"
               type="text"
             />
             {/* <Field

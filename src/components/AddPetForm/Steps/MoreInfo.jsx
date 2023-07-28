@@ -12,8 +12,8 @@ import PreviewImage from 'components/PreviewImage/PreviewImage';
 const MoreInfo = ({ data, next, prev }) => {
   const fileRef = useRef(null);
 
-  const handleSubmit = (values, helpers,actions) => {
-    next(values, true,actions);
+  const handleSubmit = (values, actions) => {
+    next(values, true, actions);
   };
 
   const handleBackClick = values => {
@@ -23,7 +23,10 @@ const MoreInfo = ({ data, next, prev }) => {
   return (
     <Formik
       initialValues={data}
-      onSubmit={handleSubmit}
+      // onSubmit={(values, actions) => {
+      //   console.log('🚀 ~ MoreInfo ~ actions:', actions);
+      // }}
+      onSubmit={(values, actions) => handleSubmit(values, actions)}
       validationSchema={stepThreeValidationSchema}
     >
       {({ values, setFieldValue }) => (
@@ -82,7 +85,13 @@ const MoreInfo = ({ data, next, prev }) => {
                   </div>
                 </>
               )}
-              <div>
+              <div
+                className={
+                  data.category === petCategory[0]
+                    ? css.myPetInfoWrap
+                    : css.infoWrap
+                }
+              >
                 <div
                   className={
                     data.category === petCategory[0]
@@ -152,7 +161,7 @@ const MoreInfo = ({ data, next, prev }) => {
                   <label className={css.lable} htmlFor="price">
                     Price
                   </label>
-                  <Field className={css.input} name="price" type="number"/>
+                  <Field className={css.input} name="price" type="number" />
                   <ErrorMessage
                     className={css.error}
                     name="price"
