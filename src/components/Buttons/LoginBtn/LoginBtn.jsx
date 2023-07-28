@@ -13,13 +13,7 @@ const LoginBtn = () => {
   };
 
   return (
-<<<<<<<<< Temporary merge branch 1
     <button type="button" className={css.loginBtn} onClick={handleClick}>
-=========
-    <button type="button" className={css.loginBtn} onClick={closeBurgerMenu
-    
-    }>
->>>>>>>>> Temporary merge branch 2
       Log IN
       <svg
         xmlns="http://www.w3.org/2000/svg"
