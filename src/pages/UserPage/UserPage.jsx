@@ -181,7 +181,7 @@ const UserPage = () => {
             )}
           </Formik>
         </div>
-        <div>
+        <div className={css.petSide}>
           <h2 className={css.title}>My pets:</h2>
           <MyPetsList />
         </div>
