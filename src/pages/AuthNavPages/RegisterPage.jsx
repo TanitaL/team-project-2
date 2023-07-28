@@ -7,8 +7,12 @@ import TextField from './TextField';
 import PasswordField from './PasswordField';
 import { useDispatch } from 'react-redux';
 import { austOperationThunk } from 'redux/auth/thunks';
+import { useSelector } from 'react-redux';
+import { errorSelector } from 'redux/auth/selectors';
+import { deletError } from 'redux/auth/slice';
 
 const RegisterPage = () => {
+  const error = useSelector(errorSelector);
   const dispatch = useDispatch();
   const validate = Yup.object({
     name: Yup.string()
@@ -20,9 +24,11 @@ const RegisterPage = () => {
       .email('Invalid email address'),
     password: Yup.string()
       .required('Password is required')
+      .min(6, 'Password must be at least 6 characters')
+      .max(16, 'Password must be at most 16 characters')
       .matches(
         /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,16}$/,
-        'Invalid password'
+        'The password must consist of numbers and capital letters'
       ),
     confirmPassword: Yup.string()
       .required('Password is required')
@@ -50,7 +56,11 @@ const RegisterPage = () => {
             },
           })
         );
-        actions.resetForm();
+        if (!error) {
+          return async () => {
+            actions.resetForm();
+          };
+        }
       }}
     >
       {formik => (
@@ -77,14 +87,21 @@ const RegisterPage = () => {
                 id="imgConfirmPasswordInput"
                 type="password"
               />
-
+              {error && <p className={css.ErrorText}>{error.data.message}</p>}
               <button className={css.FormRegister__Button} type="submit">
                 Registration
               </button>
 
               <p className={css.FormRegister__Text}>
                 Already have an account?{' '}
-                <NavLink to={`/login`} className={css.FormRegister__Link}>
+                <NavLink
+                  onClick={() =>
+                    // state.error = null;
+                    dispatch(deletError())
+                  }
+                  to={`/login`}
+                  className={css.FormRegister__Link}
+                >
                   Login
                 </NavLink>
               </p>

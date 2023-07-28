@@ -13,10 +13,9 @@ import { useBurgerContext } from 'context/BurgerProvider';
 import css from './BurgerMenu.module.css';
 import Logout from 'components/Logout/Logout';
 
-
 const BurgerMenu = () => {
   const { menuOpen, setMenuOpen } = useBurgerContext();
-  const { name } = useSelector(userSelector);
+  const user = useSelector(userSelector);
 
   const isSmallScreen = useMediaQuery('(max-width: 767px)');
   const isMediumScreen = useMediaQuery(
@@ -35,6 +34,12 @@ const BurgerMenu = () => {
     <>
       {menuOpen ? (
         <>
+          {isMediumScreen && (
+            <PublicRoute>
+              <AuthNav />
+            </PublicRoute>
+          )}
+
           <div className={css.headerNav}>
             {isMediumScreen && (
               <>
@@ -65,7 +70,7 @@ const BurgerMenu = () => {
               <PrivateRoute>
                 <div className={css.userNav}>
                   <UserNav closeBurgerMenu={closeBurgerMenu} />
-                  <p>{name}</p>
+                  <p>{user.name}</p>
                 </div>
               </PrivateRoute>
             )}
@@ -78,15 +83,29 @@ const BurgerMenu = () => {
           </div>
         </>
       ) : (
-        <div className={css.burgerHeader}>
-          <button
-            type="button"
-            className={css.burgerMenuBtn}
-            onClick={openBurgerMenu}
-          >
-            <BurgerOpenSvg />
-          </button>
-        </div>
+        <>
+          {isMediumScreen && (
+            <PublicRoute>
+              <AuthNav />
+            </PublicRoute>
+          )}
+          {isMediumScreen && (
+            <PrivateRoute>
+              <div className={css.userNav}>
+                <UserNav />
+              </div>
+            </PrivateRoute>
+          )}
+          <div className={css.burgerHeader}>
+            <button
+              type="button"
+              className={css.burgerMenuBtn}
+              onClick={openBurgerMenu}
+            >
+              <BurgerOpenSvg />
+            </button>
+          </div>
+        </>
       )}
     </>
   );

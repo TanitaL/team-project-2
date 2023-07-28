@@ -29,8 +29,8 @@
   stroke: var(--yellow-color);
 }
 
-/* .loginBtn:focus {
+.loginBtn:focus {
   background-color: transparent;
   color: var(--yellow-color);
   stroke: var(--yellow-color);
-} */
+}

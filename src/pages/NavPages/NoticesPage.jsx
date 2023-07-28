@@ -4,7 +4,10 @@ import css from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCat
 
 import { instance } from 'service/api/api';
 import SearchComponent from '../../components/SearchComponent/SearchComponent';
-import AddPetForm from 'components/AddPetForm/AddPetForm/AddPetForm';
+import NoticesCategoriesNav from '../../components/NoticesCategoriesNav/NoticesCategoriesNav'; 
+import NoticesFilters from 'components/NoticesFilters/NoticesFilters';
+import AddPetButton from 'components/AddPetButton/AddPetButton';
+
 
 const NoticesPage = () => {
   const [noticesData, setNoticesData] = useState([]);
@@ -86,8 +89,15 @@ const NoticesPage = () => {
   return (
     <div>
       <h1 className={css.textNoticesPage}>Find your favorite pet</h1>
-      <AddPetForm/>
       <SearchComponent onSearch={handleSearch} />
+      <div className={css.categoryFilterWrapper}>
+        <NoticesCategoriesNav />  
+        <div className={css.noticeFilter}>
+        <NoticesFilters />
+        <AddPetButton/>
+        </div>
+        </div>
+
       <CategoryList data={noticesData} />
     </div>
   );

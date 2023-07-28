@@ -55,12 +55,13 @@ const AddPetForm = () => {
       type,
       comments,
     };
-   
+
+  const makeRequest = (values, actions) => {
     const formData = new FormData();
     for (let value in newValues) {
       formData.append(value, newValues[value]);
     }
-    
+
     for (let property of formData.entries()) {
       console.log(property[0], property[1]);
     }
@@ -69,15 +70,21 @@ const AddPetForm = () => {
     
   };
 
+
   const handleNextStep = (newData, final = false) => {
     setData(prev => ({ ...prev, ...newData }));
 
     if (final) {
       makeRequest(newData);
       // actions.resetForm();
+
+  const handleNextStep = (newData, final = false, actions) => {
+    setData(prev => ({ ...prev, ...newData }));
+
+    if (final) {
+      makeRequest(newData, actions);
       return;
     }
-
     setCurrentStep(prev => prev + 1);
   };
 
@@ -97,7 +104,7 @@ const AddPetForm = () => {
   return (
     <section
       className={
-        (currentStep === 2 && data.category !== petCategory[0])
+        currentStep === 2 && data.category !== petCategory[0]
           ? css.notMyPetstep3Section
           : css.section
       }
@@ -121,4 +128,4 @@ const AddPetForm = () => {
   );
 };
 
-export default AddPetForm;
+export default AddPetForm

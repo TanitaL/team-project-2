@@ -10,6 +10,7 @@ import { useMediaQuery } from '@react-hook/media-query';
 const UserNav = ({ closeBurgerMenu }) => {
   const isAuth = useSelector(authSelector);
   const { name } = useSelector(userSelector);
+  const isMediumScreen = useMediaQuery('(min-width: 768px)');
   const isBigScreen = useMediaQuery('(min-width: 1280px)');
 
   return (
@@ -22,7 +23,7 @@ const UserNav = ({ closeBurgerMenu }) => {
             <NavLink key={'user'} to={'user'}>
               <UserBtn closeBurgerMenu={closeBurgerMenu} />
             </NavLink>
-            {isBigScreen && <p className={css.userName}>{name}</p>}
+            {isMediumScreen && <p className={css.userName}>{name}</p>}
           </nav>
         </>
       )}

@@ -13,13 +13,19 @@
   z-index: 9999;
 }
 
+@media screen and (min-width: 768px) {
+  .modalOverlay {
+    background: rgba(43, 43, 43, 0.6);
+    backdrop-filter: none;
+  }
+}
+
 .modalContainer {
   position: relative;
   display: flex;
   flex-direction: column;
 
-  padding: 12px;
-  padding-bottom: 60px;
+  padding: 12px 12px 60px 12px;
 
   border-radius: 20px;
   background: var(--white-color);
@@ -27,7 +33,10 @@
 
 @media screen and (min-width: 768px) {
   .modalContainer {
-    padding-bottom: 109px;
+    padding: 24px 24px 109px 24px;
+
+    border-radius: 40px;
+    box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
   }
 }
 
@@ -37,11 +46,7 @@
   cursor: pointer;
   padding: 0px;
   height: 24px;
-
-  color: var(--blue-color);
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.64px;
+  width: 24px;
 }
 
 .modalHeader {
@@ -58,7 +63,7 @@
 }
 
 .modalText {
-  padding: 41px 0 44px 0;
+  padding: 41px 28px 44px 28px;
   color: var(--text-color);
   font-size: 24px;
   font-weight: 500;
@@ -70,15 +75,7 @@
     text-align: center;
     font-size: 36px;
     letter-spacing: 1.44px;
-    padding: 60px 0 48px 0;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .modalText {
-    text-align: center;
-    font-size: 36px;
-    letter-spacing: 1.44px;
+    padding: 60px 131px 48px 131px;
   }
 }
 
@@ -92,7 +89,7 @@
 
   border-radius: 40px;
   border: 2px solid var(--blue-color);
-  background-color: transparent;
+  background: var(--white-color);
   cursor: pointer;
 
   color: var(--blue-color);
@@ -101,10 +98,10 @@
   letter-spacing: 0.64px;
 }
 
-.modalCancelBtn:hover,
-.modalCancelBtn:focus {
-  background-color: var(--gradient-blue);
+.modalCancelBtn:hover {
+  background: var(--gradient-blue);
   color: var(--white-color);
+  border: none;
 }
 
 .modalYesBtn {
@@ -118,8 +115,8 @@
 
   border-radius: 40px;
   background: var(--blue-color);
-  border: 2px solid var(--blue-color);
 
+  border: none;
   color: var(--background-color);
   font-size: 16px;
   font-weight: 700;
@@ -128,7 +125,7 @@
 
 .modalYesBtn:hover,
 .modalYesBtn :focus {
-  background-color: var(--gradient-blue);
+  background: var(--gradient-blue);
 }
 
 .modalActions {
@@ -136,7 +133,7 @@
   flex-direction: column;
   gap: 8px;
   padding: 0px 0px;
-  width: 256px;
+  width: 100%;
   align-items: center;
 }
 
@@ -144,12 +141,8 @@
   .modalActions {
     display: flex;
     flex-direction: row;
-    gap: 18px;
-    padding: 0 154px;
-    /* width: 274px; */
+    gap: 17px;
+    padding: 0 142px;
     align-items: center;
-  }
-  .modalActions button {
-    width: 154px;
   }
 }
