@@ -82,5 +82,7 @@ export const stepThreeValidationSchema = Yup.object().shape({
       return true;
     }
   ),
-  comments: Yup.string().max(120, 'Comments cannot exceed 120 characters.'),
+  comments: Yup.string()
+    .max(120, 'Comments cannot exceed 120 characters.')
+    .required('Comments is required'),
 });

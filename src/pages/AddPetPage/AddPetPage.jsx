@@ -1,11 +1,16 @@
-import React from 'react'
+import React from 'react';
 import BgContainer from 'components/Container/BgContainer/BgContainer';
 import AddPetForm from 'components/AddPetForm/AddPetForm/AddPetForm';
+import Container from 'components/Container/Container';
 
 function AddPetPage() {
-    return <BgContainer>
-        <AddPetForm/>
-    </BgContainer>;
+  return (
+    <BgContainer>
+      <Container>
+        <AddPetForm />
+      </Container>
+    </BgContainer>
+  );
 }
 
-export default AddPetPage
+export default AddPetPage;
