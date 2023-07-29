@@ -1,0 +1,56 @@
+.friend__listitem {
+  width: 395px;
+  height: 287px;
+  flex-shrink: 0;
+  border-radius: 40px;
+  background: var(--unnamed, #fff);
+  box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
+}
+.friendtitle {
+  color: var(--blue-color);
+  text-align: center;
+  font-family: Manrope;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.infolist {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 16px;
+  padding-left: 39px;
+  padding-right: 35px;
+  padding-bottom: 16px;
+}
+.infolist__item {
+  display: flex;
+  width: 181px;
+}
+.item__text {
+  color: var(--unnamed, #111);
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.item__info {
+  color: var(--unnamed, #111);
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  overflow: hidden;
+  width: 200px;
+}
+
+.friend__logo {
+  padding-left: 31px;
+  padding-top: 60px;
+}
+.helperbox {
+  display: flex;
+}

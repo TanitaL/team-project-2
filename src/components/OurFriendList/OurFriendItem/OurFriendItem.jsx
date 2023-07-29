@@ -1,4 +1,5 @@
 import { OurFriendWorkDays } from '../OurFriendWorkDays/OurFriendWorkDays';
+import css from './OurFriendItem.module.scss';
 export const OurFriendItem = ({
   title,
   url,
@@ -10,13 +11,20 @@ export const OurFriendItem = ({
   email,
 }) => {
   return (
-    <li>
-      <h2>{title}</h2>
-      <ul>
-        <li>
-          <p>Time:</p>
+    <>
+      <li className={css.friend__listitem}>
+        <h2 className={css.friendtitle}>{title}</h2>
 
-          {workDays && workDays.length > 0 ? (
+        <div className={css.helperbox}>
+        
+          <div className={css.boxfriend__logo}>
+            <img src={imageUrl} alt="" className={css.friend__logo} />
+          </div>
+          <ul className={css.infolist}>
+            <li className={css.infolist__item}>
+              <p className={css.item__text}>Time:</p>
+
+              {/* {workDays && workDays.length > 0 ? (
             <select name="" id="">
               {workDays.map(({ isOpen, from, to }, index) => (
                 <OurFriendWorkDays
@@ -27,21 +35,27 @@ export const OurFriendItem = ({
                 />
               ))}
             </select>
-          ) : <p>We are close</p>}
-        </li>
-        <li>
-          <p>Address</p>
-          <p>{address}</p>
-        </li>
-        <li>
-          <p>Email: </p>
-          <p>{email ? email : 'king5vadim@gmail.com'}</p>
-        </li>
-        <li>
-          <p>Phone</p>
-          <p>{phone}</p>
-        </li>
-      </ul>
-    </li>
+          ) : (
+            <p>We are close</p>
+          )} */}
+            </li>
+            <li>
+              <p className={css.item__text}>Address</p>
+              <p className={css.item__info}>{address}</p>
+            </li>
+            <li>
+              <p className={css.item__text}>Email: </p>
+              <p className={css.item__info}>
+                {email ? email : 'king5vadim@gmail.com'}
+              </p>
+            </li>
+            <li>
+              <p className={css.item__text}>Phone</p>
+              <p className={css.item__info}>{phone}</p>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </>
   );
 };
