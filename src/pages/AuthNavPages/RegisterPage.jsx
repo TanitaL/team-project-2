@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import css from './AuthNavPage.module.css';
@@ -9,11 +9,15 @@ import { useDispatch } from 'react-redux';
 import { austOperationThunk } from 'redux/auth/thunks';
 import { useSelector } from 'react-redux';
 import { errorSelector } from 'redux/auth/selectors';
-import { deletError } from 'redux/auth/slice';
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RegisterPage = () => {
   const error = useSelector(errorSelector);
+
   const dispatch = useDispatch();
+
   const validate = Yup.object({
     name: Yup.string()
       .required('Name is required')
@@ -34,82 +38,99 @@ const RegisterPage = () => {
       .required('Password is required')
       .oneOf([Yup.ref(`password`), null], 'Password must match'),
   });
+  useEffect(() => {
+    if (!error) {
+      return;
+    }
 
+    const notify = () =>
+      toast.error(error.data.message ?? '', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    notify();
+  }, [error]);
   return (
-    <Formik
-      initialValues={{
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-      }}
-      validationSchema={validate}
-      onSubmit={(values, actions) => {
-        const { name, email, password } = values;
-        dispatch(
-          austOperationThunk({
-            endpoint: 'register',
-            userInfo: {
-              name,
-              email,
-              password,
-            },
-          })
-        );
-        if (!error) {
-          return async () => {
-            actions.resetForm();
-          };
-        }
-      }}
-    >
-      {formik => (
-        <div className={css.Container}>
-          <div className={css.ContainerForm}>
-            <h2 className={css.ContainerForm__Title}>Registration</h2>
-            <Form className={css.Form} onSubmit={formik.handleSubmit}>
-              <TextField placeholder="Name" name="name" id="name" type="text" />
-              <TextField
-                placeholder="Email"
-                name="email"
-                id="email"
-                type="text"
-              />
-              <PasswordField
-                placeholder="Password"
-                name="password"
-                id="imgPasswordInput"
-                type="password"
-              />
-              <PasswordField
-                placeholder="Confirm Password"
-                name="confirmPassword"
-                id="imgConfirmPasswordInput"
-                type="password"
-              />
-              {error && <p className={css.ErrorText}>{error.data.message}</p>}
-              <button className={css.FormRegister__Button} type="submit">
-                Registration
-              </button>
+    <>
+      <Formik
+        initialValues={{
+          name: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+        }}
+        validationSchema={validate}
+        onSubmit={(values, actions) => {
+          const { name, email, password } = values;
+          dispatch(
+            austOperationThunk({
+              endpoint: 'register',
+              userInfo: {
+                name,
+                email,
+                password,
+              },
+            })
+          );
+          if (!error) {
+            return async () => {
+              actions.resetForm();
+            };
+          }
+        }}
+      >
+        {formik => (
+          <div className={css.Container}>
+            <div className={css.ContainerForm}>
+              <h2 className={css.ContainerForm__Title}>Registration</h2>
+              <Form className={css.Form} onSubmit={formik.handleSubmit}>
+                <TextField
+                  placeholder="Name"
+                  name="name"
+                  id="name"
+                  type="text"
+                />
+                <TextField
+                  placeholder="Email"
+                  name="email"
+                  id="email"
+                  type="text"
+                />
+                <PasswordField
+                  placeholder="Password"
+                  name="password"
+                  id="imgPasswordInput"
+                  type="password"
+                />
+                <PasswordField
+                  placeholder="Confirm Password"
+                  name="confirmPassword"
+                  id="imgConfirmPasswordInput"
+                  type="password"
+                />
+                <button className={css.FormRegister__Button} type="submit">
+                  Registration
+                </button>
 
-              <p className={css.FormRegister__Text}>
-                Already have an account?{' '}
-                <NavLink
-                  onClick={() =>
-                    // state.error = null;
-                    dispatch(deletError())
-                  }
-                  to={`/login`}
-                  className={css.FormRegister__Link}
-                >
-                  Login
-                </NavLink>
-              </p>
-            </Form>
+                <p className={css.FormRegister__Text}>
+                  Already have an account?{' '}
+                  <NavLink to={`/login`} className={css.FormRegister__Link}>
+                    Login
+                  </NavLink>
+                </p>
+              </Form>
+            </div>
           </div>
-        </div>
-      )}
-    </Formik>
+        )}
+      </Formik>
+      <ToastContainer />
+    </>
   );
 };
 

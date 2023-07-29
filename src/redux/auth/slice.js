@@ -49,11 +49,6 @@ const authSlice = createSlice({
     token: '',
     error: null,
   },
-  reducers: {
-    deletError(state) {
-      state.error = null;
-    },
-  },
   extraReducers: builder => {
     builder
       .addCase(austOperationThunk.fulfilled, fullfiled)
@@ -63,5 +58,5 @@ const authSlice = createSlice({
       .addMatcher(action => action.type.endsWith('/rejected'), handleRejected);
   },
 });
-export const { deletError } = authSlice.actions;
+
 export const authReducer = authSlice.reducer;

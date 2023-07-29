@@ -3,6 +3,7 @@ import { petCategory } from 'constants/petCategory';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { stepThreeValidationSchema } from './addFormValidation';
 import { BsGenderFemale, BsGenderMale, BsPlusLg } from 'react-icons/bs';
+
 import { BiEditAlt } from 'react-icons/bi';
 import css from './steps.module.css';
 import ArrowLeftBtn from 'components/Buttons/ArrowLeftBtn/ArrowLeftBtn';
@@ -12,8 +13,8 @@ import PreviewImage from 'components/PreviewImage/PreviewImage';
 const MoreInfo = ({ data, next, prev }) => {
   const fileRef = useRef(null);
 
-  const handleSubmit = (values, helpers,actions) => {
-    next(values, true,actions);
+  const handleSubmit = (values, actions) => {
+    next(values, true, actions);
   };
 
   const handleBackClick = values => {
@@ -23,7 +24,10 @@ const MoreInfo = ({ data, next, prev }) => {
   return (
     <Formik
       initialValues={data}
-      onSubmit={handleSubmit}
+      // onSubmit={(values, actions) => {
+      //   console.log('🚀 ~ MoreInfo ~ actions:', actions);
+      // }}
+      onSubmit={(values, actions) => handleSubmit(values, actions)}
       validationSchema={stepThreeValidationSchema}
     >
       {({ values, setFieldValue }) => (
@@ -38,7 +42,6 @@ const MoreInfo = ({ data, next, prev }) => {
             <div className={css.radioAndFileWrapper}>
               {values.category !== petCategory[0] && (
                 <>
-                  {/* <p className={css.lable}>The Sex</p> */}
                   <div
                     className={css.genderWrapper}
                     role="group"
@@ -56,10 +59,12 @@ const MoreInfo = ({ data, next, prev }) => {
                         id="female"
                       />
                       <label htmlFor="female" className={css.gender}>
-                        <BsGenderFemale
-                          className={css.iconFemale}
-                          size="24px"
-                        />
+                        {values.sex === 'female' ? (
+                          <BsGenderFemale color="#FFFFFF" size="24px" />
+                        ) : (
+                          <BsGenderFemale color="#F43F5E" size="24px" />
+                        )}
+
                         <span className={css.genderText}>Female</span>
                       </label>
                       <Field
@@ -70,7 +75,19 @@ const MoreInfo = ({ data, next, prev }) => {
                         id="male"
                       />
                       <label htmlFor="male" className={css.gender}>
-                        <BsGenderMale size="24px" className={css.iconMale} />
+                        {values.sex === 'male' ? (
+                          <BsGenderMale
+                            color="#FFFFFF"
+                            size="24px"
+                            className={css.iconMale}
+                          />
+                        ) : (
+                          <BsGenderMale
+                            color="#54ADFF"
+                            size="24px"
+                            className={css.iconMale}
+                          />
+                        )}
                         <span className={css.genderText}>Male</span>
                       </label>
                     </div>
@@ -82,7 +99,13 @@ const MoreInfo = ({ data, next, prev }) => {
                   </div>
                 </>
               )}
-              <div>
+              <div
+                className={
+                  data.category === petCategory[0]
+                    ? css.myPetInfoWrap
+                    : css.infoWrap
+                }
+              >
                 <div
                   className={
                     data.category === petCategory[0]
@@ -152,7 +175,7 @@ const MoreInfo = ({ data, next, prev }) => {
                   <label className={css.lable} htmlFor="price">
                     Price
                   </label>
-                  <Field className={css.input} name="price" type="number"/>
+                  <Field className={css.input} name="price" type="number" />
                   <ErrorMessage
                     className={css.error}
                     name="price"

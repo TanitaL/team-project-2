@@ -1,23 +1,30 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { getPets } from 'redux/pets/selectors';
 import CategoryItem from './NoticesCategoriesItem/NoticesCategoriesItem';
 import css from './NoticesCategoriesList.module.css';
 
-const CategoryList = ({ data }) => {
+const CategoryList = () => {
+  const pets=useSelector(getPets)
+  
   return (
     <ul className={css.list}>
-      {data.map(({ _id, title, text, date, file, location, name, sex }) => (
-        <CategoryItem
-          key={_id}
-          _id={_id}
-          title={title}
-          text={text}
-          date={date}
-          file={file}
-          location={location}
-          name={name}
-          sex={sex}
-        />
-      ))}
+
+      {pets.map(
+        ({ id, title, file, location, age, sex, category, noticeId }) => (
+          <CategoryItem
+            key={id}
+            id={id}
+            title={title}
+            file={file}
+            location={location}
+            age={age}
+            sex={sex}
+            category={category}
+            noticeId={noticeId}
+          />
+        )
+      )}
     </ul>
   );
 };

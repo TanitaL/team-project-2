@@ -198,6 +198,7 @@ const UserPage = () => {
         <div className={css.conteinerTitle}>
           <h2 className={css.title}> My pets:</h2>
           <MyPetsList/>
+
         </div>
       </div>
     </Container>

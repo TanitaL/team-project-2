@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import css from './PreviewImage.module.css';
+import { RotatingLines } from 'react-loader-spinner';
 
 const PreviewImage = ({ file, width, height }) => {
   const [preview, setPreview] = useState(null);
@@ -21,7 +22,13 @@ const PreviewImage = ({ file, width, height }) => {
           height={height}
         />
       ) : (
-        '...loading'
+        <RotatingLines
+          strokeColor="#54ADFF"
+          strokeWidth="5"
+          animationDuration="0.75"
+          width="96"
+          visible={true}
+        />
       )}
     </>
   );
