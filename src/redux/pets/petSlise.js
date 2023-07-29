@@ -1,11 +1,22 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { fetchPets, addPet, deletePet } from './operations';
-// import toast from 'react-hot-toast';
+import { toast } from 'react-toastify';
+
 const contactsActions = [fetchPets, addPet, deletePet];
 const getActions = type => contactsActions.map(action => action[type]);
-// const notifySuccess = text => toast.success(text);
+const notifySuccess = () =>
+  toast.success('Added successfully', {
+    position: 'top-center',
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'light',
+  });
 
-export const petsSlice = createSlice({
+export const petSlice = createSlice({
   name: 'pets',
   initialState: {
     items: [],
@@ -20,9 +31,10 @@ export const petsSlice = createSlice({
         state.error = null;
       })
       .addCase(addPet.fulfilled, (state, action) => {
-        state.items.push(action.payload);
+        state.items.unshift(action.payload);
         state.isLoading = false;
-        // notifySuccess(`Contact ${action.payload.name} added successfully`);
+        notifySuccess();
+        
       })
       .addCase(deletePet.fulfilled, (state, action) => {
         const index = state.items.findIndex(
@@ -34,6 +46,7 @@ export const petsSlice = createSlice({
       })
       .addMatcher(isAnyOf(...getActions('pending')), state => {
         state.isLoading = true;
+        state.error =null
       })
       .addMatcher(isAnyOf(...getActions('rejected')), (state, action) => {
         state.isLoading = false;
@@ -41,4 +54,4 @@ export const petsSlice = createSlice({
       }),
 });
 
-export const petsReducer = () => petsSlice.reducer;
+export const petReduser = petSlice.reducer;

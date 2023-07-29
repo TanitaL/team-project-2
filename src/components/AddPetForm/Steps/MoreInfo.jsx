@@ -3,6 +3,7 @@ import { petCategory } from 'constants/petCategory';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { stepThreeValidationSchema } from './addFormValidation';
 import { BsGenderFemale, BsGenderMale, BsPlusLg } from 'react-icons/bs';
+
 import { BiEditAlt } from 'react-icons/bi';
 import css from './steps.module.css';
 import ArrowLeftBtn from 'components/Buttons/ArrowLeftBtn/ArrowLeftBtn';
@@ -41,7 +42,6 @@ const MoreInfo = ({ data, next, prev }) => {
             <div className={css.radioAndFileWrapper}>
               {values.category !== petCategory[0] && (
                 <>
-                  {/* <p className={css.lable}>The Sex</p> */}
                   <div
                     className={css.genderWrapper}
                     role="group"
@@ -59,10 +59,12 @@ const MoreInfo = ({ data, next, prev }) => {
                         id="female"
                       />
                       <label htmlFor="female" className={css.gender}>
-                        <BsGenderFemale
-                          className={css.iconFemale}
-                          size="24px"
-                        />
+                        {values.sex === 'female' ? (
+                          <BsGenderFemale color="#FFFFFF" size="24px" />
+                        ) : (
+                          <BsGenderFemale color="#F43F5E" size="24px" />
+                        )}
+
                         <span className={css.genderText}>Female</span>
                       </label>
                       <Field
@@ -73,7 +75,19 @@ const MoreInfo = ({ data, next, prev }) => {
                         id="male"
                       />
                       <label htmlFor="male" className={css.gender}>
-                        <BsGenderMale size="24px" className={css.iconMale} />
+                        {values.sex === 'male' ? (
+                          <BsGenderMale
+                            color="#FFFFFF"
+                            size="24px"
+                            className={css.iconMale}
+                          />
+                        ) : (
+                          <BsGenderMale
+                            color="#54ADFF"
+                            size="24px"
+                            className={css.iconMale}
+                          />
+                        )}
                         <span className={css.genderText}>Male</span>
                       </label>
                     </div>

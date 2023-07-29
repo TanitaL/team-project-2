@@ -17,7 +17,7 @@ const transformFormData = (values) => {
       typePet: type,
       comments,
     } = values;
-    // const transformedCategory=
+   
     switch (category) {
       case petCategory[0]:
         category = MYPET;

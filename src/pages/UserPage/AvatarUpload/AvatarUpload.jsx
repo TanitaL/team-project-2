@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import css from './PreviewImage.module.css';
-import { RotatingLines } from 'react-loader-spinner';
+import css from '../AvatarUpload/AvatarUpload.module.css';
 
-const PreviewImage = ({ file, width, height }) => {
+const AvatarUpload = ({ file, width, height }) => {
   const [preview, setPreview] = useState(null);
   
   const reader = new FileReader();
@@ -15,23 +14,17 @@ const PreviewImage = ({ file, width, height }) => {
       {/* <img className={css.previewImg} src={preview} alt={preview} width={width} height={height}/> */}
       {preview ? (
         <img
-          className={css.previewPetImg}
+          className={css.avatarUpload}
           src={preview}
           alt={preview}
           width={width}
           height={height}
         />
       ) : (
-        <RotatingLines
-          strokeColor="#54ADFF"
-          strokeWidth="5"
-          animationDuration="0.75"
-          width="96"
-          visible={true}
-        />
+        '...loading'
       )}
     </>
   );
 };
 
-export default PreviewImage
+export default AvatarUpload
