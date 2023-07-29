@@ -4,16 +4,17 @@ import css from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCat
 
 import { instance } from 'service/api/api';
 import SearchComponent from '../../components/SearchComponent/SearchComponent';
-import NoticesCategoriesNav from '../../components/NoticesCategoriesNav/NoticesCategoriesNav'; 
+import NoticesCategoriesNav from '../../components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesFilters from 'components/NoticesFilters/NoticesFilters';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
-
-
+import Pagination from 'components/Pagination/Pagination';
 const NoticesPage = () => {
   const [noticesData, setNoticesData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const itemsPerPage = 10;
   const getAllNotices = async () => {
     try {
       const response = await instance.get('notices');
@@ -51,6 +52,8 @@ const NoticesPage = () => {
         const data = await getAllNotices();
         setNoticesData(data);
         setIsLoading(false);
+        const pages = Math.ceil(data.length / itemsPerPage);
+        setTotalPages(pages);
       } catch (error) {
         setError('404');
         setIsLoading(false);
@@ -59,6 +62,13 @@ const NoticesPage = () => {
 
     fetchNoticesData();
   }, []);
+  const handlePageChange = pageNumber => {
+    setCurrentPage(pageNumber);
+  };
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = noticesData.slice(indexOfFirstItem, indexOfLastItem);
 
   if (isLoading) {
     return (
@@ -91,14 +101,20 @@ const NoticesPage = () => {
       <h1 className={css.textNoticesPage}>Find your favorite pet</h1>
       <SearchComponent onSearch={handleSearch} />
       <div className={css.categoryFilterWrapper}>
-        <NoticesCategoriesNav />  
+        <NoticesCategoriesNav />
         <div className={css.noticeFilter}>
-        <NoticesFilters />
-        <AddPetButton/>
+          <NoticesFilters onFilter={handleSearch} />
+          <AddPetButton />
         </div>
-        </div>
+      </div>
 
-      <CategoryList data={noticesData} />
+      <CategoryList data={currentItems} />
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };
