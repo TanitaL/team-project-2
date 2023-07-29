@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import Notiflix from 'notiflix';
 
 import { instance } from 'service/api/api';
 import transformCategory from 'service/addPetHelpers/transformCategory';
+import notify from 'service/addPetHelpers/toast';
 import sprite from 'assets/svg/sprite-cards.svg';
 import css from './PetModal.module.css';
 
@@ -23,7 +23,8 @@ const PetModal = ({ id, onClose, isFavorite, addToFavotire }) => {
         const { data } = await instance.get(`/notices/${id}`);
         setDetails(data);
       } catch (error) {
-        Notiflix.Notify.failure(error.response.data.message);
+        notify.error(error.response.data.message);
+        onClose();
       }
     };
 
