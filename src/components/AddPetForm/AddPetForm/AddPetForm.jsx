@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { addPet } from 'redux/pets/operations';
 import stepsLable from 'constants/stepsLable';
 import transformFormData from 'service/addPetHelpers/transformFormData';
+import prepareFormData from 'service/addPetHelpers/prepareFormData';
 
 const initialValues = {
   category: 'your pet',
@@ -59,7 +60,8 @@ const AddPetForm = () => {
     //   type,
     //   comments,
     // };
-const newValues = transformFormData(values);
+    const transformedValues = transformFormData(values);
+const newValues = prepareFormData(transformedValues);
     console.log("🚀 ~ makeRequest ~ newValues:", newValues)
     const formData = new FormData();
     for (let value in newValues) {
@@ -78,7 +80,7 @@ const newValues = transformFormData(values);
 
     if (final) {
       makeRequest(newData);
-      actions.resetForm();
+      // actions.resetForm();
       return;
     }
 
@@ -96,6 +98,8 @@ const newValues = transformFormData(values);
     <MoreInfo next={handleNextStep} data={data} prev={handlePrevStep} />,
   ];
   console.log('🚀 ~ handleNextStep ~ data:', data);
+  console.log('🚀 ~ AddPetForm ~ data:', data.date);
+  console.log('🚀 ~ AddPetForm ~ typeof(data.date):', typeof data.date);
   
   return (
     <section

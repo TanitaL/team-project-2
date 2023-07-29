@@ -1,9 +1,9 @@
 import React from 'react';
 import css from './PawPrintBtn.module.css';
 
-const PawPrintBtn = ({title, type}) => {
+const PawPrintBtn = ({ title, type, handleSuccess }) => {
   return (
-    <button type={type} className={css.btn}>
+    <button onClick={handleSuccess ?? null} type={type} className={css.btn}>
       {title}
       <svg
         xmlns="http://www.w3.org/2000/svg"
