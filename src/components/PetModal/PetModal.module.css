@@ -67,7 +67,7 @@
 .upperBox {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
   gap: 12px;
   width: 100%;
 
@@ -214,7 +214,7 @@
   @media screen and (min-width: 768px) {
     flex-direction: row;
     margin-top: 70px;
-    justify-content: end;
+    justify-content: flex-end;
     gap: 17px;
   }
 }
