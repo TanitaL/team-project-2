@@ -5,11 +5,10 @@ import CategoryItem from './NoticesCategoriesItem/NoticesCategoriesItem';
 import css from './NoticesCategoriesList.module.css';
 
 const CategoryList = () => {
-  const pets=useSelector(getPets)
-  
+  const pets = useSelector(getPets);
+
   return (
     <ul className={css.list}>
-
       {pets.map(
         ({ id, title, file, location, age, sex, category, noticeId }) => (
           <CategoryItem
