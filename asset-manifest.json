@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/team-project-2/static/css/main.56a98875.css",
-    "main.js": "/team-project-2/static/js/main.408fe6ad.js",
+    "main.css": "/team-project-2/static/css/main.9a53053b.css",
+    "main.js": "/team-project-2/static/js/main.4a30d083.js",
     "static/media/bg-pets-tablet-1x-opt.png": "/team-project-2/static/media/bg-pets-tablet-1x-opt.62779fedc8551712ac49.png",
     "static/media/bg-pets-desktop-1x-opt.png": "/team-project-2/static/media/bg-pets-desktop-1x-opt.dcebb19b34e6b1571dc9.png",
     "static/media/Manrope.ttf": "/team-project-2/static/media/Manrope.4afb283bba326df875f6.ttf",
     "static/media/bg-pets-mobile-1x-opt.png": "/team-project-2/static/media/bg-pets-mobile-1x-opt.3febdac4ee5edb20c372.png",
     "static/media/cat-404-max-opt.png": "/team-project-2/static/media/cat-404-max-opt.675a5c9811757d077a9e.png",
     "static/media/cat-404-min-opt.png": "/team-project-2/static/media/cat-404-min-opt.6904a542326500d7b6ba.png",
-    "static/media/sprite-cards.svg": "/team-project-2/static/media/sprite-cards.9e942e1a98c373cb8ba58135613cb86a.svg",
+    "static/media/sprite-cards.svg": "/team-project-2/static/media/sprite-cards.bd6c4d7e117c8073f9ce07bd4fba45f1.svg",
     "static/media/logo-desktop-tablet-opt.svg": "/team-project-2/static/media/logo-desktop-tablet-opt.30c4305a11a554ab5690f988122fa1b9.svg",
     "static/media/logo-mobile-opt.svg": "/team-project-2/static/media/logo-mobile-opt.1831dfd0a186e519aaa095fff8b89442.svg",
     "static/media/bg-register-mobile-x1.png": "/team-project-2/static/media/bg-register-mobile-x1.2275b8b7ec09d575b730.png",
@@ -28,11 +28,11 @@
     "static/media/cross-blue-mobile-opt.svg": "/team-project-2/static/media/cross-blue-mobile-opt.b36ab9f0e9d33d33cdd43857f5b7c4e7.svg",
     "static/media/menu-hamburger-cross-opt.svg": "/team-project-2/static/media/menu-hamburger-cross-opt.737a9aa53a41c5bfec6f5a5e0d144e1a.svg",
     "static/media/plus.svg": "/team-project-2/static/media/plus.c38c5c6716210f10cb288a5bc889eca6.svg",
-    "main.56a98875.css.map": "/team-project-2/static/css/main.56a98875.css.map",
-    "main.408fe6ad.js.map": "/team-project-2/static/js/main.408fe6ad.js.map"
+    "main.9a53053b.css.map": "/team-project-2/static/css/main.9a53053b.css.map",
+    "main.4a30d083.js.map": "/team-project-2/static/js/main.4a30d083.js.map"
   },
   "entrypoints": [
-    "static/css/main.56a98875.css",
-    "static/js/main.408fe6ad.js"
+    "static/css/main.9a53053b.css",
+    "static/js/main.4a30d083.js"
   ]
 }
