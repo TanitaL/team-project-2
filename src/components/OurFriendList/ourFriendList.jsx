@@ -1,3 +1,4 @@
+import css from "./ourFriendList.module.scss"
 import { OurFriendItem } from './OurFriendItem/OurFriendItem';
 import { fetchSponsors } from 'service/api/apiFriend';
 import { useState, useEffect } from 'react';
@@ -15,10 +16,10 @@ export const OurFriend = () => {
 
   return (
     <>
-      <h1>Our Friend</h1>
-      <ul>
+      <h1 className={css.title}>Our Friend</h1>
+      <ul className={css.friend__list}>
         {friend.map(
-          ({
+          ({ 
             title,
             url,
             addressUrl,
@@ -27,7 +28,7 @@ export const OurFriend = () => {
             workDays,
             phone,
             email,
-          }) =>
+          }) => (
             <OurFriendItem
               key={title}
               title={title}
@@ -39,7 +40,7 @@ export const OurFriend = () => {
               phone={phone}
               email={email}
             />
-         
+          )
         )}
       </ul>
     </>

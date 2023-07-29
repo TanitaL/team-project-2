@@ -1,22 +1,33 @@
-
-export const OurFriendItem = (
- { title,
+import { OurFriendWorkDays } from '../OurFriendWorkDays/OurFriendWorkDays';
+export const OurFriendItem = ({
+  title,
   url,
   addressUrl,
   imageUrl,
   address,
   workDays,
   phone,
-  email}
-) => {
-  
+  email,
+}) => {
   return (
     <li>
       <h2>{title}</h2>
       <ul>
         <li>
           <p>Time:</p>
-          <p>8:00- 20:00</p>
+
+          {workDays && workDays.length > 0 ? (
+            <select name="" id="">
+              {workDays.map(({ isOpen, from, to }, index) => (
+                <OurFriendWorkDays
+                  key={index}
+                  isOpen={isOpen}
+                  from={from}
+                  to={to}
+                />
+              ))}
+            </select>
+          ) : <p>We are close</p>}
         </li>
         <li>
           <p>Address</p>
@@ -24,7 +35,7 @@ export const OurFriendItem = (
         </li>
         <li>
           <p>Email: </p>
-          <p>{email ? email : "king5vadim@gmail.com"}</p>
+          <p>{email ? email : 'king5vadim@gmail.com'}</p>
         </li>
         <li>
           <p>Phone</p>
