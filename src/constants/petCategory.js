@@ -9,9 +9,9 @@ export const petCategory = ['your pet', 'sell', 'lost/found', 'in good hands'];
 
 
 
-// const category = Object.freeze({
-//   MYPET: { label: 'your pet', value: 'my-pet' },
-//   SELL: { label: 'sell', value: 'sell' },
-//   LOSTFOUND: { label: 'lost/found', value: 'lost-found' },
-//   FORFREE: { label: 'in good hands', value: 'for-free' },
-// });
+export const categoryObj = Object.freeze({
+  MYPET: { label: 'your pet', value: 'my-pet' },
+  SELL: { label: 'sell', value: 'sell' },
+  LOSTFOUND: { label: 'lost/found', value: 'lost-found' },
+  FORFREE: { label: 'in good hands', value: 'for-free' },
+});

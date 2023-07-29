@@ -1,29 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authSelector } from '../../../../../redux/auth/selectors';
 
 import 'react-toastify/dist/ReactToastify.css';
 import css from './NoticesCategoriesItem.module.css';
 
 import sprite from '../../../../../assets/svg/sprite-cards.svg';
-import { instance } from '../../../../../service/api/api';
+// import { instance } from '../../../../../service/api/api';
+import { addToFavorit } from 'redux/pets/operations';
 
-const addDelPet = async (noticeId) => {
-  try {
-    const response = await instance.post(`/notices/${noticeId}/favorite`);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error;
-  }
-};
+// const addDelPet = async (noticeId) => {
+//   try {
+//     const response = await instance.post(`/notices/${noticeId}/favorite`);
+//     return response.data;
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//     throw error;
+//   }
+// };
 
-const CategoryItem = ({ _id, title, file, location, age, sex, category, noticeId }) => {
+const CategoryItem = ({
+  id,
+  title,
+  file,
+  location,
+  age,
+  sex,
+  category,
+  noticeId,
+}) => {
   const [imageError, setImageError] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
+  // isFavorite буде батися з редаксу, пропишу пізніше
+  // const [isFavorite, setIsFavorite] = useState(false);
   const [sexIcon, setSexIcon] = useState('icon-male');
+  const dispatch = useDispatch();
 
   const isUserRegistered = useSelector(authSelector);
 
@@ -39,16 +51,16 @@ const CategoryItem = ({ _id, title, file, location, age, sex, category, noticeId
     setImageError(true);
   };
 
-  useEffect(() => {
-    instance
-      .post(`/notices/${noticeId}/favorite`)
-      .then((response) => {
-        setIsFavorite(response.data.isFavorite);
-      })
-      .catch((error) => {
-        console.error('Error getting favorite status:', error);
-      });
-  }, [noticeId]);
+  // useEffect(() => {
+  //   instance
+  //     .post(`/notices/${noticeId}/favorite`)
+  //     .then((response) => {
+  //       setIsFavorite(response.data.isFavorite);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error getting favorite status:', error);
+  //     });
+  // }, [noticeId]);
 
   const addToFavorites = () => {
     if (!isUserRegistered) {
@@ -63,28 +75,29 @@ const CategoryItem = ({ _id, title, file, location, age, sex, category, noticeId
       });
       return;
     }
+    dispatch(addToFavorit(id));
 
-    if (isFavorite) {
-        addDelPet(_id)
-    .then(() => {
-      setIsFavorite(!isFavorite);
-    })
-    .catch((error) => {
-      console.error('Error adding/removing from favorites:', error);
-    });
-    } else {
-      addDelPet(_id)
-        .then(() => {
-          setIsFavorite(true);
-        })
-        .catch((error) => {
-          console.error('Error adding to favorites:', error);
-        });
-    }
+    // if (isFavorite) {
+    //     addDelPet(_id)
+    // .then(() => {
+    //   setIsFavorite(!isFavorite);
+    // })
+    // .catch((error) => {
+    //   console.error('Error adding/removing from favorites:', error);
+    // });
+    // } else {
+    //   addDelPet(_id)
+    //     .then(() => {
+    //       setIsFavorite(true);
+    //     })
+    //     .catch((error) => {
+    //       console.error('Error adding to favorites:', error);
+    //     });
+    // }
   };
 
   return (
-    <li key={_id} className={css.item}>
+    <li key={id} className={css.item}>
       <div className={css.imageWrapper}>
         <img
           alt={title}
@@ -94,7 +107,12 @@ const CategoryItem = ({ _id, title, file, location, age, sex, category, noticeId
           onError={handleImageError}
         />
         <button className={css.addToFavoritesButton} onClick={addToFavorites}>
-          {isFavorite ? (
+          {/* Заміню тимчасово, коли пропишу редакс поверну */}
+          <svg width="24" height="24">
+            <use href={`${sprite}#icon-heart-on`}></use>
+          </svg>
+          {/* Не видаляти, коли буде в редаксі isFavorite треба повернути */}
+          {/* {isFavorite ? (
             <svg width="24" height="24">
               <use href={`${sprite}#icon-heart-off`}></use>
             </svg>
@@ -102,7 +120,7 @@ const CategoryItem = ({ _id, title, file, location, age, sex, category, noticeId
             <svg width="24" height="24">
               <use href={`${sprite}#icon-heart-on`}></use>
             </svg>
-          )}
+          )} */}
         </button>
       </div>
 
@@ -113,21 +131,21 @@ const CategoryItem = ({ _id, title, file, location, age, sex, category, noticeId
           <p className={css.location}>
             <svg className={css.iconSvg} width="24" height="24">
               <use href={`${sprite}#icon-location-1`}></use>
-            </svg><span className={css.texProperty}>
-            {location}
-          </span></p>
+            </svg>
+            <span className={css.texProperty}>{location}</span>
+          </p>
           <p className={css.year}>
             <svg className={css.iconSvg} width="24" height="24">
               <use href={`${sprite}#icon-clock`}></use>
-            </svg><span className={css.texProperty}>
-            {age}
-          </span></p>
+            </svg>
+            <span className={css.texProperty}>{age}</span>
+          </p>
           <p className={css.sex}>
             <svg className={css.iconSvg} width="24" height="24">
               <use href={`${sprite}#${sexIcon}`}></use>
-            </svg><span className={css.texProperty}>
-            {sex}
-          </span></p>
+            </svg>
+            <span className={css.texProperty}>{sex}</span>
+          </p>
         </div>
         <div className={css.learnContainerButton}>
           <button className={css.learnMoreButton}>

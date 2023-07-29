@@ -196,6 +196,7 @@ input[type='radio']:checked + .btn {
   padding: 8px 16px 8px 16px;
   align-items: center;
   color: var(--grey-color);
+  cursor: pointer;
 }
 
 .genderText {
@@ -206,9 +207,7 @@ input[type='radio']:checked + .btn {
   text-align: left;
 }
 
-.iconFemale {
-  color: var(--red-color);
-}
+
 
 .iconMale {
   rotate: -45deg;
@@ -222,14 +221,16 @@ input[type='radio']:checked + .gender {
   border-radius: 40px;
 }
 
-input[type='radio']:checked ~ .iconMale {
+/* input[type='radio']:checked ~ .iconMale {
   color: var(--white-color);
   stroke: var(--white-color);
 }
 
-input[type='radio']:checked ~ .iconFemale {
+input[type='radio']:checked ~ svg {
   color: var(--white-color);
-}
+} */
+
+
 
 /* Wrapper for my pet More info */
 .myPetInfoWrap {
@@ -287,6 +288,7 @@ input[type='radio']:checked ~ .iconFemale {
   border: none;
   border-radius: 20px;
   padding: 0;
+  cursor: pointer;
   transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
     transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
