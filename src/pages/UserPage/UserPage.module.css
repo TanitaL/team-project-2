@@ -35,6 +35,7 @@
 .section {
   position: relative;
   width: 395px;
+  height: 520px;
 
   display: flex;
   flex-direction: column;
@@ -51,10 +52,11 @@
 }
 
 .avatar {
+  display: flex;
   align-items: center;
 }
 
-.img {
+.imgInput {
   top: 20px;
   left: 107px;
 
@@ -62,6 +64,15 @@
   height: 182px;
 
   border-radius: 40px;
+}
+.img {
+  top: 20px;
+  /* left: 107px; */
+  width: 182px;
+  height: 182px;
+  border-radius: 40px;
+  border: none;
+  background-image: url(../../pages/UserPage/avatar/Photodefault.jpg);
 }
 
 .profileInput {
@@ -110,6 +121,11 @@
 }
 
 .button {
+  /* display: flax;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 20px;
+  gap: 7px;
   font-family: Manrope;
   font-size: 16px;
   font-weight: 500;
@@ -118,6 +134,46 @@
   text-align: left;
   color: rgba(136, 136, 136, 1);
 
-  background-color: #fff;
+  background-color: red;
+  border: 2px; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 8px 20px;
+  gap: 7px;
+
+  width: 135px;
+  height: 40px;
+  text-align: left;
+  border-radius: 40px;
   border: none;
+  
+  background-color: var(--whight-color);
+  color: rgb(224, 215, 215);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.64px;
+
+  /* position: ; */
+  left: 10px;
+  bottom: 20px;
+  box-sizing: border-box;
+  outline: var(--background-color);
+  z-index: 20;
+  cursor: pointer;
+}
+.button:hover {
+  text-shadow:0 1px 0 grey;
+}
+
+.editIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0; /* Начальное значение прозрачности - иконка скрыта */
+  visibility: hidden; /* Иконка скрыта, но занимает место */
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавное появление */
 }
