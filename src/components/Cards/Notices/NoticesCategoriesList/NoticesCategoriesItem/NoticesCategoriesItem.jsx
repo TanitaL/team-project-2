@@ -2,17 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
 import { useSelector } from 'react-redux';
-import { authSelector } from '../../../../../redux/auth/selectors';
+import { authSelector } from 'redux/auth/selectors';
+
+import PetModal from 'components/PetModal/PetModal';
 
 import 'react-toastify/dist/ReactToastify.css';
 import css from './NoticesCategoriesItem.module.css';
 
-import sprite from '../../../../../assets/svg/sprite-cards.svg';
-import { instance } from '../../../../../service/api/api';
+import sprite from 'assets/svg/sprite-cards.svg';
+import { instance } from 'service/api/api';
 
-const addDelPet = async (noticeId) => {
+const addDelPet = async id => {
   try {
-    const response = await instance.post(`/notices/${noticeId}/favorite`);
+    const response = await instance.post(`/notices/${id}/favorite`);
     return response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -20,9 +22,10 @@ const addDelPet = async (noticeId) => {
   }
 };
 
-const CategoryItem = ({ _id, title, file, location, age, sex, category, noticeId }) => {
+const CategoryItem = ({ id, title, file, location, age, sex, category }) => {
   const [imageError, setImageError] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(null);
   const [sexIcon, setSexIcon] = useState('icon-male');
 
   const isUserRegistered = useSelector(authSelector);
@@ -41,14 +44,14 @@ const CategoryItem = ({ _id, title, file, location, age, sex, category, noticeId
 
   useEffect(() => {
     instance
-      .post(`/notices/${noticeId}/favorite`)
-      .then((response) => {
+      .post(`/notices/${id}/favorite`)
+      .then(response => {
         setIsFavorite(response.data.isFavorite);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('Error getting favorite status:', error);
       });
-  }, [noticeId]);
+  }, [id]);
 
   const addToFavorites = () => {
     if (!isUserRegistered) {
@@ -65,26 +68,34 @@ const CategoryItem = ({ _id, title, file, location, age, sex, category, noticeId
     }
 
     if (isFavorite) {
-        addDelPet(_id)
-    .then(() => {
-      setIsFavorite(!isFavorite);
-    })
-    .catch((error) => {
-      console.error('Error adding/removing from favorites:', error);
-    });
+      addDelPet(id)
+        .then(() => {
+          setIsFavorite(!isFavorite);
+        })
+        .catch(error => {
+          console.error('Error adding/removing from favorites:', error);
+        });
     } else {
-      addDelPet(_id)
+      addDelPet(id)
         .then(() => {
           setIsFavorite(true);
         })
-        .catch((error) => {
+        .catch(error => {
           console.error('Error adding to favorites:', error);
         });
     }
   };
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <li key={_id} className={css.item}>
+    <li key={id} className={css.item}>
       <div className={css.imageWrapper}>
         <img
           alt={title}
@@ -113,24 +124,24 @@ const CategoryItem = ({ _id, title, file, location, age, sex, category, noticeId
           <p className={css.location}>
             <svg className={css.iconSvg} width="24" height="24">
               <use href={`${sprite}#icon-location-1`}></use>
-            </svg><span className={css.texProperty}>
-            {location}
-          </span></p>
+            </svg>
+            <span className={css.texProperty}>{location}</span>
+          </p>
           <p className={css.year}>
             <svg className={css.iconSvg} width="24" height="24">
               <use href={`${sprite}#icon-clock`}></use>
-            </svg><span className={css.texProperty}>
-            {age}
-          </span></p>
+            </svg>
+            <span className={css.texProperty}>{age}</span>
+          </p>
           <p className={css.sex}>
             <svg className={css.iconSvg} width="24" height="24">
               <use href={`${sprite}#${sexIcon}`}></use>
-            </svg><span className={css.texProperty}>
-            {sex}
-          </span></p>
+            </svg>
+            <span className={css.texProperty}>{sex}</span>
+          </p>
         </div>
         <div className={css.learnContainerButton}>
-          <button className={css.learnMoreButton}>
+          <button className={css.learnMoreButton} onClick={handleOpenModal}>
             Learn More
             <svg width="24" height="24">
               <use href={`${sprite}#icon-pawprint-lapka`}></use>
@@ -139,6 +150,14 @@ const CategoryItem = ({ _id, title, file, location, age, sex, category, noticeId
         </div>
       </div>
       <ToastContainer />
+      {isModalOpen && (
+        <PetModal
+          id={id}
+          onClose={handleCloseModal}
+          isFavorite={isFavorite}
+          addToFavotire={addToFavorites}
+        />
+      )}
     </li>
   );
 };
