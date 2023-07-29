@@ -4,7 +4,7 @@ import NotFoundMax from '../../assets/images/cat-404-max-opt.png';
 import NotFoundMin from '../../assets/images/cat-404-min-opt.png';
 
 import css from './PageNotFound.module.css';
-import Container from 'components/Container/Container';
+import Container from 'components/Container/Container/Container';
 
 const PageNotFound = () => {
   return (

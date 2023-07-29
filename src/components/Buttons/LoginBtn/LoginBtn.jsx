@@ -4,6 +4,7 @@ import { useBurgerContext } from 'context/BurgerProvider';
 import sprite from 'assets/svg/sprite-cards.svg';
 import css from './LoginBtn.module.css';
 
+
 const LoginBtn = () => {
   const { setMenuOpen } = useBurgerContext();
   const navigate = useNavigate();

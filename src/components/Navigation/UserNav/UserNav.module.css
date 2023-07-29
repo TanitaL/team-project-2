@@ -1,8 +1,10 @@
-.userNavWrap {
-  display: flex;
-  align-items: center;
-  margin-left: 304px;
-  gap: 24px;
+@media screen and (min-width: 1280px) {
+  .userNavWrap {
+    display: flex;
+    align-items: center;
+    margin-left: 304px;
+    gap: 24px;
+  }
 }
 
 .userNav {
