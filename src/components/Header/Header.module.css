@@ -28,6 +28,7 @@
 
 @media screen and (min-width: 1280px) {
   .headerNav {
-    gap: 322px;
+    /* gap: 322px; */
+    gap: inherit;
   }
 }

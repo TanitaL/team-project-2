@@ -70,7 +70,7 @@ const BurgerMenu = () => {
               <PrivateRoute>
                 <div className={css.userNav}>
                   <UserNav closeBurgerMenu={closeBurgerMenu} />
-                  {auth.name ?? <p>{auth.name}</p>}
+                  <p>{auth.name}</p>
                 </div>
               </PrivateRoute>
             )}
