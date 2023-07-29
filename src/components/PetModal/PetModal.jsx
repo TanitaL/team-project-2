@@ -6,7 +6,7 @@ import transformCategory from 'service/addPetHelpers/transformCategory';
 import sprite from 'assets/svg/sprite-cards.svg';
 import css from './PetModal.module.css';
 
-const PetModal = ({ noticeId, onClose, isFavorite, addToFavotire }) => {
+const PetModal = ({ id, onClose, isFavorite, addToFavotire }) => {
   const [details, setDetails] = useState(null);
 
   const handleOnBackdropClose = e => {
@@ -19,7 +19,7 @@ const PetModal = ({ noticeId, onClose, isFavorite, addToFavotire }) => {
   useEffect(() => {
     const getDetails = async () => {
       try {
-        const { data } = await instance.get(`/notices/${noticeId}`);
+        const { data } = await instance.get(`/notices/${id}`);
         setDetails(data);
       } catch (error) {
         Notiflix.Notify.failure(error.response.data.message);
