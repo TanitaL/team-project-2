@@ -16,7 +16,7 @@ const UserNav = ({ closeBurgerMenu }) => {
   return (
     <>
       {isAuth && (
-        <>
+        <div className={css.userNavWrap}>
           {isBigScreen && <Logout />}
 
           <nav className={css.userNav}>
@@ -26,7 +26,7 @@ const UserNav = ({ closeBurgerMenu }) => {
             {isMediumScreen &&
               (auth.name ?? <p className={css.userName}>{auth.name}</p>)}
           </nav>
-        </>
+        </div>
       )}
     </>
   );

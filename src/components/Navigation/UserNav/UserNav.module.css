@@ -1,3 +1,10 @@
+.userNavWrap {
+  display: flex;
+  align-items: center;
+  margin-left: 304px;
+  gap: 24px;
+}
+
 .userNav {
   display: flex;
   flex-direction: column;
