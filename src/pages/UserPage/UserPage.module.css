@@ -15,6 +15,10 @@
   }
 }
 
+.petSide {
+  width: 100%;
+}
+
 .title {
   /* width: 207px;
   height: 38px; */

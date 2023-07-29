@@ -6,8 +6,6 @@ import { ReactComponent as BurgerOpenSvg } from '../../../assets/svg/menu-hambur
 import { ReactComponent as BurgerCloseSvg } from '../../../assets/svg/menu-hamburger-cross-opt.svg';
 import AuthNav from 'components/Navigation/AuthNav/AuthNav';
 import Nav from 'components/Navigation/Nav/Nav';
-import PublicRoute from 'routes/PublicRoute';
-import PrivateRoute from 'routes/PrivateRoute';
 import UserNav from 'components/Navigation/UserNav/UserNav';
 import { useBurgerContext } from 'context/BurgerProvider';
 import css from './BurgerMenu.module.css';
@@ -34,21 +32,13 @@ const BurgerMenu = () => {
     <>
       {menuOpen ? (
         <>
-          {isMediumScreen && (
-            <PublicRoute>
-              <AuthNav />
-            </PublicRoute>
-          )}
+          {isMediumScreen && !auth && <AuthNav />}
 
           <div className={css.headerNav}>
-            {isMediumScreen && (
-              <>
-                <PrivateRoute>
-                  <div className={css.userNav}>
-                    <Logout />
-                  </div>
-                </PrivateRoute>
-              </>
+            {isMediumScreen && auth && (
+              <div className={css.userNav}>
+                <Logout />
+              </div>
             )}
 
             <button
@@ -61,25 +51,18 @@ const BurgerMenu = () => {
           </div>
 
           <div className={css.burgerOpenNavigation}>
-            {isSmallScreen && (
-              <PublicRoute>
-                <AuthNav />
-              </PublicRoute>
+            {isSmallScreen && !auth && <AuthNav />}
+
+            {isSmallScreen && auth && (
+              <div className={css.userNav}>
+                <UserNav closeBurgerMenu={closeBurgerMenu} />
+                <p>{auth.name}</p>
+              </div>
             )}
-            {isSmallScreen && (
-              <PrivateRoute>
-                <div className={css.userNav}>
-                  <UserNav closeBurgerMenu={closeBurgerMenu} />
-                  {auth.name ?? <p>{auth.name}</p>}
-                </div>
-              </PrivateRoute>
-            )}
+
             <Nav closeBurgerMenu={closeBurgerMenu} />
-            {isSmallScreen && (
-              <PrivateRoute>
-                <Logout />
-              </PrivateRoute>
-            )}
+
+            {isSmallScreen && auth && <Logout />}
           </div>
         </>
       ) : (

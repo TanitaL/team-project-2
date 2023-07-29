@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { authSelector } from '../../../../../redux/auth/selectors';
+
+import { useDispatch,useSelector } from 'react-redux';
+import { authSelector } from 'redux/auth/selectors';
+
+import PetModal from 'components/PetModal/PetModal';
+
 
 import 'react-toastify/dist/ReactToastify.css';
 import css from './NoticesCategoriesItem.module.css';
 
-import sprite from '../../../../../assets/svg/sprite-cards.svg';
-// import { instance } from '../../../../../service/api/api';
-import { addToFavorit } from 'redux/pets/operations';
+import sprite from 'assets/svg/sprite-cards.svg';
+// import { instance } from 'service/api/api';
 
-// const addDelPet = async (noticeId) => {
+// const addDelPet = async id => {
 //   try {
-//     const response = await instance.post(`/notices/${noticeId}/favorite`);
+//     const response = await instance.post(`/notices/${id}/favorite`);
 //     return response.data;
 //   } catch (error) {
 //     console.error('Error fetching data:', error);
@@ -21,19 +24,11 @@ import { addToFavorit } from 'redux/pets/operations';
 //   }
 // };
 
-const CategoryItem = ({
-  id,
-  title,
-  file,
-  location,
-  age,
-  sex,
-  category,
-  noticeId,
-}) => {
+const CategoryItem = ({ id, title, file, location, age, sex, category }) => {
   const [imageError, setImageError] = useState(false);
   // isFavorite буде батися з редаксу, пропишу пізніше
   // const [isFavorite, setIsFavorite] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(null);
   const [sexIcon, setSexIcon] = useState('icon-male');
   const dispatch = useDispatch();
 
@@ -51,6 +46,7 @@ const CategoryItem = ({
     setImageError(true);
   };
 
+
   // useEffect(() => {
   //   instance
   //     .post(`/notices/${noticeId}/favorite`)
@@ -61,6 +57,7 @@ const CategoryItem = ({
   //       console.error('Error getting favorite status:', error);
   //     });
   // }, [noticeId]);
+
 
   const addToFavorites = () => {
     if (!isUserRegistered) {
@@ -94,6 +91,15 @@ const CategoryItem = ({
     //       console.error('Error adding to favorites:', error);
     //     });
     // }
+ 
+  };
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -148,7 +154,7 @@ const CategoryItem = ({
           </p>
         </div>
         <div className={css.learnContainerButton}>
-          <button className={css.learnMoreButton}>
+          <button className={css.learnMoreButton} onClick={handleOpenModal}>
             Learn More
             <svg width="24" height="24">
               <use href={`${sprite}#icon-pawprint-lapka`}></use>
@@ -157,6 +163,14 @@ const CategoryItem = ({
         </div>
       </div>
       <ToastContainer />
+      {isModalOpen && (
+        <PetModal
+          id={id}
+          onClose={handleCloseModal}
+          isFavorite={isFavorite}
+          addToFavotire={addToFavorites}
+        />
+      )}
     </li>
   );
 };
