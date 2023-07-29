@@ -12,7 +12,8 @@ import transformFormData from 'service/addPetHelpers/transformFormData';
 import prepareFormData from 'service/addPetHelpers/prepareFormData';
 import { useNavigate } from 'react-router-dom';
 import { getError, getIsLoading } from 'redux/pets/selectors';
-import Loader from 'components/Loader/Loader';
+import Loader from 'components/LoaderPort/Loader';
+
 
 const initialValues = {
   category: 'your pet',
@@ -45,6 +46,7 @@ const AddPetForm = () => {
   console.log('🚀 ~ AddPetForm ~ isLoading:', isLoading);
 
   const makeRequest = values => {
+    
     const transformedValues = transformFormData(values);
     const newValues = prepareFormData(transformedValues);
     console.log('🚀 ~ makeRequest ~ newValues:', newValues);
