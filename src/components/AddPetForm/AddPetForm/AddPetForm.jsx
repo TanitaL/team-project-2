@@ -45,7 +45,6 @@ const AddPetForm = () => {
   console.log('🚀 ~ AddPetForm ~ isLoading:', isLoading);
 
   const makeRequest = values => {
-    
     const transformedValues = transformFormData(values);
     const newValues = prepareFormData(transformedValues);
     console.log('🚀 ~ makeRequest ~ newValues:', newValues);
@@ -61,11 +60,11 @@ const AddPetForm = () => {
     dispatsh(addPet(formData));
   };
 
-  const handleNextStep =async (newData, final = false, actions) => {
+  const handleNextStep = async (newData, final = false, actions) => {
     setData(prev => ({ ...prev, ...newData }));
 
     if (final) {
-     await makeRequest(newData);
+      await makeRequest(newData);
 
       if (data.category === MYPET.label && !error && !isLoading) {
         navigate('/user');

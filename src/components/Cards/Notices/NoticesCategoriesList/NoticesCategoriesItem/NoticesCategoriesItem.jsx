@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import css from './NoticesCategoriesItem.module.css';
 
 import sprite from 'assets/svg/sprite-cards.svg';
+import { addToFavorit } from 'redux/pets/operations';
 // import { instance } from 'service/api/api';
 
 // const addDelPet = async id => {
@@ -167,7 +168,7 @@ const CategoryItem = ({ id, title, file, location, age, sex, category }) => {
         <PetModal
           id={id}
           onClose={handleCloseModal}
-          isFavorite={isFavorite}
+          isFavorite={false}
           addToFavotire={addToFavorites}
         />
       )}
