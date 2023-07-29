@@ -17,10 +17,15 @@
   gap: 24px;
 }
 
+@media screen and (min-width: 1280px) {
+  .navigation {
+    margin-left: 322px;
+  }
+}
+
 /* @media screen and (min-width: 1280px) {
   .navigationWrap {
     display: flex;
     justify-content: space-between;
-    gap: 329px;
   }
 } */
