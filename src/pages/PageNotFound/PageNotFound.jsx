@@ -9,7 +9,7 @@ import Container from 'components/Container/Container';
 const PageNotFound = () => {
   return (
     <Container className={css.PageNotFound}>
-      <p class="text-error">Ooops! This page not found :(</p>
+      <p className="text-error">Ooops! This page not found :(</p>
 
       <img
         src={NotFoundMax}

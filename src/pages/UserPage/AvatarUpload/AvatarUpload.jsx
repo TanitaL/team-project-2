@@ -1,30 +1,43 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react';
+
+import Loader from 'components/Loader/Loader';
+import { BsPlusLg } from 'react-icons/bs';
+import defaultAvatar from 'pages/UserPage/avatar/Photodefault.jpg';
 import css from '../AvatarUpload/AvatarUpload.module.css';
 
 const AvatarUpload = ({ file, width, height }) => {
   const [preview, setPreview] = useState(null);
-  
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = () => {
-    setPreview(reader.result);
-  };
+
+  useEffect(() => {
+    const readFileContent = () => {
+      if (file) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          setPreview(reader.result);
+        };
+      } else {
+        setPreview(defaultAvatar);
+      }
+    };
+
+    readFileContent();
+  }, [file]);
+
   return (
-    <>
-      {/* <img className={css.previewImg} src={preview} alt={preview} width={width} height={height}/> */}
+    <div className={css.positionRelative}>
       {preview ? (
         <img
           className={css.avatarUpload}
           src={preview}
-          alt={preview}
-          width={width}
-          height={height}
+          alt="Your new prifile avatar"
         />
       ) : (
-        '...loading'
+        <Loader className={css.center} />
       )}
-    </>
+      {!file && <BsPlusLg className={css.center} />}
+    </div>
   );
 };
 
-export default AvatarUpload
+export default AvatarUpload;

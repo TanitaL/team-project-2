@@ -5,14 +5,14 @@
 
   margin-top: 62px;
 
-  @media screen and (min-width: 768px) {
-  }
-
   @media screen and (min-width: 1280px) {
     flex-direction: row;
-    justify-content: space-between;
     gap: 32px;
   }
+}
+
+.petListBox {
+  width: 100%;
 }
 
 .petSide {
@@ -20,10 +20,6 @@
 }
 
 .title {
-  /* width: 207px;
-  height: 38px; */
-
-  font-family: Manrope;
   font-size: 28px;
   font-weight: 500;
   line-height: 1.37;
@@ -34,56 +30,82 @@
 
 .section {
   position: relative;
-  width: 395px;
-  height: 520px;
+  width: 100%;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 21px;
-
-  margin-top: 24px;
-  padding: 20px 8px 68px 8px;
+  margin-top: 80px;
+  padding: 200px 8px 25px 8px;
 
   border-radius: 40px;
-  background-color: #ffffff;
+  background-color: #fff;
   box-shadow: 3px 8px 14px 0px #88c6fd30;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 24px;
+    padding: 20px 75px 20px 20px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 395px;
+    padding: 20px 24px 20px 16px;
+  }
+}
+
+.boxInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row-reverse;
+    align-items: flex-startp;
+    gap: 70px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    flex-direction: column;
+    gap: 60px;
+  }
 }
 
 .avatar {
+  position: absolute;
+  top: -43px;
+  left: 50%;
+  transform: translate(-50%, 0);
+
   display: flex;
   align-items: center;
+  justify-content: center;
+
+  @media screen and (min-width: 768px) {
+    position: static;
+    transform: none;
+  }
 }
 
-.imgInput {
-  top: 20px;
-  left: 107px;
-
-  width: 182px;
-  height: 182px;
-
-  border-radius: 40px;
-}
 .img {
-  top: 20px;
-  /* left: 107px; */
   width: 182px;
   height: 182px;
+
+  padding: 0;
   border-radius: 40px;
   border: none;
-  background-image: url(../../pages/UserPage/avatar/Photodefault.jpg);
 }
 
 .profileInput {
   position: relative;
   width: 100%;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: space-between;
   align-self: flex-start;
-  gap: 12px;
+  gap: 16px;
+
+  @media screen and (min-width: 768px) {
+    gap: 10px;
+  }
 }
 
 .flexContainer {
@@ -92,27 +114,37 @@
 }
 
 .label {
-  justify-content: flex-start;
-
-  font-family: Manrope;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
-  line-height: 25px;
-  letter-spacing: 0.04em;
-  text-align: left;
+  line-height: normal;
+  letter-spacing: 0.56px;
+  color: var(--unnamed, #111);
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+    letter-spacing: 0.72px;
+  }
 }
 
 .input {
+  width: 190px;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.48px;
+  color: var(--unnamed, #111);
+
+  padding: 4px 12px;
   border-radius: 20px;
-  padding: 4px 12px 4px 12px;
-  width: 70%;
   border: 1px solid rgba(84, 173, 255, 1);
-  /* width: Fixed (255px);
-    height: Hug (30px);
-    top: 457px;
-    left: 132px;
-    padding: 4px 12px 4px 12px;
-    gap: 191px; */
+
+  @media screen and (min-width: 768px) {
+    width: 255px;
+
+    font-size: 16px;
+    letter-spacing: 0.64px;
+  }
 }
 
 .ErrorMessage {
@@ -120,60 +152,166 @@
   font-size: 12px;
 }
 
-.button {
-  /* display: flax;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 20px;
-  gap: 7px;
-  font-family: Manrope;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 22px;
-  letter-spacing: 0.04em;
-  text-align: left;
-  color: rgba(136, 136, 136, 1);
+/* ------- Base Btn ------- */
 
-  background-color: red;
-  border: 2px; */
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 8px 20px;
-  gap: 7px;
-
-  width: 135px;
-  height: 40px;
-  text-align: left;
-  border-radius: 40px;
+.baseBtn {
+  display: inline-block;
+  background-color: transparent;
   border: none;
-  
-  background-color: var(--whight-color);
-  color: rgb(224, 215, 215);
-  font-size: 16px;
-  font-style: normal;
+  opacity: 0.75;
+  cursor: pointer;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ------- Save Btn ------- */
+
+.saveBtn {
+  composes: baseBtn;
+
+  margin-top: 90px;
+  margin-left: auto;
+  width: 248px;
+  padding: 5px;
+
+  font-size: 14px;
   font-weight: 700;
   line-height: normal;
+  letter-spacing: 0.56px;
+  color: var(--unnamed, #fef9f9);
+
+  border-radius: 40px;
+  background-color: var(--unnamed, #54adff);
+
+  @media screen and (min-width: 768px) {
+    margin-top: 0;
+    width: 255px;
+  }
+}
+.saveBtn:hover,
+.saveBtn:focus {
+  opacity: 1;
+  box-shadow: rgba(100, 100, 111, 0.2);
+}
+/* ------- Logout Btn ------- */
+
+.logoutBtn {
+  composes: baseBtn;
+  margin-top: 30px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
   letter-spacing: 0.64px;
+  color: var(--c, #888);
 
-  /* position: ; */
-  left: 10px;
-  bottom: 20px;
-  box-sizing: border-box;
-  outline: var(--background-color);
-  z-index: 20;
-  cursor: pointer;
+  @media screen and (min-width: 768px) {
+    margin-top: 15px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-top: 25px;
+  }
 }
-.button:hover {
-  text-shadow:0 1px 0 grey;
+.logoutBtn:hover,
+.logoutBtn:focus {
+  opacity: 1;
+  box-shadow: rgba(100, 100, 111, 0.2);
 }
 
-.editIcon {
+/* ------- Photo Btns ------- */
+
+.photoBtns {
   position: absolute;
-  top: 50%;
+  top: 155px;
   left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0; /* Начальное значение прозрачности - иконка скрыта */
-  visibility: hidden; /* Иконка скрыта, но занимает место */
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавное появление */
+  transform: translate(-50%, 0);
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.83;
+  letter-spacing: 0.48px;
+  color: var(--unnamed, #111);
+
+  @media screen and (min-width: 768px) {
+    top: 235px;
+    left: calc(100% - 165px);
+    transform: translate(-50%, 0);
+  }
+
+  @media screen and (min-width: 1280px) {
+    top: 215px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
 }
+
+/* ------- Confirm Btn ------- */
+
+.confirmBtn {
+  composes: baseBtn;
+}
+.confirmBtn:hover,
+.confirmBtn:focus {
+  opacity: 1;
+  box-shadow: rgba(100, 100, 111, 0.2);
+}
+
+/* ------- Edit Photo Btn ------- */
+
+.editPhotoBtn {
+  composes: baseBtn;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.editPhotoBtn:hover,
+.editPhotoBtn:focus {
+  opacity: 1;
+  box-shadow: rgba(100, 100, 111, 0.2);
+}
+
+/* ------- Edit Btn ------- */
+
+.editBtn {
+  composes: baseBtn;
+
+  position: absolute;
+  top: -25px;
+  right: 14px;
+  transform: translate(0, -100%);
+
+  @media screen and (min-width: 768px) {
+    top: 18px;
+    right: 18px;
+    transform: translate(0, 0);
+  }
+}
+.editBtn:hover,
+.editBtn:focus {
+  opacity: 1;
+  box-shadow: rgba(100, 100, 111, 0.2);
+}
+
+/* 
+  
+
+  @media screen and (min-width: 768px) {
+
+  }
+
+
+  @media screen and (min-width: 1280px) {
+
+  } 
+  
+  */
