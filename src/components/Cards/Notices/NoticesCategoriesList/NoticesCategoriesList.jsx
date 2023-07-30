@@ -6,7 +6,17 @@ const CategoryList = ({ data }) => {
   return (
     <ul className={css.list}>
       {data.map(
-        ({ id, title, file, location, age, sex, category, noticeId }) => (
+        ({
+          id,
+          title,
+          file,
+          location,
+          age,
+          sex,
+          category,
+          noticeId,
+          favorite=false,
+        }) => (
           <CategoryItem
             key={id}
             id={id}
@@ -17,6 +27,7 @@ const CategoryList = ({ data }) => {
             sex={sex}
             category={category}
             noticeId={noticeId}
+            favorite={favorite}
           />
         )
       )}

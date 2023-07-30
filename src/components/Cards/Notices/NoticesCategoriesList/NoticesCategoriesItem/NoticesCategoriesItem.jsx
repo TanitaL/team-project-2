@@ -25,7 +25,16 @@ import { addToFavorit } from 'redux/pets/operations';
 //   }
 // };
 
-const CategoryItem = ({ id, title, file, location, age, sex, category }) => {
+const CategoryItem = ({
+  id,
+  title,
+  file,
+  location,
+  age,
+  sex,
+  category,
+  favorite=false,
+}) => {
   const [imageError, setImageError] = useState(false);
   // isFavorite буде батися з редаксу, пропишу пізніше
   // const [isFavorite, setIsFavorite] = useState(false);
@@ -46,19 +55,6 @@ const CategoryItem = ({ id, title, file, location, age, sex, category }) => {
   const handleImageError = () => {
     setImageError(true);
   };
-
-
-  // useEffect(() => {
-  //   instance
-  //     .post(`/notices/${noticeId}/favorite`)
-  //     .then((response) => {
-  //       setIsFavorite(response.data.isFavorite);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error getting favorite status:', error);
-  //     });
-  // }, [noticeId]);
-
 
   const addToFavorites = () => {
     if (!isUserRegistered) {
@@ -96,7 +92,7 @@ const CategoryItem = ({ id, title, file, location, age, sex, category }) => {
     //       console.error('Error adding to favorites:', error);
     //     });
     // }
- 
+
   };
 
   const handleOpenModal = () => {
@@ -119,12 +115,7 @@ const CategoryItem = ({ id, title, file, location, age, sex, category }) => {
         />
         <p className={css.category}>{category}</p>
         <button className={css.addToFavoritesButton} onClick={addToFavorites}>
-          {/* Заміню тимчасово, коли пропишу редакс поверну */}
-          <svg width="24" height="24">
-            <use href={`${sprite}#icon-heart-on`}></use>
-          </svg>
-          {/* Не видаляти, коли буде в редаксі isFavorite треба повернути */}
-          {/* {isFavorite ? (
+          {favorite ? (
             <svg width="24" height="24">
               <use href={`${sprite}#icon-heart-off`}></use>
             </svg>
@@ -132,7 +123,7 @@ const CategoryItem = ({ id, title, file, location, age, sex, category }) => {
             <svg width="24" height="24">
               <use href={`${sprite}#icon-heart-on`}></use>
             </svg>
-          )} */}
+          )}
         </button>
 
         <button className={css.delFavoritesButton}>

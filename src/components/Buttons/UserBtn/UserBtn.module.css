@@ -12,12 +12,8 @@
   height: 30px;
 }
 
-.userBtn:hover {
-  border-radius: 50%;
-  border: 1px solid var(--yellow-color);
-}
-
+.userBtn:hover,
 .userBtn:focus {
-  border: 1px solid var(--yellow-color);
   border-radius: 50%;
+  border: 1px solid var(--yellow-color);
 }

@@ -2,102 +2,77 @@ import React, { useState, useEffect } from 'react';
 import CategoryList from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCategoriesList';
 import css from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCategoriesItem/NoticesCategoriesItem.module.css';
 
-import { instance } from 'service/api/api';
 import SearchComponent from '../../components/SearchComponent/SearchComponent';
 import NoticesCategoriesNav from '../../components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesFilters from 'components/NoticesFilters/NoticesFilters';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
 import Pagination from 'components/Pagination/Pagination';
+import { getPets, getIsLoading } from 'redux/pets/selectors';
+import {  useSelector } from 'react-redux';
+import Loader from 'components/LoaderPort/Loader';
+
 const NoticesPage = () => {
-  const [noticesData, setNoticesData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState('');
+  const pets = useSelector(getPets);
+  const isLoading = useSelector(getIsLoading);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const itemsPerPage = 10;
-  const getAllNotices = async () => {
-    try {
-      const response = await instance.get('notices');
-      return response.data.notices;
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      throw error;
-    }
-  };
+  const [query, setQuery] = useState('');
+
+  const visiblePets = pets.filter(notice =>
+    notice.title.toLowerCase().includes(query.toLowerCase())
+  );
 
   const handleSearch = async searchTerm => {
-    try {
-      setIsLoading(true);
-      const data = await getAllNotices();
-
-      if (searchTerm.trim() !== '') {
-        const filteredNotices = data.filter(notice =>
-          notice.title.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-        setNoticesData(filteredNotices);
-      } else {
-        setNoticesData(data);
-      }
-
-      setIsLoading(false);
-    } catch (error) {
-      setError('404');
-      setIsLoading(false);
+    const trimedQuery = searchTerm.trim();
+    if (trimedQuery) {
+      setQuery(trimedQuery);
     }
   };
 
   useEffect(() => {
-    const fetchNoticesData = async () => {
-      try {
-        const data = await getAllNotices();
-        setNoticesData(data);
-        setIsLoading(false);
-        const pages = Math.ceil(data.length / itemsPerPage);
-        setTotalPages(pages);
-      } catch (error) {
-        setError('404');
-        setIsLoading(false);
-      }
-    };
+    const pages = Math.ceil(pets.length / itemsPerPage);
+    setTotalPages(pages);
+  }, [pets.length]);
 
-    fetchNoticesData();
-  }, []);
   const handlePageChange = pageNumber => {
     setCurrentPage(pageNumber);
   };
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = noticesData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = visiblePets.slice(indexOfFirstItem, indexOfLastItem);
 
-  if (isLoading) {
-    return (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh',
-        }}
-      >
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div
+  //       style={{
+  //         display: 'flex',
+  //         justifyContent: 'center',
+  //         alignItems: 'center',
+  //         height: '100vh',
+  //       }}
+  //     >
+  //       <div className="spinner-border text-primary" role="status">
+  //         <span className="visually-hidden">Loading...</span>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
-  if (error === '404') {
-    return (
-      <div>
-        <img src="https://http.cat/407" alt="Error 404" />
-        <p>Oops! Something went wrong.</p>
-      </div>
-    );
-  }
+  // if (error === '404') {
+  //   return (
+  //     <div>
+  //       <img src="https://http.cat/407" alt="Error 404" />
+  //       <p>Oops! Something went wrong.</p>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div>
+      {isLoading && <Loader />}
       <h1 className={css.textNoticesPage}>Find your favorite pet</h1>
       <SearchComponent onSearch={handleSearch} />
       <div className={css.categoryFilterWrapper}>
@@ -107,9 +82,7 @@ const NoticesPage = () => {
           <AddPetButton />
         </div>
       </div>
-
       <CategoryList data={currentItems} />
-
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}

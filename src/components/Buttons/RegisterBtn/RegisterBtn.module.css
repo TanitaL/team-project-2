@@ -13,9 +13,7 @@
   background-color: var(--background-color);
 
   font-size: 16px;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
   letter-spacing: 0.64px;
   color: var(--yellow-color);
 
@@ -29,7 +27,8 @@
   }
 }
 
-.registerBtn:hover {
+.registerBtn:hover,
+.registerBtn:focus {
   background-color: var(--yellow-color);
   color: var(--background-color);
 }

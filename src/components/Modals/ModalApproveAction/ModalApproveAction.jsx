@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { ReactComponent as CrossBlue } from '../../../assets/svg/cross-blue-mobile-opt.svg';
+import sprite from 'assets/svg/sprite-cards.svg';
 import css from './ModalApproveAction.module.css';
+
 
 const ModalApproveAction = ({
   children,
@@ -33,7 +34,9 @@ const ModalApproveAction = ({
             className={css.modalCrossBtn}
             onClick={handleCancel}
           >
-            <CrossBlue />
+            <svg width="24" height="24">
+              <use href={`${sprite}#icon-close`} />
+            </svg>
           </button>
         </div>
         <div className={css.modalBody}>
@@ -62,35 +65,3 @@ const ModalApproveAction = ({
 };
 
 export default ModalApproveAction;
-
-//  <div className={css.modalOverlay} onClick={handleOverlay}>
-//    <div className={css.modalContainer}>
-//      <div className={css.modalHeader}>
-//        <button
-//          type="button"
-//          className={css.modalCrossBtn}
-//          onClick={handleCancel}
-//        >
-//          <CrossBlue />
-//        </button>
-//      </div>
-//      <div className={css.modalBody}>
-//        <p className={css.modalText}>{content}</p>
-//        <button
-//          type="button"
-//          onClick={handleCancel}
-//          className={css.modalCancelBtn}
-//        >
-//          Cancel
-//        </button>
-//        <button
-//          type="button"
-//          onClick={handleSuccess}
-//          className={css.modalYesBtn}
-//        >
-//          {successButtonText}
-//          <LogoutSvg />
-//        </button>
-//      </div>
-//    </div>
-//  </div>;
