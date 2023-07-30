@@ -28,7 +28,22 @@
     margin-top: 80px;
     margin-left: 20px;
     font-size: 24px;
+
+    animation: pulsate 2s infinite;
 }
+
+@keyframes pulsate {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1); /* Збільшимо текст на 10% від оригінального розміру */
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
 
 @media screen and (min-width: 768px) {
     .textError{

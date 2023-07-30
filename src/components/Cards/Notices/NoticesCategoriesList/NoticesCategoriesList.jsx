@@ -15,7 +15,7 @@ const CategoryList = ({ data }) => {
           sex,
           category,
           noticeId,
-          favorite,
+          favorite=false,
         }) => (
           <CategoryItem
             key={id}
