@@ -13,7 +13,7 @@ import prepareFormData from 'service/addPetHelpers/prepareFormData';
 import { useNavigate } from 'react-router-dom';
 import { getError, getIsLoading } from 'redux/pets/selectors';
 import Loader from 'components/LoaderPort/Loader';
-
+import makeformData from 'service/addPetHelpers/makeformData';
 
 const initialValues = {
   category: 'your pet',
@@ -45,29 +45,27 @@ const AddPetForm = () => {
   const isLoading = useSelector(getIsLoading);
   console.log('🚀 ~ AddPetForm ~ isLoading:', isLoading);
 
-  const makeRequest = values => {
-    
-    const transformedValues = transformFormData(values);
-    const newValues = prepareFormData(transformedValues);
-    console.log('🚀 ~ makeRequest ~ newValues:', newValues);
-    const formData = new FormData();
-    for (let value in newValues) {
-      formData.append(value, newValues[value]);
-    }
+  // const makeRequest = values => {
+  //   const transformedValues = transformFormData(values);
+  //   const newValues = prepareFormData(transformedValues);
+  //   console.log('🚀 ~ makeRequest ~ newValues:', newValues);
+  //   const formData = new FormData();
+  //   for (let value in newValues) {
+  //     formData.append(value, newValues[value]);
+  //   }
 
-    for (let property of formData.entries()) {
-      console.log(property[0], property[1]);
-    }
-
-    dispatsh(addPet(formData));
-  };
+  //   for (let property of formData.entries()) {
+  //     console.log(property[0], property[1]);
+  //   }
+  // };
 
   const handleNextStep = async (newData, final = false, actions) => {
     setData(prev => ({ ...prev, ...newData }));
 
     if (final) {
-      await makeRequest(newData);
-
+      // await makeRequest(newData);
+      const formData = makeformData(newData);
+      dispatsh(addPet(formData));
       if (data.category === MYPET.label && !error && !isLoading) {
         navigate('/user');
       } else if (data.category !== MYPET.label && !error && !isLoading) {

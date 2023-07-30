@@ -33,7 +33,7 @@ const CategoryItem = ({
   age,
   sex,
   category,
-  favorite,
+  favorite=false,
 }) => {
   const [imageError, setImageError] = useState(false);
   // isFavorite буде батися з редаксу, пропишу пізніше
