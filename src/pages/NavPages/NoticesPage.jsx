@@ -18,7 +18,6 @@ const NoticesPage = () => {
   const pets = useSelector(getPets);
   const isAuth = useSelector(authSelector);
   const favorites = useSelector(favoritesSelector)
-// const [notices, setNotices] = useState(pets);
   
   const [noticesData, setNoticesData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -32,7 +31,7 @@ const NoticesPage = () => {
     if (isAuth && favorites?.length > 0) {
   dispatch(addFlagFavorite(favorites));
   }
-  }, [favorites.length, isAuth])
+  }, [dispatch, favorites, favorites?.length, isAuth])
   
 
 
@@ -66,19 +65,21 @@ const NoticesPage = () => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+   const pages = Math.ceil(pets.length / itemsPerPage);
+   setTotalPages(pages);
+  }, [pets.length])
+  
   
 
   useEffect(() => {
 
     const fetchNoticesData = async () => {
-      const pages = Math.ceil(pets.length / itemsPerPage);
-      setTotalPages(pages);
       try {
         const data = await getAllNotices();
         setNoticesData(data);
         setIsLoading(false);
-        // const pages = Math.ceil(pets.length / itemsPerPage);
-        // setTotalPages(pages);
       } catch (error) {
         setError('404');
         setIsLoading(false);
@@ -87,13 +88,14 @@ const NoticesPage = () => {
 
     fetchNoticesData();
   }, []);
+  
   const handlePageChange = pageNumber => {
     setCurrentPage(pageNumber);
   };
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = noticesData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = pets.slice(indexOfFirstItem, indexOfLastItem);
 
   if (isLoading) {
     return (
@@ -133,8 +135,8 @@ const NoticesPage = () => {
         </div>
       </div>
 
-      {/* <CategoryList data={currentItems} /> */}
-      <CategoryList data={pets} />
+      <CategoryList data={currentItems} />
+      {/* <CategoryList data={pets} /> */}
 
       <Pagination
         currentPage={currentPage}
