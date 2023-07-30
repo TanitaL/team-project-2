@@ -37,7 +37,7 @@ const BurgerMenu = () => {
           <div className={css.headerNav}>
             {isMediumScreen && isAuth && (
               <div className={css.userNav}>
-                <Logout />
+                <Logout closeBurgerMenu={closeBurgerMenu} />
               </div>
             )}
 

@@ -8,7 +8,7 @@ import sprite from 'assets/svg/sprite-cards.svg';
 import { toast } from 'react-toastify';
 import { errorSelector } from 'redux/auth/selectors';
 
-const Logout = () => {
+const Logout = ({ closeBurgerMenu }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const error = useSelector(errorSelector);
   const dispatch = useDispatch();
@@ -35,7 +35,8 @@ const Logout = () => {
   const handleSuccess = () => {
     dispatch(austOperationThunk({ endpoint: 'logout' }));
     setIsOpenModal(false);
-    navigate('/');
+    closeBurgerMenu(false);
+    navigate('/notices');
   };
 
   const handleCancel = () => {
