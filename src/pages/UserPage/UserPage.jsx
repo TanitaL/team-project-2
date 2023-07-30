@@ -1,10 +1,15 @@
 import React from 'react';
-import Container from 'components/Container/Container';
+import Container from 'components/Container/Container/Container';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-// import LogoutBtn from 'components/Buttons/LogoutBtn/LogoutBtn';
+import { ReactComponent as LogoutSvg } from '../UserPage/avatar/logout.svg';
+
+import { BsPlusLg } from 'react-icons/bs';
 import MyPetsList from '../../components/Cards/MyPets/MyPetsList/MyPetsList';
 import css from '../UserPage/UserPage.module.css';
+import { useRef } from 'react';
+
+import AvatarUpload from './AvatarUpload/AvatarUpload';
 
 const validate = Yup.object({
   avatar: Yup.mixed()
@@ -29,6 +34,7 @@ const UserPage = () => {
   const onSubmit = values => {
     console.log(values);
   };
+  const fileRef = useRef(null);
 
   return (
     <Container>
@@ -37,7 +43,7 @@ const UserPage = () => {
           <h2 className={css.title}> My information:</h2>
           <Formik
             initialValues={{
-              avatar: '',
+              avatar: null,
               name: '',
               email: '',
               birthday: '',
@@ -47,30 +53,33 @@ const UserPage = () => {
             validationSchema={validate}
             onSubmit={onSubmit}
           >
-            {({ setFieldValue }) => (
+            {({ values, setFieldValue }) => (
               <Form className={css.section}>
                 <div className={css.avatar}>
-                  <picture>
-                    <img
-                      src="/avatar/Photodefault.jpg"
-                      alt=""
-                      className={css.img}
-                    />
-                  </picture>
-
-                  {<label htmlFor="photo"></label>}
-                  {
-                    <input
-                      type="file"
-                      name="photo"
-                      id="photo"
-                      accept="image/*"
-                      onChange={event => {
-                        setFieldValue('photo', event.currentTarget.files[0]);
-                      }}
-                    />
-                  }
-                  <ErrorMessage name="photo" component="div" />
+                  <input
+                    ref={fileRef}
+                    hidden
+                    type="file"
+                    name="file"
+                    onChange={event => {
+                      setFieldValue('file', event.target.files[0]);
+                    }}
+                  />
+                  <button
+                    className={css.img}
+                    type="button"
+                    onClick={() => {
+                      fileRef.current.click();
+                    }}
+                  >
+                    {!values.file && <BsPlusLg />}
+                    {values.file && (
+                      <>
+                        <AvatarUpload file={values.file} />
+                      </>
+                    )}
+                  </button>
+                  <ErrorMessage name="photo" component="div"/>
                 </div>
                 <div className={css.profileInput}>
                   <div className={css.item}>
@@ -173,16 +182,19 @@ const UserPage = () => {
                     />
                   </div>
                 </div>
+                <div className='btn'>
+                <button src="" type="button" className={css.button} >
+                <LogoutSvg className={css.buttonSvg}/>
 
-                <button src="" type="submit" className={css.button}>
                   Log out
                 </button>
+                </div>
               </Form>
             )}
           </Formik>
         </div>
-        <div>
-          <h2 className={css.title}>My pets:</h2>
+        <div className={css.conteinerTitle}>
+          <h2 className={css.title}> My pets:</h2>
           <MyPetsList />
         </div>
       </div>

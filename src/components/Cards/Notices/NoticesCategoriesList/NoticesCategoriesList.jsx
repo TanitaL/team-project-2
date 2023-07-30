@@ -5,19 +5,32 @@ import css from './NoticesCategoriesList.module.css';
 const CategoryList = ({ data }) => {
   return (
     <ul className={css.list}>
-      {data.map(({ _id, title, file, location, age, sex, category, noticeId }) => (
-        <CategoryItem
-          key={_id}
-          _id={_id}
-          title={title}
-          file={file}
-          location={location}
-          age={age}
-          sex={sex}
-          category={category}
-          noticeId={noticeId}
-        />
-      ))}
+      {data.map(
+        ({
+          id,
+          title,
+          file,
+          location,
+          age,
+          sex,
+          category,
+          noticeId,
+          favorite=false,
+        }) => (
+          <CategoryItem
+            key={id}
+            id={id}
+            title={title}
+            file={file}
+            location={location}
+            age={age}
+            sex={sex}
+            category={category}
+            noticeId={noticeId}
+            favorite={favorite}
+          />
+        )
+      )}
     </ul>
   );
 };

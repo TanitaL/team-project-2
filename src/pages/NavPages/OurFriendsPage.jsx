@@ -3,6 +3,7 @@ import Container from 'components/Container/Container';
 import { OurFriend } from 'components/OurFriendList/ourFriendList';
 
 
+
 const OurFriendsPage = () => {
   return (
     <Container>

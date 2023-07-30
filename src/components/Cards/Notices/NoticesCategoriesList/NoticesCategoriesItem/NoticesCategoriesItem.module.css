@@ -1,40 +1,26 @@
 .item {
-  border-radius: 20px;
+  border-radius: 40px;
   background: #ffffff;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   color: #111111;
 
   display: flex;
   flex-direction: column;
-
-  width: 288px;
+  width: 280px;
   height: 456px;
+  flex-shrink: 0;
+
   position: relative;
   margin-bottom: 24px;
 }
 
-/* .item::after {
-  border-radius: 40px;
-  margin-bottom: 12px;
-
-  content: '';
-  position: absolute;
-  top: -22px;
-  left: 0;
-  width: 100%;
-  height: 8px;
-
-  @media screen and (min-width: 768px) {
-    margin-bottom: 12px;
-  }
-} */
-
 .image {
   align-self: flex-start;
-  width: 288px;
+  width: 280px;
   height: 288px;
-  margin-bottom: 16px;
+
   object-fit: cover;
+  object-position: center;
 
   @media screen and (min-width: 480px) {
     height: 180px;
@@ -59,17 +45,33 @@
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  fill: #54adff;
   transition: background-color 0.3s;
 }
 
-.itemBox {
+.delFavoritesButton {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  top: 68px;
+  left: 236px;
+  background-color: #cce4fb;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* .itemBox {
   padding: 0 12px 12px 12px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-}
+} */
 
 .title {
   font-family: 'Manrope';
@@ -77,15 +79,15 @@
   font-weight: 700;
   font-size: 24px;
   line-height: 33px;
-  margin-bottom: 20px;
+  margin: 20px 29px 20px 20px;
   margin-top: 20px;
 
   width: 231px;
   height: 66px;
 
   display: -webkit-box;
-  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
 
@@ -107,9 +109,7 @@
 
   flex-direction: column;
   position: absolute;
-  top: -195px;
-  left: -12px;
-  /* flex-shrink: 0; */
+  top: 16px;
 
   display: flex;
   width: 126px;
@@ -124,8 +124,8 @@
   display: flex;
   position: absolute;
   gap: 12px;
-  top: 210px;
-  left: 12px;
+  top: 248px;
+  left: 8px;
 
   @media screen and (min-width: 768px) {
     top: 210px;
@@ -169,7 +169,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  /* margin: 1px; */
 
   @media screen and (min-width: 768px) {
     font-size: 12px;
@@ -298,18 +297,25 @@
 .textNoticesPage {
   color: var(--unnamed, #111);
   font-family: Manrope;
-  font-size: 48px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   margin: 50px auto;
+  justify-content: center;
+  align-items: center;
 
-  width: 492px;
-  height: 66px;
+  @media screen and (min-width: 320px) {
+    width: 246px;
+    height: 33px;
+  }
 
-  @media screen and (min-width: 768px) {
-    width: 100%;
-    max-width: 680px;
+  @media screen and (min-width: 640px) {
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    width: 492px;
+    height: 66px;
   }
 }
 

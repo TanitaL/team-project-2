@@ -4,12 +4,16 @@ import FormStepper from '../FormStepper/FormStepper';
 import MoreInfo from '../Steps/MoreInfo';
 import PersonalDetails from '../Steps/PersonalDetails';
 import css from './AddPetForm.module.css';
-import { petCategory } from 'constants/petCategory';
-import { useDispatch } from 'react-redux';
+import { categoryObj, petCategory } from 'constants/petCategory';
+import { useDispatch, useSelector } from 'react-redux';
 import { addPet } from 'redux/pets/operations';
 import stepsLable from 'constants/stepsLable';
-import transformFormData from 'service/addPetHelpers/transformFormData';
-import prepareFormData from 'service/addPetHelpers/prepareFormData';
+// import transformFormData from 'service/addPetHelpers/transformFormData';
+// import prepareFormData from 'service/addPetHelpers/prepareFormData';
+import { useNavigate } from 'react-router-dom';
+import { getError, getIsLoading } from 'redux/pets/selectors';
+import Loader from 'components/LoaderPort/Loader';
+import makeformData from 'service/addPetHelpers/makeformData';
 
 const initialValues = {
   category: 'your pet',
@@ -24,63 +28,82 @@ const initialValues = {
   comments: '',
 };
 
-// const stepsLable = [
-//   { label: 'Choose option', value: 'choose_option' },
-//   { label: 'Personal details', value: 'personal_details' },
-//   { label: 'More info', value: 'more_info' },
-// ];
+const { MYPET } = categoryObj;
 
 const AddPetForm = () => {
   const [data, setData] = useState(initialValues);
   const [currentStep, setCurrentStep] = useState(0);
   const dispatsh = useDispatch();
+  const navigate = useNavigate();
+  const error = useSelector(getError);
+  const isLoading = useSelector(getIsLoading);
+  // const pets = useSelector(getPets);
+  console.log('🚀 ~ AddPetForm ~ isLoading:', isLoading);
 
-  const makeRequest = values => {
-    // const {
-    //   category,
-    //   title,
-    //   name,
-    //   date,
-    //   sex,
-    //   file,
-    //   location,
-    //   price,
-    //   typePet: type,
-    //   comments,
-    // } = values;
-    // const newValues = {
-    //   category,
-    //   title,
-    //   name,
-    //   date,
-    //   sex,
-    //   file,
-    //   location,
-    //   price,
-    //   type,
-    //   comments,
-    // };
-    const transformedValues = transformFormData(values);
-const newValues = prepareFormData(transformedValues);
-    console.log("🚀 ~ makeRequest ~ newValues:", newValues)
-    const formData = new FormData();
-    for (let value in newValues) {
-      formData.append(value, newValues[value]);
-    }
+  // const makeRequest = values => {
+  //   const transformedValues = transformFormData(values);
+  //   const newValues = prepareFormData(transformedValues);
+  //   console.log('🚀 ~ makeRequest ~ newValues:', newValues);
+  //   const formData = new FormData();
+  //   for (let value in newValues) {
+  //     formData.append(value, newValues[value]);
+  //   }
 
-    for (let property of formData.entries()) {
-      console.log(property[0], property[1]);
-    }
+  //   for (let property of formData.entries()) {
+  //     console.log(property[0], property[1]);
+  //   }
+  // };
 
-    dispatsh(addPet(formData));
-  };
-
-  const handleNextStep = (newData, final = false, actions) => {
+  const handleNextStep = async (newData, final = false, actions) => {
     setData(prev => ({ ...prev, ...newData }));
 
     if (final) {
-      makeRequest(newData);
-      // actions.resetForm();
+      // await makeRequest(newData);
+      const formData = makeformData(newData);
+      dispatsh(addPet(formData))
+        .then(() => {
+          console.log('Це пере умовою у зен: error:', error);
+          if (data.category === MYPET.label && !error && !isLoading) {
+            // console.log('Це перед навігейтом /user');
+            // console.log('Це isLoading  перед навігейтом /user', isLoading);
+
+            navigate('/user');
+            // console.log('Це isLoading  after навігейтом /user', isLoading);
+          } else if (data.category !== MYPET.label && !isLoading) {
+            // console.log('Це isLoading  перед навігейтом /notices', isLoading);
+            if (!error) {
+              console.log('🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 ~ .then ~ !error:', !error);
+              navigate('/notices');
+            }
+
+            // console.log('Це isLoading  after навігейтом /notices', isLoading);
+          }
+        })
+        .catch(error => {
+          // Handle any errors that occurred during the asynchronous operation
+          console.log('Error:', error);
+        });
+
+      // if (data.category === MYPET.label && !error && !isLoading) {
+      //   console.log('Це перед навігейтом /user');
+
+      //     console.log('Це isLoading  перед навігейтом /user', isLoading);
+      //     navigate('/user');
+      //     console.log('Це isLoading  after навігейтом /user', isLoading);
+
+      // } else if (data.category !== MYPET.label && !isLoading) {
+
+      //     console.log('Це isLoading  перед навігейтом /notices', isLoading);
+      //     navigate('/notices');
+      //     console.log('Це isLoading  after навігейтом /notices', isLoading);
+
+      // }
+
+      // if (!error && !isLoading) {
+      //   setData(initialValues);
+      //   actions.resetForm();
+      // }
+
       return;
     }
 
@@ -97,10 +120,8 @@ const newValues = prepareFormData(transformedValues);
     <PersonalDetails next={handleNextStep} data={data} prev={handlePrevStep} />,
     <MoreInfo next={handleNextStep} data={data} prev={handlePrevStep} />,
   ];
-  console.log('🚀 ~ handleNextStep ~ data:', data);
-  console.log('🚀 ~ AddPetForm ~ data:', data.date);
-  console.log('🚀 ~ AddPetForm ~ typeof(data.date):', typeof data.date);
-  
+  // console.log('🚀 ~ handleNextStep ~ data:', data);
+
   return (
     <section
       className={
@@ -109,6 +130,7 @@ const newValues = prepareFormData(transformedValues);
           : css.section
       }
     >
+      {isLoading && <Loader />}
       {(currentStep === 0 || data.category === petCategory[0]) && (
         <h1 className={css.title}>Add pet</h1>
       )}
