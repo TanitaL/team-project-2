@@ -35,10 +35,12 @@ export const addFlagFavorite = createAsyncThunk(
 export const addPet = createAsyncThunk(
   'pets/addPet',
   async (data, thunkAPI) => {
-    console.log('🚀 ~ data:', data);
+    
+    console.log('Це addToFavorit до запита');
     try {
       const response = await instance.post('/notices', data);
-      console.log('🚀 ~ response.data:', response.data);
+      console.log('Це addToFavorit після запита');
+     
       return response.data.notice;
     } catch (error) {
       console.log('🚀 ~ error.message:', error.message);
