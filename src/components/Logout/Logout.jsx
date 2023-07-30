@@ -13,7 +13,7 @@ const Logout = () => {
 
   const handleSuccess = () => {
     dispatch(austOperationThunk({ endpoint: 'logout' }));
-
+    setIsOpenModal(false);
     navigate('/');
   };
 
