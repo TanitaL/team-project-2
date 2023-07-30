@@ -25,7 +25,16 @@ import { addToFavorit } from 'redux/pets/operations';
 //   }
 // };
 
-const CategoryItem = ({ id, title, file, location, age, sex, category }) => {
+const CategoryItem = ({
+  id,
+  title,
+  file,
+  location,
+  age,
+  sex,
+  category,
+  favorite,
+}) => {
   const [imageError, setImageError] = useState(false);
   // isFavorite буде батися з редаксу, пропишу пізніше
   // const [isFavorite, setIsFavorite] = useState(false);
@@ -47,19 +56,6 @@ const CategoryItem = ({ id, title, file, location, age, sex, category }) => {
     setImageError(true);
   };
 
-
-  // useEffect(() => {
-  //   instance
-  //     .post(`/notices/${noticeId}/favorite`)
-  //     .then((response) => {
-  //       setIsFavorite(response.data.isFavorite);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error getting favorite status:', error);
-  //     });
-  // }, [noticeId]);
-
-
   const addToFavorites = () => {
     if (!isUserRegistered) {
       toast.warning('Please register to add to favorites!', {
@@ -75,24 +71,6 @@ const CategoryItem = ({ id, title, file, location, age, sex, category }) => {
     }
     dispatch(addToFavorit(id));
 
-    // if (isFavorite) {
-    //     addDelPet(_id)
-    // .then(() => {
-    //   setIsFavorite(!isFavorite);
-    // })
-    // .catch((error) => {
-    //   console.error('Error adding/removing from favorites:', error);
-    // });
-    // } else {
-    //   addDelPet(_id)
-    //     .then(() => {
-    //       setIsFavorite(true);
-    //     })
-    //     .catch((error) => {
-    //       console.error('Error adding to favorites:', error);
-    //     });
-    // }
- 
   };
 
   const handleOpenModal = () => {
@@ -114,12 +92,7 @@ const CategoryItem = ({ id, title, file, location, age, sex, category }) => {
           onError={handleImageError}
         />
         <button className={css.addToFavoritesButton} onClick={addToFavorites}>
-          {/* Заміню тимчасово, коли пропишу редакс поверну */}
-          <svg width="24" height="24">
-            <use href={`${sprite}#icon-heart-on`}></use>
-          </svg>
-          {/* Не видаляти, коли буде в редаксі isFavorite треба повернути */}
-          {/* {isFavorite ? (
+          {favorite ? (
             <svg width="24" height="24">
               <use href={`${sprite}#icon-heart-off`}></use>
             </svg>
@@ -127,7 +100,7 @@ const CategoryItem = ({ id, title, file, location, age, sex, category }) => {
             <svg width="24" height="24">
               <use href={`${sprite}#icon-heart-on`}></use>
             </svg>
-          )} */}
+          )}
         </button>
       </div>
 
