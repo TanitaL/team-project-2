@@ -75,6 +75,10 @@ const CategoryItem = ({ id, title, file, location, age, sex, category }) => {
     }
     dispatch(addToFavorit(id));
 
+    // const delFavorites = () => {
+
+    // }; 
+
     // if (isFavorite) {
     //     addDelPet(_id)
     // .then(() => {
@@ -113,6 +117,7 @@ const CategoryItem = ({ id, title, file, location, age, sex, category }) => {
           src={imageError ? 'https://http.cat/407' : file}
           onError={handleImageError}
         />
+        <p className={css.category}>{category}</p>
         <button className={css.addToFavoritesButton} onClick={addToFavorites}>
           {/* Заміню тимчасово, коли пропишу редакс поверну */}
           <svg width="24" height="24">
@@ -129,12 +134,17 @@ const CategoryItem = ({ id, title, file, location, age, sex, category }) => {
             </svg>
           )} */}
         </button>
+
+        <button className={css.delFavoritesButton}>
+          <svg width="24" height="24">
+              <use href={`${sprite}#icon-delete`}></use>
+          </svg></button>
+        
       </div>
 
       <div className={css.itemBox}>
         <h2 className={css.title}>{title}</h2>
         <div className={css.infoWrapper}>
-          <p className={css.category}>{category}</p>
           <p className={css.location}>
             <svg className={css.iconSvg} width="24" height="24">
               <use href={`${sprite}#icon-location-1`}></use>
