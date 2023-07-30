@@ -71,6 +71,28 @@ const CategoryItem = ({
     }
     dispatch(addToFavorit(id));
 
+    // const delFavorites = () => {
+
+    // }; 
+
+    // if (isFavorite) {
+    //     addDelPet(_id)
+    // .then(() => {
+    //   setIsFavorite(!isFavorite);
+    // })
+    // .catch((error) => {
+    //   console.error('Error adding/removing from favorites:', error);
+    // });
+    // } else {
+    //   addDelPet(_id)
+    //     .then(() => {
+    //       setIsFavorite(true);
+    //     })
+    //     .catch((error) => {
+    //       console.error('Error adding to favorites:', error);
+    //     });
+    // }
+
   };
 
   const handleOpenModal = () => {
@@ -91,6 +113,7 @@ const CategoryItem = ({
           src={imageError ? 'https://http.cat/407' : file}
           onError={handleImageError}
         />
+        <p className={css.category}>{category}</p>
         <button className={css.addToFavoritesButton} onClick={addToFavorites}>
           {favorite ? (
             <svg width="24" height="24">
@@ -102,12 +125,17 @@ const CategoryItem = ({
             </svg>
           )}
         </button>
+
+        <button className={css.delFavoritesButton}>
+          <svg width="24" height="24">
+              <use href={`${sprite}#icon-delete`}></use>
+          </svg></button>
+        
       </div>
 
       <div className={css.itemBox}>
         <h2 className={css.title}>{title}</h2>
         <div className={css.infoWrapper}>
-          <p className={css.category}>{category}</p>
           <p className={css.location}>
             <svg className={css.iconSvg} width="24" height="24">
               <use href={`${sprite}#icon-location-1`}></use>
