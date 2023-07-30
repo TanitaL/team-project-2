@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import css from './AuthNavPage.module.css';
@@ -12,9 +12,14 @@ import { errorSelector } from 'redux/auth/selectors';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ModalRegister from 'components/Modals/ModalRegister/ModalRegister';
+import { async } from 'q';
+import { awaitExpression } from '@babel/types';
 
 const RegisterPage = () => {
   const error = useSelector(errorSelector);
+
+  const [modalOpen, setModalOpen] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -42,7 +47,6 @@ const RegisterPage = () => {
     if (!error) {
       return;
     }
-
     const notify = () =>
       toast.error(error.data.message ?? '', {
         position: 'top-right',
@@ -56,6 +60,24 @@ const RegisterPage = () => {
       });
     notify();
   }, [error]);
+
+  const openModal = async () => {
+    if (error) {
+      return;
+    }
+    setModalOpen(true);
+  };
+
+  const resetForm = async actions => {
+    switch (error) {
+      case null:
+        await actions.resetForm();
+        break;
+      default:
+        return;
+    }
+  };
+
   return (
     <>
       <Formik
@@ -66,7 +88,7 @@ const RegisterPage = () => {
           confirmPassword: '',
         }}
         validationSchema={validate}
-        onSubmit={(values, actions) => {
+        onSubmit={(values, { resetForm }) => {
           const { name, email, password } = values;
           dispatch(
             austOperationThunk({
@@ -78,10 +100,13 @@ const RegisterPage = () => {
               },
             })
           );
-          if (!error) {
-            return async () => {
-              actions.resetForm();
-            };
+
+          switch (error) {
+            case null:
+              resetForm();
+              break;
+            default:
+              return;
           }
         }}
       >
@@ -114,7 +139,11 @@ const RegisterPage = () => {
                   id="imgConfirmPasswordInput"
                   type="password"
                 />
-                <button className={css.FormRegister__Button} type="submit">
+                <button
+                  onClick={openModal}
+                  className={css.FormRegister__Button}
+                  type="submit"
+                >
                   Registration
                 </button>
 
@@ -125,6 +154,7 @@ const RegisterPage = () => {
                   </NavLink>
                 </p>
               </Form>
+              {/* {modalOpen && <ModalRegister closeModal={setModalOpen} />} */}
             </div>
           </div>
         )}

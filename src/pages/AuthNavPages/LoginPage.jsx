@@ -47,7 +47,7 @@ const LoginPage = () => {
           password: '',
         }}
         validationSchema={validate}
-        onSubmit={(values, actions) => {
+        onSubmit={(values, { resetForm }) => {
           const { email, password } = values;
           dispatch(
             austOperationThunk({
@@ -58,10 +58,12 @@ const LoginPage = () => {
               },
             })
           );
-          if (!error) {
-            return async () => {
-              actions.resetForm();
-            };
+          switch (error) {
+            case null:
+              resetForm();
+              break;
+            default:
+              return;
           }
         }}
       >
