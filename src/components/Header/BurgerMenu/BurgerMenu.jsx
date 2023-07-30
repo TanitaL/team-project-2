@@ -15,8 +15,6 @@ const BurgerMenu = () => {
   const auth = useSelector(userSelector);
   const isAuth = useSelector(authSelector);
 
-  console.log(isAuth);
-
   const isSmallScreen = useMediaQuery('(max-width: 767px)');
   const isMediumScreen = useMediaQuery(
     '(min-width: 768px) and (max-width: 1279px)'
