@@ -1,0 +1,23 @@
+.bgContainer {
+  background-image: url(assets/images/bg-paws-mobile-1-x-opt.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 448px;
+}
+
+@media screen and (min-width: 768px) {
+  .bgContainer {
+    background-image: url(assets/images/bg-paws-tablet-1x-opt.png);
+    height: 1040px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .bgContainer {
+    height: 820px;
+    width: 1280px;
+    margin: 0 auto;
+    background-image: url(assets/images/bg-paws-desktop-1x-opt.png);
+  }
+}

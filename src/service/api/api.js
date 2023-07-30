@@ -9,5 +9,5 @@ export const setToken = token => {
 };
 
 export const deleteToken = () => {
-  delete instance.defaults.headers.common['Authorization'];
+  instance.defaults.headers.common['Authorization'] = '';
 };

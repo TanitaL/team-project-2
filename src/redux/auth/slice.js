@@ -1,14 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginThunk, logoutThunk, refreshThunk } from './thunks';
+import { austOperationThunk } from './thunks';
 
-const fullfiled = (state, { payload }) => {
-  state.user = payload.user;
-  state.token = payload.token;
-};
-
-const logoutFullfiled = state => {
-  state.user = {};
-  state.token = '';
+const fullfiled = (state, { meta, payload = {} }) => {
+  const {
+    arg: { endpoint },
+  } = meta;
+  const { user, token } = payload;
+  switch (endpoint) {
+    case 'login':
+      state.user = user;
+      state.token = token;
+      break;
+    case 'logout':
+      state.user = {};
+      state.token = '';
+      break;
+    case 'current':
+      state.user = user;
+      state.token = token;
+      break;
+    case 'verify':
+      state.token = token;
+      break;
+    default:
+      return;
+  }
 };
 
 const handleFulfilled = state => {
@@ -20,9 +36,9 @@ const handlePending = state => {
   state.isLoading = true;
 };
 
-const handleRejected = (state, { payload }) => {
+const handleRejected = (state, { payload: { data, status } }) => {
   state.isLoading = false;
-  state.error = payload;
+  state.error = { data, status };
 };
 
 const authSlice = createSlice({
@@ -30,14 +46,12 @@ const authSlice = createSlice({
   initialState: {
     user: {},
     isLoading: false,
-    token: false,
+    token: '',
     error: null,
   },
   extraReducers: builder => {
     builder
-      .addCase(loginThunk.fulfilled, fullfiled)
-      .addCase(refreshThunk.fulfilled, fullfiled)
-      .addCase(logoutThunk.fulfilled, logoutFullfiled)
+      .addCase(austOperationThunk.fulfilled, fullfiled)
 
       .addMatcher(action => action.type.endsWith('/pending'), handlePending)
       .addMatcher(action => action.type.endsWith('/fulfilled'), handleFulfilled)

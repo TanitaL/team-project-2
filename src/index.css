@@ -1,6 +1,9 @@
 @import-normalize;
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap');
+@font-face {
+  font-family: 'Manrope';
+  src: url('assets/fonts/Manrope.ttf') format('truetype');
+}
 
 :root {
   --background-color: #fef9f9;
@@ -46,6 +49,10 @@ h5,
 h6,
 p {
   margin: 0;
+}
+
+a {
+  text-decoration: none;
 }
 
 ul,
