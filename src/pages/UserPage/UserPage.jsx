@@ -83,7 +83,7 @@ const UserPage = () => {
                       </>
                     )}
                   </button>
-                  <ErrorMessage name="photo" component="div" />
+                  <ErrorMessage name="photo" component="div"/>
                 </div>
                 <div className={css.profileInput}>
                 <div className={css.item}>
@@ -186,11 +186,12 @@ const UserPage = () => {
                   />
                 </div>
                 </div>
-
+                <div className='btn'>
                 <button src="" type="button" className={css.button} >
                 <LogoutSvg className={css.buttonSvg}/>
                   Log out
                 </button>
+                </div>
               </Form>
             )}
           </Formik>
