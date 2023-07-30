@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { austOperationThunk } from 'redux/auth/thunks';
 import ModalApproveAction from 'components/Modals/ModalApproveAction/ModalApproveAction';
-import { NavLink, useNavigate } from 'react-router-dom';
 import LogoutBtn from 'components/Buttons/LogoutBtn/LogoutBtn';
 import sprite from 'assets/svg/sprite-cards.svg';
 

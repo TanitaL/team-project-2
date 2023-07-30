@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NotFoundMax from '../../assets/images/cat-404-max-opt.png';
+// import NotFoundMax from '../../assets/images/cat-404-max-opt.png';
 import NotFoundMin from '../../assets/images/cat-404-min-opt.png';
 
 import css from './PageNotFound.module.css';
@@ -9,23 +9,14 @@ import Container from 'components/Container/Container/Container';
 const PageNotFound = () => {
   return (
     <Container className={css.PageNotFound}>
-      <p class="text-error">Ooops! This page not found :(</p>
+      <p className={css.textError}>Ooops! This page not found :(</p>
+      <div className='NotFoundImg'>
+        {/* <img src={NotFoundMax} alt="page-not-found" width="822px" height="360px" /> */}
+        <img src={NotFoundMin} alt="page-not-found" width="280px" height="123px" />
+      </div>
+      <button type='button' className={css.PageNotFoundBtn} onClick="/">To main page 
+        < svg
 
-      <img
-        src={NotFoundMax}
-        alt="page-not-found"
-        width="822px"
-        height="360px"
-      />
-      <img
-        src={NotFoundMin}
-        alt="page-not-found"
-        width="280px"
-        height="123px"
-      />
-      <button type="button" className={css.PageNotFoundBtn} onClick="/">
-        To main page
-        <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"

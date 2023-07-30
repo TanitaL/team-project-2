@@ -32,7 +32,7 @@
 }
 
 .active {
-  color: #ffc107;
+  color: var(--yellow-color);
   text-decoration: none;
 }
 
