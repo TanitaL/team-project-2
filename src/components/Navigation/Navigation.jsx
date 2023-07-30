@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useMediaQuery } from '@react-hook/media-query';
 import { authSelector } from 'redux/auth/selectors';
 import Nav from './Nav/Nav';
 import AuthNav from './AuthNav/AuthNav';
 import UserNav from './UserNav/UserNav';
 import css from './Navigation.module.css';
-import { useMediaQuery } from '@react-hook/media-query';
 
 const Navigation = ({ closeBurgerMenu }) => {
   const isAuth = useSelector(authSelector);
