@@ -24,7 +24,9 @@ const ModalRegister = ({ closeModal }) => {
             className={css.modalCrossBtn}
             onClick={handleClose}
           >
-            <CrossBlue />
+            <svg width="24" height="24">
+              <use href={`${sprite}#icon-close`} />
+            </svg>
           </button>
         </div>
         <div className={css.modalBody}>
