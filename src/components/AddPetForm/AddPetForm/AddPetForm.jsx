@@ -8,8 +8,8 @@ import { categoryObj, petCategory } from 'constants/petCategory';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPet } from 'redux/pets/operations';
 import stepsLable from 'constants/stepsLable';
-import transformFormData from 'service/addPetHelpers/transformFormData';
-import prepareFormData from 'service/addPetHelpers/prepareFormData';
+// import transformFormData from 'service/addPetHelpers/transformFormData';
+// import prepareFormData from 'service/addPetHelpers/prepareFormData';
 import { useNavigate } from 'react-router-dom';
 import { getError, getIsLoading } from 'redux/pets/selectors';
 import Loader from 'components/LoaderPort/Loader';
@@ -30,12 +30,6 @@ const initialValues = {
 
 const { MYPET } = categoryObj;
 
-// const stepsLable = [
-//   { label: 'Choose option', value: 'choose_option' },
-//   { label: 'Personal details', value: 'personal_details' },
-//   { label: 'More info', value: 'more_info' },
-// ];
-
 const AddPetForm = () => {
   const [data, setData] = useState(initialValues);
   const [currentStep, setCurrentStep] = useState(0);
@@ -43,6 +37,7 @@ const AddPetForm = () => {
   const navigate = useNavigate();
   const error = useSelector(getError);
   const isLoading = useSelector(getIsLoading);
+  // const pets = useSelector(getPets);
   console.log('🚀 ~ AddPetForm ~ isLoading:', isLoading);
 
   // const makeRequest = values => {
@@ -65,12 +60,45 @@ const AddPetForm = () => {
     if (final) {
       // await makeRequest(newData);
       const formData = makeformData(newData);
-      dispatsh(addPet(formData));
-      if (data.category === MYPET.label && !error && !isLoading) {
-        navigate('/user');
-      } else if (data.category !== MYPET.label && !error && !isLoading) {
-        navigate('/notices');
-      }
+      dispatsh(addPet(formData))
+        .then(() => {
+          console.log('Це пере умовою у зен: error:', error);
+          if (data.category === MYPET.label && !error && !isLoading) {
+            // console.log('Це перед навігейтом /user');
+            // console.log('Це isLoading  перед навігейтом /user', isLoading);
+
+            navigate('/user');
+            // console.log('Це isLoading  after навігейтом /user', isLoading);
+          } else if (data.category !== MYPET.label && !isLoading) {
+            // console.log('Це isLoading  перед навігейтом /notices', isLoading);
+            if (!error) {
+              console.log('🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 ~ .then ~ !error:', !error);
+              navigate('/notices');
+            }
+
+            // console.log('Це isLoading  after навігейтом /notices', isLoading);
+          }
+        })
+        .catch(error => {
+          // Handle any errors that occurred during the asynchronous operation
+          console.log('Error:', error);
+        });
+
+      // if (data.category === MYPET.label && !error && !isLoading) {
+      //   console.log('Це перед навігейтом /user');
+
+      //     console.log('Це isLoading  перед навігейтом /user', isLoading);
+      //     navigate('/user');
+      //     console.log('Це isLoading  after навігейтом /user', isLoading);
+
+      // } else if (data.category !== MYPET.label && !isLoading) {
+
+      //     console.log('Це isLoading  перед навігейтом /notices', isLoading);
+      //     navigate('/notices');
+      //     console.log('Це isLoading  after навігейтом /notices', isLoading);
+
+      // }
+
       // if (!error && !isLoading) {
       //   setData(initialValues);
       //   actions.resetForm();
@@ -92,7 +120,7 @@ const AddPetForm = () => {
     <PersonalDetails next={handleNextStep} data={data} prev={handlePrevStep} />,
     <MoreInfo next={handleNextStep} data={data} prev={handlePrevStep} />,
   ];
-  console.log('🚀 ~ handleNextStep ~ data:', data);
+  // console.log('🚀 ~ handleNextStep ~ data:', data);
 
   return (
     <section
