@@ -1,8 +1,20 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { fetchPets, addPet, deletePet } from './operations';
+import {
+  fetchPets,
+  addPet,
+  deletePet,
+  addFlagFavorite,
+  addToFavorit,
+} from './operations';
 import { toast } from 'react-toastify';
 
-const contactsActions = [fetchPets, addPet, deletePet];
+const contactsActions = [
+  fetchPets,
+  addPet,
+  deletePet,
+  addFlagFavorite,
+  addToFavorit,
+];
 const getActions = type => contactsActions.map(action => action[type]);
 const notifySuccess = () =>
   toast.success('Added successfully', {
@@ -30,11 +42,35 @@ export const petSlice = createSlice({
         state.items = action.payload;
         state.error = null;
       })
+      .addCase(addFlagFavorite.fulfilled, (state, action) => {
+        const faforite = action.payload;
+        state.items.map((item, index) => {
+          if (faforite.includes(item.id)) {
+            state.items[index] = { ...item, favorite: true };
+          }
+          return item;
+        });
+
+        state.isLoading = false;
+      })
+      .addCase(addToFavorit.fulfilled, (state, action) => {
+        const id = action.payload;
+        console.log("🚀 ~ .addCase ~ id:", id)
+        state.items.forEach((item, index) => {
+          if (id === item.id) {
+            console.log('🚀 ~ state.items.forEach ~ item:', item.favorite);
+            state.items[index] = { ...item, favorite: !item.favorite };
+          }
+          return item;
+        });
+        
+
+        state.isLoading = false;
+      })
       .addCase(addPet.fulfilled, (state, action) => {
         state.items.unshift(action.payload);
         state.isLoading = false;
         notifySuccess();
-        
       })
       .addCase(deletePet.fulfilled, (state, action) => {
         const index = state.items.findIndex(
@@ -46,7 +82,7 @@ export const petSlice = createSlice({
       })
       .addMatcher(isAnyOf(...getActions('pending')), state => {
         state.isLoading = true;
-        state.error =null
+        state.error = null;
       })
       .addMatcher(isAnyOf(...getActions('rejected')), (state, action) => {
         state.isLoading = false;

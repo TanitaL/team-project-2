@@ -8,13 +8,34 @@ import NoticesCategoriesNav from '../../components/NoticesCategoriesNav/NoticesC
 import NoticesFilters from 'components/NoticesFilters/NoticesFilters';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
 import Pagination from 'components/Pagination/Pagination';
+import { getPets } from 'redux/pets/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { authSelector, favoritesSelector } from 'redux/auth/selectors';
+import { addFlagFavorite } from 'redux/pets/operations';
+
+
 const NoticesPage = () => {
+  const pets = useSelector(getPets);
+  const isAuth = useSelector(authSelector);
+  const favorites = useSelector(favoritesSelector)
+// const [notices, setNotices] = useState(pets);
+  
   const [noticesData, setNoticesData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const itemsPerPage = 10;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isAuth && favorites?.length > 0) {
+  dispatch(addFlagFavorite(favorites));
+  }
+  }, [favorites.length, isAuth])
+  
+
+
   const getAllNotices = async () => {
     try {
       const response = await instance.get('notices');
@@ -45,15 +66,19 @@ const NoticesPage = () => {
       setIsLoading(false);
     }
   };
+  
 
   useEffect(() => {
+
     const fetchNoticesData = async () => {
+      const pages = Math.ceil(pets.length / itemsPerPage);
+      setTotalPages(pages);
       try {
         const data = await getAllNotices();
         setNoticesData(data);
         setIsLoading(false);
-        const pages = Math.ceil(data.length / itemsPerPage);
-        setTotalPages(pages);
+        // const pages = Math.ceil(pets.length / itemsPerPage);
+        // setTotalPages(pages);
       } catch (error) {
         setError('404');
         setIsLoading(false);
@@ -108,7 +133,8 @@ const NoticesPage = () => {
         </div>
       </div>
 
-      <CategoryList data={currentItems} />
+      {/* <CategoryList data={currentItems} /> */}
+      <CategoryList data={pets} />
 
       <Pagination
         currentPage={currentPage}
