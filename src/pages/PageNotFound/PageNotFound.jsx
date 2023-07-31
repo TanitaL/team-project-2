@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import NotFoundMax from '../../assets/images/cat-404-max-opt.png';
+import NotFoundMax2x from '../../assets/images/cat-404-2x-max.png';
 import NotFoundMin from '../../assets/images/cat-404-min-opt.png';
+import NotFoundMin2x from '../../assets/images/cat-404-2x-min.png';
 
 import css from './PageNotFound.module.css';
 import Container from 'components/Container/Container/Container';
@@ -23,18 +25,18 @@ const PageNotFound = () => {
   }, []);
   
   return (
+    <BgContainer>
     <Container >
       <div className={css.PageNotFound}>
-      <BgContainer>
       <p className={css.textError}>
         <span className={css.span}>Ooops! </span>
         This page not found :(
       </p>
       <div className={css.NotFoundImg}>
         {isMobile ? (
-        <img src={NotFoundMin} alt="page-not-found" width="280px" height="123px" />
+        <img src={NotFoundMin} srcSet={`${NotFoundMin} 1x, ${NotFoundMin2x} 2x`} alt="page-not-found" width="280px" height="123px" />
         ) : (
-          <img src={NotFoundMax} alt="page-not-found" width="822px" height="360px" />
+          <img src={NotFoundMax} srcSet={`${NotFoundMax} 1x, ${NotFoundMax2x} 2x`} alt="page-not-found" width="822px" height="360px" />
         )
         }
       </div>
@@ -57,9 +59,9 @@ const PageNotFound = () => {
         </svg>
       </button>
       </Link>
-      </BgContainer>
       </div>
     </Container>
+    </BgContainer>
   );
 };
 
