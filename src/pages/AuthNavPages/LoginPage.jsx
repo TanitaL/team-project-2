@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import css from './AuthNavPage.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import TextField from './TextField';
 import PasswordField from './PasswordField';
 import { useDispatch } from 'react-redux';
@@ -12,10 +12,14 @@ import { errorSelector } from 'redux/auth/selectors';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BgContainer from 'components/Container/BgContainer/BgContainer';
+import Container from 'components/Container/Container/Container';
+import { isLogin } from 'redux/auth/slice';
 
 const LoginPage = () => {
   const error = useSelector(errorSelector);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const validate = Yup.object({
     email: Yup.string()
       .required('Email is required')
@@ -38,70 +42,69 @@ const LoginPage = () => {
         theme: 'light',
       });
     notify();
-  }, [error]);
+  }, [error, navigate]);
   return (
     <>
-      <Formik
-        initialValues={{
-          email: '',
-          password: '',
-        }}
-        validationSchema={validate}
-        onSubmit={(values, { resetForm }) => {
-          const { email, password } = values;
-          dispatch(
-            austOperationThunk({
-              endpoint: 'login',
-              userInfo: {
-                email,
-                password,
-              },
-            })
-          );
-          switch (error) {
-            case null:
-              resetForm();
-              break;
-            default:
-              return;
-          }
-        }}
-      >
-        {formik => (
-          <div className={css.Container}>
-            <div className={css.ContainerForm}>
-              <h2 className={css.ContainerForm__Title}>Login</h2>
-              <Form className={css.Form} onSubmit={formik.handleSubmit}>
-                <TextField
-                  placeholder="Email"
-                  name="email"
-                  id="email"
-                  type="text"
-                />
-                <PasswordField
-                  placeholder="Password"
-                  name="password"
-                  id="password"
-                  type="password"
-                />
-                <button
-                  className={css.FormRegister__Button_Login}
-                  type="submit"
-                >
-                  Login
-                </button>
-                <p className={css.FormRegister__Text}>
-                  Don't have an account?
-                  <NavLink to={`/register`} className={css.FormRegister__Link}>
-                    Register
-                  </NavLink>
-                </p>
-              </Form>
-            </div>
-          </div>
-        )}
-      </Formik>
-      <ToastContainer />
+      <BgContainer>
+        <Container>
+          <Formik
+            initialValues={{
+              email: '',
+              password: '',
+            }}
+            validationSchema={validate}
+            onSubmit={(values, actions) => {
+              const { email, password } = values;
+              dispatch(
+                austOperationThunk({
+                  endpoint: 'login',
+                  userInfo: {
+                    email,
+                    password,
+                  },
+                  actions,
+                })
+              );
+            }}
+          >
+            {formik => (
+              <div className={css.ContainerForm}>
+                <h2 className={css.ContainerForm__Title}>Login</h2>
+                <Form className={css.Form} onSubmit={formik.handleSubmit}>
+                  <TextField
+                    placeholder="Email"
+                    name="email"
+                    id="email"
+                    type="text"
+                  />
+                  <PasswordField
+                    placeholder="Password"
+                    name="password"
+                    id="password"
+                    type="password"
+                  />
+                  <button
+                    className={css.FormRegister__Button_Login}
+                    type="submit"
+                  >
+                    Login
+                  </button>
+                  <p className={css.FormRegister__Text}>
+                    Don't have an account?
+                    <NavLink
+                      to={`/register`}
+                      className={css.FormRegister__Link}
+                    >
+                      Register
+                    </NavLink>
+                  </p>
+                </Form>
+              </div>
+            )}
+          </Formik>
+          <ToastContainer />
+        </Container>
+      </BgContainer>
     </>
   );
 };

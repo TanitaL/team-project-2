@@ -1,20 +1,15 @@
 import React from 'react';
 import css from './ModalRegister.module.css';
-import { ReactComponent as CrossBlue } from '../../../assets/svg/cross-blue-mobile-opt.svg';
 import PawPrintBtn from 'components/Buttons/PawPrintBtn/PawPrintBtn';
 import { useNavigate } from 'react-router-dom';
+import sprite from 'assets/svg/sprite-cards.svg';
+import { closeModal } from 'redux/auth/slice';
+import { useDispatch } from 'react-redux';
 
-const ModalRegister = ({ closeModal }) => {
+const ModalRegister = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleSuccess = e => {
-    console.log(e.target);
-    closeModal();
-    // setModalOpen(false);
-    navigate('/notices');
-  };
-  const handleClose = () => {
-    closeModal();
-  };
+
   return (
     <div className={css.modalOverlay}>
       <div className={css.modalContainer}>
@@ -22,7 +17,7 @@ const ModalRegister = ({ closeModal }) => {
           <button
             type="button"
             className={css.modalCrossBtn}
-            onClick={handleClose}
+            onClick={() => dispatch(closeModal())}
           >
             <svg width="24" height="24">
               <use href={`${sprite}#icon-close`} />
@@ -37,7 +32,7 @@ const ModalRegister = ({ closeModal }) => {
             </p>
             <div className={css.modalContainerBtn}>
               <PawPrintBtn
-                handleSuccess={handleSuccess}
+                onClick={navigate('/notices')}
                 title={'Go to pets'}
                 type={'button'}
               />
