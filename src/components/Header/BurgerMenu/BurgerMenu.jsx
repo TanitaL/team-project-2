@@ -64,7 +64,9 @@ const BurgerMenu = () => {
 
             <Nav closeBurgerMenu={closeBurgerMenu} />
 
-            {isSmallScreen && isAuth && <Logout />}
+            {isSmallScreen && isAuth && (
+              <Logout closeBurgerMenu={closeBurgerMenu} />
+            )}
           </div>
         </>
       ) : (
