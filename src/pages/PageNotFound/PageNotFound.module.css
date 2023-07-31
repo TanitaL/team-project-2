@@ -1,9 +1,15 @@
 .PageNotFound{
     padding-top: 80px;
     padding-bottom: 275px;
+    display: block;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    
+    height: 100vh;
 }
 
-  @media screen and (min-width: 768px) {
+  /* @media screen and (min-width: 768px) {
     .PageNotFound{
         padding-top: 60px;
         padding-bottom: 353px;
@@ -15,7 +21,7 @@
         padding-top: 60px;
         padding-bottom: 100px;
     }
-  }
+  } */
 
 .textError{
     font-weight: 700;
@@ -26,9 +32,24 @@
     height: 66px;
 
     margin-top: 80px;
-    margin-left: 20px;
+    margin: auto;
     font-size: 24px;
+
+    animation: pulsate 2s infinite;
 }
+
+@keyframes pulsate {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1); 
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
 
 @media screen and (min-width: 768px) {
     .textError{
@@ -54,9 +75,17 @@
     }
 }
 
+.span {
+    display: block;
+    @media screen and (min-width: 767px) {
+        display: inline-block;
+    }
+}
 .NotFoundImg{
     margin-top: 80px;
-    margin-left: 20px;
+    margin: auto;
+    /* padding-left: 20px;
+  padding-right: 20px; */
 }
 
 .PageNotFoundBtn{
@@ -80,35 +109,35 @@
         letter-spacing: 0.64px;
         color: #fef9f9;
     
-        margin-top: 60px;
-        margin-left: 36px;
+        margin-top: 248px;
+        margin: auto;
         cursor: pointer;
+        
 
     }
 
     @media screen and (min-width: 768px) {
         .PageNotFoundBtn {
             margin-top: 70px;
-            margin-left: 260px;
+            /* margin-left: 260px; */
         }
     }
     
     @media screen and (min-width: 1280px) {
         .PageNotFoundBtn {
             margin-top: 18px;
-            margin-left: 516px;
+            /* margin-left: 516px; */
         }
     }
+.PageNotFoundBtn:hover,
+.PageNotFoundBtn:focus {
+    background: var(--gradient-blue);
+}
 
-
-.PageNotFoundBtn:hover{
+/* .PageNotFoundBtn:hover,
+.PageNotFoundBtn:focus {
     background-color: transparent;
     color: #54ADFF;
     stroke: #54ADFF;
-}
+} */
 
-.PageNotFoundBtn:focus{
-        background-color: transparent;
-        color: #54ADFF;
-        stroke: #54ADFF;
-}

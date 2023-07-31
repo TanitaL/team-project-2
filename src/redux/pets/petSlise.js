@@ -55,10 +55,8 @@ export const petSlice = createSlice({
       })
       .addCase(addToFavorit.fulfilled, (state, action) => {
         const id = action.payload;
-        console.log("🚀 ~ .addCase ~ id:", id)
         state.items.forEach((item, index) => {
           if (id === item.id) {
-            console.log('🚀 ~ state.items.forEach ~ item:', item.favorite);
             state.items[index] = { ...item, favorite: !item.favorite };
           }
           return item;
@@ -87,6 +85,7 @@ export const petSlice = createSlice({
       .addMatcher(isAnyOf(...getActions('rejected')), (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+        console.log("🚀 ~ .addMatcher ~ action.payload:", action.payload)
       }),
 });
 

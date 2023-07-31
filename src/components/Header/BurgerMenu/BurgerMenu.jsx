@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { userSelector } from 'redux/auth/selectors';
+import { authSelector, userSelector } from 'redux/auth/selectors';
 import { useMediaQuery } from '@react-hook/media-query';
 import { useBurgerContext } from 'context/BurgerProvider';
 import AuthNav from 'components/Navigation/AuthNav/AuthNav';
@@ -13,6 +13,7 @@ import css from './BurgerMenu.module.css';
 const BurgerMenu = () => {
   const { menuOpen, setMenuOpen } = useBurgerContext();
   const auth = useSelector(userSelector);
+  const isAuth = useSelector(authSelector);
 
   const isSmallScreen = useMediaQuery('(max-width: 767px)');
   const isMediumScreen = useMediaQuery(
@@ -31,12 +32,12 @@ const BurgerMenu = () => {
     <>
       {menuOpen ? (
         <>
-          {isMediumScreen && !auth && <AuthNav />}
+          {isMediumScreen && !isAuth && <AuthNav />}
 
           <div className={css.headerNav}>
-            {isMediumScreen && auth && (
+            {isMediumScreen && isAuth && (
               <div className={css.userNav}>
-                <Logout />
+                <Logout closeBurgerMenu={closeBurgerMenu} />
               </div>
             )}
 
@@ -52,9 +53,9 @@ const BurgerMenu = () => {
           </div>
 
           <div className={css.burgerOpenNavigation}>
-            {isSmallScreen && !auth && <AuthNav />}
+            {isSmallScreen && !isAuth && <AuthNav />}
 
-            {isSmallScreen && auth && (
+            {isSmallScreen && isAuth && (
               <div className={css.userNav}>
                 <UserNav closeBurgerMenu={closeBurgerMenu} />
                 <p>{auth.name}</p>
@@ -63,12 +64,12 @@ const BurgerMenu = () => {
 
             <Nav closeBurgerMenu={closeBurgerMenu} />
 
-            {isSmallScreen && auth && <Logout />}
+            {isSmallScreen && isAuth && <Logout />}
           </div>
         </>
       ) : (
         <>
-          {isMediumScreen && !auth && <AuthNav />}
+          {isMediumScreen && !isAuth && <AuthNav />}
           {isMediumScreen && auth && (
             <div className={css.userNav}>
               <UserNav />

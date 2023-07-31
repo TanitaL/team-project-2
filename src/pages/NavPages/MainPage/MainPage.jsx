@@ -20,7 +20,11 @@ const MainPage = () => {
           <h1 className={css.textMainPage}>
             Take good care of your small pets
           </h1>
-          <img src={Pets} alt="pets" />
+          <img
+            srcset="assets/images/bg-pets-mobile-1x-opt.png, assets/images/bg-pets-mobile-2x-opt.png"
+            src={Pets}
+            alt="pets"
+          />
         </>
       )}
 

@@ -23,7 +23,16 @@
 
 .loginBtn:hover,
 .loginBtn:focus {
-  background-color: transparent;
-  color: var(--yellow-color);
-  fill: var(--yellow-color);
+  background: linear-gradient(
+    90deg,
+    #ffde3f 0,
+    #ffd02a 25%,
+    #ffc107 50%,
+    #f6b200 75%,
+    #efa400 100%
+  );
+  border: none;
+
+  /* color: var(--yellow-color); */
+  /* fill: var(--yellow-color); */
 }

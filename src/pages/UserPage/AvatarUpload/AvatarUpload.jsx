@@ -27,4 +27,4 @@ const AvatarUpload = ({ file, width, height }) => {
   );
 };
 
-export default AvatarUpload
+export default AvatarUpload;

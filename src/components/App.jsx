@@ -12,14 +12,17 @@ import AfterVerifEmail from '../pages/Other/AfterVerifEmail';
 import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
 import BurgerProvider from 'context/BurgerProvider';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { austOperationThunk } from '../redux/auth/thunks';
 import { useEffect } from 'react';
 import AddPetPage from 'pages/AddPetPage/AddPetPage';
-import { fetchPets } from 'redux/pets/operations';
+import { addFlagFavorite, fetchPets } from 'redux/pets/operations';
+import { authSelector, favoritesSelector } from 'redux/auth/selectors';
 
 export const App = () => {
   const dispatch = useDispatch();
+  const isAuth = useSelector(authSelector);
+  const favorites = useSelector(favoritesSelector);
 
   useEffect(() => {
     dispatch(
@@ -29,6 +32,13 @@ export const App = () => {
     );
       dispatch(fetchPets());
   }, [dispatch]);
+
+   useEffect(() => {
+     if (isAuth && favorites?.length > 0) {
+       dispatch(addFlagFavorite(favorites));
+     }
+   }, [dispatch, favorites, favorites?.length, isAuth]);
+  
   return (
     <Routes>
       <Route

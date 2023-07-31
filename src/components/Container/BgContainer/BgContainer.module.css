@@ -15,9 +15,18 @@
 
 @media screen and (min-width: 1280px) {
   .bgContainer {
-    height: 820px;
+    height: 100vh;
+    /* height: 820px; */
     width: 1280px;
     margin: 0 auto;
     background-image: url(assets/images/bg-paws-desktop-1x-opt.png);
   }
 }
+
+/* @media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .box {
+    background-image: url('photo@2x.png');
+  }
+} */
