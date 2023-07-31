@@ -33,8 +33,8 @@ const AddPetButton = () => {
       <PlusIcon className={style.iconBig} width={24} height={24} />
       <span className={style.label}>Add Pet</span>
       <PlusSmallIcon className={style.iconSmall} width={24} height={24} />
-    </Link>
-  );
+      </Link>
+      );
 };
 
 export default AddPetButton;
