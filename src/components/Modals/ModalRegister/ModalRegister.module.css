@@ -22,7 +22,7 @@
 
 .modalContainer {
   width: 280px;
-  height: 305px;
+  height: 350px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -76,7 +76,7 @@
 @media screen and (min-width: 768px) {
   .modalContainer {
     width: 608px;
-    height: 365px;
+    height: 400px;
     padding: 24px 24px 60px 24px;
 
     border-radius: 40px;
