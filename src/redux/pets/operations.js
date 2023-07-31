@@ -35,12 +35,11 @@ export const addFlagFavorite = createAsyncThunk(
 export const addPet = createAsyncThunk(
   'pets/addPet',
   async (data, thunkAPI) => {
-    
-    console.log('Це addToFavorit до запита');
+    console.log('Це addPet до запита');
     try {
       const response = await instance.post('/notices', data);
-      console.log('Це addToFavorit після запита');
-     
+      console.log('Це addPet після запита');
+
       return response.data.notice;
     } catch (error) {
       console.log('🚀 ~ error.message:', error.message);
@@ -54,7 +53,9 @@ export const deletePet = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await instance.delete(`/notices/${id}`);
-      return response.data;
+      console.log('🚀 ~ response:', response);
+      return id
+      
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -68,7 +69,6 @@ export const addToFavorit = createAsyncThunk(
       await instance.post(`/notices/${noticeId}/favorite`);
       return noticeId;
     } catch (error) {
-      
       return thunkAPI.rejectWithValue(error.message);
     }
   }

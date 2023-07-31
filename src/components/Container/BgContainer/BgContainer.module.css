@@ -15,11 +15,12 @@
 
 @media screen and (min-width: 1280px) {
   .bgContainer {
+    background-image: url(assets/images/bg-paws-desktop-1x-opt.png);
     height: 100vh;
-    /* height: 820px; */
+    background-position-y: -86px;
+    background-attachment: scroll;
     width: 1280px;
     margin: 0 auto;
-    background-image: url(assets/images/bg-paws-desktop-1x-opt.png);
   }
 }
 
