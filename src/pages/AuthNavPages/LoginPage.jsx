@@ -14,14 +14,11 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BgContainer from 'components/Container/BgContainer/BgContainer';
 import Container from 'components/Container/Container/Container';
-// import { isLogin } from 'redux/auth/slice';
 
 const LoginPage = () => {
   const error = useSelector(errorSelector);
-  // const login = useSelector(isLoginSelector);
   const dispatch = useDispatch();
 
-  // const navigate = useNavigate();
   const validate = Yup.object({
     email: Yup.string()
       .required('Email is required')
@@ -46,14 +43,6 @@ const LoginPage = () => {
     notify();
   }, [error]);
 
-  // useEffect(() => {
-    // if (!login) {
-      // return;
-    // }
-    // navigate('/notices');
-    // dispatch(isLogin());
-  // }, [dispatch, login, navigate]);
-  // console.log(login);
   return (
     <>
       <BgContainer>
