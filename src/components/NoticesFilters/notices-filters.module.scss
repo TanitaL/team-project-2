@@ -1,5 +1,7 @@
 .wrapper {
   position: absolute;
+  right: 0;
+  top: 0;
   z-index: 100;
 
   background-color: transparent;
@@ -190,7 +192,6 @@
   .dropdownContainer {
     right: 0;
     top: 0;
-    display: block;
   }
 }
 

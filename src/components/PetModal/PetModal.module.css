@@ -27,6 +27,16 @@
   }
 }
 
+.baseBtn {
+  display: inline-block;
+  background-color: transparent;
+  border: none;
+  opacity: 0.75;
+  cursor: pointer;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .box {
   position: relative;
   padding: 32px 32px 24px;
@@ -36,6 +46,8 @@
 }
 
 .deleteBtn {
+  composes: baseBtn;
+
   position: absolute;
   top: 12px;
   left: calc(100% - 12px);
@@ -46,16 +58,13 @@
     left: calc(100% - 26px);
   }
 
-  background-color: transparent;
-  border: none;
   border-radius: 10px;
-  cursor: pointer;
-  transition: box-shadow 0.3s;
 }
 
 .deleteBtn:hover,
 .deleteBtn:focus {
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  opacity: 1;
+  box-shadow: rgba(100, 100, 111, 0.2);
 }
 
 /**
@@ -220,6 +229,8 @@
 }
 
 .addToFavotiteBtn {
+  composes: baseBtn;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -234,10 +245,7 @@
   color: var(--unnamed, #fef9f9);
 
   background-color: var(--unnamed, #54adff);
-  border: none;
   border-radius: 40px;
-  cursor: pointer;
-  transition: box-shadow 0.3s;
 
   @media screen and (min-width: 768px) {
     width: auto;
@@ -246,7 +254,8 @@
 
 .addToFavotiteBtn:hover,
 .addToFavotiteBtn:focus {
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  opacity: 1;
+  box-shadow: rgba(100, 100, 111, 0.2);
 }
 
 .addToFavotiteBtn svg {
@@ -255,7 +264,7 @@
   border-radius: 50%;
   stroke: var(--unnamed, #fef9f9);
 
-  transition: background-color 0.3s;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .addToFavotiteBtn:hover svg,
@@ -265,6 +274,7 @@
 }
 
 .contactBtn {
+  composes: baseBtn;
   padding: 9px 30px;
 
   font-size: 16px;
@@ -274,18 +284,20 @@
   text-align: center;
   color: var(--unnamed, #54adff);
 
-  background-color: transparent;
   border-radius: 40px;
   border: 2px solid var(--unnamed, #54adff);
-  cursor: pointer;
-  transition: box-shadow 0.3s, background-color 0.3s, color 0.3s;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .contactBtn:hover,
 .contactBtn:focus {
   color: var(--unnamed, #fef9f9);
   background-color: var(--unnamed, #54adff);
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  opacity: 1;
+  box-shadow: rgba(100, 100, 111, 0.2);
 }
 
 /* 

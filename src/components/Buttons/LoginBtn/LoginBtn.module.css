@@ -14,25 +14,23 @@
   background: var(--yellow-color);
 
   font-size: 16px;
+  font-style: normal;
   font-weight: 700;
+  line-height: normal;
   letter-spacing: 0.64px;
   color: var(--background-color);
-  fill: var(--background-color);
+
   cursor: pointer;
 }
 
-.loginBtn:hover,
-.loginBtn:focus {
-  background: linear-gradient(
-    90deg,
-    #ffde3f 0,
-    #ffd02a 25%,
-    #ffc107 50%,
-    #f6b200 75%,
-    #efa400 100%
-  );
-  border: none;
+.loginBtn:hover {
+  background-color: transparent;
+  color: var(--yellow-color);
+  stroke: var(--yellow-color);
+}
 
-  /* color: var(--yellow-color); */
-  /* fill: var(--yellow-color); */
+.loginBtn:focus {
+  background-color: transparent;
+  color: var(--yellow-color);
+  stroke: var(--yellow-color);
 }

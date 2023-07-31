@@ -7,13 +7,11 @@ const fullfiled = (state, { meta, payload = {} }) => {
   } = meta;
   const { user, token } = payload;
   switch (endpoint) {
-    case 'register':
-      state.modalOpen = true;
-      break;
     case 'login':
       state.user = user;
       state.token = token;
       state.isLogin = true;
+
       break;
     case 'logout':
       state.user = {};
@@ -61,20 +59,6 @@ const authSlice = createSlice({
     isLoading: false,
     token: '',
     error: null,
-    modalOpen: false,
-    isLogin: false,
-  },
-  reducers: {
-    closeModal: {
-      reducer(state) {
-        state.modalOpen = false;
-      },
-    },
-    isLogin: {
-      reducer(state) {
-        state.isLogin = false;
-      },
-    },
   },
   extraReducers: builder => {
     builder
@@ -85,5 +69,5 @@ const authSlice = createSlice({
       .addMatcher(action => action.type.endsWith('/rejected'), handleRejected);
   },
 });
-export const { closeModal, isLogin } = authSlice.actions;
+
 export const authReducer = authSlice.reducer;
