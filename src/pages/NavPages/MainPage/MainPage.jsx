@@ -1,8 +1,11 @@
 import React from 'react';
 import { useMediaQuery } from '@react-hook/media-query';
-import Pets from '../../../assets/images/bg-pets-mobile-1x-opt.png';
-import PetsTablet from '../../../assets/images/bg-pets-tablet-1x-opt.png';
-import PetsDesktop from '../../../assets/images/bg-pets-desktop-1x-opt.png';
+import petsMobile1x from '../../../assets/images/bg-pets-mobile-1x-opt.png';
+import petsMobile2x from '../../../assets/images/bg-pets-mobile-2x-opt.png';
+import petsTablet1x from '../../../assets/images/bg-pets-tablet-1x-opt.png';
+import petsTablet2x from '../../../assets/images/bg-pets-tablet-2x-opt.png';
+import petsDesktop1x from '../../../assets/images/bg-pets-desktop-1x-opt.png';
+import petsDesktop2x from '../../../assets/images/bg-pets-desktop-2x-opt.png';
 import BgContainer from 'components/Container/BgContainer/BgContainer';
 import css from './MainPage.module.css';
 
@@ -20,20 +23,29 @@ const MainPage = () => {
           <h1 className={css.textMainPage}>
             Take good care of your small pets
           </h1>
-          <img
-            srcset="assets/images/bg-pets-mobile-1x-opt.png, assets/images/bg-pets-mobile-2x-opt.png"
-            src={Pets}
-            alt="pets"
-          />
+          <picture>
+            <img
+              loading="lazy"
+              srcSet={(petsMobile1x, petsMobile2x)}
+              src={petsMobile1x}
+              alt="pets"
+            />
+          </picture>
         </>
       )}
-
       {isMediumScreen && (
         <>
           <h1 className={css.textMainPage}>
             Take good care of your small pets
           </h1>
-          <img src={PetsTablet} alt="pets" />
+          <picture>
+            <img
+              loading="lazy"
+              srcSet={(petsTablet1x, petsTablet2x)}
+              src={petsTablet1x}
+              alt="pets"
+            />
+          </picture>
         </>
       )}
 
@@ -42,12 +54,17 @@ const MainPage = () => {
           <h1 className={css.textMainPage}>
             Take good care of your small pets
           </h1>
-          <img
-            src={PetsDesktop}
-            alt="pets"
-            className={css.imgPets}
-            align="right"
-          />
+
+          <picture>
+            <img
+              loading="lazy"
+              srcSet={(petsDesktop1x, petsDesktop2x)}
+              src={petsDesktop1x}
+              alt="pets"
+              align="right"
+              className={css.imgPets}
+            />
+          </picture>
         </div>
       )}
     </BgContainer>
