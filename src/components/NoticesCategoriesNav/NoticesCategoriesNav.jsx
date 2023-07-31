@@ -1,64 +1,44 @@
-import css from './NoticesCategoriesNav.module.css';
-// import { useSelector } from 'react-redux';
-// import {  authSelector } from '../../redux/auth/selectors';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
-const NoticesCategoriesNav = ({ setpage }) => {
-  const location = useLocation();
-  const from = location.state?.from || '/';
+import { useAuth } from '../../redux/auth/useAuth';
+import categories from './categories';
+import styles from './notices-categories-nav.module.scss';
 
-  // const { isLogin } = useSelector(authSelector);
+const { publicCategories, privateCategories } = categories;
 
-  return (
-    <>
-      {/* {!isLogin ? ( */}
-        <ul className={css.list}>
-          <li className={css.item} onClick={setpage}>
-            <NavLink className={css.link} to="sell" state={{ from }}>
-              sell
-            </NavLink>
-          </li>
-          <li onClick={setpage}>
-            <NavLink className={css.link} to="lost-found" state={{ from }}>
-              lost/found
-            </NavLink>
-          </li>
-          <li onClick={setpage}>
-            <NavLink className={css.link} to="for-free" state={{ from }}>
-              in good hands
-            </NavLink>
-          </li>
-        </ul>
-       {/* ) : (  */}
-        <ul className={css.list}>
-          <li className={css.item}>
-            <NavLink className={css.link} to="sell" state={{ from }}>
-              sell
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className={css.link} to="lost-found" state={{ from }}>
-              lost/found
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className={css.link} to="for-free" state={{ from }}>
-              in good hands
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className={css.link} to="favorite" state={{ from }}>
-              favorite ads
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className={css.link} to="own" state={{ from }}>
-              my ads
-            </NavLink>
-          </li>
-        </ul>
-      {/* )}   */}
-    </>
-  );
+const getFullName = (location, category) => {
+    const res = category === location ? `${styles.button} ${styles.active}` : styles.button;
+    return res;
 };
+
+const NoticesCategoriesNav = () => {
+    const { token } = useAuth();
+    const { pathname, search } = useLocation();
+
+    return (
+        <div className={styles.wrapper}>
+            <ul className={styles.list}>
+                {publicCategories.map(({ to, text, id }) => (
+                    <li key={id}>
+                        <Link to={{ pathname: to, search }} className={getFullName(pathname, to)}>
+                            {text}
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+            {token && (
+                <ul className={styles.list}>
+                    {privateCategories.map(({ to, text, id }) => (
+                        <li key={id}>
+                            <Link to={{ pathname: to, search }} className={getFullName(pathname, to)}>
+                                {text}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
+};
+
 export default NoticesCategoriesNav;
