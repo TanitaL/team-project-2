@@ -29,6 +29,7 @@ export const austOperationThunk = createAsyncThunk(
   'auth/operations',
   async ({ endpoint, userInfo = {}, urlToken, actions }, thunkAPI) => {
     const { token } = thunkAPI.getState().auth;
+    console.log(endpoint)
     if (
       endpoint === 'register' ||
       endpoint === 'login' ||
