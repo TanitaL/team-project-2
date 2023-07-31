@@ -27,7 +27,7 @@ import { setToken } from 'service/api/api';
 
 export const austOperationThunk = createAsyncThunk(
   'auth/operations',
-  async ({ endpoint, userInfo = {}, urlToken }, thunkAPI) => {
+  async ({ endpoint, userInfo = {}, urlToken, actions }, thunkAPI) => {
     const { token } = thunkAPI.getState().auth;
     if (
       endpoint === 'register' ||
@@ -42,6 +42,7 @@ export const austOperationThunk = createAsyncThunk(
         if (endpoint === 'logout') {
           deleteToken();
         }
+        actions.resetForm()
         return data;
       } catch (error) {
         const { response } = error;
