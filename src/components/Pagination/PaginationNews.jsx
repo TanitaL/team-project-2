@@ -10,7 +10,7 @@ const PaginationNews = ({ currentPage, pages, handlePaginationChange }) => {
     const [page, setPage] = useState(currentPage);
     const handleChange = (event, value) => {
       setPage(value);
-      handlePaginationChange(value)
+      //handlePaginationChange(value)
     };
 
   return <div style={{display: "flex", alignItems: "center", justifyContent: "center", padding: "20px"}}><Pagination
