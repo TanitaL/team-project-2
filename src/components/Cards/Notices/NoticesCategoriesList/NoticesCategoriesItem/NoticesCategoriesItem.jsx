@@ -3,7 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 import { useDispatch,useSelector } from 'react-redux';
-import { authSelector } from 'redux/auth/selectors';
+import { authSelector, userIdSelector } from 'redux/auth/selectors';
 
 import PetModal from 'components/PetModal/PetModal';
 
@@ -12,18 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import css from './NoticesCategoriesItem.module.css';
 
 import sprite from 'assets/svg/sprite-cards.svg';
-import { addToFavorit } from 'redux/pets/operations';
-// import { instance } from 'service/api/api';
-
-// const addDelPet = async id => {
-//   try {
-//     const response = await instance.post(`/notices/${id}/favorite`);
-//     return response.data;
-//   } catch (error) {
-//     console.error('Error fetching data:', error);
-//     throw error;
-//   }
-// };
+import { addToFavorit, deletePet } from 'redux/pets/operations';
 
 const CategoryItem = ({
   id,
@@ -33,11 +22,11 @@ const CategoryItem = ({
   age,
   sex,
   category,
-  favorite=false,
+  favorite = false,
+  owner,
 }) => {
   const [imageError, setImageError] = useState(false);
-  // isFavorite буде батися з редаксу, пропишу пізніше
-  // const [isFavorite, setIsFavorite] = useState(false);
+ const userId = useSelector(userIdSelector);
   const [isModalOpen, setIsModalOpen] = useState(null);
   const [sexIcon, setSexIcon] = useState('icon-male');
   const dispatch = useDispatch();
@@ -71,28 +60,6 @@ const CategoryItem = ({
     }
     dispatch(addToFavorit(id));
 
-    // const delFavorites = () => {
-
-    // }; 
-
-    // if (isFavorite) {
-    //     addDelPet(_id)
-    // .then(() => {
-    //   setIsFavorite(!isFavorite);
-    // })
-    // .catch((error) => {
-    //   console.error('Error adding/removing from favorites:', error);
-    // });
-    // } else {
-    //   addDelPet(_id)
-    //     .then(() => {
-    //       setIsFavorite(true);
-    //     })
-    //     .catch((error) => {
-    //       console.error('Error adding to favorites:', error);
-    //     });
-    // }
-
   };
 
   const handleOpenModal = () => {
@@ -102,6 +69,18 @@ const CategoryItem = ({
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  const handleDelete = () => {
+    console.log("this is delete button click")
+    console.log('🚀 ~ handleDelete ~ userId:', userId);
+    console.log('🚀 ~ handleDelete ~ owner:', owner);
+    console.log('🚀 ~ handleDelete ~ owner === userId:', owner === userId);
+    if (owner === userId) {
+      
+      dispatch(deletePet(id));
+    }
+    
+  }
 
   return (
     <li key={id} className={css.item}>
@@ -125,12 +104,26 @@ const CategoryItem = ({
             </svg>
           )}
         </button>
-
-        <button className={css.delFavoritesButton}>
+        {/* <button
+          className={css.delFavoritesButton}
+          type="buton"
+          onClick={handleDelete}
+        >
           <svg width="24" height="24">
+            <use href={`${sprite}#icon-delete`}></use>
+          </svg>
+        </button> */}
+        {owner === userId && (
+          <button
+            className={css.delFavoritesButton}
+            type="buton"
+            onClick={handleDelete}
+          >
+            <svg width="24" height="24">
               <use href={`${sprite}#icon-delete`}></use>
-          </svg></button>
-        
+            </svg>
+          </button>
+        )}
       </div>
 
       <div className={css.itemBox}>
