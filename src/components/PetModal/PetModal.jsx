@@ -6,7 +6,9 @@ import transformCategory from 'service/addPetHelpers/transformCategory';
 import notify from 'service/addPetHelpers/toast';
 import Loader from '../Loader/Loader';
 import ImageLoader from '../Loader/ImageLoader';
-import sprite from 'assets/svg/sprite-cards.svg';
+
+import { ReactComponent as HeartSvg } from './icons/heart.svg';
+import { ReactComponent as CloseSvg } from './icons/close.svg';
 import css from './PetModal.module.css';
 
 const PetModal = ({ id, onClose, isFavorite, addToFavotire }) => {
@@ -161,16 +163,12 @@ const PetModal = ({ id, onClose, isFavorite, addToFavotire }) => {
                     {isFavorite ? (
                       <>
                         <p>Delete from</p>
-                        <svg width="24" height="24">
-                          <use href={`${sprite}#icon-heart-off`}></use>
-                        </svg>
+                        <HeartSvg />
                       </>
                     ) : (
                       <>
                         <p>Add to</p>
-                        <svg width="24" height="24">
-                          <use href={`${sprite}#icon-heart-on-2`}></use>
-                        </svg>
+                        <HeartSvg />
                       </>
                     )}
                   </button>
@@ -180,9 +178,7 @@ const PetModal = ({ id, onClose, isFavorite, addToFavotire }) => {
                 </div>
               </div>
               <button className={css.deleteBtn} onClick={onClose}>
-                <svg width="24" height="24">
-                  <use href={`${sprite}#icon-close`}></use>
-                </svg>
+                <CloseSvg />
               </button>
             </div>
           </div>
