@@ -10,36 +10,20 @@ export const fetchPets = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await instance.get('/notices');
-      const notices = response.data.notices;
-
-      const updatedNotices = notices.map(item => ({
-        ...item,
-        favorite: false,
-      }));
-      return updatedNotices;
-      // return response.data.notices;
+      return response.data.notices;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-export const addFlagFavorite = createAsyncThunk(
-  'pets/addFlagFavorite',
-
-  async (favorites, thunkAPI) => {
-    return favorites;
-  }
-);
-
 export const addPet = createAsyncThunk(
   'pets/addPet',
   async (data, thunkAPI) => {
-    console.log('Це addPet до запита');
+    console.log('🚀 ~ data:', data);
     try {
       const response = await instance.post('/notices', data);
-      console.log('Це addPet після запита');
-
+      console.log('🚀 ~ response.data:', response.data);
       return response.data.notice;
     } catch (error) {
       console.log('🚀 ~ error.message:', error.message);
@@ -53,22 +37,24 @@ export const deletePet = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await instance.delete(`/notices/${id}`);
-      console.log('🚀 ~ response:', response);
-      return id
-      
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
+
 export const addToFavorit = createAsyncThunk(
   'pets/addToFavorit',
   async (noticeId, thunkAPI) => {
+    console.log('🚀 ~ noticeId:', noticeId);
     try {
-      await instance.post(`/notices/${noticeId}/favorite`);
-      return noticeId;
+      const response = await instance.post(`/notices/${noticeId}/favorite`);
+      console.log('🚀 ~ response.data:', response.data);
+      return response.data.notice;
     } catch (error) {
+      console.log('🚀 ~ error.message:', error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

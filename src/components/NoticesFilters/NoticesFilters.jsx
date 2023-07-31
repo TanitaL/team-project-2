@@ -59,7 +59,7 @@ const NoticesFilters = ({ onFilter, filters }) => {
                                             onChange={handleCheckboxChange}
                                             className={styles.input}
                                             type="checkbox"
-                                            name="date"
+                                            name="age"
                                             value="0-12 m"
                                             checked={filters.includes('0-12 m')}
                                         />
@@ -70,7 +70,7 @@ const NoticesFilters = ({ onFilter, filters }) => {
                                             className={styles.input}
                                             onChange={handleCheckboxChange}
                                             type="checkbox"
-                                            name="date"
+                                            name="age"
                                             value="1 year"
                                             checked={filters.includes('1 year')}
                                         />
@@ -81,7 +81,7 @@ const NoticesFilters = ({ onFilter, filters }) => {
                                             className={styles.input}
                                             onChange={handleCheckboxChange}
                                             type="checkbox"
-                                            name="date"
+                                            name="age"
                                             value="2 years +"
                                             checked={filters.includes('2 years +')}
                                         />
@@ -111,7 +111,7 @@ const NoticesFilters = ({ onFilter, filters }) => {
                                             onChange={handleCheckboxChange}
                                             className={styles.input}
                                             type="checkbox"
-                                            name="sex"
+                                            name="gender"
                                             value="male"
                                             checked={filters.includes('male')}
                                         />
@@ -122,7 +122,7 @@ const NoticesFilters = ({ onFilter, filters }) => {
                                             onChange={handleCheckboxChange}
                                             className={styles.input}
                                             type="checkbox"
-                                            name="sex"
+                                            name="gender"
                                             value="female"
                                             checked={filters.includes('female')}
                                         />

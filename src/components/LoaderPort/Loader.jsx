@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { RotatingLines } from 'react-loader-spinner';
 import css from './Loader.module.css';
 
-function LoaderPortal({ strokeColor = '#54ADFF' }) {
+function Loader({ strokeColor = '#54ADFF' }) {
  
   return createPortal(
     <div className={css.overlay}>
@@ -19,4 +19,4 @@ function LoaderPortal({ strokeColor = '#54ADFF' }) {
   );
 }
 
-export default LoaderPortal;
+export default Loader;

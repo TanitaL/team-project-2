@@ -5,7 +5,7 @@ import { authSelector } from 'redux/auth/selectors';
 
 const PublicRoute = ({ children }) => {
   const isAuth = useSelector(authSelector);
-  return !isAuth ? children : <Navigate to="/notices" />;
+  return !isAuth ? children : <Navigate to="/" />;
 };
 
 export default PublicRoute;

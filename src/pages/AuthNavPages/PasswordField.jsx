@@ -87,7 +87,7 @@ export const PasswordField = ({ ...props }) => {
       <ErrorMessage
         component={'div'}
         name={field.name}
-        className={css.ErrorTextPassword}
+        className={css.ErrorText}
       />
     </>
   );

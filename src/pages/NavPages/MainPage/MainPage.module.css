@@ -1,3 +1,39 @@
+.mainPageContainer {
+  padding: 0px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 1280px) {
+  .mainPageContainer {
+    padding: 0px;
+    width: 1280px;
+    margin: 0 auto;
+  }
+}
+
+.bgImg {
+  background-image: url(assets/images/bg-paws-mobile-1-x-opt.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+@media screen and (min-width: 768px) {
+  .bgImg {
+    background-image: url(assets/images/bg-paws-tablet-1x-opt.png);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .bgImg {
+    width: 1280px;
+    height: 850px;
+
+    background-image: url(assets/images/bg-paws-desktop-1x-opt.png);
+  }
+}
+
 .bgWrap {
   position: relative;
 }

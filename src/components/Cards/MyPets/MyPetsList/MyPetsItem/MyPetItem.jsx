@@ -1,5 +1,5 @@
+import { ReactComponent as DeleteSvg } from './icons/delete.svg';
 import css from './MyPetItem.module.css';
-import sprite from 'assets/svg/sprite-cards.svg';
 
 const MyPetsItem = ({ name, date, breed, comments, image, onDelete }) => {
   return (
@@ -23,9 +23,7 @@ const MyPetsItem = ({ name, date, breed, comments, image, onDelete }) => {
           Comments: <span className={css.item__fieldValue}>{comments}</span>
         </p>
         <button className={css.item__deleteBtn} onClick={onDelete}>
-          <svg width="24" height="24">
-            <use href={`${sprite}#icon-delete`}></use>
-          </svg>
+          <DeleteSvg />
         </button>
       </div>
     </li>

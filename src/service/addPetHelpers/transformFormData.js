@@ -31,10 +31,7 @@ const transformFormData = (values) => {
 
       default:
         break;
-  }
-  
-  date = new Date(values.date).toISOString();
-  console.log("🚀 ~ transformFormData ~ date:", date)
+    }
 
     return {
       category,
