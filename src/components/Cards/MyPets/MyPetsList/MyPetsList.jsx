@@ -65,16 +65,15 @@ const MyPetsList = () => {
   if (errorMyPets) {
     return (
       <>
-        <p className={css.centerText}>{errorMyPets}</p>
+        <p className={css.centerText}>Error: {errorMyPets}</p>
       </>
     );
   }
 
   if (notices.length === 0) {
-    console.log('NOPNONO');
     return (
       <>
-        <p className={css.centerText}>You don't have any pet</p>
+        <p className={css.centerText}>You don't have any pets</p>
       </>
     );
   }
