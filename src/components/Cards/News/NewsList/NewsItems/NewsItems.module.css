@@ -1,3 +1,14 @@
+.textNoticesPage {
+  color: var(--unnamed, #111);
+  font-family: Manrope;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 50px auto;
+  text-align: center;
+}
+
 .item {
   border-radius: 20px;
   background: #ffffff;
@@ -70,6 +81,7 @@
   font-size: 24px;
   line-height: 33px;
   margin-bottom: 16px;
+
   /* width: 100%; */
 
   width: 231px;
