@@ -79,7 +79,10 @@ const ProfileForm = () => {
       const { avatar, ...putData } = values;
       const { data } = await instance.put('/users', preparePutData(putData));
       setUserData(prev => ({ ...prev, ...data.user }));
-      if (avatar) {
+
+      
+      if (avatar && typeof avatar !== 'string') {
+
         const formData = new FormData();
         formData.append('avatar', avatar);
         const { data } = await instance.put('/users/avatar', formData, {
@@ -92,6 +95,7 @@ const ProfileForm = () => {
       const { message } = error.response.data;
       notify.error(message);
     } finally {
+      setIsEditing(false);
       setIsUserDataPending(false);
     }
   };

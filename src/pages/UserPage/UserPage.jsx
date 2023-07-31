@@ -1,4 +1,4 @@
-import Container from 'components/Container/Container';
+import Container from 'components/Container/Container/Container';
 
 import ProfileForm from 'components/ProfileForm/ProfileForm';
 import MyPetsList from 'components/Cards/MyPets/MyPetsList/MyPetsList';
