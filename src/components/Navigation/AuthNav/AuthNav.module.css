@@ -19,7 +19,7 @@
 
 @media screen and (min-width: 1280px) {
   .authNav {
-    margin-left: 270px;
+    padding-right: 19px;
   }
 }
 

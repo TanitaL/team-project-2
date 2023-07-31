@@ -1,7 +1,7 @@
 import React from 'react';
-import PawPrintBtn from 'components/Buttons/PawPrintBtn/PawPrintBtn';
 import css from './ModalVerificationEmail.module.css';
-import sprite from 'assets/svg/sprite-cards.svg';
+import { ReactComponent as CrossBlue } from '../../../assets/svg/cross-blue-mobile-opt.svg';
+import PawPrintBtn from 'components/Buttons/PawPrintBtn/PawPrintBtn';
 
 const ModalVerificeteEmail = ({ handleSuccess, handleClose }) => {
   return (
@@ -13,9 +13,7 @@ const ModalVerificeteEmail = ({ handleSuccess, handleClose }) => {
             className={css.modalCrossBtn}
             onClick={handleClose}
           >
-            <svg width="24" height="24">
-              <use href={`${sprite}#icon-close`} />
-            </svg>
+            <CrossBlue />
           </button>
         </div>
         <div className={css.modalBody}>

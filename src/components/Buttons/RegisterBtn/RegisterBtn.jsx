@@ -1,7 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useBurgerContext } from 'context/BurgerProvider';
 import css from './RegisterBtn.module.css';
+import { useBurgerContext } from 'context/BurgerProvider';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterBtn = () => {
   const { setMenuOpen } = useBurgerContext();

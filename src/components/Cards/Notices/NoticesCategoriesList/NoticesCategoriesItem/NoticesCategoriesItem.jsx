@@ -3,7 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 import { useDispatch,useSelector } from 'react-redux';
-import { authSelector, userIdSelector } from 'redux/auth/selectors';
+import { authSelector } from 'redux/auth/selectors';
 
 import PetModal from 'components/PetModal/PetModal';
 
@@ -12,21 +12,23 @@ import 'react-toastify/dist/ReactToastify.css';
 import css from './NoticesCategoriesItem.module.css';
 
 import sprite from 'assets/svg/sprite-cards.svg';
-import { addToFavorit, deletePet } from 'redux/pets/operations';
+import { addToFavorit } from 'redux/pets/operations';
+// import { instance } from 'service/api/api';
 
-const CategoryItem = ({
-  id,
-  title,
-  file,
-  location,
-  age,
-  sex,
-  category,
-  favorite = false,
-  owner,
-}) => {
+// const addDelPet = async id => {
+//   try {
+//     const response = await instance.post(`/notices/${id}/favorite`);
+//     return response.data;
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//     throw error;
+//   }
+// };
+
+const CategoryItem = ({ id, title, file, location, age, sex, category }) => {
   const [imageError, setImageError] = useState(false);
- const userId = useSelector(userIdSelector);
+  // isFavorite буде батися з редаксу, пропишу пізніше
+  // const [isFavorite, setIsFavorite] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(null);
   const [sexIcon, setSexIcon] = useState('icon-male');
   const dispatch = useDispatch();
@@ -45,6 +47,19 @@ const CategoryItem = ({
     setImageError(true);
   };
 
+
+  // useEffect(() => {
+  //   instance
+  //     .post(`/notices/${noticeId}/favorite`)
+  //     .then((response) => {
+  //       setIsFavorite(response.data.isFavorite);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error getting favorite status:', error);
+  //     });
+  // }, [noticeId]);
+
+
   const addToFavorites = () => {
     if (!isUserRegistered) {
       toast.warning('Please register to add to favorites!', {
@@ -60,6 +75,24 @@ const CategoryItem = ({
     }
     dispatch(addToFavorit(id));
 
+    // if (isFavorite) {
+    //     addDelPet(_id)
+    // .then(() => {
+    //   setIsFavorite(!isFavorite);
+    // })
+    // .catch((error) => {
+    //   console.error('Error adding/removing from favorites:', error);
+    // });
+    // } else {
+    //   addDelPet(_id)
+    //     .then(() => {
+    //       setIsFavorite(true);
+    //     })
+    //     .catch((error) => {
+    //       console.error('Error adding to favorites:', error);
+    //     });
+    // }
+ 
   };
 
   const handleOpenModal = () => {
@@ -69,18 +102,6 @@ const CategoryItem = ({
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-
-  const handleDelete = () => {
-    console.log("this is delete button click")
-    console.log('🚀 ~ handleDelete ~ userId:', userId);
-    console.log('🚀 ~ handleDelete ~ owner:', owner);
-    console.log('🚀 ~ handleDelete ~ owner === userId:', owner === userId);
-    if (owner === userId) {
-      
-      dispatch(deletePet(id));
-    }
-    
-  }
 
   return (
     <li key={id} className={css.item}>
@@ -92,9 +113,13 @@ const CategoryItem = ({
           src={imageError ? 'https://http.cat/407' : file}
           onError={handleImageError}
         />
-        <p className={css.category}>{category}</p>
         <button className={css.addToFavoritesButton} onClick={addToFavorites}>
-          {favorite ? (
+          {/* Заміню тимчасово, коли пропишу редакс поверну */}
+          <svg width="24" height="24">
+            <use href={`${sprite}#icon-heart-on`}></use>
+          </svg>
+          {/* Не видаляти, коли буде в редаксі isFavorite треба повернути */}
+          {/* {isFavorite ? (
             <svg width="24" height="24">
               <use href={`${sprite}#icon-heart-off`}></use>
             </svg>
@@ -102,33 +127,14 @@ const CategoryItem = ({
             <svg width="24" height="24">
               <use href={`${sprite}#icon-heart-on`}></use>
             </svg>
-          )}
+          )} */}
         </button>
-        {/* <button
-          className={css.delFavoritesButton}
-          type="buton"
-          onClick={handleDelete}
-        >
-          <svg width="24" height="24">
-            <use href={`${sprite}#icon-delete`}></use>
-          </svg>
-        </button> */}
-        {owner === userId && (
-          <button
-            className={css.delFavoritesButton}
-            type="buton"
-            onClick={handleDelete}
-          >
-            <svg width="24" height="24">
-              <use href={`${sprite}#icon-delete`}></use>
-            </svg>
-          </button>
-        )}
       </div>
 
       <div className={css.itemBox}>
         <h2 className={css.title}>{title}</h2>
         <div className={css.infoWrapper}>
+          <p className={css.category}>{category}</p>
           <p className={css.location}>
             <svg className={css.iconSvg} width="24" height="24">
               <use href={`${sprite}#icon-location-1`}></use>

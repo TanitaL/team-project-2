@@ -1,13 +1,8 @@
 import React from 'react';
-import Container from 'components/Container/Container/Container';
-import { OurFriend } from 'components/OurFriendList/ourFriendList';
+import Container from 'components/Container/Container';
 
 const OurFriendsPage = () => {
-  return (
-    <Container>
-      <OurFriend></OurFriend>
-    </Container>
-  );
+  return <Container>Our friends Page</Container>;
 };
 
 export default OurFriendsPage;

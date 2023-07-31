@@ -6,3 +6,5 @@ export const modalOpenSelector = state => state.auth.modalOpen;
 export const favoritesSelector = state => state.auth.user?.favorites;
 export const isLoginSelector = state => state.auth.isLogin
 export const userIdSelector = state => state.auth.user?.id;
+export const userSelector = state => state.auth.user;
+export const errorSelector = state => state.auth.error;

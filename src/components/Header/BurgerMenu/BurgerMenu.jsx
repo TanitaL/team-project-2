@@ -1,19 +1,19 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { authSelector, userSelector } from 'redux/auth/selectors';
+import { userSelector } from 'redux/auth/selectors';
 import { useMediaQuery } from '@react-hook/media-query';
-import { useBurgerContext } from 'context/BurgerProvider';
+import { ReactComponent as BurgerOpenSvg } from '../../../assets/svg/menu-hamburger-opt.svg';
+import { ReactComponent as BurgerCloseSvg } from '../../../assets/svg/menu-hamburger-cross-opt.svg';
 import AuthNav from 'components/Navigation/AuthNav/AuthNav';
 import Nav from 'components/Navigation/Nav/Nav';
 import UserNav from 'components/Navigation/UserNav/UserNav';
-import Logout from 'components/Logout/Logout';
-import sprite from 'assets/svg/sprite-cards.svg';
+import { useBurgerContext } from 'context/BurgerProvider';
 import css from './BurgerMenu.module.css';
+import Logout from 'components/Logout/Logout';
 
 const BurgerMenu = () => {
   const { menuOpen, setMenuOpen } = useBurgerContext();
   const auth = useSelector(userSelector);
-  const isAuth = useSelector(authSelector);
 
   const isSmallScreen = useMediaQuery('(max-width: 767px)');
   const isMediumScreen = useMediaQuery(
@@ -32,12 +32,12 @@ const BurgerMenu = () => {
     <>
       {menuOpen ? (
         <>
-          {isMediumScreen && !isAuth && <AuthNav />}
+          {isMediumScreen && !auth && <AuthNav />}
 
           <div className={css.headerNav}>
-            {isMediumScreen && isAuth && (
+            {isMediumScreen && auth && (
               <div className={css.userNav}>
-                <Logout closeBurgerMenu={closeBurgerMenu} />
+                <Logout />
               </div>
             )}
 
@@ -46,16 +46,14 @@ const BurgerMenu = () => {
               onClick={closeBurgerMenu}
               className={css.burgerMenuBtn}
             >
-              <svg width="24" height="24">
-                <use href={`${sprite}#icon-menu-hamburger-cross`}></use>
-              </svg>
+              <BurgerCloseSvg />
             </button>
           </div>
 
           <div className={css.burgerOpenNavigation}>
-            {isSmallScreen && !isAuth && <AuthNav />}
+            {isSmallScreen && !auth && <AuthNav />}
 
-            {isSmallScreen && isAuth && (
+            {isSmallScreen && auth && (
               <div className={css.userNav}>
                 <UserNav closeBurgerMenu={closeBurgerMenu} />
                 <p>{auth.name}</p>
@@ -64,29 +62,30 @@ const BurgerMenu = () => {
 
             <Nav closeBurgerMenu={closeBurgerMenu} />
 
-            {isSmallScreen && isAuth && (
-              <Logout closeBurgerMenu={closeBurgerMenu} />
-            )}
+            {isSmallScreen && auth && <Logout />}
           </div>
         </>
       ) : (
         <>
-          {isMediumScreen && !isAuth && <AuthNav />}
-          {isMediumScreen && auth && (
-            <div className={css.userNav}>
-              <UserNav />
-            </div>
+          {/* {isMediumScreen && (
+            <PublicRoute>
+              <AuthNav />
+            </PublicRoute>
           )}
-
+          {isMediumScreen && (
+            <PrivateRoute>
+              <div className={css.userNav}>
+                <UserNav />
+              </div>
+            </PrivateRoute>
+          )} */}
           <div className={css.burgerHeader}>
             <button
               type="button"
               className={css.burgerMenuBtn}
               onClick={openBurgerMenu}
             >
-              <svg width="24" height="24">
-                <use href={`${sprite}#icon-menu-hamburger-yellow`}></use>
-              </svg>
+              <BurgerOpenSvg />
             </button>
           </div>
         </>
