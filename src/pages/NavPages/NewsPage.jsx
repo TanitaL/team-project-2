@@ -27,7 +27,7 @@ const NewsPage = () => {
     } else {
       Notify.warning('Please, Enter the correct data for the search', {
         timeout: 3000,
-        position: 'center-top',
+        //position: 'center-top',
       });
     }
   };
