@@ -58,8 +58,8 @@
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     gap: 16px;
   }
-   @media screen and (min-width: 1280px) {
-     margin-left: 20px;
+  @media screen and (min-width: 1280px) {
+    margin-left: 20px;
   }
 }
 
@@ -160,14 +160,15 @@
   position: relative;
   color: var(--text-color);
 }
+
 .infolist__item:hover a,
-.infolist__item:hover {
+.infolist__item:hover > p {
   color: var(--blue-color);
 }
-.infolist__item:hover div > ul {
+.infolist__item:hover div > ul > li {
   color: black;
+  
 }
-
 .modal {
   position: absolute;
   margin-top: 4px;
