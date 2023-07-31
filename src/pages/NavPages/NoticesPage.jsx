@@ -9,7 +9,8 @@ import AddPetButton from 'components/AddPetButton/AddPetButton';
 import Pagination from 'components/Pagination/Pagination';
 import { getPets, getIsLoading } from 'redux/pets/selectors';
 import {  useSelector } from 'react-redux';
-import Loader from 'components/LoaderPort/Loader';
+import Loader from 'components/Loader/Loader';
+
 
 const NoticesPage = () => {
   const pets = useSelector(getPets);
@@ -72,7 +73,6 @@ const NoticesPage = () => {
 
   return (
     <div>
-      {isLoading && <Loader />}
       <h1 className={css.textNoticesPage}>Find your favorite pet</h1>
       <SearchComponent onSearch={handleSearch} />
       <div className={css.categoryFilterWrapper}>
@@ -82,6 +82,7 @@ const NoticesPage = () => {
           <AddPetButton />
         </div>
       </div>
+      {isLoading && <Loader />}
       <CategoryList data={currentItems} />
       <Pagination
         currentPage={currentPage}

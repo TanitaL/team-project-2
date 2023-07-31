@@ -6,7 +6,7 @@ import {
   addFlagFavorite,
   addToFavorit,
 } from './operations';
-import { toast } from 'react-toastify';
+import notify from 'service/addPetHelpers/toast';
 
 const contactsActions = [
   fetchPets,
@@ -16,17 +16,6 @@ const contactsActions = [
   addToFavorit,
 ];
 const getActions = type => contactsActions.map(action => action[type]);
-const notifySuccess = () =>
-  toast.success('Added successfully', {
-    position: 'top-center',
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: 'light',
-  });
 
 export const petSlice = createSlice({
   name: 'pets',
@@ -34,6 +23,7 @@ export const petSlice = createSlice({
     items: [],
     isLoading: false,
     error: null,
+    isNavigate: false,
   },
   extraReducers: builder =>
     builder
@@ -52,6 +42,7 @@ export const petSlice = createSlice({
         });
 
         state.isLoading = false;
+        state.error = null;
       })
       .addCase(addToFavorit.fulfilled, (state, action) => {
         const id = action.payload;
@@ -61,31 +52,39 @@ export const petSlice = createSlice({
           }
           return item;
         });
-        
 
         state.isLoading = false;
+        state.error = null;
       })
       .addCase(addPet.fulfilled, (state, action) => {
         state.items.unshift(action.payload);
+        console.log('🚀 ~ .addCase ~ action.payload:', action.payload);
         state.isLoading = false;
-        notifySuccess();
+        notify.success('Advertisement added successfully');
+        state.isNavigate = true;
+        state.error = null;
       })
       .addCase(deletePet.fulfilled, (state, action) => {
+        console.log('🚀 ~ .addCase ~ action.payload:', action.payload);
         const index = state.items.findIndex(
           contact => contact.id === action.payload
         );
         state.items.splice(index, 1);
         state.isLoading = false;
-        // notifySuccess(`Contact ${action.payload.name} deleted successfully`);
+        state.error = null;
+        notify.success('Advertisement  deleted successfully');
       })
       .addMatcher(isAnyOf(...getActions('pending')), state => {
         state.isLoading = true;
         state.error = null;
+        state.isNavigate = false;
       })
       .addMatcher(isAnyOf(...getActions('rejected')), (state, action) => {
         state.isLoading = false;
+        state.isNavigate = false;
         state.error = action.payload;
-        console.log("🚀 ~ .addMatcher ~ action.payload:", action.payload)
+        notify.error('Oops! Something went wrong. Please try again');
+        console.log('🚀 ~ .addMatcher ~ action.payload:', action.payload);
       }),
 });
 

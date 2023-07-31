@@ -15,7 +15,8 @@ const CategoryList = ({ data }) => {
           sex,
           category,
           noticeId,
-          favorite=false,
+          favorite = false,
+          owner,
         }) => (
           <CategoryItem
             key={id}
@@ -28,6 +29,7 @@ const CategoryList = ({ data }) => {
             category={category}
             noticeId={noticeId}
             favorite={favorite}
+            owner={owner}
           />
         )
       )}
