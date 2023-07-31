@@ -19,11 +19,8 @@
   margin-top: 16px;
   width: 100%;
   @media screen and (min-width: 768px) {
-    /* width: 704px; */
     gap: 24px;
     align-items: center;
-    /* flex-direction: row; */
-    /* flex-wrap: wrap; */
   }
 }
 
@@ -38,20 +35,13 @@
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  @media screen and (min-width:768px) {
+  @media screen and (min-width: 768px) {
     flex-direction: row;
     gap: 34px;
   }
-  @media screen and (min-width:1200px) {
-   
+  @media screen and (min-width: 1280px) {
     gap: 72px;
   }
-}
-
-.radioAndFileWrapper {
-  /* display: flex;
-  flex-direction: column;
-  gap: 48px; */
 }
 
 .textInputsWrapper {
@@ -68,16 +58,12 @@
 
 .radioForm {
   margin-top: 24px;
-  /* @media screen and (min-width: 320px) {
-    
-  } */
+ 
   @media screen and (min-width: 768px) {
     margin-top: 40px;
   }
 
-  /* @media screen and (min-width: 1200px) {
-  
-  } */
+
 }
 
 .radioWrap {
@@ -98,12 +84,6 @@
 input[type='radio']:checked + .btn {
   background-color: var(--blue-color);
 }
-
-/* .visually-hidden:checked + .btn {
-  background-color: var(
-    --blue-color
-  ); 
-} */
 
 .inptWrapper {
   composes: flex;
@@ -153,23 +133,6 @@ input[type='radio']:checked + .btn {
   border: 1px solid var(--red-color);
 }
 
-/* .ErrorTextInput {
-  outline: none;
-  color: var(--grey-color);
-  width: 256px;
-  height: 48px;
-  border-radius: 40px;
-  border: 1px solid #ff7d87;
-  padding: 12px 16px 12px 16px;
-
-  font-family: Manrope;
-  font-size: 16px;
-  font-style: normal;
-  line-height: 150%;
-  letter-spacing: 0.64px;
-  list-style: none;
-} */
-
 .error {
   font-size: 12px;
   font-weight: 400;
@@ -207,8 +170,6 @@ input[type='radio']:checked + .btn {
   text-align: left;
 }
 
-
-
 .iconMale {
   rotate: -45deg;
   color: var(--blue-color);
@@ -221,25 +182,6 @@ input[type='radio']:checked + .gender {
   border-radius: 40px;
 }
 
-/* input[type='radio']:checked ~ .iconMale {
-  color: var(--white-color);
-  stroke: var(--white-color);
-}
-
-input[type='radio']:checked ~ svg {
-  color: var(--white-color);
-} */
-
-
-
-/* Wrapper for my pet More info */
-.myPetInfoWrap {
-
-}
-/* Wrapper for not my pet More info */
-.infoWrap {
-
-}
 /* Add Image */
 
 .addImgWrapper {
@@ -256,7 +198,6 @@ input[type='radio']:checked ~ svg {
 
 .notMyPetaddImgWrapper {
   display: flex;
-  /* flex-direction: column; */
   align-items: center;
   width: 100%;
   gap: 14px;
@@ -266,16 +207,6 @@ input[type='radio']:checked ~ svg {
     gap: 16px;
   }
 }
-
-/* .addImgText {
-  max-width: 81px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 19px;
-  letter-spacing: 0px;
-  text-align: left;
-  color: var(--text-color);
-} */
 
 .addImgBtn {
   position: relative;
@@ -339,6 +270,7 @@ input[type='radio']:checked ~ svg {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-items: center;
 
   @media screen and (min-width: 768px) {
     flex-direction: row-reverse;
