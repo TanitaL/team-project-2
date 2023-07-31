@@ -3,6 +3,11 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import NewsList from '../../components/Cards/News/NewsList/NewsList';
 import SearchComponent from 'components/SearchComponent/SearchComponent';
 import { fetchNews } from 'service/api/apiNews';
+import Container from 'components/Container/Container/Container';
+import Loader from 'components/Loader/Loader';
+
+import PaginationNews from 'components/Pagination/PaginationNews';
+import css from '../../components/Cards/News/NewsList/NewsItems/NewsItems.module.css';
 
 const NewsPage = () => {
   const [newsItems, setNewsItems] = useState([]);
@@ -10,12 +15,13 @@ const NewsPage = () => {
   const [pages, setPages] = useState(0);
   const [searchNews, setSearchNews] = useState('pet');
   const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(9);
+  const [perPage] = useState(9);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
   const handleSearch = searchTerm => {
     if (searchTerm.trim() !== '') {
+      console.log("first")
       const correctedSearch = searchTerm.toLowerCase();
       setSearchNews(correctedSearch);
     } else {
@@ -27,8 +33,6 @@ const NewsPage = () => {
   };
 
   useEffect(() => {
-    setPage(1);
-    setPerPage(9);
     try {
       setIsLoading(true);
       fetchNews(searchNews, page, perPage).then(
@@ -44,25 +48,16 @@ const NewsPage = () => {
     }
   }, [searchNews, page, perPage]);
 
-  console.log(newsItems);
-  console.log(totalResults);
-  console.log(pages);
+  const handlePageChange = pageNumber => {
+    setPage(pageNumber);
+  };
+
+  console.log('page-->', page);
+  console.log('totalResults-->', totalResults);
+  console.log('pages-->', pages);
 
   if (isLoading) {
-    return (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh',
-        }}
-      >
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    );
+    return <Loader/>
   }
 
   if (error === '404') {
@@ -75,11 +70,16 @@ const NewsPage = () => {
   }
 
   return (
-    <div>
-      <h1>News</h1>
+    <Container>
+      <h1 className={css.textNoticesPage}>News</h1>
       <SearchComponent onSearch={handleSearch} />
       <NewsList news={newsItems} />
-    </div>
+      <PaginationNews
+        currentPage={page}
+        pages={pages}
+        handlePaginationChange={handlePageChange}
+      />
+    </Container>
   );
 };
 
