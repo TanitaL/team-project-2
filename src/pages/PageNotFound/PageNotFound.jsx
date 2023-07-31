@@ -30,7 +30,7 @@ const PageNotFound = () => {
         <span className={css.span}>Ooops! </span>
         This page not found :(
       </p>
-      <div className='NotFoundImg'>
+      <div className={css.NotFoundImg}>
         {isMobile ? (
         <img src={NotFoundMin} alt="page-not-found" width="280px" height="123px" />
         ) : (
