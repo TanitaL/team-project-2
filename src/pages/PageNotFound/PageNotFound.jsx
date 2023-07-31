@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import NotFoundMax from '../../assets/images/cat-404-max-opt.png';
 import NotFoundMin from '../../assets/images/cat-404-min-opt.png';
 
 import css from './PageNotFound.module.css';
 import Container from 'components/Container/Container/Container';
+import BgContainer from 'components/Container/BgContainer/BgContainer';
 
 const PageNotFound = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -21,8 +23,13 @@ const PageNotFound = () => {
   }, []);
   
   return (
-    <Container className={css.PageNotFound}>
-      <p className={css.textError}>Ooops! This page not found :(</p>
+    <Container >
+      <div className={css.PageNotFound}>
+      <BgContainer>
+      <p className={css.textError}>
+        <span className={css.span}>Ooops! </span>
+        This page not found :(
+      </p>
       <div className='NotFoundImg'>
         {isMobile ? (
         <img src={NotFoundMin} alt="page-not-found" width="280px" height="123px" />
@@ -31,6 +38,7 @@ const PageNotFound = () => {
         )
         }
       </div>
+      <Link to="/">
       <button type='button' className={css.PageNotFoundBtn} onClick="/">To main page 
         < svg
           xmlns="http://www.w3.org/2000/svg"
@@ -48,6 +56,9 @@ const PageNotFound = () => {
           </defs>
         </svg>
       </button>
+      </Link>
+      </BgContainer>
+      </div>
     </Container>
   );
 };
