@@ -10,6 +10,8 @@ const fullfiled = (state, { meta, payload = {} }) => {
     case 'login':
       state.user = user;
       state.token = token;
+      state.isLogin = true;
+
       break;
     case 'logout':
       state.user = {};
@@ -36,9 +38,18 @@ const handlePending = state => {
   state.isLoading = true;
 };
 
-const handleRejected = (state, { payload: { data, status } }) => {
+const handleRejected = (state, payload) => {
+  switch (payload.meta.arg.endpoint) {
+    case 'logout':
+      state.user = {};
+      state.token = '';
+      break;
+    default:
+      return;
+  }
+
   state.isLoading = false;
-  state.error = { data, status };
+  state.error = { data: payload.data, status: payload.status };
 };
 
 const authSlice = createSlice({

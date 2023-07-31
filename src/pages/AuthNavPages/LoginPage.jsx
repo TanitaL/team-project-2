@@ -12,10 +12,14 @@ import { errorSelector } from 'redux/auth/selectors';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BgContainer from 'components/Container/BgContainer/BgContainer';
+import Container from 'components/Container/Container/Container';
+
 
 const LoginPage = () => {
   const error = useSelector(errorSelector);
   const dispatch = useDispatch();
+
   const validate = Yup.object({
     email: Yup.string()
       .required('Email is required')
@@ -39,6 +43,7 @@ const LoginPage = () => {
       });
     notify();
   }, [error]);
+
   return (
     <>
       <Formik
