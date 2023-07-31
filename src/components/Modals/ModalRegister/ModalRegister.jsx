@@ -9,7 +9,10 @@ import { useDispatch } from 'react-redux';
 const ModalRegister = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const handleSuccess = () => {
+    navigate('/notices');
+    dispatch(closeModal());
+  };
   return (
     <div className={css.modalOverlay}>
       <div className={css.modalContainer}>
@@ -32,7 +35,7 @@ const ModalRegister = () => {
             </p>
             <div className={css.modalContainerBtn}>
               <PawPrintBtn
-                onClick={navigate('/notices')}
+                handleSuccess={handleSuccess}
                 title={'Go to pets'}
                 type={'button'}
               />

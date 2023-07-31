@@ -13,7 +13,7 @@ const fullfiled = (state, { meta, payload = {} }) => {
     case 'login':
       state.user = user;
       state.token = token;
-      state.isLoading = true;
+      state.isLogin= true;
       break;
     case 'logout':
       state.user = {};

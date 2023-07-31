@@ -43,7 +43,6 @@ const RegisterPage = () => {
       .oneOf([Yup.ref(`password`), null], 'Password must match'),
   });
   useEffect(() => {
-    console.log('useEffect');
     if (!error) {
       return;
     }

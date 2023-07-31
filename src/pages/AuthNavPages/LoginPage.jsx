@@ -2,24 +2,26 @@ import React, { useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import css from './AuthNavPage.module.css';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink,  } from 'react-router-dom';
 import TextField from './TextField';
 import PasswordField from './PasswordField';
 import { useDispatch } from 'react-redux';
 import { austOperationThunk } from 'redux/auth/thunks';
 import { useSelector } from 'react-redux';
-import { errorSelector } from 'redux/auth/selectors';
+import { errorSelector,} from 'redux/auth/selectors';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BgContainer from 'components/Container/BgContainer/BgContainer';
 import Container from 'components/Container/Container/Container';
-import { isLogin } from 'redux/auth/slice';
+// import { isLogin } from 'redux/auth/slice';
 
 const LoginPage = () => {
   const error = useSelector(errorSelector);
+  // const login = useSelector(isLoginSelector);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
+  // const navigate = useNavigate();
   const validate = Yup.object({
     email: Yup.string()
       .required('Email is required')
@@ -42,7 +44,16 @@ const LoginPage = () => {
         theme: 'light',
       });
     notify();
-  }, [error, navigate]);
+  }, [error]);
+
+  // useEffect(() => {
+    // if (!login) {
+      // return;
+    // }
+    // navigate('/notices');
+    // dispatch(isLogin());
+  // }, [dispatch, login, navigate]);
+  // console.log(login);
   return (
     <>
       <BgContainer>
@@ -80,7 +91,7 @@ const LoginPage = () => {
                   <PasswordField
                     placeholder="Password"
                     name="password"
-                    id="password"
+                    id="imgPasswordInput"
                     type="password"
                   />
                   <button
