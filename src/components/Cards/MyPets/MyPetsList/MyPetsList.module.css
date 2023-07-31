@@ -14,3 +14,12 @@
     gap: 24px;
   }
 }
+
+.centerText {
+  text-align: center;
+}
+
+.centerError {
+  text-align: center;
+  color: red;
+}
