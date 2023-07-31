@@ -1,16 +1,13 @@
 import { useState, useEffect } from 'react';
+import Notiflix from 'notiflix';
 
 import { instance } from 'service/api/api';
-import notify from 'service/addPetHelpers/toast';
 import MyPetsItem from './MyPetsItem/MyPetItem';
-import Loader from 'components/Loader/Loader';
 
 import css from './MyPetsList.module.css';
 
 const MyPetsList = () => {
   const [notices, setNotices] = useState([]);
-  const [isPending, setIsPending] = useState(true);
-  const [errorMyPets, setErrorMyPets] = useState(null);
 
   useEffect(() => {
     const getMyPets = async () => {
@@ -18,11 +15,7 @@ const MyPetsList = () => {
         const { data } = await instance.get('/notices/mypets');
         setNotices([...data.notices]);
       } catch (error) {
-        const message = error.response.data.message;
-        notify.error(message);
-        setErrorMyPets(message);
-      } finally {
-        setIsPending(false);
+        Notiflix.Notify.failure(error.response.data.message);
       }
     };
 
@@ -34,54 +27,27 @@ const MyPetsList = () => {
       try {
         const { data } = await instance.delete(`/notices/${deleteId}`);
         setNotices(prev => [...prev.filter(({ id }) => id !== deleteId)]);
-        notify.success(data.message);
+        Notiflix.Notify.success(data.message);
       } catch (error) {
-        const message = error.response.data.message;
-        notify.error(message);
+        Notiflix.Notify.failure(error.response.data.message);
       }
     };
   };
 
-  const mapCallBack = ({ id, name, date, type, comments, file }) => (
-    <MyPetsItem
-      key={id}
-      name={name}
-      breed={type}
-      date={date}
-      comments={comments}
-      image={file}
-      onDelete={onDelete(id)}
-    />
-  );
-
-  if (isPending) {
-    return (
-      <>
-        <Loader />
-      </>
-    );
-  }
-
-  if (errorMyPets) {
-    return (
-      <>
-        <p className={css.centerText}>Error: {errorMyPets}</p>
-      </>
-    );
-  }
-
-  if (notices.length === 0) {
-    return (
-      <>
-        <p className={css.centerText}>You don't have any pets</p>
-      </>
-    );
-  }
-
   return (
-    <>
-      <ul className={css.list}>{notices.map(mapCallBack)}</ul>
-    </>
+    <ul className={css.list}>
+      {notices.map(({ id, name, date, type, comments, file }) => (
+        <MyPetsItem
+          key={id}
+          name={name}
+          breed={type}
+          date={date}
+          comments={comments}
+          image={file}
+          onDelete={onDelete(id)}
+        />
+      ))}
+    </ul>
   );
 };
 

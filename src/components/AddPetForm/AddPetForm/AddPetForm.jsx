@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ChooseOption from '../Steps/ChooseOption';
 import FormStepper from '../FormStepper/FormStepper';
 import MoreInfo from '../Steps/MoreInfo';
@@ -8,12 +8,10 @@ import { categoryObj, petCategory } from 'constants/petCategory';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPet } from 'redux/pets/operations';
 import stepsLable from 'constants/stepsLable';
-import transformFormData from 'service/addPetHelpers/transformFormData';
-import prepareFormData from 'service/addPetHelpers/prepareFormData';
 import { useNavigate } from 'react-router-dom';
-import { getError, getIsLoading } from 'redux/pets/selectors';
-import Loader from 'components/LoaderPort/Loader';
-
+import { getIsLoading, getIsNavigate } from 'redux/pets/selectors';
+import Loader from 'components/LoaderPort/LoaderPortal';
+import makeformData from 'service/addPetHelpers/makeformData';
 
 const initialValues = {
   category: 'your pet',
@@ -30,53 +28,33 @@ const initialValues = {
 
 const { MYPET } = categoryObj;
 
-// const stepsLable = [
-//   { label: 'Choose option', value: 'choose_option' },
-//   { label: 'Personal details', value: 'personal_details' },
-//   { label: 'More info', value: 'more_info' },
-// ];
-
 const AddPetForm = () => {
   const [data, setData] = useState(initialValues);
   const [currentStep, setCurrentStep] = useState(0);
   const dispatsh = useDispatch();
   const navigate = useNavigate();
-  const error = useSelector(getError);
   const isLoading = useSelector(getIsLoading);
-  console.log('🚀 ~ AddPetForm ~ isLoading:', isLoading);
+  const isNavigate = useSelector(getIsNavigate);
 
-  const makeRequest = values => {
+  
+  useEffect(() => {
     
-    const transformedValues = transformFormData(values);
-    const newValues = prepareFormData(transformedValues);
-    console.log('🚀 ~ makeRequest ~ newValues:', newValues);
-    const formData = new FormData();
-    for (let value in newValues) {
-      formData.append(value, newValues[value]);
+    if (isNavigate) {
+      if (data.category === MYPET.label) {
+        navigate('/user');
+      }
+      if (data.category !== MYPET.label) {
+        navigate('/notices');
+      }
     }
-
-    for (let property of formData.entries()) {
-      console.log(property[0], property[1]);
-    }
-
-    dispatsh(addPet(formData));
-  };
+  }, [data.category, isNavigate, navigate]);
 
   const handleNextStep = async (newData, final = false, actions) => {
     setData(prev => ({ ...prev, ...newData }));
 
     if (final) {
-      await makeRequest(newData);
-
-      if (data.category === MYPET.label && !error && !isLoading) {
-        navigate('/user');
-      } else if (data.category !== MYPET.label && !error && !isLoading) {
-        navigate('/notices');
-      }
-      // if (!error && !isLoading) {
-      //   setData(initialValues);
-      //   actions.resetForm();
-      // }
+      const formData = makeformData(newData);
+      dispatsh(addPet(formData))
 
       return;
     }
@@ -94,7 +72,8 @@ const AddPetForm = () => {
     <PersonalDetails next={handleNextStep} data={data} prev={handlePrevStep} />,
     <MoreInfo next={handleNextStep} data={data} prev={handlePrevStep} />,
   ];
-  console.log('🚀 ~ handleNextStep ~ data:', data);
+  console.log('🚀 ~ handleNextStep ~ data:', data.date);
+  console.log('🚀 ~ handleNextStep ~ typeof(data.date):', typeof data.date);
 
   return (
     <section
@@ -108,7 +87,6 @@ const AddPetForm = () => {
       {(currentStep === 0 || data.category === petCategory[0]) && (
         <h1 className={css.title}>Add pet</h1>
       )}
-      {/* { data.category === petCategory[0] && <h1 className={css.title}>Add pet</h1>} */}
       {currentStep !== 0 && data.category === petCategory[1] && (
         <h1 className={css.title}>Add pet for sale</h1>
       )}

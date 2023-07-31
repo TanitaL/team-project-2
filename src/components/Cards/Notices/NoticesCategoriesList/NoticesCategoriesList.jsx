@@ -1,12 +1,24 @@
 import React from 'react';
 import CategoryItem from './NoticesCategoriesItem/NoticesCategoriesItem';
 import css from './NoticesCategoriesList.module.css';
+import containerCss from '../../../Container/Container/Container.module.css';
 
 const CategoryList = ({ data }) => {
   return (
-    <ul className={css.list}>
+    <ul className={`${css.list} ${containerCss.containerMain}`}>
       {data.map(
-        ({ id, title, file, location, age, sex, category, noticeId }) => (
+        ({
+          id,
+          title,
+          file,
+          location,
+          age,
+          sex,
+          category,
+          noticeId,
+          favorite = false,
+          owner,
+        }) => (
           <CategoryItem
             key={id}
             id={id}
@@ -17,6 +29,8 @@ const CategoryList = ({ data }) => {
             sex={sex}
             category={category}
             noticeId={noticeId}
+            favorite={favorite}
+            owner={owner}
           />
         )
       )}

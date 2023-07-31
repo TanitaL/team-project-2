@@ -1,63 +1,85 @@
 .PageNotFound{
-    padding-top: 80px;
-    padding-bottom: 275px;
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh;
 }
-
-  @media screen and (min-width: 768px) {
-    .PageNotFound{
-        padding-top: 60px;
-        padding-bottom: 353px;
-    }
-  }
-
-  @media screen and (min-width: 1280px) {
-    .PageNotFound{
-        padding-top: 60px;
-        padding-bottom: 100px;
-    }
-  }
-
-.text-error{
-    display: block;
-    font-style: normal;
-    line-height: 1.3;
-    margin-top: 80px;
-    margin-left: 20px;
-    font-size: 24px;
+.textError{
+    font-weight: 700;
+    line-height: 1.35;
     text-align: center;
+    width: 280px;
+    height: 66px;
+    /* margin-top: 60px; */
+    padding-top: 40px;
+    padding-bottom: 40px;
+    font-size: 24px;
+    animation: pulsate 2s infinite;
 }
+
+@keyframes pulsate {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1); 
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
 
 @media screen and (min-width: 768px) {
-    .text-error{
+    .textError{
+        width: 450px;
+        height: 42px;
         font-size: 32px;
         font-weight: 600;
-        margin-top: 60px;
-        margin-left: 159px;
+        margin: auto;
     }
 }
 
 @media screen and (min-width: 1280px) {
-    .text-error{
+    .textError{
+        width: 450px;
+        height: 42px;
         font-size: 32px;
         font-weight: 600;
-        margin-top: 60px;
         margin-left: 415px;
     }
 }
 
-.PageNotFoundBtn{
+.span {
+    display: block;
+
+    @media screen and (min-width: 768px) {
+     display: inline-block;   
+    }
+}
+
+.NotFoundImg {
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media screen and (min-width: 768px) {
+        margin-top: 50 px;
+    }
+    
+}
+
+.PageNotFoundBtn {
         display: flex;
+        justify-content: space-around;
         width: 248px;
         height: 40px;
         justify-content: center;
         align-items: center;
-
         padding: 8px 28px;
         border-radius: 40px;
         gap: 12px;
         border: 2px solid #54ADFF;
         background: #54ADFF;
-
         font-family: Manrope;
         font-size: 16px;
         font-style: normal;
@@ -65,27 +87,25 @@
         line-height: normal;
         letter-spacing: 0.64px;
         color: #fef9f9;
-    
-        margin-top: 12px;
+        margin-top: 69px;
+        margin-left: auto;
+        margin-right: auto;
         cursor: pointer;
-
     }
 
     @media screen and (min-width: 768px) {
+        .PageNotFoundBtn {
+            margin-top: 70px;
+        }
     }
     
     @media screen and (min-width: 1280px) {
+        .PageNotFoundBtn {
+            margin-top: 10px;        
+        }
     }
 
-
-.PageNotFoundBtn:hover{
-    background-color: transparent;
-    color: #54ADFF;
-    stroke: #54ADFF;
-}
-
-.PageNotFoundBtn:focus{
-        background-color: transparent;
-        color: #54ADFF;
-        stroke: #54ADFF;
+.PageNotFoundBtn:hover,
+.PageNotFoundBtn:focus {
+    background: var(--gradient-blue);
 }

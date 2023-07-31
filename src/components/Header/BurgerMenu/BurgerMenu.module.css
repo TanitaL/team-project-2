@@ -38,8 +38,12 @@
 
   transform: translate(-50%, 38px);
 
-  background-color: var(--background-color);
+  background-color: transparent;
   z-index: 100;
+
+  /* transition: all 500ms cubic-bezier(0.8, 0, 0.33, 1); */
+
+  transition: transform 0.3s ease-in-out;
 }
 
 @media screen and (min-width: 768px) {
@@ -70,9 +74,7 @@
   padding: 38px 16px 92px 16px;
 
   font-size: 16px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
   letter-spacing: 0.64px;
   color: var(--yellow-color);
 }

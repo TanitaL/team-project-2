@@ -8,13 +8,17 @@ import PasswordField from './PasswordField';
 import { useDispatch } from 'react-redux';
 import { austOperationThunk } from 'redux/auth/thunks';
 import { useSelector } from 'react-redux';
-import { errorSelector } from 'redux/auth/selectors';
+import { errorSelector, modalOpenSelector } from 'redux/auth/selectors';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ModalRegister from 'components/Modals/ModalRegister/ModalRegister';
+import BgContainer from 'components/Container/BgContainer/BgContainer';
+import Container from 'components/Container/Container/Container';
 
 const RegisterPage = () => {
   const error = useSelector(errorSelector);
+  const modalOpen = useSelector(modalOpenSelector);
 
   const dispatch = useDispatch();
 
@@ -56,80 +60,85 @@ const RegisterPage = () => {
       });
     notify();
   }, [error]);
+
   return (
     <>
-      <Formik
-        initialValues={{
-          name: '',
-          email: '',
-          password: '',
-          confirmPassword: '',
-        }}
-        validationSchema={validate}
-        onSubmit={(values, actions) => {
-          const { name, email, password } = values;
-          dispatch(
-            austOperationThunk({
-              endpoint: 'register',
-              userInfo: {
-                name,
-                email,
-                password,
-              },
-            })
-          );
-          if (!error) {
-            return async () => {
-              actions.resetForm();
-            };
-          }
-        }}
-      >
-        {formik => (
-          <div className={css.Container}>
-            <div className={css.ContainerForm}>
-              <h2 className={css.ContainerForm__Title}>Registration</h2>
-              <Form className={css.Form} onSubmit={formik.handleSubmit}>
-                <TextField
-                  placeholder="Name"
-                  name="name"
-                  id="name"
-                  type="text"
-                />
-                <TextField
-                  placeholder="Email"
-                  name="email"
-                  id="email"
-                  type="text"
-                />
-                <PasswordField
-                  placeholder="Password"
-                  name="password"
-                  id="imgPasswordInput"
-                  type="password"
-                />
-                <PasswordField
-                  placeholder="Confirm Password"
-                  name="confirmPassword"
-                  id="imgConfirmPasswordInput"
-                  type="password"
-                />
-                <button className={css.FormRegister__Button} type="submit">
-                  Registration
-                </button>
+      <BgContainer>
+        <Container>
+          <Formik
+            initialValues={{
+              name: '',
+              email: '',
+              password: '',
+              confirmPassword: '',
+            }}
+            validationSchema={validate}
+            onSubmit={async (values, actions) => {
+              const { name, email, password } = values;
 
-                <p className={css.FormRegister__Text}>
-                  Already have an account?{' '}
-                  <NavLink to={`/login`} className={css.FormRegister__Link}>
-                    Login
-                  </NavLink>
-                </p>
-              </Form>
-            </div>
-          </div>
-        )}
-      </Formik>
-      <ToastContainer />
+              dispatch(
+                austOperationThunk({
+                  endpoint: 'register',
+                  userInfo: {
+                    name,
+                    email,
+                    password,
+                  },
+                  actions,
+                })
+              );
+            }}
+          >
+            {formik => (
+              <div className={css.ContainerForm}>
+                <h2 className={css.ContainerForm__Title}>Registration</h2>
+                <Form className={css.Form} onSubmit={formik.handleSubmit}>
+                  <TextField
+                    placeholder="Name"
+                    name="name"
+                    id="name"
+                    type="text"
+                  />
+                  <TextField
+                    placeholder="Email"
+                    name="email"
+                    id="email"
+                    type="text"
+                  />
+                  <PasswordField
+                    placeholder="Password"
+                    name="password"
+                    id="imgPasswordInput"
+                    type="password"
+                  />
+                  <PasswordField
+                    placeholder="Confirm Password"
+                    name="confirmPassword"
+                    id="imgConfirmPasswordInput"
+                    type="password"
+                  />
+                  <button
+                    // onClick={setModalOpen}
+                    className={css.FormRegister__Button}
+                    type="submit"
+                  >
+                    Registration
+                  </button>
+
+                  <p className={css.FormRegister__Text}>
+                    Already have an account?{' '}
+                    <NavLink to={`/login`} className={css.FormRegister__Link}>
+                      Login
+                    </NavLink>
+                  </p>
+                </Form>
+                {modalOpen && <ModalRegister />}
+              </div>
+            )}
+          </Formik>
+          <ToastContainer />
+        </Container>
+      </BgContainer>
     </>
   );
 };

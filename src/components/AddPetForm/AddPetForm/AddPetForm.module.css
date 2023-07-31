@@ -24,18 +24,19 @@ height: 496px;
 
   width: 100%;
   margin: 0 auto;
-
+  margin-top: 20px;
   @media screen and (min-width: 320px) {
     width: 280px;
   }
   @media screen and (min-width: 768px) {
     width: 458px;
     padding: 20px 32px;
+    margin-top: 60px;
   }
 
-  /* @media screen and (min-width: 1200px) {
-    width: 1200px;
-  } */
+  @media screen and (min-width: 1280px) {
+    margin-top: 40px;
+  }
 }
 
 .notMyPetstep3Section {
@@ -50,18 +51,20 @@ height: 496px;
 
   width: 100%;
   margin: 0 auto;
-
+  margin-top: 20px;
   @media screen and (min-width: 320px) {
     width: 280px;
   }
   @media screen and (min-width: 768px) {
     width: 704px;
     padding: 20px 32px;
-    align-items: center
+    align-items: center;
+    margin-top: 60px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     width: 822px;
     padding: 20px 74px 29px 74px;
+    margin-top: 40px;
   }
 }

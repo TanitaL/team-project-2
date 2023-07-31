@@ -1,20 +1,42 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { austOperationThunk } from 'redux/auth/thunks';
 import ModalApproveAction from 'components/Modals/ModalApproveAction/ModalApproveAction';
-import { NavLink, useNavigate } from 'react-router-dom';
 import LogoutBtn from 'components/Buttons/LogoutBtn/LogoutBtn';
-import { ReactComponent as LogoutSvg } from 'assets/svg/logout-opt.svg';
+import sprite from 'assets/svg/sprite-cards.svg';
+// import { toast } from 'react-toastify';
+// import { errorSelector } from 'redux/auth/selectors';
 
-const Logout = () => {
+const Logout = ({ closeBurgerMenu }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  // const error = useSelector(errorSelector);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   if (!error) {
+  //     return;
+  //   }
+  //   const notify = () =>
+  //     toast.error(error.data.message ?? '', {
+  //       position: 'top-right',
+  //       autoClose: 5000,
+  //       hideProgressBar: true,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: 'light',
+  //     });
+  //   notify();
+  // }, [error]);
+
   const handleSuccess = () => {
     dispatch(austOperationThunk({ endpoint: 'logout' }));
-
-    navigate('/');
+    setIsOpenModal(false);
+    closeBurgerMenu(false);
+    navigate('/notices');
   };
 
   const handleCancel = () => {
@@ -33,7 +55,9 @@ const Logout = () => {
           successButtonText={
             <>
               <p>Yes</p>
-              <LogoutSvg />
+              <svg width="24" height="24">
+                <use href={`${sprite}#icon-logout-white`} />
+              </svg>
             </>
           }
         >
