@@ -7,21 +7,19 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 31px;
-  margin-top: 30px;
 
-  /* @media screen and (min-width: 480px) {
+  @media screen and (min-width: 480px) {
     gap: 16px;
     margin-top: 30px;
-  } */
+  }
 
-  /* @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     gap: 16px;
     margin-top: 40px;
-  } */
+  }
 
-  /* @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1280px) {
     gap: 31px;
     margin-top: 42px;
-  } */
+  }
 }
