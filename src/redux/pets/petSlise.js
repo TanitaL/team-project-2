@@ -21,6 +21,7 @@ export const petSlice = createSlice({
   name: 'pets',
   initialState: {
     items: [],
+    totalResult: 0,
     isLoading: false,
     error: null,
     isNavigate: false,
@@ -29,21 +30,22 @@ export const petSlice = createSlice({
     builder
       .addCase(fetchPets.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = action.payload;
+        state.items = action.payload.updatedNotices;
+        state.totalResult = action.payload.totalResult;
         state.error = null;
       })
-      .addCase(addFlagFavorite.fulfilled, (state, action) => {
-        const faforite = action.payload;
-        state.items.map((item, index) => {
-          if (faforite.includes(item.id)) {
-            state.items[index] = { ...item, favorite: true };
-          }
-          return item;
-        });
+      // .addCase(addFlagFavorite.fulfilled, (state, action) => {
+      //   const favorite = action.payload;
+      //   state.items.map((item, index) => {
+      //     if (favorite.includes(item.id)) {
+      //       state.items[index] = { ...item, favorite: true };
+      //     }
+      //     return item;
+      //   });
 
-        state.isLoading = false;
-        state.error = null;
-      })
+      //   state.isLoading = false;
+      //   state.error = null;
+      // })
       .addCase(addToFavorit.fulfilled, (state, action) => {
         const id = action.payload;
         state.items.forEach((item, index) => {
