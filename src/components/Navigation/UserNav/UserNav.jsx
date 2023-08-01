@@ -24,7 +24,11 @@ const UserNav = ({ closeBurgerMenu }) => {
               <UserBtn closeBurgerMenu={closeBurgerMenu} />
             </NavLink>
             {isMediumScreen &&
-              (auth.name ?? <p className={css.userName}>{auth.name}</p>)}
+              (auth.name ? (
+                <p className={css.userName}>{auth.name}</p>
+              ) : (
+                <p className={css.userName}>Name</p>
+              ))}
           </nav>
         </div>
       )}
