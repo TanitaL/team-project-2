@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import notify from 'service/addPetHelpers/toast';
 import NewsList from '../../components/Cards/News/NewsList/NewsList';
 import SearchComponent from 'components/SearchComponent/SearchComponent';
 import { fetchNews } from 'service/api/apiNews';
 import Container from 'components/Container/Container/Container';
 import Loader from 'components/Loader/Loader';
 
-import PaginationNews from 'components/Pagination/PaginationNews';
+import Paginations from 'components/Pagination/Paginations';
 import css from '../../components/Cards/News/NewsList/NewsItems/NewsItems.module.css';
 
 const NewsPage = () => {
   const [newsItems, setNewsItems] = useState([]);
-  const [pages, setPages] = useState(0);
   const [searchNews, setSearchNews] = useState('pet');
   const [page, setPage] = useState(1);
   const [perPage] = useState(9);
+  const [pages, setPages] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -28,10 +28,7 @@ const NewsPage = () => {
       const correctedSearch = searchTerm.toLowerCase();
       setSearchNews(correctedSearch);
     } else {
-      Notify.warning('Please, Enter the correct data for the search', {
-        timeout: 3000,
-        position: 'center-top',
-      });
+      notify.error('Please, Enter the correct request');
     }
   };
 
@@ -70,7 +67,7 @@ const NewsPage = () => {
       {!isLoading && (
         <>
           <NewsList news={newsItems} />
-          <PaginationNews
+          <Paginations
             currentPage={page}
             totalPages={pages}
             handlePaginationChange={handlePageChange}
