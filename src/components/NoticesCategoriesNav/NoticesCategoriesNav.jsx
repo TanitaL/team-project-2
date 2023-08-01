@@ -1,6 +1,9 @@
-import { useLocation } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useLocation, Link } from 'react-router-dom';
+import { authSelector } from 'redux/auth/selectors';
 
-import { useAuth } from '../../redux/auth/useAuth';
+// import {changeCategory, fetchPets} from '../../redux/pets/operations'
 import categories from './categories';
 import styles from './notices-categories-nav.module.scss';
 
@@ -12,84 +15,40 @@ const getFullName = (location, category) => {
   return res;
 };
 
-const NoticesCategoriesNav = ({ onChangeCategory }) => {
-  const { token } = useAuth();
+const NoticesCategoriesNav = () => {
+  //   const { token } = useAuth();
   const { pathname, search } = useLocation();
+  const isAuth = useSelector(authSelector);
 
   return (
     <div className={styles.wrapper}>
       <ul className={styles.list}>
-        {publicCategories.map(({ to, text, id }) => {
-          let category = '';
-          switch (text) {
-            case 'sell':
-              category = 'sell';
-              break;
-            case 'lost/found':
-              category = 'lost-found';
-              break;
-            case 'in good hands':
-              category = 'for-free';
-              break;
-            default:
-              category = text;
-          }
-          return (
-            <li key={id}>
-              <button
-                onClick={() => onChangeCategory(category)}
-                className={getFullName(pathname, to)}
-              >
-                {text}
-              </button>
-            </li>
-          );
-        })}
+        {publicCategories.map(({ to, text, id }) => (
+          <li key={id}>
+            <Link
+              to={{ pathname: to, search }}
+              className={getFullName(pathname, to)}
+            >
+              {text}
+            </Link>
+          </li>
+        ))}
       </ul>
-      {token && (
+      {isAuth && (
         <ul className={styles.list}>
           {privateCategories.map(({ to, text, id }) => (
             <li key={id}>
-              <button
+              <Link
                 to={{ pathname: to, search }}
                 className={getFullName(pathname, to)}
               >
                 {text}
-              </button>
+              </Link>
             </li>
           ))}
         </ul>
       )}
     </div>
-
-    // <div className={styles.wrapper}>
-    //   <ul className={styles.list}>
-    //     {publicCategories.map(({ to, text, id }) => (
-    //       <li key={id}>
-    //         <Link
-    //           to={{ pathname: to, search }}
-    //           className={getFullName(pathname, to)}
-    //         >
-    //           {text}
-    //         </Link>
-    //       </li>
-    //     ))}
-    //   </ul>
-    //   {token && (
-    //     <ul className={styles.list}>
-    //       {privateCategories.map(({ to, text, id }) => (
-    //         <li key={id}>
-    //           <Link
-    //             to={{ pathname: to, search }}
-    //             className={getFullName(pathname, to)}
-    //           >
-    //             {text}
-    //           </Link>
-    //         </li>
-    //       ))}
-    //     </ul>
-    //   )}
-    // </div>
   );
 };
 
