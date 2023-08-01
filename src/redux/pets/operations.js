@@ -7,9 +7,12 @@ import { instance } from 'service/api/api';
 export const fetchPets = createAsyncThunk(
   'pets/fetchAll',
 
-  async (_, thunkAPI) => {
+  async (category, thunkAPI) => {
+    console.log('🚀 ~ category:', category);
     try {
-      const response = await instance.get('/notices');
+      const response = await instance.get(
+        `/notices?category=${category}&limit=20`
+      );
       const notices = response.data.notices;
 
       const updatedNotices = notices.map(item => ({
@@ -54,8 +57,7 @@ export const deletePet = createAsyncThunk(
     try {
       const response = await instance.delete(`/notices/${id}`);
       console.log('🚀 ~ response:', response);
-      return id
-      
+      return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

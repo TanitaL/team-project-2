@@ -5,11 +5,14 @@
   border-radius: 20px;
   background-color: white;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
-  @media screen and (min-width: 768px) {
-    width: 608px;
-    margin-top: 80px;
-     margin-right: auto;
- margin-left: auto;
+  
+}
+@media screen and (min-width: 768px) {
+  .ContainerForm {
+  width: 608px;
+  margin-top: 80px;
+  margin-right: auto;
+  margin-left: auto;
   }
 }
 
@@ -25,10 +28,13 @@
   font-weight: 500;
   line-height: normal;
   margin-bottom: 20px;
-  @media screen and (min-width: 768px) {
-    font-size: 36px;
-    padding-top: 60px;
-    margin-bottom: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .ContainerForm__Title{
+  font-size: 36px;
+  padding-top: 60px;
+  margin-bottom: 40px;
   }
 }
 .ContainerForm__Imput {
@@ -46,7 +52,9 @@
   line-height: 150%;
   letter-spacing: 0.64px;
   list-style: none;
-  @media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 768px) {
+  .ContainerForm__Imput {
   width: 458px;
   margin-bottom: 32px;
   }
@@ -76,7 +84,10 @@
   border: 1px solid var(--blue-color);
   justify-content: center;
   align-items: center;
-  @media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 768px) {
+  .ImputContainer {
   width: 458px;
   margin-bottom: 32PX;
   }
@@ -99,12 +110,17 @@
   border: none;
   cursor: pointer;
   outline: none;
-  @media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 768px) {
+  .FormRegister__Button {
   width: 458px;
   margin-top: 20px;
-  margin-bottom: 16px;
+  margin-bottom: 16px; 
   }
-  @media screen and (min-width: 1280px) {
+}
+
+@media screen and (min-width: 1280px) {
+  .FormRegister__Button {
   margin-top: 8px;
   }
 }
@@ -131,10 +147,13 @@
   border: none;
   cursor: pointer;
   outline: none;
-  @media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 768px) {
+  .FormRegister__Button_Login {
   width: 458px;
   margin-top: 28px;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
   }
 }
 
@@ -152,10 +171,15 @@
   letter-spacing: 0.48px;
   color: var(--grey-color);
   padding-bottom: 40px;
-  @media screen and (min-width: 768px) {
+  
+}
+
+@media screen and (min-width: 768px) {
+  .FormRegister__Text {
   padding-bottom: 60px;
   }
 }
+
 .FormRegister__Link {
   color: var(--blue-color);
   font-family: Manrope;
@@ -187,12 +211,15 @@
  margin-bottom: 2px;
 
  text-align: initial;
+}
+
 @media screen and (min-width: 768px) {
+  .ErrorText {
   margin-top: 4px;
   padding-left: 86px;
   padding-right: 86px;
   margin-bottom: 16px;
-}
+  }
 }
 .ErrorTextPassword {
   color: red;
@@ -202,13 +229,16 @@
   margin-top: 2px;
   margin-bottom: 2px;
   text-align: initial;
-  @media screen and (min-width: 768px) {
+}
+
+ @media screen and (min-width: 768px) {
+  .ErrorTextPassword {
   margin-top: 4px;
   padding-left: 86px;
   padding-right: 86px;
   margin-bottom: 16px;
   }
-}
+ }
 
 .ErrorTextInput {
   outline: none;
@@ -225,7 +255,10 @@
   line-height: 150%;
   letter-spacing: 0.64px;
   list-style: none;
-  @media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 768px) {
+  .ErrorTextInput {
   width: 458px;
   }
 }
@@ -242,7 +275,10 @@
 
   justify-content: center;
   align-items: center;
-  @media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 768px) {
+  .ErrorPasswordInput {
   width: 458px;
   }
 }
