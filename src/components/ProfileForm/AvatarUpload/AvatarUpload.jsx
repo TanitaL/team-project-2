@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import Loader from 'components/Loader/Loader';
-import defaultAvatar from '../icons/Photodefault.jpg';
+import defaultAvatar from 'assets/images/Photodefault.jpg';
 import { BsPlusLg } from 'react-icons/bs';
-import css from './AvatarUpload.module.css';
 
-import { ReactComponent as CameraSvg } from '../icons/camera.svg';
-import { ReactComponent as ConfirmSvg } from '../icons/confirm.svg';
-import { ReactComponent as RejectSvg } from '../icons/reject.svg';
+import { ReactComponent as CameraSvg } from 'assets/svg/camera.svg';
+import { ReactComponent as ConfirmSvg } from 'assets/svg/confirm.svg';
+import { ReactComponent as RejectSvg } from 'assets/svg/reject.svg';
+import css from 'components/ProfileForm/AvatarUpload/AvatarUpload.module.css';
 
 const AvatarUpload = ({ userFile, isEditing, setImage }) => {
   const fileInputRef = useRef(null);
