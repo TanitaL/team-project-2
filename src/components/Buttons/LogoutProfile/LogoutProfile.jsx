@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { austOperationThunk } from 'redux/auth/thunks';
+import { logoutThunk } from 'redux/auth/thunks';
 
 import ModalApproveAction from 'components/Modals/ModalApproveAction/ModalApproveAction';
 import { ReactComponent as LogoutSvg } from 'assets/svg/logout.svg';
@@ -29,7 +29,7 @@ const LogoutProfile = ({ closeBurgerMenu }) => {
   const navigate = useNavigate();
 
   const handleSuccess = () => {
-    dispatch(austOperationThunk({ endpoint: 'logout' }));
+    dispatch(logoutThunk());
     setIsOpenModal(false);
     closeBurgerMenu(false);
     navigate('/notices');

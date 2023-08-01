@@ -5,5 +5,4 @@ export const loadingSelector = state => state.auth.isLoading;
 export const modalOpenSelector = state => state.auth.modalOpen;
 export const favoritesSelector = state => state.auth.user?.favorites;
 export const userIdSelector = state => state.auth.user?.id;
-export const isloginSelector = state => state.auth.isLogin;
 

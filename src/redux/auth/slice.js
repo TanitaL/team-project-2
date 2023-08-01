@@ -13,17 +13,10 @@ const fullfiled = (state, { meta, payload = {} }) => {
     case 'login':
       state.user = user;
       state.token = token;
-      state.isLogin = true;
-      break;
-    case 'logout':
-      state.user = {};
-      state.token = '';
-      state.isLogin = false;
       break;
     case 'current':
       state.user = user;
       state.token = token;
-      state.isLogin = true;
       break;
     case 'verify':
       state.token = token;
@@ -50,14 +43,12 @@ const handleRejected = (state, { payload: { data, status } }) => {
 const logout = state => {
   state.user = {};
   state.token = '';
-  state.isLogin = false;
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
     user: {},
-    isLogin: false,
     isLoading: false,
     token: '',
     error: null,
@@ -80,5 +71,5 @@ const authSlice = createSlice({
       .addMatcher(action => action.type.endsWith('/rejected'), handleRejected);
   },
 });
-export const { closeModal, isLogin } = authSlice.actions;
+export const { closeModal } = authSlice.actions;
 export const authReducer = authSlice.reducer;
