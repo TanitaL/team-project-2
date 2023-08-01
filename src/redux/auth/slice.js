@@ -20,6 +20,7 @@ const fullfiled = (state, { meta, payload = {} }) => {
       break;
     case 'verify':
       state.token = token;
+      state.user = user;
       break;
     default:
       return;
