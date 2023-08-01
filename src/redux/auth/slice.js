@@ -41,9 +41,10 @@ const handlePending = state => {
   state.isLoading = true;
 };
 
-const handleRejected = (state, { payload: { data, status } }) => {
+const handleRejected = (state, payload) => {
+  console.log(payload)
   state.isLoading = false;
-  state.error = { data, status };
+  // state.error = { data, status };
 };
 
 const logout = state => {
