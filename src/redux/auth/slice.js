@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { austOperationThunk } from './thunks';
+import { austOperationThunk, logoutThunk } from './thunks';
 
 const fullfiled = (state, { meta, payload = {} }) => {
   const {
@@ -40,18 +40,14 @@ const handlePending = state => {
   state.isLoading = true;
 };
 
-const handleRejected = (state, payload) => {
-  switch (payload.meta.arg.endpoint) {
-    case 'logout':
-      state.user = {};
-      state.token = '';
-      break;
-    default:
-      return;
-  }
-
+const handleRejected = (state, { payload: { data, status } }) => {
   state.isLoading = false;
-  state.error = { data: payload.data, status: payload.status };
+  state.error = { data, status };
+};
+
+const logout = state => {
+  state.user = {};
+  state.token = '';
 };
 
 const authSlice = createSlice({
@@ -62,7 +58,6 @@ const authSlice = createSlice({
     token: '',
     error: null,
     modalOpen: false,
-    isLogin: false,
   },
   reducers: {
     closeModal: {
@@ -70,15 +65,11 @@ const authSlice = createSlice({
         state.modalOpen = false;
       },
     },
-    isLogin: {
-      reducer(state) {
-        state.isLogin = false;
-      },
-    },
   },
   extraReducers: builder => {
     builder
       .addCase(austOperationThunk.fulfilled, fullfiled)
+      .addCase(logoutThunk.fulfilled, logout)
 
       .addMatcher(action => action.type.endsWith('/pending'), handlePending)
       .addMatcher(action => action.type.endsWith('/fulfilled'), handleFulfilled)

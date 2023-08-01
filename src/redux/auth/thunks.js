@@ -6,7 +6,6 @@ export const austOperationThunk = createAsyncThunk(
   'auth/operations',
   async ({ endpoint, userInfo = {}, urlToken, actions }, thunkAPI) => {
     const { token } = thunkAPI.getState().auth;
-    console.log(endpoint)
     if (
       endpoint === 'register' ||
       endpoint === 'login' ||
@@ -20,7 +19,7 @@ export const austOperationThunk = createAsyncThunk(
         if (endpoint === 'logout') {
           deleteToken();
         }
-        actions.resetForm()
+        actions.resetForm();
         return data;
       } catch (error) {
         const { response } = error;
@@ -49,4 +48,14 @@ export const austOperationThunk = createAsyncThunk(
   }
 );
 
-export const logoutThunk = createAsyncThunk();
+export const logoutThunk = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    const { data } = await instance.post(`users/logout`);
+    deleteToken();
+    return data;
+  } catch (error) {
+     const { response } = error;
+     return thunkAPI.rejectWithValue(response);
+  }
+});
+

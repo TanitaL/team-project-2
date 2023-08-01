@@ -2,23 +2,24 @@ import React, { useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import css from './AuthNavPage.module.css';
-import { NavLink,  } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import TextField from './TextField';
 import PasswordField from './PasswordField';
 import { useDispatch } from 'react-redux';
 import { austOperationThunk } from 'redux/auth/thunks';
 import { useSelector } from 'react-redux';
-import { errorSelector,} from 'redux/auth/selectors';
+import { errorSelector, loadingSelector } from 'redux/auth/selectors';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BgContainer from 'components/Container/BgContainer/BgContainer';
 import Container from 'components/Container/Container/Container';
+import LoaderPet from 'components/LoaderPet/LoaderPet';
 
 const LoginPage = () => {
   const error = useSelector(errorSelector);
   const dispatch = useDispatch();
-
+  const isLoading = useSelector(loadingSelector);
   const validate = Yup.object({
     email: Yup.string()
       .required('Email is required')
@@ -45,6 +46,7 @@ const LoginPage = () => {
 
   return (
     <>
+      {isLoading && <LoaderPet />}
       <BgContainer>
         <Container>
           <Formik
