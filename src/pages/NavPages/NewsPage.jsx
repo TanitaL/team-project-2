@@ -3,7 +3,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import NewsList from '../../components/Cards/News/NewsList/NewsList';
 import SearchComponent from 'components/SearchComponent/SearchComponent';
 import { fetchNews } from 'service/api/apiNews';
-import Container from 'components/Container/Container/Container';
+import Container from 'components/Container/Container';
 import Loader from 'components/Loader/Loader';
 
 import PaginationNews from 'components/Pagination/PaginationNews';

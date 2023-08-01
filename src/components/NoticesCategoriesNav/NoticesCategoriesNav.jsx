@@ -1,10 +1,11 @@
 // import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
+import { authSelector } from 'redux/auth/selectors';
 
-import { useAuth } from '../../redux/auth/useAuth';
 // import {changeCategory, fetchPets} from '../../redux/pets/operations'
 import categories from './categories';
-import styles from './notices-categories-nav.module.scss';
+import styles from './NoticesCategoriesNav.module.css';
 
 const { publicCategories, privateCategories } = categories;
 
@@ -15,8 +16,10 @@ const getFullName = (location, category) => {
 };
 
 const NoticesCategoriesNav = () => {
-  const { token } = useAuth();
-  const { pathname, search } = useLocation();
+//   const { token } = useAuth();
+    const { pathname, search } = useLocation();
+    const isAuth = useSelector(authSelector);
+    
 
   return (
     <div className={styles.wrapper}>
@@ -32,7 +35,7 @@ const NoticesCategoriesNav = () => {
           </li>
         ))}
       </ul>
-      {token && (
+      {isAuth && (
         <ul className={styles.list}>
           {privateCategories.map(({ to, text, id }) => (
             <li key={id}>
