@@ -8,17 +8,23 @@ import PasswordField from './PasswordField';
 import { useDispatch } from 'react-redux';
 import { austOperationThunk } from 'redux/auth/thunks';
 import { useSelector } from 'react-redux';
-import { errorSelector, modalOpenSelector } from 'redux/auth/selectors';
+import {
+  errorSelector,
+  loadingSelector,
+  modalOpenSelector,
+} from 'redux/auth/selectors';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ModalRegister from 'components/Modals/ModalRegister/ModalRegister';
 import BgContainer from 'components/Container/BgContainer/BgContainer';
 import Container from 'components/Container/Container/Container';
+import LoaderPet from 'components/LoaderPet/LoaderPet';
 
 const RegisterPage = () => {
   const error = useSelector(errorSelector);
   const modalOpen = useSelector(modalOpenSelector);
+  const isLoading = useSelector(loadingSelector);
 
   const dispatch = useDispatch();
 
@@ -63,6 +69,7 @@ const RegisterPage = () => {
 
   return (
     <>
+      {isLoading && <LoaderPet />}
       <BgContainer>
         <Container>
           <Formik
