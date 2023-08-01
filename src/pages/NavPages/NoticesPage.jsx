@@ -2,10 +2,12 @@ import React, {  useEffect, Suspense } from 'react';
 // import CategoryList from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCategoriesList';
 import css from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCategoriesItem/NoticesCategoriesItem.module.css';
 
+// import { instance } from 'service/api/api';
 import SearchComponent from '../../components/SearchComponent/SearchComponent';
 import NoticesCategoriesNav from '../../components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesFilters from 'components/NoticesFilters/NoticesFilters';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
+
 // import Pagination from 'components/Pagination/Pagination';
 import {  getIsLoading, } from 'redux/pets/selectors';
 import { useDispatch, useSelector } from 'react-redux';
@@ -86,6 +88,7 @@ const NoticesPage = () => {
   // const indexOfLastItem = currentPage * itemsPerPage;
   // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   // const currentItems = visiblePets.slice(indexOfFirstItem, indexOfLastItem);
+
 
   // if (isLoading) {
   //   return (

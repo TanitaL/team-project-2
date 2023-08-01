@@ -26,7 +26,6 @@ const AfterVerifEmail = lazy(() => import('../pages/Other/AfterVerifEmail'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  
 
   useEffect(() => {
     dispatch(
@@ -35,7 +34,6 @@ export const App = () => {
       })
     );
   }, [dispatch]);
-
 
   return (
     <Suspense fallback={<Loader />}>

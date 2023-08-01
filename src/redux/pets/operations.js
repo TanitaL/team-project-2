@@ -8,7 +8,7 @@ export const fetchPets = createAsyncThunk(
   'pets/fetchAll',
 
   async (category, thunkAPI) => {
-    console.log("🚀 ~ category:", category)
+    console.log('🚀 ~ category:', category);
     try {
       const response = await instance.get(
         `/notices?category=${category}&limit=20`
@@ -75,4 +75,3 @@ export const addToFavorit = createAsyncThunk(
     }
   }
 );
-

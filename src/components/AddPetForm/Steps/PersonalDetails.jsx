@@ -1,7 +1,7 @@
 import ArrowLeftBtn from 'components/Buttons/ArrowLeftBtn/ArrowLeftBtn';
 import PawPrintBtn from 'components/Buttons/PawPrintBtn/PawPrintBtn';
 import { petCategory } from 'constants/petCategory';
-import { ErrorMessage, Form, Formik, Field } from 'formik';
+import { ErrorMessage, Form, Formik } from 'formik';
 import { stepTwoValidationSchema } from './addFormValidation';
 import css from './steps.module.css';
 import TextField from './TextFielf';
@@ -9,17 +9,17 @@ import TextField from './TextFielf';
 // import { DatePicker } from 'react-datepicker'; // Импортируем компонент DatePicker
 // import 'react-datepicker/dist/react-datepicker.css'; // Подключаем стили для DatePicker
 
-// import { format } from 'date-fns'; // Импортируем функции для работы с датами
+import { format } from 'date-fns'; // Импортируем функции для работы с датами
 
 // const formatDateForFormik = date => {
 //   return date ? format(date, 'dd-MM-yyyy') : '';
 // };
 
-// const formatDate = date => {
-//   const formattedDate = date ? format(new Date(date), 'dd-MM-yyyy') : null;
+const formatDate = date => {
+  const formattedDate = date ? format(new Date(date), 'dd-MM-yyyy') : null;
 
-//   return formattedDate;
-// };
+  return formattedDate;
+};
 
 const PersonalDetails = ({ data, next, prev }) => {
   const handleSubmit = values => {
@@ -49,6 +49,16 @@ const PersonalDetails = ({ data, next, prev }) => {
                 id="title"
                 type="text"
               />
+              {/* <Field
+                className={css.input}
+                name="title"
+                placeholder="Title of add"
+              />
+              <ErrorMessage
+                className={css.error}
+                name="title"
+                component="div"
+              /> */}
             </div>
           )}
 
@@ -62,30 +72,32 @@ const PersonalDetails = ({ data, next, prev }) => {
               id="name"
               type="text"
             />
+            {/* <Field
+              className={css.input}
+              name="name"
+              placeholder="Type name pet"
+            />
+            <ErrorMessage className={css.error} name="name" component="div" /> */}
           </div>
           <div className={css.inptWrapper}>
             <label className={css.lable} htmlFor="date">
               Date of birth
             </label>
-            <Field
+            {/* <Field
               className={css.input}
               name="date"
               type="date"
               placeholder="Type date of birth"
-            />
-            {/* <input
+            /> */}
+            <input
               className={css.input}
               name="date"
               type="date"
               placeholder="Type date of birth"
               onChange={event => {
-                // setFieldValue('date', formatDate(event.target.value));
-                setFieldValue(
-                  'date',
-                  new Date(event.target.value).toISOString()
-                );
+                setFieldValue('date', formatDate(event.target.value));
               }}
-            /> */}
+            />
             {/* <DatePicker
               autoComplete="off"
               selected={
@@ -116,6 +128,13 @@ const PersonalDetails = ({ data, next, prev }) => {
               id="typePet"
               type="text"
             />
+            {/* <Field
+              className={css.input}
+              name="type"
+              type="text"
+              placeholder="Type of pet"
+            />
+            <ErrorMessage className={css.error} name="type" component="div" /> */}
           </div>
           <div className={css.btnWrapper}>
             <PawPrintBtn title="Next" type="submit" />
@@ -125,6 +144,11 @@ const PersonalDetails = ({ data, next, prev }) => {
               handleBackClick={handleBackClick}
             />
           </div>
+
+          {/* <button type="submit">Next</button> */}
+          {/* <button type="button" onClick={handleBackClick}>
+            Back
+          </button> */}
         </Form>
       )}
     </Formik>

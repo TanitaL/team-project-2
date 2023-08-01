@@ -3,44 +3,36 @@
   margin-left: auto;
   margin-right: auto;
   list-style: none;
-  padding: 0 16px;
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  max-width: 1280px;
-  margin: 0 auto;
-  gap: 32px;
+  padding: 0px 16px 0px 16px;
 }
 
-.list-item {
-  flex: 0 0 calc(25% - 63px);
-  max-width: calc(25% - 63px);
-  margin: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 16px;
-  text-align: center;
-}
-
-@media screen and (max-width: 1279px) {
-  .list-item {
-    flex-basis: calc(33.3333% - 62px);
-    max-width: calc(33.3333% - 62px);
+@media screen and (max-width: 767px) {
+  .list {
+    display: grid;
+    align-items: stretch;
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    grid-gap: 16px;
+    /* margin-top: 30px; */
   }
 }
 
-@media screen and (max-width: 927px) {
-  .list-item {
-    flex-basis: calc(50% - 62px);
-    max-width: calc(50% - 62px);
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .list {
+    display: grid;
+    align-items: stretch;
+    grid-template-columns: repeat(3, minmax(244px, 1fr));
+    column-gap: 32px;
+    row-gap: 46px;
+    /* margin-top: 40px; */
   }
 }
 
-@media screen and (max-width: 609px) {
-  .list-item {
-    flex-basis: calc(100% - 32px);
-    max-width: calc(100% - 32px);
+@media screen and (min-width: 1280px) {
+  .list {
+    display: grid;
+    align-items: stretch;
+    grid-template-columns: repeat(4, minmax(288px, 1fr));
+    column-gap: 31px;
+    /* margin-top: 42px; */
   }
 }

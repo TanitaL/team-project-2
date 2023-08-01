@@ -1,7 +1,6 @@
 import React  from 'react';
 import { useSelector } from 'react-redux';
 
-import { useParams } from 'react-router-dom';
 import { getPets } from 'redux/pets/selectors';
 
 import CategoryItem from './NoticesCategoriesItem/NoticesCategoriesItem';
@@ -9,8 +8,7 @@ import css from './NoticesCategoriesList.module.css';
 
 const CategoryList = () => {
   const pets = useSelector(getPets);
-  const { categoryName } = useParams();
-  console.log("🚀 ~ CategoryList ~ categoryName:", categoryName)
+
 
   return (
     <ul className={css.list}>
@@ -27,6 +25,7 @@ const CategoryList = () => {
           favorite = false,
           owner,
         }) => (
+
           <CategoryItem
             key={id}
             id={id}
@@ -37,8 +36,6 @@ const CategoryList = () => {
             sex={sex}
             category={category}
             noticeId={noticeId}
-            favorite={favorite}
-            owner={owner}
           />
         )
       )}

@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
-
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authSelector, userIdSelector } from 'redux/auth/selectors';
 
 import PetModal from 'components/PetModal/PetModal';
-
 
 import 'react-toastify/dist/ReactToastify.css';
 import css from './NoticesCategoriesItem.module.css';
@@ -26,7 +24,7 @@ const CategoryItem = ({
   owner,
 }) => {
   const [imageError, setImageError] = useState(false);
- const userId = useSelector(userIdSelector);
+  const userId = useSelector(userIdSelector);
   const [isModalOpen, setIsModalOpen] = useState(null);
   const [sexIcon, setSexIcon] = useState('icon-male');
   const dispatch = useDispatch();
@@ -59,7 +57,6 @@ const CategoryItem = ({
       return;
     }
     dispatch(addToFavorit(id));
-
   };
 
   const handleOpenModal = () => {
@@ -72,11 +69,9 @@ const CategoryItem = ({
 
   const handleDelete = () => {
     if (owner === userId) {
-      
       dispatch(deletePet(id));
     }
-    
-  }
+  };
 
   return (
     <li key={id} className={css.item}>

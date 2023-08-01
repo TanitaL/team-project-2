@@ -17,7 +17,7 @@
   --green-color: #00c3ad;
 
   --gradient-blue: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
-  --box-title-shadow:  0px 4px 4px rgba(0, 0, 0, 0.25);
+
   --box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
   --filter-drop-shadow: drop-shadow(7px 13px 14px rgba(116, 177, 232, 0.24));
 }
