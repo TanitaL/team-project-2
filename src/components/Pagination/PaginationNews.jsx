@@ -1,22 +1,19 @@
 import React from 'react';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { useState } from 'react';
 
 import { Pagination, PaginationItem } from '@mui/material';
 
-const PaginationNews = ({ currentPage, pages, handlePaginationChange }) => {
+const PaginationNews = ({ currentPage, totalPages, handlePaginationChange }) => {
 
-    const [page, setPage] = useState(currentPage);
     const handleChange = (event, value) => {
-      setPage(value);
       handlePaginationChange(value)
     };
 
   return <div style={{display: "flex", alignItems: "center", justifyContent: "center", padding: "20px"}}><Pagination
-    page={page}
+    page={currentPage}
     onChange={handleChange}
-    count={pages}
+    count={totalPages || 99}
     color="primary"
     renderItem={(item) => (
         <PaginationItem

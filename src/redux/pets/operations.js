@@ -7,16 +7,31 @@ import { instance } from 'service/api/api';
 export const fetchPets = createAsyncThunk(
   'pets/fetchAll',
 
-  async (_, thunkAPI) => {
+  async ({page,
+    limit,
+    category,
+    sex,
+    date,
+    query }, thunkAPI) => {
+    
+    let params = { limit, page }
+    
+        if (category !== "") { params = { ...params, category } }
+    if (sex !== "") { params = { ...params, sex } }
+    if (date  !== "") { params = { ...params, date } }
+    if (query !== "") { params = { ...params, query } }
+    
     try {
-      const response = await instance.get('/notices');
+      const response = await instance.get(`/notices`, { params });
+      
       const notices = response.data.notices;
+      const totalResult = response.data.totalResult;
 
       const updatedNotices = notices.map(item => ({
         ...item,
         favorite: false,
       }));
-      return updatedNotices;
+      return {updatedNotices, totalResult};
       // return response.data.notices;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
