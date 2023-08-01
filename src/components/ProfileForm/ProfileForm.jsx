@@ -2,16 +2,17 @@ import { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import AvatarUpload from './AvatarUpload/AvatarUpload';
-import Loader from '../Loader/Loader';
+import AvatarUpload from 'components/ProfileForm/AvatarUpload/AvatarUpload';
+import LogoutProfile from 'components/Buttons/LogoutProfile/LogoutProfile';
+import Loader from 'components/Loader/Loader';
+
 import { instance } from 'service/api/api';
 import notify from 'service/addPetHelpers/toast';
 import preparePutData from 'service/addPetHelpers/preparePutData';
 
-import { ReactComponent as LogoutSvg } from './icons/logout.svg';
-import { ReactComponent as CloseSvg } from './icons/close.svg';
-import { ReactComponent as EditSvg } from './icons/edit.svg';
-import css from './ProfileForm.module.css';
+import { ReactComponent as CloseSvg } from 'assets/svg/close.svg';
+import { ReactComponent as EditSvg } from 'assets/svg/edit.svg';
+import css from 'components/ProfileForm/ProfileForm.module.css';
 
 const validate = Yup.object({
   avatar: Yup.mixed().test(
@@ -54,6 +55,30 @@ const initialValues = {
   birthday: '',
   phone: '',
   city: '',
+};
+
+const EditCloseBtn = ({ handleOnClick }) => {
+  return (
+    <button type="button" className={css.editBtn} onClick={handleOnClick}>
+      <CloseSvg />
+    </button>
+  );
+};
+
+const EditBtn = ({ handleOnClick }) => {
+  return (
+    <button type="button" className={css.editBtn} onClick={handleOnClick}>
+      <EditSvg />
+    </button>
+  );
+};
+
+const SaveBtn = () => {
+  return (
+    <button type="submit" className={css.saveBtn}>
+      Save
+    </button>
+  );
 };
 
 const ProfileForm = () => {
@@ -255,56 +280,25 @@ const ProfileForm = () => {
                 />
               </div>
 
-              {/* ----------------------------------------------------- */}
-              {/* Кнопка Save */}
+              {/* Кнопка Save  */}
               {isEditing && (
                 <div className={css.item}>
                   <div className={css.flexContainer}>
-                    <button type="submit" className={css.saveBtn}>
-                      Save
-                    </button>
+                    <SaveBtn />
                   </div>
                 </div>
               )}
             </div>
           </div>
 
-          {/* ----------------------------------------------------- */}
-          {/* Кнопки загального редагування  */}
-          {isEditing ? (
-            <>
-              {/* Кнопка закриття редагування  */}
-              <button
-                type="button"
-                className={css.editBtn}
-                onClick={handleOnEditClose(resetForm)}
-              >
-                <CloseSvg />
-              </button>
-            </>
-          ) : (
-            <>
-              {/* Кнопка редагування  */}
-              <button
-                type="button"
-                className={css.editBtn}
-                onClick={handleOnEdit}
-              >
-                <EditSvg />
-              </button>
-            </>
+          {/* Загальне редагування  */}
+          {!isEditing && <EditBtn handleOnClick={handleOnEdit} />}
+          {isEditing && (
+            <EditCloseBtn handleOnClick={handleOnEditClose(resetForm)} />
           )}
 
-          {/* ----------------------------------------------------- */}
-          {/* Кнопка Log Out  */}
-          {!isEditing && (
-            <>
-              <button type="button" className={css.logoutBtn}>
-                <LogoutSvg />
-                Log Out
-              </button>
-            </>
-          )}
+          {/* Кнопка Log out */}
+          {!isEditing && <LogoutProfile />}
         </Form>
       )}
     </Formik>

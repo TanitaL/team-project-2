@@ -1,70 +1,39 @@
 import React, { useEffect } from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import css from './AuthNavPage.module.css';
-import { NavLink } from 'react-router-dom';
-import TextField from './TextField';
-import PasswordField from './PasswordField';
 import { useDispatch } from 'react-redux';
-import { austOperationThunk } from 'redux/auth/thunks';
-import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
 import {
+  css,
+  Formik,
+  Form,
+  TextField,
+  PasswordField,
+  austOperationThunk,
+  useSelector,
   errorSelector,
   loadingSelector,
   modalOpenSelector,
-} from 'redux/auth/selectors';
-import { toast } from 'react-toastify';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import ModalRegister from 'components/Modals/ModalRegister/ModalRegister';
-import BgContainer from 'components/Container/BgContainer/BgContainer';
-import Container from 'components/Container/Container/Container';
-import LoaderPet from 'components/LoaderPet/LoaderPet';
+  ToastContainer,
+  ModalRegister,
+  BgContainer,
+  Container,
+  LoaderPet,
+  validateInRegisterForm,
+  notify,
+} from './index';
 
 const RegisterPage = () => {
   const error = useSelector(errorSelector);
   const modalOpen = useSelector(modalOpenSelector);
   const isLoading = useSelector(loadingSelector);
-
   const dispatch = useDispatch();
 
-  const validate = Yup.object({
-    name: Yup.string()
-      .required('Name is required')
-      .min(2, 'Must be at least 2 characters')
-      .max(16, 'Must be 16 characters or less'),
-    email: Yup.string()
-      .required('Email is required')
-      .email('Invalid email address'),
-    password: Yup.string()
-      .required('Password is required')
-      .min(6, 'Password must be at least 6 characters')
-      .max(16, 'Password must be at most 16 characters')
-      .matches(
-        /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,16}$/,
-        'The password must consist of numbers and capital letters'
-      ),
-    confirmPassword: Yup.string()
-      .required('Password is required')
-      .oneOf([Yup.ref(`password`), null], 'Password must match'),
-  });
   useEffect(() => {
     if (!error) {
       return;
     }
 
-    const notify = () =>
-      toast.error(error.data.message ?? '', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
-    notify();
+    notify.error(error.data.message);
   }, [error]);
 
   return (
@@ -79,7 +48,7 @@ const RegisterPage = () => {
               password: '',
               confirmPassword: '',
             }}
-            validationSchema={validate}
+            validationSchema={validateInRegisterForm}
             onSubmit={async (values, actions) => {
               const { name, email, password } = values;
 
@@ -124,11 +93,7 @@ const RegisterPage = () => {
                     id="imgConfirmPasswordInput"
                     type="password"
                   />
-                  <button
-                    // onClick={setModalOpen}
-                    className={css.FormRegister__Button}
-                    type="submit"
-                  >
+                  <button className={css.FormRegister__Button} type="submit">
                     Registration
                   </button>
 
