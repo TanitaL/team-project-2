@@ -31,7 +31,7 @@ const ModalRegister = () => {
           <div className={css.modalText}>
             <h2 className={css.modalTitle}>Congrats!</h2>
             <p className={css.modalInfo}>
-              Your profile has been registered. Confirm email on your mail
+              Your profile has been registered. Confirm email on your mail.
             </p>
             <div className={css.modalContainerBtn}>
               <PawPrintBtn
