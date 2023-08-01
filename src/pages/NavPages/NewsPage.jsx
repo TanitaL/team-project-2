@@ -11,7 +11,6 @@ import css from '../../components/Cards/News/NewsList/NewsItems/NewsItems.module
 
 const NewsPage = () => {
   const [newsItems, setNewsItems] = useState([]);
-  const [totalResults, setTotalResults] = useState(0);
   const [pages, setPages] = useState(0);
   const [searchNews, setSearchNews] = useState('pet');
   const [page, setPage] = useState(1);
@@ -19,9 +18,13 @@ const NewsPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const handleSetPage = () => {
+    setPage(1);
+  };
+
   const handleSearch = searchTerm => {
     if (searchTerm.trim() !== '') {
-      console.log("first")
+      handleSetPage();
       const correctedSearch = searchTerm.toLowerCase();
       setSearchNews(correctedSearch);
     } else {
@@ -35,15 +38,13 @@ const NewsPage = () => {
   useEffect(() => {
     try {
       setIsLoading(true);
-      fetchNews(searchNews, page, perPage).then(
-        ({ articles, totalResults, pages }) => {
-          setNewsItems(articles);
-          setTotalResults(totalResults);
-          setPages(pages);
-        }
-      );
+      fetchNews(searchNews, page, perPage).then(({ articles, pages }) => {
+        setNewsItems(articles);
+        setPages(pages);
+      });
       setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       setError(error => error.message);
     }
   }, [searchNews, page, perPage]);
@@ -51,14 +52,6 @@ const NewsPage = () => {
   const handlePageChange = pageNumber => {
     setPage(pageNumber);
   };
-
-  console.log('page-->', page);
-  console.log('totalResults-->', totalResults);
-  console.log('pages-->', pages);
-
-  if (isLoading) {
-    return <Loader/>
-  }
 
   if (error === '404') {
     return (
@@ -73,12 +66,17 @@ const NewsPage = () => {
     <Container>
       <h1 className={css.textNoticesPage}>News</h1>
       <SearchComponent onSearch={handleSearch} />
-      <NewsList news={newsItems} />
-      <PaginationNews
-        currentPage={page}
-        pages={pages}
-        handlePaginationChange={handlePageChange}
-      />
+      {isLoading && <Loader />}
+      {!isLoading && (
+        <>
+          <NewsList news={newsItems} />
+          <PaginationNews
+            currentPage={page}
+            totalPages={pages}
+            handlePaginationChange={handlePageChange}
+          />
+        </>
+      )}
     </Container>
   );
 };
