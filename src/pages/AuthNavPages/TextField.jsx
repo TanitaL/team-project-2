@@ -1,6 +1,6 @@
 import React from 'react';
 import { ErrorMessage, useField } from 'formik';
-import css from './AuthNavPage.module.css';
+import { css } from './index';
 export const TextField = ({ ...props }) => {
   const [field, meta] = useField(props);
 
