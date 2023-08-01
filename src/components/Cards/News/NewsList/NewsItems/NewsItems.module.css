@@ -1,7 +1,7 @@
 .textNoticesPage {
   color: var(--unnamed, #111);
   font-family: Manrope;
-  font-size: 24px;
+  font-size: 48px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -21,26 +21,16 @@
   height: 534px;
   width: 395px;
   position: relative;
-
-  @media screen and (min-width: 768px) {
-    width: 336px;
-    height: 556px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    height: 534px;
-    width: 395px;
-  }
 }
 
-/* .item:not(:last-child) {
+.item:not(:last-child) {
   margin-bottom: 24px;
 
   @media screen and (min-width: 768px) {
     margin-right: 16px;
     margin-bottom: 0;
   }
-} */
+}
 
 .item::after {
   background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
@@ -67,9 +57,9 @@
   margin-bottom: 16px;
   object-fit: cover;
 
-  /* @media screen and (min-width: 480px) {
+  @media screen and (min-width: 480px) {
     height: 180px;
-  } */
+  }
 
   @media screen and (min-width: 768px) {
     height: 252px;
@@ -91,6 +81,9 @@
   font-size: 24px;
   line-height: 33px;
   margin-bottom: 16px;
+
+  /* width: 100%; */
+
   width: 231px;
   height: 66px;
   display: -webkit-box;
