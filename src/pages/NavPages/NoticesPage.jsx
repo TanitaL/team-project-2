@@ -8,7 +8,6 @@ import NoticesCategoriesNav from '../../components/NoticesCategoriesNav/NoticesC
 import NoticesFilters from 'components/NoticesFilters/NoticesFilters';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
 
-// import Pagination from 'components/Pagination/Pagination';
 import { getIsLoading } from 'redux/pets/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'components/Loader/Loader';
