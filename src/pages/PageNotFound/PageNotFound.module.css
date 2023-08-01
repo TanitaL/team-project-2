@@ -9,7 +9,7 @@
     text-align: center;
     width: 280px;
     height: 66px;
-    /* margin-top: 60px; */
+    margin-top: 60px;
     padding-top: 40px;
     padding-bottom: 40px;
     font-size: 24px;
@@ -39,15 +39,6 @@
     }
 }
 
-@media screen and (min-width: 1280px) {
-    .textError{
-        width: 450px;
-        height: 42px;
-        font-size: 32px;
-        font-weight: 600;
-        margin-left: 415px;
-    }
-}
 
 .span {
     display: block;
@@ -59,11 +50,16 @@
 
 .NotFoundImg {
     margin-top: 60px;
+    margin-bottom: 60px;
     margin-left: auto;
     margin-right: auto;
 
-    @media screen and (min-width: 768px) {
-        margin-top: 50 px;
+    /* @media screen and (min-width: 768px) {
+        margin-top: 50px;
+    } */
+    @media screen and (min-width: 1280px) {
+        width: 822px;
+        height: 360px;
     }
     
 }
@@ -87,7 +83,7 @@
         line-height: normal;
         letter-spacing: 0.64px;
         color: #fef9f9;
-        margin-top: 69px;
+        margin-top: 60px;
         margin-left: auto;
         margin-right: auto;
         cursor: pointer;
