@@ -1,5 +1,6 @@
-import { ReactComponent as DeleteSvg } from './icons/delete.svg';
-import css from './MyPetItem.module.css';
+import { ReactComponent as DeleteSvg } from 'assets/svg/delete.svg';
+
+import css from 'components/Cards/MyPets/MyPetsList/MyPetsItem/MyPetItem.module.css';
 
 const MyPetsItem = ({ name, date, breed, comments, image, onDelete }) => {
   return (

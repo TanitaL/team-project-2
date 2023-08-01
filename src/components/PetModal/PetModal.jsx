@@ -4,20 +4,23 @@ import { createPortal } from 'react-dom';
 import { instance } from 'service/api/api';
 import transformCategory from 'service/addPetHelpers/transformCategory';
 import notify from 'service/addPetHelpers/toast';
-import Loader from '../Loader/Loader';
-import ImageLoader from '../Loader/ImageLoader';
+import Loader from 'components/Loader/Loader';
+import ImageLoader from 'components/Loader/ImageLoader';
 
-import { ReactComponent as HeartSvg } from './icons/heart.svg';
-import { ReactComponent as CloseSvg } from './icons/close.svg';
-import css from './PetModal.module.css';
+import { ReactComponent as HeartSvg } from 'assets/svg/heart.svg';
+import { ReactComponent as CloseSvg } from 'assets/svg/close.svg';
+import css from 'components/PetModal/PetModal.module.css';
 
 const PetModal = ({ id, onClose, isFavorite, addToFavotire }) => {
   const [details, setDetails] = useState(null);
 
   const handleOnBackdropClose = e => {
-    const clickOnBackDrop = e.target.className.includes('backdrop');
-    if (clickOnBackDrop) {
-      onClose();
+    const { className = '' } = e.target;
+    if (typeof className === 'string') {
+      const clickOnBackDrop = className.includes('backdrop');
+      if (clickOnBackDrop) {
+        onClose();
+      }
     }
   };
 
@@ -152,7 +155,7 @@ const PetModal = ({ id, onClose, isFavorite, addToFavotire }) => {
               </div>
               <div className={css.lowerBox}>
                 {comments && (
-                  <p calssName={css.lowerBoxComment}>Comments: {comments}</p>
+                  <p className={css.lowerBoxComment}>Comments: {comments}</p>
                 )}
 
                 <div className={css.lowerBtns}>
@@ -177,7 +180,7 @@ const PetModal = ({ id, onClose, isFavorite, addToFavotire }) => {
                   </a>
                 </div>
               </div>
-              <button className={css.deleteBtn} onClick={onClose}>
+              <button className={css.closeBtn} onClick={onClose}>
                 <CloseSvg />
               </button>
             </div>

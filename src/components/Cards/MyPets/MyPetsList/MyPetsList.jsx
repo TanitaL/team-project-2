@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 
 import { instance } from 'service/api/api';
 import notify from 'service/addPetHelpers/toast';
-import MyPetsItem from './MyPetsItem/MyPetItem';
+import MyPetsItem from 'components/Cards/MyPets/MyPetsList/MyPetsItem/MyPetItem';
 import Loader from 'components/Loader/Loader';
 
-import css from './MyPetsList.module.css';
+import css from 'components/Cards/MyPets/MyPetsList/MyPetsList.module.css';
 
 const MyPetsList = () => {
   const [notices, setNotices] = useState([]);

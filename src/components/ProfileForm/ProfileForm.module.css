@@ -21,6 +21,7 @@
 }
 
 .boxInputs {
+  position: static;
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -156,35 +157,6 @@
 }
 .saveBtn:hover,
 .saveBtn:focus {
-  opacity: 1;
-  box-shadow: rgba(100, 100, 111, 0.2);
-}
-/* ------- Logout Btn ------- */
-
-.logoutBtn {
-  composes: baseBtn;
-  margin-top: 30px;
-
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  font-size: 16px;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: 0.64px;
-  color: var(--c, #888);
-
-  @media screen and (min-width: 768px) {
-    margin-top: 15px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    margin-top: 25px;
-  }
-}
-.logoutBtn:hover,
-.logoutBtn:focus {
   opacity: 1;
   box-shadow: rgba(100, 100, 111, 0.2);
 }
