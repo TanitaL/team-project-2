@@ -18,6 +18,7 @@ const fullfiled = (state, { meta, payload = {} }) => {
     case 'logout':
       state.user = {};
       state.token = '';
+      state.isLogin = false;
       break;
     case 'current':
       state.user = user;
@@ -41,10 +42,9 @@ const handlePending = state => {
   state.isLoading = true;
 };
 
-const handleRejected = (state, payload) => {
-  console.log(payload)
+const handleRejected = (state, { payload: { data, status } }) => {
   state.isLoading = false;
-  // state.error = { data, status };
+  state.error = { data, status };
 };
 
 const logout = state => {
