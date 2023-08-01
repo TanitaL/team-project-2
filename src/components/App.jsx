@@ -4,11 +4,14 @@ import { Suspense, lazy, useEffect } from 'react';
 import { austOperationThunk } from '../redux/auth/thunks';
 import BurgerProvider from 'context/BurgerProvider';
 import { addFlagFavorite, fetchPets } from 'redux/pets/operations';
-import { authSelector, favoritesSelector } from 'redux/auth/selectors';
+import {
+  authSelector,
+  favoritesSelector,
+} from 'redux/auth/selectors';
 import SharedLayout from './SharedLayout/SharedLayout';
 import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
-import Loader from './Loader/Loader';
+import LoaderPet from './LoaderPet/LoaderPet';
 
 const MainPage = lazy(() => import('../pages/NavPages/MainPage/MainPage'));
 const NoticesPage = lazy(() => import('../pages/NavPages/NoticesPage'));
@@ -46,64 +49,66 @@ export const App = () => {
   }, [dispatch, favorites, favorites?.length, isAuth]);
 
   return (
-    <Suspense fallback={<Loader />}>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <BurgerProvider>
-              <SharedLayout />
-            </BurgerProvider>
-          }
-        >
-          <Route index element={<MainPage />} />
-          <Route path="/news" element={<NewsPage />} />
-          <Route path="/notices" element={<NoticesPage />} />
-          <Route path="/friends" element={<OurFriendsPage />} />
-
+    <>
+      <Suspense fallback={<LoaderPet />}>
+        <Routes>
           <Route
-            path="/register"
+            path="/"
             element={
-              <PublicRoute>
-                <RegisterPage />
-              </PublicRoute>
+              <BurgerProvider>
+                <SharedLayout />
+              </BurgerProvider>
             }
-          />
-          <Route
-            path="/login"
-            element={
-              <PublicRoute>
-                <LoginPage />
-              </PublicRoute>
-            }
-          />
+          >
+            <Route index element={<MainPage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/notices" element={<NoticesPage />} />
+            <Route path="/friends" element={<OurFriendsPage />} />
 
-          <Route
-            path="/user"
-            element={
-              <PrivateRoute>
-                <UserPage />
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute>
+                  <RegisterPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute>
+                  <LoginPage />
+                </PublicRoute>
+              }
+            />
 
-          <Route
-            path="/add-pet"
-            element={
-              <PrivateRoute>
-                <AddPetPage />
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path="/user"
+              element={
+                <PrivateRoute>
+                  <UserPage />
+                </PrivateRoute>
+              }
+            />
 
-          <Route
-            path="/afterverify/:verificationToken"
-            element={<AfterVerifEmail />}
-          />
+            <Route
+              path="/add-pet"
+              element={
+                <PrivateRoute>
+                  <AddPetPage />
+                </PrivateRoute>
+              }
+            />
 
-          <Route path="*" element={<PageNotFound />} />
-        </Route>
-      </Routes>
-    </Suspense>
+            <Route
+              path="/afterverify/:verificationToken"
+              element={<AfterVerifEmail />}
+            />
+
+            <Route path="*" element={<PageNotFound />} />
+          </Route>
+        </Routes>
+      </Suspense>
+    </>
   );
 };
