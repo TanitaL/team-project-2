@@ -19,8 +19,8 @@ const fullfiled = (state, { meta, payload = {} }) => {
       state.token = token;
       break;
     case 'verify':
-      state.token = token;
       state.user = user;
+      state.token = token;
       break;
     default:
       return;
