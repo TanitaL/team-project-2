@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
 
-
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authSelector, userIdSelector } from 'redux/auth/selectors';
 
 import PetModal from 'components/PetModal/PetModal';
-
 
 import 'react-toastify/dist/ReactToastify.css';
 import css from './NoticesCategoriesItem.module.css';
 
 import sprite from 'assets/svg/sprite-cards.svg';
 import { addToFavorit, deletePet } from 'redux/pets/operations';
+import ModalAcces from 'components/Modals/ModalAcces';
 
 const CategoryItem = ({
   id,
@@ -26,8 +24,11 @@ const CategoryItem = ({
   owner,
 }) => {
   const [imageError, setImageError] = useState(false);
- const userId = useSelector(userIdSelector);
-  const [isModalOpen, setIsModalOpen] = useState(null);
+  const userId = useSelector(userIdSelector);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
   const [sexIcon, setSexIcon] = useState('icon-male');
   const dispatch = useDispatch();
 
@@ -47,19 +48,8 @@ const CategoryItem = ({
 
   const addToFavorites = () => {
     if (!isUserRegistered) {
-      toast.warning('Please register to add to favorites!', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      return;
     }
     dispatch(addToFavorit(id));
-
   };
 
   const handleOpenModal = () => {
@@ -71,17 +61,19 @@ const CategoryItem = ({
   };
 
   const handleDelete = () => {
-    console.log("this is delete button click")
-    console.log('🚀 ~ handleDelete ~ userId:', userId);
-    console.log('🚀 ~ handleDelete ~ owner:', owner);
-    console.log('🚀 ~ handleDelete ~ owner === userId:', owner === userId);
     if (owner === userId) {
-      
-      dispatch(deletePet(id));
+      setIsDeleteModalOpen(true);
     }
-    
-  }
+  };
 
+  const handleDeleteConfirmed = () => {
+    dispatch(deletePet(id));
+    setIsDeleteModalOpen(false);
+  };
+
+  const handleDeleteModalClose = () => {
+    setIsDeleteModalOpen(false);
+  };
   return (
     <li key={id} className={css.item}>
       <div className={css.imageWrapper}>
@@ -96,7 +88,7 @@ const CategoryItem = ({
         <button className={css.addToFavoritesButton} onClick={addToFavorites}>
           {favorite ? (
             <svg width="24" height="24">
-              <use href={`${sprite}#icon-heart-off`}></use>
+              <use href={`${sprite}#icon-heart-off`} fill="#54ADFF"></use>
             </svg>
           ) : (
             <svg width="24" height="24">
@@ -104,30 +96,18 @@ const CategoryItem = ({
             </svg>
           )}
         </button>
-        {/* <button
-          className={css.delFavoritesButton}
-          type="buton"
-          onClick={handleDelete}
-        >
-          <svg width="24" height="24">
-            <use href={`${sprite}#icon-delete`}></use>
-          </svg>
-        </button> */}
         {owner === userId && (
           <button
             className={css.delFavoritesButton}
-            type="buton"
+            type="button"
             onClick={handleDelete}
           >
             <svg width="24" height="24">
-              <use href={`${sprite}#icon-delete`}></use>
+              <use href={`${sprite}#icon-trash-2`}></use>
             </svg>
           </button>
         )}
-      </div>
 
-      <div className={css.itemBox}>
-        <h2 className={css.title}>{title}</h2>
         <div className={css.infoWrapper}>
           <p className={css.location}>
             <svg className={css.iconSvg} width="24" height="24">
@@ -148,22 +128,36 @@ const CategoryItem = ({
             <span className={css.texProperty}>{sex}</span>
           </p>
         </div>
-        <div className={css.learnContainerButton}>
-          <button className={css.learnMoreButton} onClick={handleOpenModal}>
-            Learn More
-            <svg width="24" height="24">
-              <use href={`${sprite}#icon-pawprint-lapka`}></use>
-            </svg>
-          </button>
-        </div>
       </div>
-      <ToastContainer />
+
+      <div className={css.itemBox}>
+        <h2 className={css.title}>{title}</h2>
+      </div>
+
+      <div className={css.learnContainerButton}>
+        <button className={css.learnMoreButton} onClick={handleOpenModal}>
+          Learn More
+          <svg width="24" height="24">
+            <use href={`${sprite}#icon-pawprint-lapka`}></use>
+          </svg>
+        </button>
+      </div>
+
       {isModalOpen && (
         <PetModal
           id={id}
           onClose={handleCloseModal}
           isFavorite={false}
           addToFavotire={addToFavorites}
+        />
+      )}
+
+      {isDeleteModalOpen && (
+        <ModalAcces
+          onClose={handleDeleteModalClose}
+          id={id}
+          title={title}
+          handleDeleteClick={handleDeleteConfirmed}
         />
       )}
     </li>
