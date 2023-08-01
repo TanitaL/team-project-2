@@ -64,8 +64,6 @@
   @media screen and (min-width: 768px) {
     top: 12px;
     left: 284px;
-    flex-basis: calc(100% - 32px);
-    max-width: calc(100% - 32px);
   }
 
   @media screen and (min-width: 1280px) {
@@ -173,11 +171,6 @@
   border-radius: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
-
-  /* @media screen and (min-width: 768px) {
-    width: 80px;
-    height: 28px;
-  } */
 }
 
 .iconSvg {
@@ -198,10 +191,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  /* @media screen and (min-width: 768px) {
-    font-size: 12px;
-  } */
 }
 
 .location:hover {
@@ -247,11 +236,6 @@
   background: #cce4fb;
   cursor: pointer;
   transition: background-color 0.3s;
-
-  /* @media screen and (min-width: 768px) {
-    width: 80px;
-    height: 28px;
-  } */
 }
 
 .sex:hover {
@@ -352,7 +336,6 @@
   flex-direction: row;
   justify-content: space-between;
   flex: 1;
-  /* margin: 20px; */
 }
 
 .noticeFilter {
@@ -360,6 +343,7 @@
   display: flex;
   gap: 12px;
 }
+
 @media screen and (min-width: 768px) {
   .container {
     margin-left: auto;
