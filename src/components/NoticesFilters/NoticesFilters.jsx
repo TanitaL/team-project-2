@@ -5,6 +5,8 @@ import { ReactComponent as FiltersIcon } from '../../assets/svg/filters.svg';
 import { ReactComponent as ChevronUpIcon } from '../../assets/svg/chevron-up.svg';
 import { ReactComponent as ChevronDownIcon } from '../../assets/svg/chevron-down.svg';
 
+
+
 import styles from './notices-filters.module.scss';
 
 const NoticesFilters = ({ onFilter, filters }) => {
@@ -134,8 +136,9 @@ const NoticesFilters = ({ onFilter, filters }) => {
                     </div>
                 </div>
             )}
-        </div>
-    );
+                </div>
+
+            );
 };
 
 NoticesFilters.propTypes = {

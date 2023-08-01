@@ -352,11 +352,36 @@
   flex-direction: row;
   justify-content: space-between;
   flex: 1;
-  margin: 20px;
+  /* margin: 20px; */
 }
 
 .noticeFilter {
   margin: auto 0;
   display: flex;
   gap: 12px;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 704px;
+    margin-bottom: 87px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .container {
+    /* padding: 0 16px; */
+    width: 1216px;
+    padding: auto;
+    margin-bottom: 42px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 280px;
+    margin-bottom: 24px;
+  }
 }

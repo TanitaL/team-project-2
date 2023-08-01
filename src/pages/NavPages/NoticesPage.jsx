@@ -12,6 +12,7 @@ import {  useSelector } from 'react-redux';
 import Loader from 'components/Loader/Loader';
 
 
+
 const NoticesPage = () => {
   const pets = useSelector(getPets);
   const isLoading = useSelector(getIsLoading);
@@ -74,14 +75,16 @@ const NoticesPage = () => {
   return (
     <div>
       <h1 className={css.textNoticesPage}>Find your favorite pet</h1>
+      <div className={css.container} >
       <SearchComponent onSearch={handleSearch} />
       <div className={css.categoryFilterWrapper}>
         <NoticesCategoriesNav />
         <div className={css.noticeFilter}>
           <NoticesFilters onFilter={handleSearch} />
           <AddPetButton />
+          </div>
         </div>
-      </div>
+        </div>
       {isLoading && <Loader />}
       <CategoryList data={currentItems} />
       <Pagination
@@ -89,7 +92,7 @@ const NoticesPage = () => {
         totalPages={totalPages}
         onPageChange={handlePageChange}
       />
-    </div>
+      </div>
   );
 };
 
