@@ -71,10 +71,6 @@ const CategoryItem = ({
   };
 
   const handleDelete = () => {
-    console.log("this is delete button click")
-    console.log('🚀 ~ handleDelete ~ userId:', userId);
-    console.log('🚀 ~ handleDelete ~ owner:', owner);
-    console.log('🚀 ~ handleDelete ~ owner === userId:', owner === userId);
     if (owner === userId) {
       
       dispatch(deletePet(id));

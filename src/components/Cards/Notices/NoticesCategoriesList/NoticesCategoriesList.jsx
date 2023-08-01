@@ -1,11 +1,20 @@
-import React from 'react';
+import React  from 'react';
+import { useSelector } from 'react-redux';
+
+import { useParams } from 'react-router-dom';
+import { getPets } from 'redux/pets/selectors';
+
 import CategoryItem from './NoticesCategoriesItem/NoticesCategoriesItem';
 import css from './NoticesCategoriesList.module.css';
 
-const CategoryList = ({ data }) => {
+const CategoryList = () => {
+  const pets = useSelector(getPets);
+  const { categoryName } = useParams();
+  console.log("🚀 ~ CategoryList ~ categoryName:", categoryName)
+
   return (
     <ul className={css.list}>
-      {data.map(
+      {pets.map(
         ({
           id,
           title,

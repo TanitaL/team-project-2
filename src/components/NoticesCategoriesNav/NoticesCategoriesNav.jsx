@@ -1,6 +1,8 @@
+// import { useDispatch } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
 
 import { useAuth } from '../../redux/auth/useAuth';
+// import {changeCategory, fetchPets} from '../../redux/pets/operations'
 import categories from './categories';
 import styles from './notices-categories-nav.module.scss';
 
@@ -11,33 +13,43 @@ const getFullName = (location, category) => {
     return res;
 };
 
+
 const NoticesCategoriesNav = () => {
     const { token } = useAuth();
     const { pathname, search } = useLocation();
+    
+   
 
     return (
-        <div className={styles.wrapper}>
-            <ul className={styles.list}>
-                {publicCategories.map(({ to, text, id }) => (
-                    <li key={id}>
-                        <Link to={{ pathname: to, search }} className={getFullName(pathname, to)}>
-                            {text}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-            {token && (
-                <ul className={styles.list}>
-                    {privateCategories.map(({ to, text, id }) => (
-                        <li key={id}>
-                            <Link to={{ pathname: to, search }} className={getFullName(pathname, to)}>
-                                {text}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
+      <div className={styles.wrapper}>
+        <ul className={styles.list}>
+          {publicCategories.map(({ to, text, id, category }) => (
+            <li key={id}>
+              <Link
+                to={{ pathname: to, search }}
+                className={getFullName(pathname, to)}
+    
+              >
+                {text}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        {token && (
+          <ul className={styles.list}>
+            {privateCategories.map(({ to, text, id }) => (
+              <li key={id}>
+                <Link
+                  to={{ pathname: to, search }}
+                  className={getFullName(pathname, to)}
+                >
+                  {text}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     );
 };
 

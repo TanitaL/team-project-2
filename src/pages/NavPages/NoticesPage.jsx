@@ -1,49 +1,91 @@
-import React, { useState, useEffect } from 'react';
-import CategoryList from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCategoriesList';
+import React, {  useEffect, Suspense } from 'react';
+// import CategoryList from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCategoriesList';
 import css from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCategoriesItem/NoticesCategoriesItem.module.css';
 
 import SearchComponent from '../../components/SearchComponent/SearchComponent';
 import NoticesCategoriesNav from '../../components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesFilters from 'components/NoticesFilters/NoticesFilters';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
-import Pagination from 'components/Pagination/Pagination';
-import { getPets, getIsLoading } from 'redux/pets/selectors';
-import {  useSelector } from 'react-redux';
+// import Pagination from 'components/Pagination/Pagination';
+import {  getIsLoading, } from 'redux/pets/selectors';
+import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'components/Loader/Loader';
+import { Outlet, useParams } from 'react-router-dom';
+import { noticeCategories } from 'constants/noticeCategories';
+import { addFlagFavorite, fetchPets } from 'redux/pets/operations';
+import { authSelector, favoritesSelector } from 'redux/auth/selectors';
 
+const { SELL, LOSTFOUND, FORFREE, MYPET } = noticeCategories;
 
 const NoticesPage = () => {
-  const pets = useSelector(getPets);
+  // const pets = useSelector(getPets);
   const isLoading = useSelector(getIsLoading);
+  const isAuth = useSelector(authSelector);
+  const favorites = useSelector(favoritesSelector);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const itemsPerPage = 10;
-  const [query, setQuery] = useState('');
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [totalPages, setTotalPages] = useState(0);
+  // const itemsPerPage = 10;
+  // const [query, setQuery] = useState('');
+  const { categoryName } = useParams();
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+   switch (categoryName) {
+     case SELL:
+       dispatch(fetchPets(SELL));
+       break;
 
-  const visiblePets = pets.filter(notice =>
-    notice.title.toLowerCase().includes(query.toLowerCase())
-  );
+     case MYPET:
+       dispatch(fetchPets(MYPET));
+       break;
+
+     case LOSTFOUND:
+       dispatch(fetchPets(LOSTFOUND));
+       break;
+
+     case FORFREE:
+       dispatch(fetchPets(FORFREE));
+       break;
+
+     default:
+       break;
+    }
+    if (isAuth && favorites?.length > 0) {
+      dispatch(addFlagFavorite(favorites));
+    }
+  
+ }, [categoryName, dispatch, favorites, isAuth]);
+   
+  // useEffect(() => {
+  //   if (isAuth && favorites?.length > 0) {
+  //     dispatch(addFlagFavorite(favorites));
+  //   }
+  // }, [dispatch, favorites, favorites?.length, isAuth]);
+
+  // const visiblePets = pets.filter(notice =>
+  //   notice.title.toLowerCase().includes(query.toLowerCase())
+  // );
 
   const handleSearch = async searchTerm => {
     const trimedQuery = searchTerm.trim();
     if (trimedQuery) {
-      setQuery(trimedQuery);
+      // setQuery(trimedQuery);
     }
   };
 
-  useEffect(() => {
-    const pages = Math.ceil(pets.length / itemsPerPage);
-    setTotalPages(pages);
-  }, [pets.length]);
+  // useEffect(() => {
+  //   const pages = Math.ceil(pets.length / itemsPerPage);
+  //   setTotalPages(pages);
+  // }, [pets.length]);
 
-  const handlePageChange = pageNumber => {
-    setCurrentPage(pageNumber);
-  };
+  // const handlePageChange = pageNumber => {
+  //   setCurrentPage(pageNumber);
+  // };
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = visiblePets.slice(indexOfFirstItem, indexOfLastItem);
+  // const indexOfLastItem = currentPage * itemsPerPage;
+  // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  // const currentItems = visiblePets.slice(indexOfFirstItem, indexOfLastItem);
 
   // if (isLoading) {
   //   return (
@@ -83,12 +125,15 @@ const NoticesPage = () => {
         </div>
       </div>
       {isLoading && <Loader />}
-      <CategoryList data={currentItems} />
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
+      {/* {<CategoryList data={currentItems} />}
+      {/* <Pagination
+      currentPage={currentPage}
+      totalPages={totalPages}
+      onPageChange={handlePageChange}
+      /> */}
     </div>
   );
 };

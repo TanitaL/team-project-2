@@ -14,6 +14,7 @@ const contactsActions = [
   deletePet,
   addFlagFavorite,
   addToFavorit,
+  
 ];
 const getActions = type => contactsActions.map(action => action[type]);
 
@@ -30,6 +31,7 @@ export const petSlice = createSlice({
       .addCase(fetchPets.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items = action.payload;
+        console.log("🚀 ~ .addCase ~ action.payload:", action.payload)
         state.error = null;
       })
       .addCase(addFlagFavorite.fulfilled, (state, action) => {
