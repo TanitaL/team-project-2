@@ -23,14 +23,12 @@ const MainPage = () => {
           <h1 className={css.textMainPage}>
             Take good care of your small pets
           </h1>
-          <picture>
-            <img
-              loading="lazy"
-              srcSet={(petsMobile1x, petsMobile2x)}
-              src={petsMobile1x}
-              alt="pets"
-            />
-          </picture>
+          <img
+            loading="lazy"
+            srcSet={(petsMobile1x, petsMobile2x)}
+            src={petsMobile1x}
+            alt="pets"
+          />
         </>
       )}
       {isMediumScreen && (
@@ -38,14 +36,12 @@ const MainPage = () => {
           <h1 className={css.textMainPage}>
             Take good care of your small pets
           </h1>
-          <picture>
-            <img
-              loading="lazy"
-              srcSet={(petsTablet1x, petsTablet2x)}
-              src={petsTablet1x}
-              alt="pets"
-            />
-          </picture>
+          <img
+            loading="lazy"
+            srcSet={(petsTablet1x, petsTablet2x)}
+            src={petsTablet1x}
+            alt="pets"
+          />
         </>
       )}
 
@@ -55,16 +51,14 @@ const MainPage = () => {
             Take good care of your small pets
           </h1>
 
-          <picture>
-            <img
-              loading="lazy"
-              srcSet={(petsDesktop1x, petsDesktop2x)}
-              src={petsDesktop1x}
-              alt="pets"
-              align="right"
-              className={css.imgPets}
-            />
-          </picture>
+          <img
+            loading="lazy"
+            srcSet={(petsDesktop1x, petsDesktop2x)}
+            src={petsDesktop1x}
+            alt="pets"
+            align="right"
+            className={css.imgPets}
+          />
         </div>
       )}
     </BgContainer>
