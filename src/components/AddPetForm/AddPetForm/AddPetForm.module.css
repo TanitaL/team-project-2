@@ -25,21 +25,28 @@ height: 496px;
   width: 100%;
   margin: 0 auto;
   margin-top: 20px;
-  @media screen and (min-width: 320px) {
+}
+
+@media screen and (min-width: 320px) {
+  .section {
     width: 280px;
   }
-  @media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 768px) {
+  .section {
     width: 458px;
     padding: 20px 32px;
     margin-top: 60px;
   }
+}
 
-  @media screen and (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
+  .section {
     margin-top: 40px;
   }
 }
 
-.notMyPetstep3Section {
+.notMyPetstepSection {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -52,6 +59,7 @@ height: 496px;
   width: 100%;
   margin: 0 auto;
   margin-top: 20px;
+
   @media screen and (min-width: 320px) {
     width: 280px;
   }

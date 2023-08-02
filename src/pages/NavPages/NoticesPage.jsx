@@ -15,8 +15,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'components/Loader/Loader';
 import { Outlet, useParams } from 'react-router-dom';
 import { noticeCategories } from 'constants/noticeCategories';
-import { addFlagFavorite, fetchFavoritePets, fetchPets } from 'redux/pets/operations';
-import { authSelector} from 'redux/auth/selectors';
+import {
+  addFlagFavorite,
+  fetchFavoritePets,
+  fetchPets,
+} from 'redux/pets/operations';
+import { authSelector } from 'redux/auth/selectors';
 import Container from 'components/Container/Container/Container';
 import ModalAttention from 'components/Modals/ModalAttention/ModalAttention';
 
@@ -41,8 +45,7 @@ const NoticesPage = () => {
     if (isAuth) {
       dispatch(fetchFavoritePets());
     }
-  }, [dispatch, isAuth])
-  
+  }, [dispatch, isAuth]);
 
   useEffect(() => {
     switch (categoryName) {
@@ -51,7 +54,7 @@ const NoticesPage = () => {
         break;
 
       case MYPET:
-        dispatch(fetchPets({ category: MYPET }));
+        dispatch(fetchPets({ category: MYPET, query }));
         break;
 
       case LOSTFOUND:
@@ -63,27 +66,19 @@ const NoticesPage = () => {
         break;
 
       case FAVORITE:
-        dispatch(fetchPets({ category: FAVORITE }));
+        dispatch(fetchPets({ category: FAVORITE, query }));
         break;
 
       default:
         break;
     }
-   
   }, [categoryName, dispatch, query]);
 
-useEffect(() => {
-  if (isAuth && favorites?.length > 0 && pets?.length > 0) {
-    console.log("🚀 ~ useEffect ~ pets?.length > 0:", pets?.length > 0)
-    console.log(
-      '🚀 ~ useEffect ~ favorites?.length > 0:',
-      favorites?.length > 0
-    );
-    console.log('Это добавление флага всем если они есть в массиве');
-    dispatch(addFlagFavorite());
-  }
-}, [dispatch, favorites, isAuth, pets?.length])
-
+  useEffect(() => {
+    if (isAuth && favorites?.length > 0 && pets?.length > 0) {
+      dispatch(addFlagFavorite());
+    }
+  }, [dispatch, favorites, isAuth, pets?.length]);
 
   // useEffect(() => {
 
@@ -111,7 +106,6 @@ useEffect(() => {
   // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   // const currentItems = visiblePets.slice(indexOfFirstItem, indexOfLastItem);
 
-
   return (
     <Container>
       {isAttentionModalOpen && !isAuth && (
@@ -119,11 +113,13 @@ useEffect(() => {
       )}
       <h1 className={css.textNoticesPage}>Find your favorite pet</h1>
       <SearchComponent onSearch={handleSearch} />
-      <div className={css.categoryFilterWrapper}>
-        <NoticesCategoriesNav />
-        <div className={css.noticeFilter}>
-          <NoticesFilters onFilter={handleSearch} />
-          <AddPetButton modalOpen={setIsAttentionModalOpen} />
+      <div className={css.container}>
+        <div className={css.categoryFilterWrapper}>
+          <NoticesCategoriesNav />
+          <div className={css.noticeFilter}>
+            <NoticesFilters onFilter={handleSearch} />
+            <AddPetButton modalOpen={setIsAttentionModalOpen} />
+          </div>
         </div>
       </div>
       {isLoading && <Loader />}

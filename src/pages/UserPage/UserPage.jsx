@@ -4,8 +4,8 @@ import Container from 'components/Container/Container/Container';
 import ProfileForm from 'components/ProfileForm/ProfileForm';
 import MyPetsList from 'components/Cards/MyPets/MyPetsList/MyPetsList';
 
+import sprite from 'assets/svg/sprite-cards.svg';
 import css from 'pages/UserPage/UserPage.module.css';
-import { ReactComponent as PlusSvg } from 'assets/svg/plus.svg';
 
 const AddPetBtn = () => {
   const location = useLocation();
@@ -13,7 +13,9 @@ const AddPetBtn = () => {
   return (
     <Link state={{ from: location }} className={css.addPetBtn} to="/add-pet">
       Add Pet
-      <PlusSvg className={css.addPetBtnSvg} />
+      <svg width="24" height="24">
+        <use href={`${sprite}#icon-plus-2`}></use>
+      </svg>
     </Link>
   );
 };

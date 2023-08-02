@@ -72,14 +72,12 @@ const AddPetForm = () => {
     <PersonalDetails next={handleNextStep} data={data} prev={handlePrevStep} />,
     <MoreInfo next={handleNextStep} data={data} prev={handlePrevStep} />,
   ];
-  console.log('🚀 ~ handleNextStep ~ data:', data.date);
-  console.log('🚀 ~ handleNextStep ~ typeof(data.date):', typeof data.date);
 
   return (
     <section
       className={
-        (currentStep === 2 && data.category !== petCategory[0])
-          ? css.notMyPetstep3Section
+        currentStep === 2 && data.category !== petCategory[0]
+          ? css.notMyPetstepSection
           : css.section
       }
     >

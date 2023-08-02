@@ -47,13 +47,14 @@
 
 .photoBtns {
   position: absolute;
-  top: 155px;
+  top: 190px;
   left: 50%;
   transform: translate(-50%, 0);
 
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
+  min-width: 104px;
 
   font-size: 12px;
   font-weight: 400;
@@ -62,7 +63,7 @@
   color: var(--unnamed, #111);
 
   @media screen and (min-width: 768px) {
-    top: 235px;
+    top: 210px;
     left: calc(100% - 165px);
     transform: translate(-50%, 0);
   }
@@ -90,7 +91,7 @@
 .cameraBtn {
   composes: baseBtn;
 
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
 }

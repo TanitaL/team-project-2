@@ -6,8 +6,8 @@ import BurgerProvider from 'context/BurgerProvider';
 import SharedLayout from './SharedLayout/SharedLayout';
 import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
-import Loader from './Loader/Loader';
 import NoticesCategoriesList from './Cards/Notices/NoticesCategoriesList';
+import LoaderPet from './LoaderPet/LoaderPet';
 
 const MainPage = lazy(() => import('../pages/NavPages/MainPage/MainPage'));
 const NoticesPage = lazy(() => import('../pages/NavPages/NoticesPage'));
@@ -36,7 +36,7 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<LoaderPet />}>
       <Routes>
         <Route
           path="/"

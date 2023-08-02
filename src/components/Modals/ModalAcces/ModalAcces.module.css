@@ -7,11 +7,10 @@
   bottom: 0;
   padding-top: 92px;
   background-color: rgba(81, 81, 81, 0.6);
-  @media screen and (min-width: 768px) {
-    padding-top: 148px;
-  }
-  @media screen and (min-width: 1280px) {
-    padding-top: 112px;
+}
+@media screen and (min-width: 768px) {
+  .modal {
+    padding-top: 240px;
   }
 }
 
@@ -38,38 +37,94 @@
 }
 
 .title {
-  font-family: 'Manrope';
+  margin-bottom: 14px;
+  color: var(--unnamed, #111);
+  text-align: center;
+  font-family: Manrope;
+  font-size: 24px;
   font-style: normal;
   font-weight: 700;
-  font-size: 28px;
-  line-height: 1.36;
-  letter-spacing: -0.01em;
-
-  color: #000000;
-
-  margin-bottom: 40px;
+  line-height: normal;
+  letter-spacing: 0.96px;
+}
+@media screen and (min-width: 768px) {
+  .title {
+    color: #000;
+    font-family: Manrope;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.28px;
+  }
 }
 
 .title_span {
+  color: #000;
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
   font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.14px;
+}
+
+@media screen and (min-width: 768px) {
+  .title_span {
+    color: #000;
+    font-family: Manrope;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.16px;
+  }
 }
 
 .text {
-  font-family: 'Manrope';
+  color: #000;
+  text-align: center;
+  font-family: Manrope;
+  font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 1.38;
-  text-align: center;
-  letter-spacing: -0.01em;
+  line-height: normal;
+  letter-spacing: -0.14px;
+  width: 240px;
+  margin-bottom: 44px;
+}
 
-  color: #000000;
-  margin-bottom: 48px;
+@media screen and (min-width: 768px) {
+  .text {
+    color: #000;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.16px;
+    margin-bottom: 48px;
+  }
 }
 
 .button_wrap {
   display: flex;
-  gap: 20px;
+  justify-content: center;
+  gap: 8px;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .button_wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    padding-bottom: 36px;
+  }
 }
 
 .closeBtn {
@@ -109,10 +164,23 @@
 
   color: #fef9f9;
   cursor: pointer;
+  width: 256px;
+}
+
+@media screen and (min-width: 768px) {
+  .del_btn {
+    width: 129px;
+  }
 }
 
 .del_btn {
   --color1: #fef9f9;
+}
+
+.del_btn:hover {
+  background: var(--gr-blue, linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%));
+  color: rgb(253, 247, 242);
+  border: none;
 }
 
 .cancel_btn {
@@ -140,4 +208,17 @@
   border-radius: 40px;
   border-color: #54adff;
   cursor: pointer;
+  width: 256px;
+}
+
+@media screen and (min-width: 768px) {
+  .cancel_btn {
+    width: 129px;
+  }
+}
+
+.cancel_btn:hover {
+  background: var(--gr-blue, linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%));
+  color: rgb(253, 247, 242);
+  border: none;
 }

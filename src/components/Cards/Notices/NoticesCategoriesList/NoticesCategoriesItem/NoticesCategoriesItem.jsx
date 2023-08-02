@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelector, userIdSelector } from 'redux/auth/selectors';
 
 import PetModal from 'components/PetModal/PetModal';
+import ModalAcces from '../../../../Modals/ModalAcces/ModalAcces';
 
 import 'react-toastify/dist/ReactToastify.css';
 import css from './NoticesCategoriesItem.module.css';
 
 import sprite from 'assets/svg/sprite-cards.svg';
 import { addToFavorit, deletePet } from 'redux/pets/operations';
-import ModalAcces from 'components/Modals/ModalAcces';
+
 import ModalAttention from 'components/Modals/ModalAttention/ModalAttention';
+
+import { useParams } from 'react-router-dom';
 
 const CategoryItem = ({
   id,
@@ -26,7 +28,7 @@ const CategoryItem = ({
 }) => {
   const [imageError, setImageError] = useState(false);
   const userId = useSelector(userIdSelector);
-
+  const { categoryName } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -51,20 +53,23 @@ const CategoryItem = ({
 
   const addToFavorites = () => {
     if (!isUserRegistered) {
-      console.log(isAttentionModalOpen)
+      console.log(isAttentionModalOpen);
       setIsAttentionModalOpen(true);
       return;
     }
     dispatch(
       addToFavorit({
-        id,
-        title,
-        file,
-        location,
-        age,
-        sex,
-        category,
-        owner,
+        pet: {
+          id,
+          title,
+          file,
+          location,
+          age,
+          sex,
+          category,
+          owner,
+        },
+        categoryName,
       })
     );
   };
@@ -91,6 +96,8 @@ const CategoryItem = ({
   const handleDeleteModalClose = () => {
     setIsDeleteModalOpen(false);
   };
+
+
   return (
     <li key={id} className={css.item}>
       <div className={css.imageWrapper}>
