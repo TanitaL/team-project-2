@@ -1,5 +1,13 @@
-import { ReactComponent as DeleteSvg } from 'assets/svg/delete.svg';
+import sprite from 'assets/svg/sprite-cards.svg';
 import css from 'components/Cards/MyPets/MyPetsList/MyPetsItem/MyPetItem.module.css';
+
+const DeleteSvg = () => {
+  return (
+    <svg width="24" height="24">
+      <use href={`${sprite}#icon-delete`}></use>
+    </svg>
+  );
+};
 
 const MyPetsItem = ({ name, date, breed, comments, image, onDelete }) => {
   return (

@@ -10,9 +10,24 @@ import { instance } from 'service/api/api';
 import notify from 'service/addPetHelpers/toast';
 import preparePutData from 'service/addPetHelpers/preparePutData';
 
-import { ReactComponent as CloseSvg } from 'assets/svg/close.svg';
-import { ReactComponent as EditSvg } from 'assets/svg/edit.svg';
+import sprite from 'assets/svg/sprite-cards.svg';
 import css from 'components/ProfileForm/ProfileForm.module.css';
+
+const EditSvg = () => {
+  return (
+    <svg width="24" height="24">
+      <use href={`${sprite}#icon-edit`}></use>
+    </svg>
+  );
+};
+
+const CloseSvg = () => {
+  return (
+    <svg width="24" height="24">
+      <use href={`${sprite}#icon-close`}></use>
+    </svg>
+  );
+};
 
 const validate = Yup.object({
   avatar: Yup.mixed().test(

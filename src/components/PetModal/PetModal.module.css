@@ -265,20 +265,6 @@
   background: var(--gr-blue, linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%));
 }
 
-.addToFavotiteBtn svg {
-  display: inline-block;
-  fill: none;
-  border-radius: 50%;
-  stroke: var(--unnamed, #fef9f9);
-
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-.addToFavotiteBtn:hover svg,
-.addToFavotiteBtn:focus svg {
-  fill: var(--unnamed, #fef9f9);
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-
 /* -------------  Contact Button ------------- */
 .contactBtn {
   composes: baseBtn;
