@@ -10,13 +10,17 @@
   flex-shrink: 0;
   position: relative;
   margin-bottom: 24px;
+}
 
-  @media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
+  .item {
     width: 336px;
     height: 456px;
   }
+}
 
-  @media screen and (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
+  .item {
     width: 280px;
     height: 456px;
   }
@@ -60,15 +64,19 @@
   border-radius: 50px;
   cursor: pointer;
   transition: background-color 0.3s;
+}
 
-  @media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
+  .addToFavoritesButton {
     top: 12px;
     left: 284px;
   }
+}
 
-  @media screen and (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
+  .addToFavoritesButton {
     top: 12px;
-    left: 228px;
+    left: 231px;
   }
 }
 
@@ -79,7 +87,6 @@
   align-items: center;
   width: 40px;
   height: 40px;
-  flex-shrink: 0;
   top: 68px;
   left: 228px;
   background-color: #cce4fb;
@@ -87,15 +94,19 @@
   border-radius: 50px;
   cursor: pointer;
   transition: background-color 0.3s;
+}
 
-  @media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
+  .delFavoritesButton {
     top: 68px;
     left: 284px;
   }
+}
 
-  @media screen and (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
+  .delFavoritesButton {
     top: 68px;
-    left: 228px;
+    left: 231px;
   }
 }
 
@@ -145,14 +156,18 @@
   gap: 12px;
   top: 248px;
   left: 8px;
+}
 
-  @media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
+  .infoWrapper {
     gap: 24px;
     top: 248px;
     left: 24px;
   }
+}
 
-  @media screen and (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
+  .infoWrapper {
     gap: 12px;
     top: 248px;
     left: 8px;
@@ -211,11 +226,6 @@
   background: #cce4fb;
   cursor: pointer;
   transition: background-color 0.3s;
-
-  @media screen and (min-width: 768px) {
-    width: 80px;
-    height: 28px;
-  }
 }
 
 .year:hover {
@@ -277,12 +287,16 @@
 
   cursor: pointer;
   transition: background-color 0.3s;
+}
 
-  @media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
+  .learnMoreButton {
     margin-left: 44px;
   }
+}
 
-  @media screen and (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
+  .learnMoreButton {
     margin-left: 16px;
   }
 }
@@ -316,13 +330,15 @@
   margin: 50px auto;
   justify-content: center;
   align-items: center;
-
-  @media screen and (min-width: 320px) {
+}
+@media screen and (min-width: 320px) {
+  .textNoticesPage {
     width: 246px;
     height: 33px;
   }
-
-  @media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 768px) {
+  .textNoticesPage {
     justify-content: center;
     align-items: center;
     font-size: 48px;
@@ -354,7 +370,6 @@
 }
 @media screen and (min-width: 1280px) {
   .container {
-    /* padding: 0 16px; */
     width: 1216px;
     padding: auto;
     margin-bottom: 42px;
