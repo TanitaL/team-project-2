@@ -5,6 +5,8 @@ import {
   deletePet,
   addFlagFavorite,
   addToFavorit,
+  fetchFavoritePets,
+  fetchMyPets,
 } from './operations';
 import notify from 'service/addPetHelpers/toast';
 
@@ -14,6 +16,8 @@ const contactsActions = [
   deletePet,
   addFlagFavorite,
   addToFavorit,
+  fetchFavoritePets,
+  fetchMyPets,
 ];
 const getActions = type => contactsActions.map(action => action[type]);
 
@@ -21,6 +25,8 @@ export const petSlice = createSlice({
   name: 'pets',
   initialState: {
     items: [],
+    myPets: [],
+    favorites: [],
     isLoading: false,
     error: null,
     isNavigate: false,
@@ -30,15 +36,33 @@ export const petSlice = createSlice({
       .addCase(fetchPets.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items = action.payload;
-        console.log('🚀 ~ .addCase ~ action.payload:', action.payload);
+        state.error = null;
+      })
+      .addCase(fetchFavoritePets.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.favorites = action.payload;
+        console.log('🚀 ~ fetchFavoritePets ~ action.payload:', action.payload);
+        state.error = null;
+      })
+      .addCase(fetchMyPets.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.myPets = action.payload;
         state.error = null;
       })
       .addCase(addFlagFavorite.fulfilled, (state, action) => {
-        const faforite = action.payload;
+        // const favorites = action.payload;
+        // console.log('🚀 ~ .addCase ~ favorites:', favorites);
+
         state.items.map((item, index) => {
-          if (faforite.includes(item.id)) {
+          const isFavorite = state.favorites.find(
+            favorite => favorite.id === item.id
+          );
+          if (isFavorite) {
             state.items[index] = { ...item, favorite: true };
           }
+          else {
+           state.items[index] = { ...item, favorite: false };
+        }
           return item;
         });
 
@@ -46,30 +70,35 @@ export const petSlice = createSlice({
         state.error = null;
       })
       .addCase(addToFavorit.fulfilled, (state, action) => {
-        const id = action.payload;
-        state.items.forEach((item, index) => {
-          if (id === item.id) {
-            state.items[index] = { ...item, favorite: !item.favorite };
-          }
-          return item;
-        });
+        const { id } = action.payload;
+        const isFavorite = state.favorites.find(item => item.id === id);
+        if (isFavorite) {
+          const index = state.favorites.findIndex(item => item.id === id);
+          state.favorites.splice(index, 1);
+        } else {
+          state.favorites.push(action.payload);
+        }
+
+        // console.log('🚀 ~ .addToFavorit ~ action.payload:', action.payload);
+        // state.items.forEach((item, index) => {
+        //   if (id === item.id) {
+        //     state.items[index] = { ...item, favorite: !item.favorite };
+        //   }
+        //   return item;
+        // });
 
         state.isLoading = false;
         state.error = null;
       })
       .addCase(addPet.fulfilled, (state, action) => {
         state.items.unshift(action.payload);
-        console.log('🚀 ~ .addCase ~ action.payload:', action.payload);
         state.isLoading = false;
         notify.success('Advertisement added successfully');
         state.isNavigate = true;
         state.error = null;
       })
       .addCase(deletePet.fulfilled, (state, action) => {
-        console.log('🚀 ~ .addCase ~ action.payload:', action.payload);
-        const index = state.items.findIndex(
-          contact => contact.id === action.payload
-        );
+        const index = state.items.findIndex(item => item.id === action.payload);
         state.items.splice(index, 1);
         state.isLoading = false;
         state.error = null;

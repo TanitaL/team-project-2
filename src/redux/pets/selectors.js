@@ -8,4 +8,8 @@ export const getError = state => state.pets.error;
 
 export const getIsNavigate = state => state.pets.isNavigate;
 
+export const getMyPets = state => state.pets.myPets
+;
+export const getFavoritesPets = state => state.pets.favorites;
+
 
