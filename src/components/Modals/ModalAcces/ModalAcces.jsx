@@ -32,7 +32,7 @@ const ModalAcces = ({
   return (
     <div className={`${css.modal} ${className}`} onClick={handleBackdropClick}>
       <div className={css.modalContent}>
-        <button className={css.closeBtn} onClick={onClose}><svg width="24" height="24">
+        <button className={css.closeBtn} onClick={onClose}><svg width="14" height="14">
               <use href={`${sprite}#icon-shape`}></use>
             </svg> 
         </button>
