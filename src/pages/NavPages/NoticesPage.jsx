@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense, useState } from 'react';
+import React, { useEffect, Suspense } from 'react';
 // import CategoryList from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCategoriesList';
 import css from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCategoriesItem/NoticesCategoriesItem.module.css';
 
@@ -8,81 +8,60 @@ import NoticesCategoriesNav from '../../components/NoticesCategoriesNav/NoticesC
 import NoticesFilters from 'components/NoticesFilters/NoticesFilters';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
 
-// import Pagination from 'components/Pagination/Pagination';
-import { getFavoritesPets, getIsLoading, getPets } from 'redux/pets/selectors';
-
+import { getIsLoading } from 'redux/pets/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'components/Loader/Loader';
 import { Outlet, useParams } from 'react-router-dom';
 import { noticeCategories } from 'constants/noticeCategories';
-import { addFlagFavorite, fetchFavoritePets, fetchPets } from 'redux/pets/operations';
-import { authSelector} from 'redux/auth/selectors';
-import Container from 'components/Container/Container/Container';
+import { addFlagFavorite, fetchPets } from 'redux/pets/operations';
+import { authSelector, favoritesSelector } from 'redux/auth/selectors';
 
-const { SELL, LOSTFOUND, FORFREE, MYPET, FAVORITE } = noticeCategories;
+const { SELL, LOSTFOUND, FORFREE, MYPET } = noticeCategories;
 
 const NoticesPage = () => {
-  const pets = useSelector(getPets);
+  // const pets = useSelector(getPets);
   const isLoading = useSelector(getIsLoading);
   const isAuth = useSelector(authSelector);
-  const favorites = useSelector(getFavoritesPets);
+  const favorites = useSelector(favoritesSelector);
 
   // const [currentPage, setCurrentPage] = useState(1);
   // const [totalPages, setTotalPages] = useState(0);
   // const itemsPerPage = 10;
-  const [query, setQuery] = useState('');
+  // const [query, setQuery] = useState('');
   const { categoryName } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isAuth) {
-      dispatch(fetchFavoritePets());
-    }
-  }, [dispatch, isAuth])
-  
-
-  useEffect(() => {
     switch (categoryName) {
       case SELL:
-        dispatch(fetchPets({ category: SELL, query }));
+        dispatch(fetchPets(SELL));
         break;
 
       case MYPET:
-        dispatch(fetchPets({ category: MYPET }));
+        dispatch(fetchPets(MYPET));
         break;
 
       case LOSTFOUND:
-        dispatch(fetchPets({ category: LOSTFOUND, query }));
+        dispatch(fetchPets(LOSTFOUND));
         break;
 
       case FORFREE:
-        dispatch(fetchPets({ category: FORFREE, query }));
-        break;
-
-      case FAVORITE:
-        dispatch(fetchPets({ category: FAVORITE }));
+        dispatch(fetchPets(FORFREE));
         break;
 
       default:
         break;
     }
-   
-  }, [categoryName, dispatch, query]);
-
-useEffect(() => {
-  if (isAuth && favorites?.length > 0 && pets?.length > 0) {
-    console.log("🚀 ~ useEffect ~ pets?.length > 0:", pets?.length > 0)
-    console.log(
-      '🚀 ~ useEffect ~ favorites?.length > 0:',
-      favorites?.length > 0
-    );
-    console.log('Это добавление флага всем если они есть в массиве');
-    dispatch(addFlagFavorite());
-  }
-}, [dispatch, favorites, isAuth, pets?.length])
-
+    if (isAuth && favorites?.length > 0) {
+      dispatch(addFlagFavorite(favorites));
+    }
+  }, [categoryName, dispatch, favorites, isAuth]);
 
   // useEffect(() => {
+  //   if (isAuth && favorites?.length > 0) {
+  //     dispatch(addFlagFavorite(favorites));
+  //   }
+  // }, [dispatch, favorites, favorites?.length, isAuth]);
 
   // const visiblePets = pets.filter(notice =>
   //   notice.title.toLowerCase().includes(query.toLowerCase())
@@ -91,7 +70,7 @@ useEffect(() => {
   const handleSearch = async searchTerm => {
     const trimedQuery = searchTerm.trim();
     if (trimedQuery) {
-      setQuery(trimedQuery);
+      // setQuery(trimedQuery);
     }
   };
 
@@ -108,29 +87,59 @@ useEffect(() => {
   // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   // const currentItems = visiblePets.slice(indexOfFirstItem, indexOfLastItem);
 
+  // if (isLoading) {
+  //   return (
+  //     <div
+  //       style={{
+  //         display: 'flex',
+  //         justifyContent: 'center',
+  //         alignItems: 'center',
+  //         height: '100vh',
+  //       }}
+  //     >
+  //       <div className="spinner-border text-primary" role="status">
+  //         <span className="visually-hidden">Loading...</span>
+  //       </div>
+  //     </div>
+  //   );
+  // }
+
+  // if (error === '404') {
+  //   return (
+  //     <div>
+  //       <img src="https://http.cat/407" alt="Error 404" />
+  //       <p>Oops! Something went wrong.</p>
+  //     </div>
+  //   );
+  // }
 
   return (
-    <Container>
+    <div>
       <h1 className={css.textNoticesPage}>Find your favorite pet</h1>
       <SearchComponent onSearch={handleSearch} />
+            <div className={css.container} >
+
       <div className={css.categoryFilterWrapper}>
         <NoticesCategoriesNav />
         <div className={css.noticeFilter}>
-          <NoticesFilters onFilter={handleSearch} />
+            <NoticesFilters onFilter={handleSearch} />
           <AddPetButton />
+          </div>
         </div>
       </div>
       {isLoading && <Loader />}
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
+      {/* {<CategoryList data={currentItems} />}
       {/* <Pagination
       currentPage={currentPage}
       totalPages={totalPages}
       onPageChange={handlePageChange}
       /> */}
-    </Container>
+    </div>
   );
 };
 
 export default NoticesPage;
+
