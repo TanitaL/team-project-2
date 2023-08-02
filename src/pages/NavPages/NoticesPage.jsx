@@ -117,11 +117,14 @@ const NoticesPage = () => {
     <div>
       <h1 className={css.textNoticesPage}>Find your favorite pet</h1>
       <SearchComponent onSearch={handleSearch} />
+            <div className={css.container} >
+
       <div className={css.categoryFilterWrapper}>
         <NoticesCategoriesNav />
         <div className={css.noticeFilter}>
-          <NoticesFilters onFilter={handleSearch} />
+            <NoticesFilters onFilter={handleSearch} />
           <AddPetButton />
+          </div>
         </div>
       </div>
       {isLoading && <Loader />}
