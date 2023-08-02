@@ -20,7 +20,7 @@ const CategoryItem = ({
   age,
   sex,
   category,
-  favorite = false,
+  favorite,
   owner,
 }) => {
   const [imageError, setImageError] = useState(false);
@@ -48,8 +48,20 @@ const CategoryItem = ({
 
   const addToFavorites = () => {
     if (!isUserRegistered) {
+      return;
     }
-    dispatch(addToFavorit(id));
+    dispatch(
+      addToFavorit({
+        id,
+        title,
+        file,
+        location,
+        age,
+        sex,
+        category,
+        owner,
+      })
+    );
   };
 
   const handleOpenModal = () => {
