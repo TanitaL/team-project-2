@@ -56,14 +56,14 @@
   }
   
   @media screen and (min-width: 768px) {
-  .NotFoundImg {
+  .notFoundImg {
       width: 704px;
       height: 308px; 
     }
   }
   
   @media screen and (min-width: 1280px) {
-  .NotFoundImg {
+  .notFoundImg {
       width: 822px;
       height: 360px;
       margin: 80px auto 18px auto;
@@ -92,13 +92,13 @@
   }
   
   @media screen and (min-width: 768px) {
-  .PageNotFoundBtn {
+  .pageNotFoundBtn {
       margin: 70px auto 357px auto;
     }
   }
       
   @media screen and (min-width: 1280px) {
-  .PageNotFoundBtn {
+  .pageNotFoundBtn {
       margin: 18px auto 100px auto;        
     }
   }
