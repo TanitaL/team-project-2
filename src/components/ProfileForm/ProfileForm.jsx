@@ -1,81 +1,28 @@
 import { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux';
 
 import AvatarUpload from 'components/ProfileForm/AvatarUpload/AvatarUpload';
 import LogoutProfile from 'components/Buttons/LogoutProfile/LogoutProfile';
 import Loader from 'components/Loader/Loader';
 
+import { austOperationThunk } from 'pages/AuthNavPages';
+import { userSelector } from 'redux/auth/selectors';
+
 import { instance } from 'service/api/api';
+import { validateProfileForm } from 'service/ValidateInForm/ValidateInForm';
 import notify from 'service/addPetHelpers/toast';
 import preparePutData from 'service/addPetHelpers/preparePutData';
 
 import sprite from 'assets/svg/sprite-cards.svg';
 import css from 'components/ProfileForm/ProfileForm.module.css';
 
-const EditSvg = () => {
-  return (
-    <svg width="24" height="24">
-      <use href={`${sprite}#icon-edit`}></use>
-    </svg>
-  );
-};
-
-const CloseSvg = () => {
-  return (
-    <svg width="24" height="24">
-      <use href={`${sprite}#icon-close`}></use>
-    </svg>
-  );
-};
-
-const validate = Yup.object({
-  avatar: Yup.mixed().test(
-    'fileSize',
-    'Photo must be up to 3MB',
-    value => value?.size <= 3000000 || true
-  ),
-  name: Yup.string()
-    .min(2, 'Must be at least 2 letters')
-    .max(16, 'Must be less than 16 letters')
-    .required('Name is required'),
-  email: Yup.string()
-    .matches(
-      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-      'Invalid email address'
-    )
-    .required('Email is required'),
-  birthday: Yup.string()
-    .matches(/^\d{2}-\d{2}-\d{4}$/, 'Invalid date')
-    .test(
-      'date',
-      "Birthday couldn't be in the future",
-      value =>
-        new Date() - new Date(value?.split('-').reverse().join('/')) >= 0 ||
-        true
-    ),
-  phone: Yup.string().matches(
-    /^\+380\d{9}$/,
-    'Phone number must be in theformat +380XXXXXXXXX'
-  ),
-  city: Yup.string()
-    .min(2, 'Must be at least 2 letters')
-    .matches(/^[a-zA-Z]+$/, 'Ivalid city'),
-});
-
-const initialValues = {
-  avatar: null,
-  name: '',
-  email: '',
-  birthday: '',
-  phone: '',
-  city: '',
-};
-
 const EditCloseBtn = ({ handleOnClick }) => {
   return (
     <button type="button" className={css.editBtn} onClick={handleOnClick}>
-      <CloseSvg />
+      <svg width="24" height="24">
+        <use href={`${sprite}#icon-close`}></use>
+      </svg>
     </button>
   );
 };
@@ -83,7 +30,9 @@ const EditCloseBtn = ({ handleOnClick }) => {
 const EditBtn = ({ handleOnClick }) => {
   return (
     <button type="button" className={css.editBtn} onClick={handleOnClick}>
-      <EditSvg />
+      <svg width="24" height="24">
+        <use href={`${sprite}#icon-edit`}></use>
+      </svg>
     </button>
   );
 };
@@ -96,11 +45,22 @@ const SaveBtn = () => {
   );
 };
 
+const initVal = {
+  name: '',
+  email: '',
+  city: '',
+  phone: '',
+  birthday: '',
+  avatar: null,
+};
+
 const ProfileForm = () => {
+  const dispatch = useDispatch();
+  const currentUserData = useSelector(userSelector);
+
   const [isEditing, setIsEditing] = useState(false);
-  const [userData, setUserData] = useState(initialValues);
+  const [userData, setUserData] = useState(initVal);
   const [isUserDataPending, setIsUserDataPending] = useState(true);
-  const [errorUserData, setErrorUserData] = useState('');
 
   const handleOnEdit = () => {
     setIsEditing(true);
@@ -117,42 +77,35 @@ const ProfileForm = () => {
     setIsUserDataPending(true);
     try {
       const { avatar, ...putData } = values;
-      const { data } = await instance.put('/users', preparePutData(putData));
-      setUserData(prev => ({ ...prev, ...data.user }));
+      await instance.put('/users', preparePutData(putData));
+
       if (avatar && typeof avatar !== 'string') {
         const formData = new FormData();
         formData.append('avatar', avatar);
-        const { data } = await instance.put('/users/avatar', formData, {
+        await instance.put('/users/avatar', formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
-        const { avatar: newAvatar } = data;
-        setUserData(prev => ({ ...prev, avatar: newAvatar }));
       }
     } catch (error) {
-      const { message } = error.response.data;
+      const message = error.response.data.message;
       notify.error(message);
     } finally {
+      setUserData(initVal);
+      dispatch(austOperationThunk({ endpoint: 'current' }));
       setIsEditing(false);
       setIsUserDataPending(false);
     }
   };
 
   useEffect(() => {
-    const getUserData = async () => {
-      try {
-        const { data } = await instance.get(`/users/current`);
-        setUserData(prev => ({ ...prev, ...data.user }));
-      } catch (error) {
-        const { message } = error.response.data;
-        notify.error(message);
-        setErrorUserData(message);
-      } finally {
-        setIsUserDataPending(false);
-      }
-    };
+    setUserData(prev => ({ ...prev, ...currentUserData }));
+  }, [currentUserData]);
 
-    getUserData();
-  }, []);
+  useEffect(() => {
+    if (userData.name) {
+      setIsUserDataPending(false);
+    }
+  }, [userData]);
 
   if (isUserDataPending) {
     return (
@@ -162,18 +115,10 @@ const ProfileForm = () => {
     );
   }
 
-  if (errorUserData) {
-    return (
-      <>
-        <p className={css.centerError}>Error: {errorUserData}</p>
-      </>
-    );
-  }
-
   return (
     <Formik
       initialValues={userData}
-      validationSchema={validate}
+      validationSchema={validateProfileForm}
       onSubmit={onSubmit}
     >
       {({ values, setFieldValue, resetForm }) => (
