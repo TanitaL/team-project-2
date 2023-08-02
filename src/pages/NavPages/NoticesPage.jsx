@@ -48,7 +48,7 @@ const NoticesPage = () => {
         break;
 
       case MYPET:
-        dispatch(fetchPets({ category: MYPET }));
+        dispatch(fetchPets({ category: MYPET, query }));
         break;
 
       case LOSTFOUND:
@@ -60,7 +60,7 @@ const NoticesPage = () => {
         break;
 
       case FAVORITE:
-        dispatch(fetchPets({ category: FAVORITE }));
+        dispatch(fetchPets({ category: FAVORITE, query }));
         break;
 
       default:
@@ -71,12 +71,6 @@ const NoticesPage = () => {
 
 useEffect(() => {
   if (isAuth && favorites?.length > 0 && pets?.length > 0) {
-    console.log("🚀 ~ useEffect ~ pets?.length > 0:", pets?.length > 0)
-    console.log(
-      '🚀 ~ useEffect ~ favorites?.length > 0:',
-      favorites?.length > 0
-    );
-    console.log('Это добавление флага всем если они есть в массиве');
     dispatch(addFlagFavorite());
   }
 }, [dispatch, favorites, isAuth, pets?.length])

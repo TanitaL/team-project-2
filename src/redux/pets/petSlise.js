@@ -9,6 +9,7 @@ import {
   fetchMyPets,
 } from './operations';
 import notify from 'service/addPetHelpers/toast';
+import { noticeCategories } from 'constants/noticeCategories';
 
 const contactsActions = [
   fetchPets,
@@ -41,7 +42,6 @@ export const petSlice = createSlice({
       .addCase(fetchFavoritePets.fulfilled, (state, action) => {
         state.isLoading = false;
         state.favorites = action.payload;
-        console.log('🚀 ~ fetchFavoritePets ~ action.payload:', action.payload);
         state.error = null;
       })
       .addCase(fetchMyPets.fulfilled, (state, action) => {
@@ -70,13 +70,20 @@ export const petSlice = createSlice({
         state.error = null;
       })
       .addCase(addToFavorit.fulfilled, (state, action) => {
-        const { id } = action.payload;
+        const { id } = action.payload.pet;
+        const { categoryName } = action.payload;
+       
         const isFavorite = state.favorites.find(item => item.id === id);
         if (isFavorite) {
           const index = state.favorites.findIndex(item => item.id === id);
           state.favorites.splice(index, 1);
+          if (categoryName === noticeCategories.FAVORITE) {
+            const index = state.items.findIndex(item => item.id === id);
+            state.items.splice(index, 1);
+          }
+            
         } else {
-          state.favorites.push(action.payload);
+          state.favorites.push(action.payload.pet);
         }
 
         // console.log('🚀 ~ .addToFavorit ~ action.payload:', action.payload);
@@ -114,7 +121,6 @@ export const petSlice = createSlice({
         state.isNavigate = false;
         state.error = action.payload;
         notify.error('Oops! Something went wrong. Please try again');
-        console.log('🚀 ~ .addMatcher ~ action.payload:', action.payload);
       }),
 });
 
