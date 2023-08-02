@@ -17,11 +17,7 @@ const Navigation = ({ closeBurgerMenu }) => {
         <>
           <Nav />
           <div className={css.navigation}>
-            {!isAuth ? (
-              <AuthNav closeBurgerMenu={closeBurgerMenu} />
-            ) : (
-              <UserNav closeBurgerMenu={closeBurgerMenu} />
-            )}
+            {!isAuth ? <AuthNav /> : <UserNav />}
           </div>
         </>
       )}

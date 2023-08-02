@@ -10,6 +10,7 @@ import AddPetButton from 'components/AddPetButton/AddPetButton';
 
 // import Pagination from 'components/Pagination/Pagination';
 import { getFavoritesPets, getIsLoading, getPets } from 'redux/pets/selectors';
+
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'components/Loader/Loader';
 import { Outlet, useParams } from 'react-router-dom';

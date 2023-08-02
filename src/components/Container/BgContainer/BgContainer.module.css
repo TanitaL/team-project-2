@@ -6,12 +6,28 @@
   height: 448px;
 }
 
+@media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .bgContainer {
+    background-image: url(assets/images/bg-paws-mobile-2x-opt.png);
+  }
+}
+
 @media screen and (min-width: 768px) {
   .bgContainer {
     background-image: url(assets/images/bg-paws-tablet-1x-opt.png);
     height: 1040px;
   }
 }
+
+/* @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .bgContainer {
+      background-image: url(assets/images/bg-paws-tablet-2x-opt.png);
+    }
+  } */
 
 @media screen and (min-width: 1280px) {
   .bgContainer {
@@ -21,13 +37,11 @@
     background-attachment: scroll;
     width: 1280px;
     margin: 0 auto;
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(assets/images/bg-paws-desktop-2x-opt.png);
+    }
   }
 }
-
-/* @media (min-device-pixel-ratio: 2),
-  (min-resolution: 192dpi),
-  (min-resolution: 2dppx) {
-  .box {
-    background-image: url('photo@2x.png');
-  }
-} */

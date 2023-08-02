@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { austOperationThunk } from 'redux/auth/thunks';
+import { logoutThunk } from 'redux/auth/thunks';
 import ModalApproveAction from 'components/Modals/ModalApproveAction/ModalApproveAction';
 import LogoutBtn from 'components/Buttons/LogoutBtn/LogoutBtn';
 import sprite from 'assets/svg/sprite-cards.svg';
+import { useBurgerContext } from 'context/BurgerProvider';
 
 const Logout = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const dispatch = useDispatch();
+  const { menuOpen, setMenuOpen } = useBurgerContext();
+
+  console.log(menuOpen);
+
   // const navigate = useNavigate();
 
   const handleSuccess = () => {
-    dispatch(austOperationThunk({ endpoint: 'logout' }));
+    dispatch(logoutThunk());
     setIsOpenModal(false);
+    if (menuOpen) {
+      setMenuOpen(false);
+    }
     // closeBurgerMenu(true);
     // navigate('/notices');
   };
@@ -24,9 +31,8 @@ const Logout = () => {
 
   return (
     <>
-      <NavLink key={'/'} to={'/'}>
-        <LogoutBtn setIsOpenModal={setIsOpenModal} />
-      </NavLink>
+      <LogoutBtn setIsOpenModal={setIsOpenModal} />
+
       {isOpenModal && (
         <ModalApproveAction
           handleSuccess={handleSuccess}

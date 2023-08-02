@@ -1,47 +1,36 @@
 import React, { useEffect } from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import css from './AuthNavPage.module.css';
-import { NavLink } from 'react-router-dom';
-import TextField from './TextField';
-import PasswordField from './PasswordField';
 import { useDispatch } from 'react-redux';
-import { austOperationThunk } from 'redux/auth/thunks';
-import { useSelector } from 'react-redux';
-import { errorSelector, loadingSelector } from 'redux/auth/selectors';
-import { toast } from 'react-toastify';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import BgContainer from 'components/Container/BgContainer/BgContainer';
-import Container from 'components/Container/Container/Container';
-import LoaderPet from 'components/LoaderPet/LoaderPet';
+import { NavLink } from 'react-router-dom';
+
+import {
+  css,
+  Formik,
+  Form,
+  TextField,
+  PasswordField,
+  austOperationThunk,
+  useSelector,
+  errorSelector,
+  loadingSelector,
+  ToastContainer,
+  BgContainer,
+  Container,
+  LoaderPet,
+  validateInLoginForm,
+  notify,
+} from './index';
 
 const LoginPage = () => {
   const error = useSelector(errorSelector);
   const dispatch = useDispatch();
   const isLoading = useSelector(loadingSelector);
-  const validate = Yup.object({
-    email: Yup.string()
-      .required('Email is required')
-      .email('Invalid email address'),
-    password: Yup.string().required('Password is required'),
-  });
+
   useEffect(() => {
     if (!error) {
       return;
     }
-    const notify = () =>
-      toast.error(error.data.message ?? '', {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
-    notify();
+
+    notify.error(error.data.message);
   }, [error]);
 
   return (
@@ -54,7 +43,7 @@ const LoginPage = () => {
               email: '',
               password: '',
             }}
-            validationSchema={validate}
+            validationSchema={validateInLoginForm}
             onSubmit={(values, actions) => {
               const { email, password } = values;
               dispatch(

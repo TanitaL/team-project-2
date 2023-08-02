@@ -17,18 +17,17 @@
 
   display: flex;
   flex-direction: column;
-
-  height: 534px;
-  width: 395px;
+  margin-top: 24px;
+  width: 252px;
   position: relative;
 }
 
 .item:not(:last-child) {
   margin-bottom: 24px;
 
-  @media screen and (min-width: 768px) {
-    margin-right: 16px;
+  @media screen and (min-width: 1280px) {
     margin-bottom: 0;
+    width: 395px;
   }
 }
 
