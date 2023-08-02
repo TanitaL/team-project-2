@@ -15,9 +15,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'components/Loader/Loader';
 import { Outlet, useParams } from 'react-router-dom';
 import { noticeCategories } from 'constants/noticeCategories';
-import { addFlagFavorite, fetchFavoritePets, fetchPets } from 'redux/pets/operations';
-import { authSelector} from 'redux/auth/selectors';
+import {
+  addFlagFavorite,
+  fetchFavoritePets,
+  fetchPets,
+} from 'redux/pets/operations';
+import { authSelector } from 'redux/auth/selectors';
 import Container from 'components/Container/Container/Container';
+import ModalAttention from 'components/Modals/ModalAttention/ModalAttention';
 
 const { SELL, LOSTFOUND, FORFREE, MYPET, FAVORITE } = noticeCategories;
 
@@ -26,6 +31,8 @@ const NoticesPage = () => {
   const isLoading = useSelector(getIsLoading);
   const isAuth = useSelector(authSelector);
   const favorites = useSelector(getFavoritesPets);
+
+  const [isAttentionModalOpen, setIsAttentionModalOpen] = useState(false);
 
   // const [currentPage, setCurrentPage] = useState(1);
   // const [totalPages, setTotalPages] = useState(0);
@@ -38,8 +45,7 @@ const NoticesPage = () => {
     if (isAuth) {
       dispatch(fetchFavoritePets());
     }
-  }, [dispatch, isAuth])
-  
+  }, [dispatch, isAuth]);
 
   useEffect(() => {
     switch (categoryName) {
@@ -66,15 +72,13 @@ const NoticesPage = () => {
       default:
         break;
     }
-   
   }, [categoryName, dispatch, query]);
 
-useEffect(() => {
-  if (isAuth && favorites?.length > 0 && pets?.length > 0) {
-    dispatch(addFlagFavorite());
-  }
-}, [dispatch, favorites, isAuth, pets?.length])
-
+  useEffect(() => {
+    if (isAuth && favorites?.length > 0 && pets?.length > 0) {
+      dispatch(addFlagFavorite());
+    }
+  }, [dispatch, favorites, isAuth, pets?.length]);
 
   // useEffect(() => {
 
@@ -104,15 +108,17 @@ useEffect(() => {
 
   return (
     <Container>
+      {isAttentionModalOpen && !isAuth && (
+        <ModalAttention modalOpen={setIsAttentionModalOpen} />
+      )}
       <h1 className={css.textNoticesPage}>Find your favorite pet</h1>
       <SearchComponent onSearch={handleSearch} />
-            <div className={css.container} >
-
-      <div className={css.categoryFilterWrapper}>
-        <NoticesCategoriesNav />
-        <div className={css.noticeFilter}>
+      <div className={css.container}>
+        <div className={css.categoryFilterWrapper}>
+          <NoticesCategoriesNav />
+          <div className={css.noticeFilter}>
             <NoticesFilters onFilter={handleSearch} />
-          <AddPetButton />
+            <AddPetButton modalOpen={setIsAttentionModalOpen} />
           </div>
         </div>
       </div>
@@ -130,4 +136,3 @@ useEffect(() => {
 };
 
 export default NoticesPage;
-
