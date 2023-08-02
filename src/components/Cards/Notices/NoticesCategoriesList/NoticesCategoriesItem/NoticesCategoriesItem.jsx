@@ -11,6 +11,7 @@ import css from './NoticesCategoriesItem.module.css';
 import sprite from 'assets/svg/sprite-cards.svg';
 import { addToFavorit, deletePet } from 'redux/pets/operations';
 import ModalAcces from 'components/Modals/ModalAcces';
+import { useParams } from 'react-router-dom';
 
 const CategoryItem = ({
   id,
@@ -25,7 +26,7 @@ const CategoryItem = ({
 }) => {
   const [imageError, setImageError] = useState(false);
   const userId = useSelector(userIdSelector);
-
+const { categoryName } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -52,14 +53,17 @@ const CategoryItem = ({
     }
     dispatch(
       addToFavorit({
-        id,
-        title,
-        file,
-        location,
-        age,
-        sex,
-        category,
-        owner,
+        pet: {
+          id,
+          title,
+          file,
+          location,
+          age,
+          sex,
+          category,
+          owner,
+        },
+        categoryName,
       })
     );
   };
