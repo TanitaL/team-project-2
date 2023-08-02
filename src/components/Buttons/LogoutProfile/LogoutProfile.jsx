@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { logoutThunk } from 'redux/auth/thunks';
 
 import ModalApproveAction from 'components/Modals/ModalApproveAction/ModalApproveAction';
-import { ReactComponent as LogoutSvg } from 'assets/svg/logout.svg';
 
+import sprite from 'assets/svg/sprite-cards.svg';
 import css from 'components/Buttons/LogoutProfile/LogoutProfile.module.css';
 
 const LogoutBtn = ({ setIsOpenModal }) => {
@@ -16,7 +16,9 @@ const LogoutBtn = ({ setIsOpenModal }) => {
   return (
     <>
       <button type="button" className={css.logoutBtn} onClick={handleClick}>
-        <LogoutSvg />
+        <svg width="24" height="24">
+          <use href={`${sprite}#icon-logout`}></use>
+        </svg>
         Log Out
       </button>
     </>
@@ -50,7 +52,9 @@ const LogoutProfile = ({ closeBurgerMenu }) => {
           successButtonText={
             <>
               <p>Yes</p>
-              <LogoutSvg stroke="#fff" />
+              <svg width="24" height="24">
+                <use href={`${sprite}#icon-logout-white`}></use>
+              </svg>
             </>
           }
         >

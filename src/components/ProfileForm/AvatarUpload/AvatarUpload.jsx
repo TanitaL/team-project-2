@@ -4,10 +4,32 @@ import Loader from 'components/Loader/Loader';
 import defaultAvatar from 'assets/images/Photodefault.jpg';
 import { BsPlusLg } from 'react-icons/bs';
 
-import { ReactComponent as CameraSvg } from 'assets/svg/camera.svg';
-import { ReactComponent as ConfirmSvg } from 'assets/svg/confirm.svg';
-import { ReactComponent as RejectSvg } from 'assets/svg/reject.svg';
+import sprite from 'assets/svg/sprite-cards.svg';
 import css from 'components/ProfileForm/AvatarUpload/AvatarUpload.module.css';
+
+const CameraSvg = () => {
+  return (
+    <svg width="24" height="24">
+      <use href={`${sprite}#icon-camera`}></use>
+    </svg>
+  );
+};
+
+const ConfirmSvg = () => {
+  return (
+    <svg width="24" height="24">
+      <use href={`${sprite}#icon-confirm`}></use>
+    </svg>
+  );
+};
+
+const RejectSvg = () => {
+  return (
+    <svg width="24" height="24">
+      <use href={`${sprite}#icon-reject`}></use>
+    </svg>
+  );
+};
 
 const AvatarUpload = ({ userFile, isEditing, setImage }) => {
   const fileInputRef = useRef(null);
