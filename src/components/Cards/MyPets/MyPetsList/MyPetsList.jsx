@@ -40,9 +40,9 @@ const MyPetsList = () => {
 
   if (isPending) {
     return (
-      <>
+      <div className={css.centerBox}>
         <Loader />
-      </>
+      </div>
     );
   }
 
@@ -52,9 +52,9 @@ const MyPetsList = () => {
 
   if (notices.length === 0) {
     return (
-      <>
-        <p className={css.centerText}>You don't have any pets</p>
-      </>
+      <div className={css.centerBox}>
+        <p>You don't have any pets</p>
+      </div>
     );
   }
 

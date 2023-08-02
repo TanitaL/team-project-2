@@ -15,11 +15,17 @@
   }
 }
 
-.centerText {
-  text-align: center;
+.centerBox {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.centerError {
-  text-align: center;
+.centerBoxError {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: red;
 }

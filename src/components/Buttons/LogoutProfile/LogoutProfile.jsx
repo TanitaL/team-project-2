@@ -25,15 +25,15 @@ const LogoutBtn = ({ setIsOpenModal }) => {
   );
 };
 
-const LogoutProfile = ({ closeBurgerMenu }) => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+const LogoutProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const handleSuccess = () => {
     dispatch(logoutThunk());
     setIsOpenModal(false);
-    closeBurgerMenu(false);
     navigate('/notices');
   };
 

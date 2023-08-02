@@ -46,13 +46,12 @@ export const validateProfileForm = Yup.object({
     .required('Email is required'),
   birthday: Yup.string()
     .matches(/^\d{2}-\d{2}-\d{4}$/, 'Invalid date')
-    .test(
-      'date',
-      "Birthday couldn't be in the future",
-      value =>
-        new Date() - new Date(value?.split('-').reverse().join('/')) >= 0 ||
-        true
-    ),
+    .test('date', "Birthday couldn't be in the future", value => {
+      if (!value) {
+        return true;
+      }
+      return new Date() - new Date(value.split('-').reverse().join('/')) >= 0;
+    }),
   phone: Yup.string().matches(
     /^\+380\d{9}$/,
     'Phone number must be in theformat +380XXXXXXXXX'

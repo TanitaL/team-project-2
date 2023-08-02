@@ -73,6 +73,10 @@ const ProfileForm = () => {
     };
   };
 
+  const formatDate = val => {
+    return val.split('-').reverse().join('-');
+  };
+
   const onSubmit = async values => {
     setIsUserDataPending(true);
     try {
@@ -93,7 +97,6 @@ const ProfileForm = () => {
       setUserData(initVal);
       dispatch(austOperationThunk({ endpoint: 'current' }));
       setIsEditing(false);
-      setIsUserDataPending(false);
     }
   };
 
@@ -109,9 +112,9 @@ const ProfileForm = () => {
 
   if (isUserDataPending) {
     return (
-      <>
+      <div className={css.boxSimulation}>
         <Loader />
-      </>
+      </div>
     );
   }
 
@@ -182,7 +185,14 @@ const ProfileForm = () => {
                   <Field
                     type="text"
                     onFocus={e => (e.target.type = 'date')}
-                    onBlur={e => (e.target.type = 'text')}
+                    onBlur={e => {
+                      e.target.type = 'text';
+                      e.target.value = values.birthday;
+                    }}
+                    onChange={e => {
+                      setFieldValue('birthday', formatDate(e.target.value));
+                      e.target.value = formatDate(e.target.value);
+                    }}
                     name="birthday"
                     id="birthday"
                     className={css.input}

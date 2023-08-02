@@ -9,21 +9,30 @@
   display: grid;
   place-items: center;
 
+  overflow-y: scroll;
   cursor: pointer;
   background: rgba(97, 97, 97, 0.6);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(3px);
   z-index: 999;
 }
 
-.container {
-  width: calc(100% - 40px);
+.modal {
+  position: relative;
 
-  @media screen and (min-width: 320px) {
-    width: 320px;
-  }
+  width: 320px;
+  margin-top: 100px;
+  margin-bottom: 40px;
+  padding: 44px 20px 16px;
+
+  border-radius: 20px;
+  background-color: #fff;
+  cursor: default;
 
   @media screen and (min-width: 768px) {
     width: 750px;
+    padding: 32px 32px 24px;
+
+    border-radius: 40px;
   }
 }
 
@@ -35,14 +44,6 @@
   cursor: pointer;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.box {
-  position: relative;
-  padding: 32px 32px 24px;
-  border-radius: 40px;
-  background-color: #fff;
-  cursor: default;
 }
 
 .closeBtn {

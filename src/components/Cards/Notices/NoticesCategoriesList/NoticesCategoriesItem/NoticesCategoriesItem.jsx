@@ -97,7 +97,6 @@ const CategoryItem = ({
     setIsDeleteModalOpen(false);
   };
 
-
   return (
     <li key={id} className={css.item}>
       <div className={css.imageWrapper}>
@@ -171,7 +170,7 @@ const CategoryItem = ({
         <PetModal
           id={id}
           onClose={handleCloseModal}
-          isFavorite={false}
+          isFavorite={favorite}
           addToFavotire={addToFavorites}
         />
       )}
