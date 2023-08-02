@@ -9,6 +9,8 @@ import UserNav from 'components/Navigation/UserNav/UserNav';
 import Logout from 'components/Logout/Logout';
 import sprite from 'assets/svg/sprite-cards.svg';
 import css from './BurgerMenu.module.css';
+import UserBtn from 'components/Buttons/UserBtn/UserBtn';
+import { NavLink } from 'react-router-dom';
 
 const BurgerMenu = () => {
   const { menuOpen, setMenuOpen } = useBurgerContext();
@@ -37,7 +39,7 @@ const BurgerMenu = () => {
           <div className={css.headerNav}>
             {isMediumScreen && isAuth && (
               <div className={css.userNav}>
-                <Logout closeBurgerMenu={closeBurgerMenu} />
+                <Logout closeBurgerMenu={setMenuOpen} />
               </div>
             )}
 
@@ -57,7 +59,9 @@ const BurgerMenu = () => {
 
             {isSmallScreen && isAuth && (
               <div className={css.userNav}>
-                <UserNav closeBurgerMenu={closeBurgerMenu} />
+                <NavLink to="/user">
+                  <UserBtn closeBurgerMenu={closeBurgerMenu} />
+                </NavLink>
                 <p>{auth.name}</p>
               </div>
             )}

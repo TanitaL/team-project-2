@@ -355,12 +355,12 @@
 }
 
 .noticeFilter {
-  margin: auto 0;
+  /* margin: auto 0; */
   display: flex;
   gap: 12px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
   .container {
     margin-left: auto;
     margin-right: auto;
@@ -382,5 +382,11 @@
     margin-right: auto;
     width: 280px;
     margin-bottom: 24px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .containerAddPet {
+    width: 280px;
   }
 }

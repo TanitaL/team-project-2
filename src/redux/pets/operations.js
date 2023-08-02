@@ -1,19 +1,44 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { noticeCategories } from 'constants/noticeCategories';
 // import axios from 'axios';
 import { instance } from 'service/api/api';
+
+const { SELL, LOSTFOUND, FORFREE, MYPET, FAVORITE } = noticeCategories;
 
 // axios.defaults.baseURL = 'https://final-project-node-5vh7.onrender.com';
 
 export const fetchPets = createAsyncThunk(
   'pets/fetchAll',
 
-  async (category, thunkAPI) => {
+  async ({category,query}, thunkAPI) => {
     console.log('🚀 ~ category:', category);
     try {
-      const response = await instance.get(
-        `/notices?category=${category}&limit=20`
-      );
-      const notices = response.data.notices;
+      let notices;
+      if (category === SELL || category === LOSTFOUND || category === FORFREE) {
+        if (query) {
+          const response = await instance.get(
+            `/notices?category=${category}&limit=20&query=${query}`
+          );
+          notices = response.data.notices;
+          // return response.data.notices;
+        } else {
+          const response = await instance.get(
+            `/notices?category=${category}&limit=20`
+          );
+          notices = response.data.notices;
+          // return response.data.notices;
+        }
+        
+        // return response.data.notices;
+      } else if (category === MYPET) {
+        const response = await instance.get('/notices/mypets');
+        return response.data.notices;
+      } else if (category === FAVORITE) {
+        const response = await instance.get('/notices/favoriteads');
+        return response.data.notices;
+      }
+      
+      // const notices = response.data.notices;
 
       const updatedNotices = notices.map(item => ({
         ...item,
@@ -22,7 +47,33 @@ export const fetchPets = createAsyncThunk(
       return updatedNotices;
       // return response.data.notices;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.data.message);
+    }
+  }
+);
+
+export const fetchFavoritePets = createAsyncThunk(
+  'pets/fetchFavoritePets',
+
+  async (_, thunkAPI) => {
+    try {
+      const response = await instance.get('/notices/favoriteads');
+      return response.data.notices;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.data.message);
+    }
+  }
+);
+
+export const fetchMyPets = createAsyncThunk(
+  'pets/fetchMyPets',
+
+  async (_, thunkAPI) => {
+    try {
+      const response = await instance.get('/notices/mypets');
+      return  response.data.notices;  
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.data.message);
     }
   }
 );
@@ -30,8 +81,8 @@ export const fetchPets = createAsyncThunk(
 export const addFlagFavorite = createAsyncThunk(
   'pets/addFlagFavorite',
 
-  async (favorites, thunkAPI) => {
-    return favorites;
+  async (_, thunkAPI) => {
+    // return favorites;
   }
 );
 
@@ -46,7 +97,7 @@ export const addPet = createAsyncThunk(
       return response.data.notice;
     } catch (error) {
       console.log('🚀 ~ error.message:', error.message);
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.data.message);
     }
   }
 );
@@ -59,19 +110,22 @@ export const deletePet = createAsyncThunk(
       console.log('🚀 ~ response:', response);
       return id;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.data.message);
     }
   }
 );
 
 export const addToFavorit = createAsyncThunk(
   'pets/addToFavorit',
-  async (noticeId, thunkAPI) => {
+  async (
+    { id, title, file, location, age, sex, category, owner },
+    thunkAPI
+  ) => {
     try {
-      await instance.post(`/notices/${noticeId}/favorite`);
-      return noticeId;
+      await instance.post(`/notices/${id}/favorite`);
+      return { id, title, file, location, age, sex, category, owner };
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.data.message);
     }
   }
 );

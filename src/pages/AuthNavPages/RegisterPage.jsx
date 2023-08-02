@@ -13,7 +13,6 @@ import {
   errorSelector,
   loadingSelector,
   modalOpenSelector,
-  ToastContainer,
   ModalRegister,
   BgContainer,
   Container,
@@ -108,7 +107,6 @@ const RegisterPage = () => {
               </div>
             )}
           </Formik>
-          <ToastContainer />
         </Container>
       </BgContainer>
     </>

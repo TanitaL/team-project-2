@@ -6,18 +6,11 @@ export const austOperationThunk = createAsyncThunk(
   'auth/operations',
   async ({ endpoint, userInfo = {}, urlToken, actions }, thunkAPI) => {
     const { token } = thunkAPI.getState().auth;
-    if (
-      endpoint === 'register' ||
-      endpoint === 'login' ||
-      endpoint === 'logout'
-    ) {
+    if (endpoint === 'register' || endpoint === 'login') {
       try {
         const { data } = await instance.post(`users/${endpoint}`, userInfo);
         if (data.token) {
           setToken(data.token);
-        }
-        if (endpoint === 'logout') {
-          deleteToken();
         }
         actions.resetForm();
         return data;
@@ -39,7 +32,6 @@ export const austOperationThunk = createAsyncThunk(
     if (endpoint === 'verify') {
       try {
         const { data } = await instance.get(`users/${endpoint}/${urlToken}`);
-        console.log(data);
         return data;
       } catch (error) {
         return thunkAPI.rejectWithValue(error);
@@ -48,14 +40,17 @@ export const austOperationThunk = createAsyncThunk(
   }
 );
 
-export const logoutThunk = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
-  try {
-    const { data } = await instance.post(`users/logout`);
-    deleteToken();
-    return data;
-  } catch (error) {
-     const { response } = error;
-     return thunkAPI.rejectWithValue(response);
+export const logoutThunk = createAsyncThunk(
+  'auth/logout',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await instance.post(`users/logout`);
+      console.log(data);
+      deleteToken();
+      return data;
+    } catch (error) {
+      const { response } = error;
+      return thunkAPI.rejectWithValue(response);
+    }
   }
-});
-
+);

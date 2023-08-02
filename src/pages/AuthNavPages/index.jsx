@@ -1,8 +1,8 @@
 import css from './AuthNavPage.module.css';
 
 import { Formik, Form } from 'formik';
-import TextField from './TextField';
-import PasswordField from './PasswordField';
+import TextField from '../../components/Formik/TextField';
+import PasswordField from '../../components/Formik/PasswordField';
 
 import { austOperationThunk } from 'redux/auth/thunks';
 import { useSelector } from 'react-redux';
@@ -12,7 +12,6 @@ import {
   modalOpenSelector,
 } from 'redux/auth/selectors';
 
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import ModalRegister from 'components/Modals/ModalRegister/ModalRegister';
@@ -39,7 +38,6 @@ export {
   errorSelector,
   loadingSelector,
   modalOpenSelector,
-  ToastContainer,
   ModalRegister,
   BgContainer,
   Container,
