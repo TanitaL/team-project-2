@@ -13,19 +13,13 @@ const fullfiled = (state, { meta, payload = {} }) => {
     case 'login':
       state.user = user;
       state.token = token;
-      state.isLogin = true;
-      break;
-    case 'logout':
-      state.user = {};
-      state.token = '';
-      state.isLogin = false;
       break;
     case 'current':
       state.user = user;
       state.token = token;
-      state.isLogin = true;
       break;
     case 'verify':
+      state.user = user;
       state.token = token;
       break;
     default:
@@ -50,14 +44,12 @@ const handleRejected = (state, { payload: { data, status } }) => {
 const logout = state => {
   state.user = {};
   state.token = '';
-  state.isLogin = false;
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
     user: {},
-    isLogin: false,
     isLoading: false,
     token: '',
     error: null,
