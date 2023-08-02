@@ -16,7 +16,7 @@ export const OurFriend = () => {
 
   return (
     <>
-      <h1 className={css.title}>Our Friend</h1>
+      <h1 className={css.title}>Our friends</h1>
       <ul className={css.friend__list}>
         {friend.map(
           ({ 
