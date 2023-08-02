@@ -39,7 +39,7 @@ export const OurFriendItem = ({
   const resTruncate = truncateUntilSecondUppercase(title);
 
   return (
-    <div className={css.zxc}>
+
       <li className={css.friend__listitem} href={url}>
         <h2 className={css.friendtitle}>
           {resTruncate.length > 30 ? resTruncate.slice(0, 29) : resTruncate}
@@ -128,6 +128,6 @@ export const OurFriendItem = ({
           </ul>
         </div>
       </li>
-    </div>
+  
   );
 };
