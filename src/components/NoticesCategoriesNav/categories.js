@@ -26,7 +26,7 @@ const privateCategories = [
     },
     {
         id: nanoid(),
-        to: '/notices/own',
+        to: '/notices/mypets',
         text: 'my ads',
     },
 ];

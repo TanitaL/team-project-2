@@ -6,20 +6,6 @@ import { stepTwoValidationSchema } from './addFormValidation';
 import css from './steps.module.css';
 import TextField from './TextFielf';
 
-// import { DatePicker } from 'react-datepicker'; // Импортируем компонент DatePicker
-// import 'react-datepicker/dist/react-datepicker.css'; // Подключаем стили для DatePicker
-
-// import { format } from 'date-fns'; // Импортируем функции для работы с датами
-
-// const formatDateForFormik = date => {
-//   return date ? format(date, 'dd-MM-yyyy') : '';
-// };
-
-// const formatDate = date => {
-//   const formattedDate = date ? format(new Date(date), 'dd-MM-yyyy') : null;
-
-//   return formattedDate;
-// };
 
 const PersonalDetails = ({ data, next, prev }) => {
   const handleSubmit = values => {
@@ -84,24 +70,6 @@ const PersonalDetails = ({ data, next, prev }) => {
                   'date',
                   new Date(event.target.value).toISOString()
                 );
-              }}
-            /> */}
-            {/* <DatePicker
-              autoComplete="off"
-              selected={
-                values.date
-                  ? parse(values.date, 'dd-MM-yyyy', new Date())
-                  : null
-              }
-              dateFormat="dd-MM-yyyy"
-              className={css.input}
-              name="date"
-              placeholderText="Type date of birth"
-              onChange={date => {
-                console.log('🚀 ~ DatePicker ~ date:', date);
-                // При изменении даты обновляем значение в Formik
-                setFieldValue('date', date);
-                // setFieldValue('date', formatDateForFormik(date));
               }}
             /> */}
             <ErrorMessage className={css.error} name="date" component="div" />
