@@ -59,10 +59,9 @@ export const petSlice = createSlice({
           );
           if (isFavorite) {
             state.items[index] = { ...item, favorite: true };
+          } else {
+            state.items[index] = { ...item, favorite: false };
           }
-          else {
-           state.items[index] = { ...item, favorite: false };
-        }
           return item;
         });
 
@@ -113,7 +112,7 @@ export const petSlice = createSlice({
         state.isLoading = false;
         state.isNavigate = false;
         state.error = action.payload;
-        notify.error('Oops! Something went wrong. Please try again');
+        // notify.error('Oops! Something went wrong. Please try again');
         console.log('🚀 ~ .addMatcher ~ action.payload:', action.payload);
       }),
 });
