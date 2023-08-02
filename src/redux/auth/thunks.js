@@ -32,7 +32,6 @@ export const austOperationThunk = createAsyncThunk(
     if (endpoint === 'verify') {
       try {
         const { data } = await instance.get(`users/${endpoint}/${urlToken}`);
-        console.log(data);
         return data;
       } catch (error) {
         return thunkAPI.rejectWithValue(error);

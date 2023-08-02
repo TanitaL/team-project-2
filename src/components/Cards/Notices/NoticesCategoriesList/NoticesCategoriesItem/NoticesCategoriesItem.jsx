@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelector, userIdSelector } from 'redux/auth/selectors';
 
 import PetModal from 'components/PetModal/PetModal';
+import ModalAcces from '../../../../Modals/ModalAcces/ModalAcces';
+import WarningModal from '../../../../Modals/WarningModal/WarningModal';
 
 import 'react-toastify/dist/ReactToastify.css';
 import css from './NoticesCategoriesItem.module.css';
 
 import sprite from 'assets/svg/sprite-cards.svg';
 import { addToFavorit, deletePet } from 'redux/pets/operations';
-import ModalAcces from 'components/Modals/ModalAcces';
 
 const CategoryItem = ({
   id,
@@ -28,6 +28,7 @@ const CategoryItem = ({
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isWarningModalOpen, setIsWarningModalOpen] = useState(false);
 
   const [sexIcon, setSexIcon] = useState('icon-male');
   const dispatch = useDispatch();
@@ -86,6 +87,11 @@ const CategoryItem = ({
   const handleDeleteModalClose = () => {
     setIsDeleteModalOpen(false);
   };
+
+   const handleWarningModalClose = () => {
+    setIsWarningModalOpen(false);
+   };
+  
   return (
     <li key={id} className={css.item}>
       <div className={css.imageWrapper}>
@@ -100,7 +106,7 @@ const CategoryItem = ({
         <button className={css.addToFavoritesButton} onClick={addToFavorites}>
           {favorite ? (
             <svg width="24" height="24">
-              <use href={`${sprite}#icon-heart-off`} fill="#54ADFF"></use>
+              <use href={`${sprite}#icon-heart-off`} fill="#54ADFF" ></use>
             </svg>
           ) : (
             <svg width="24" height="24">
@@ -140,7 +146,7 @@ const CategoryItem = ({
             <span className={css.texProperty}>{sex}</span>
           </p>
         </div>
-      </div>
+      </div>  
 
       <div className={css.itemBox}>
         <h2 className={css.title}>{title}</h2>
@@ -170,6 +176,12 @@ const CategoryItem = ({
           id={id}
           title={title}
           handleDeleteClick={handleDeleteConfirmed}
+        />
+      )}
+
+      {isWarningModalOpen && (
+        <WarningModal
+          onClose={handleWarningModalClose}
         />
       )}
     </li>
