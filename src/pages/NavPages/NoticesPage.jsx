@@ -8,8 +8,13 @@ import NoticesCategoriesNav from '../../components/NoticesCategoriesNav/NoticesC
 import NoticesFilters from 'components/NoticesFilters/NoticesFilters';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
 
-// import Pagination from 'components/Pagination/Pagination';
-import { getFavoritesPets, getIsLoading, getPets } from 'redux/pets/selectors';
+import Paginations from 'components/Pagination/Paginations';
+import {
+  getFavoritesPets,
+  getIsLoading,
+  getPets,
+  getPages,
+} from 'redux/pets/selectors';
 
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'components/Loader/Loader';
@@ -28,11 +33,13 @@ const { SELL, LOSTFOUND, FORFREE, MYPET, FAVORITE } = noticeCategories;
 
 const NoticesPage = () => {
   const pets = useSelector(getPets);
+  const pages = useSelector(getPages);
   const isLoading = useSelector(getIsLoading);
   const isAuth = useSelector(authSelector);
   const favorites = useSelector(getFavoritesPets);
 
   const [isAttentionModalOpen, setIsAttentionModalOpen] = useState(false);
+  const [page, setPage] = useState(1);
 
   // const [currentPage, setCurrentPage] = useState(1);
   // const [totalPages, setTotalPages] = useState(0);
@@ -50,29 +57,29 @@ const NoticesPage = () => {
   useEffect(() => {
     switch (categoryName) {
       case SELL:
-        dispatch(fetchPets({ category: SELL, query }));
+        dispatch(fetchPets({ category: SELL, query, page }));
         break;
 
       case MYPET:
-        dispatch(fetchPets({ category: MYPET, query }));
+        dispatch(fetchPets({ category: MYPET, query, page }));
         break;
 
       case LOSTFOUND:
-        dispatch(fetchPets({ category: LOSTFOUND, query }));
+        dispatch(fetchPets({ category: LOSTFOUND, query, page }));
         break;
 
       case FORFREE:
-        dispatch(fetchPets({ category: FORFREE, query }));
+        dispatch(fetchPets({ category: FORFREE, query, page }));
         break;
 
       case FAVORITE:
-        dispatch(fetchPets({ category: FAVORITE, query }));
+        dispatch(fetchPets({ category: FAVORITE, query, page }));
         break;
 
       default:
         break;
     }
-  }, [categoryName, dispatch, query]);
+  }, [categoryName, dispatch, query, page]);
 
   useEffect(() => {
     if (isAuth && favorites?.length > 0 && pets?.length > 0) {
@@ -106,6 +113,10 @@ const NoticesPage = () => {
   // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   // const currentItems = visiblePets.slice(indexOfFirstItem, indexOfLastItem);
 
+  const handlePageChange = pageNumber => {
+    setPage(pageNumber);
+  };
+
   return (
     <Container>
       {isAttentionModalOpen && !isAuth && (
@@ -126,11 +137,11 @@ const NoticesPage = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
-      {/* <Pagination
-      currentPage={currentPage}
-      totalPages={totalPages}
-      onPageChange={handlePageChange}
-      /> */}
+      <Paginations
+        currentPage={page}
+        totalPages={pages}
+        handlePaginationChange={handlePageChange}
+      />
     </Container>
   );
 };
