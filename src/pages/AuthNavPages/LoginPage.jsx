@@ -12,7 +12,6 @@ import {
   useSelector,
   errorSelector,
   loadingSelector,
-  ToastContainer,
   BgContainer,
   Container,
   LoaderPet,
@@ -93,7 +92,6 @@ const LoginPage = () => {
               </div>
             )}
           </Formik>
-          <ToastContainer />
         </Container>
       </BgContainer>
     </>
