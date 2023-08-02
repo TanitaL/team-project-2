@@ -7,9 +7,32 @@ import notify from 'service/addPetHelpers/toast';
 import Loader from 'components/Loader/Loader';
 import ImageLoader from 'components/Loader/ImageLoader';
 
-import { ReactComponent as HeartSvg } from 'assets/svg/heart.svg';
-import { ReactComponent as CloseSvg } from 'assets/svg/close.svg';
+import sprite from 'assets/svg/sprite-cards.svg';
 import css from 'components/PetModal/PetModal.module.css';
+
+const HeartSvgFilled = () => {
+  return (
+    <svg width="24" height="24">
+      <use href={`${sprite}#icon-heart-on-2`}></use>
+    </svg>
+  );
+};
+
+const HeartSvg = () => {
+  return (
+    <svg width="24" height="24">
+      <use href={`${sprite}#icon-heart-off-2`}></use>
+    </svg>
+  );
+};
+
+const CloseSvg = () => {
+  return (
+    <svg width="24" height="24">
+      <use href={`${sprite}#icon-close`}></use>
+    </svg>
+  );
+};
 
 const PetModal = ({ id, onClose, isFavorite, addToFavotire }) => {
   const [details, setDetails] = useState(null);
@@ -166,7 +189,7 @@ const PetModal = ({ id, onClose, isFavorite, addToFavotire }) => {
                     {isFavorite ? (
                       <>
                         <p>Delete from</p>
-                        <HeartSvg />
+                        <HeartSvgFilled />
                       </>
                     ) : (
                       <>
