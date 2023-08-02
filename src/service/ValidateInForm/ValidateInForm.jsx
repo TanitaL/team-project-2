@@ -27,3 +27,37 @@ export const validateInLoginForm = Yup.object({
     .email('Invalid email address'),
   password: Yup.string().required('Password is required'),
 });
+
+export const validateProfileForm = Yup.object({
+  avatar: Yup.mixed().test(
+    'fileSize',
+    'Photo must be up to 3MB',
+    value => value?.size <= 3000000 || true
+  ),
+  name: Yup.string()
+    .min(2, 'Must be at least 2 letters')
+    .max(16, 'Must be less than 16 letters')
+    .required('Name is required'),
+  email: Yup.string()
+    .matches(
+      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+      'Invalid email address'
+    )
+    .required('Email is required'),
+  birthday: Yup.string()
+    .matches(/^\d{2}-\d{2}-\d{4}$/, 'Invalid date')
+    .test(
+      'date',
+      "Birthday couldn't be in the future",
+      value =>
+        new Date() - new Date(value?.split('-').reverse().join('/')) >= 0 ||
+        true
+    ),
+  phone: Yup.string().matches(
+    /^\+380\d{9}$/,
+    'Phone number must be in theformat +380XXXXXXXXX'
+  ),
+  city: Yup.string()
+    .min(2, 'Must be at least 2 letters')
+    .matches(/^[a-zA-Z]+$/, 'Ivalid city'),
+});
