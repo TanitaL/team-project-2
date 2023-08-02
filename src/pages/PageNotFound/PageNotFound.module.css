@@ -1,19 +1,19 @@
-.PageNotFound{
-  justify-content: center; 
-  align-items: center; 
-  height: 100vh;
+.pageNotFound{
+justify-content: center; 
+align-items: center; 
+height: 100vh;
 }
+
 .textError{
-    font-weight: 700;
-    line-height: 1.35;
-    text-align: center;
-    width: 280px;
-    height: 66px;
-    margin-top: 60px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    font-size: 24px;
-    animation: pulsate 2s infinite;
+font-weight: 700;
+line-height: 1.35;
+text-align: center;
+width: 280px;
+height: 66px;
+margin-top: 80px;
+margin-bottom: 80px;
+font-size: 24px;
+animation: pulsate 2s infinite;
 }
 
 @keyframes pulsate {
@@ -30,78 +30,80 @@
 
 
 @media screen and (min-width: 768px) {
-    .textError{
-        width: 450px;
-        height: 42px;
-        font-size: 32px;
-        font-weight: 600;
-        margin: auto;
-    }
+.textError{
+    width: 450px;
+    height: 42px;
+    font-size: 32px;
+    font-weight: 600;
+    margin: 60px auto 80px auto;    
+  }
 }
-
 
 .span {
-    display: block;
-
-    @media screen and (min-width: 768px) {
-     display: inline-block;   
-    }
+display: block; 
 }
 
+@media screen and (min-width: 768px) {
+.span {
+    display: inline-block;  
+  }
+}
+
+.notFoundImg {
+width: 280px;
+height: 123px;
+margin: 60px auto;
+}
+
+@media screen and (min-width: 768px) {
 .NotFoundImg {
-    margin-top: 60px;
-    margin-bottom: 60px;
-    margin-left: auto;
-    margin-right: auto;
-
-    /* @media screen and (min-width: 768px) {
-        margin-top: 50px;
-    } */
-    @media screen and (min-width: 1280px) {
-        width: 822px;
-        height: 360px;
-    }
-    
+    width: 704px;
+    height: 308px; 
+  }
 }
 
+@media screen and (min-width: 1280px) {
+.NotFoundImg {
+    width: 822px;
+    height: 360px;
+    margin: 80px auto 18px auto;
+  }
+}
+
+.pageNotFoundBtn {
+display: flex;
+justify-content: space-around;
+width: 248px;
+height: 40px;
+justify-content: center;
+align-items: center;
+ padding: 8px 28px;
+border-radius: 40px;
+ gap: 12px;
+border: 2px solid #54ADFF;
+background: #54ADFF;
+font-size: 16px;
+font-weight: 700;
+letter-spacing: 0.64px;
+color: var(--white-color);
+fill: var(--white-color);
+margin: 60px auto 275px auto;
+cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
 .PageNotFoundBtn {
-        display: flex;
-        justify-content: space-around;
-        width: 248px;
-        height: 40px;
-        justify-content: center;
-        align-items: center;
-        padding: 8px 28px;
-        border-radius: 40px;
-        gap: 12px;
-        border: 2px solid #54ADFF;
-        background: #54ADFF;
-        font-family: Manrope;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-        letter-spacing: 0.64px;
-        color: #fef9f9;
-        margin-top: 60px;
-        margin-left: auto;
-        margin-right: auto;
-        cursor: pointer;
-    }
-
-    @media screen and (min-width: 768px) {
-        .PageNotFoundBtn {
-            margin-top: 70px;
-        }
-    }
+    margin: 70px auto 357px auto;
+  }
+}
     
-    @media screen and (min-width: 1280px) {
-        .PageNotFoundBtn {
-            margin-top: 10px;        
-        }
-    }
+@media screen and (min-width: 1280px) {
+.PageNotFoundBtn {
+    margin: 18px auto 100px auto;        
+  }
+}
 
-.PageNotFoundBtn:hover,
-.PageNotFoundBtn:focus {
+.pageNotFoundBtn:hover,
+.pageNotFoundBtn:focus {
     background: var(--gradient-blue);
 }
