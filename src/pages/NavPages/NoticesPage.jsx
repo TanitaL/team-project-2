@@ -18,6 +18,7 @@ import { noticeCategories } from 'constants/noticeCategories';
 import { addFlagFavorite, fetchFavoritePets, fetchPets } from 'redux/pets/operations';
 import { authSelector} from 'redux/auth/selectors';
 import Container from 'components/Container/Container/Container';
+import ModalAttention from 'components/Modals/ModalAttention/ModalAttention';
 
 const { SELL, LOSTFOUND, FORFREE, MYPET, FAVORITE } = noticeCategories;
 
@@ -26,6 +27,8 @@ const NoticesPage = () => {
   const isLoading = useSelector(getIsLoading);
   const isAuth = useSelector(authSelector);
   const favorites = useSelector(getFavoritesPets);
+
+  const [isAttentionModalOpen, setIsAttentionModalOpen] = useState(false);
 
   // const [currentPage, setCurrentPage] = useState(1);
   // const [totalPages, setTotalPages] = useState(0);
@@ -111,13 +114,16 @@ useEffect(() => {
 
   return (
     <Container>
+      {isAttentionModalOpen && !isAuth && (
+        <ModalAttention modalOpen={setIsAttentionModalOpen} />
+      )}
       <h1 className={css.textNoticesPage}>Find your favorite pet</h1>
       <SearchComponent onSearch={handleSearch} />
       <div className={css.categoryFilterWrapper}>
         <NoticesCategoriesNav />
         <div className={css.noticeFilter}>
           <NoticesFilters onFilter={handleSearch} />
-          <AddPetButton />
+          <AddPetButton modalOpen={setIsAttentionModalOpen} />
         </div>
       </div>
       {isLoading && <Loader />}

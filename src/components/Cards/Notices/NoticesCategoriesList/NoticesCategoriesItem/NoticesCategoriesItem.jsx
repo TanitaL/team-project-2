@@ -11,6 +11,7 @@ import css from './NoticesCategoriesItem.module.css';
 import sprite from 'assets/svg/sprite-cards.svg';
 import { addToFavorit, deletePet } from 'redux/pets/operations';
 import ModalAcces from 'components/Modals/ModalAcces';
+import ModalAttention from 'components/Modals/ModalAttention/ModalAttention';
 
 const CategoryItem = ({
   id,
@@ -28,6 +29,8 @@ const CategoryItem = ({
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const [isAttentionModalOpen, setIsAttentionModalOpen] = useState(false);
 
   const [sexIcon, setSexIcon] = useState('icon-male');
   const dispatch = useDispatch();
@@ -48,6 +51,8 @@ const CategoryItem = ({
 
   const addToFavorites = () => {
     if (!isUserRegistered) {
+      console.log(isAttentionModalOpen)
+      setIsAttentionModalOpen(true);
       return;
     }
     dispatch(
@@ -171,6 +176,10 @@ const CategoryItem = ({
           title={title}
           handleDeleteClick={handleDeleteConfirmed}
         />
+      )}
+
+      {isAttentionModalOpen && !isUserRegistered && (
+        <ModalAttention modalOpen={setIsAttentionModalOpen} />
       )}
     </li>
   );
