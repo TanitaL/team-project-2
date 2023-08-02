@@ -78,7 +78,7 @@ const AddPetForm = () => {
   return (
     <section
       className={
-        currentStep === 2 && data.category !== petCategory[0]
+        (currentStep === 2 && data.category !== petCategory[0])
           ? css.notMyPetstep3Section
           : css.section
       }

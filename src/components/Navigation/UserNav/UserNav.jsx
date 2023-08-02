@@ -7,7 +7,7 @@ import UserBtn from 'components/Buttons/UserBtn/UserBtn';
 import Logout from 'components/Logout/Logout';
 import css from './UserNav.module.css';
 
-const UserNav = ({ closeBurgerMenu }) => {
+const UserNav = () => {
   const isAuth = useSelector(authSelector);
   const auth = useSelector(userSelector);
   const isMediumScreen = useMediaQuery('(min-width: 768px)');
@@ -21,7 +21,7 @@ const UserNav = ({ closeBurgerMenu }) => {
 
           <nav className={css.userNav}>
             <NavLink key={'user'} to={'user'}>
-              <UserBtn closeBurgerMenu={closeBurgerMenu} />
+              <UserBtn />
             </NavLink>
             {isMediumScreen &&
               (auth.name ? (

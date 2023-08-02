@@ -72,5 +72,5 @@ const authSlice = createSlice({
       .addMatcher(action => action.type.endsWith('/rejected'), handleRejected);
   },
 });
-export const { closeModal, isLogin } = authSlice.actions;
+export const { closeModal } = authSlice.actions;
 export const authReducer = authSlice.reducer;
