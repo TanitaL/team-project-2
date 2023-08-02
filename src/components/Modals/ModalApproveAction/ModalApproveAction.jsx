@@ -3,7 +3,6 @@ import { createPortal } from 'react-dom';
 import sprite from 'assets/svg/sprite-cards.svg';
 import css from './ModalApproveAction.module.css';
 
-
 const ModalApproveAction = ({
   children,
   handleCancel,
