@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { authSelector, userSelector } from 'redux/auth/selectors';
 import { useMediaQuery } from '@react-hook/media-query';
 import { useBurgerContext } from 'context/BurgerProvider';
@@ -7,10 +8,9 @@ import AuthNav from 'components/Navigation/AuthNav/AuthNav';
 import Nav from 'components/Navigation/Nav/Nav';
 import UserNav from 'components/Navigation/UserNav/UserNav';
 import Logout from 'components/Logout/Logout';
+import UserBtn from 'components/Buttons/UserBtn/UserBtn';
 import sprite from 'assets/svg/sprite-cards.svg';
 import css from './BurgerMenu.module.css';
-import UserBtn from 'components/Buttons/UserBtn/UserBtn';
-import { NavLink } from 'react-router-dom';
 
 const BurgerMenu = () => {
   const { menuOpen, setMenuOpen } = useBurgerContext();
@@ -75,6 +75,12 @@ const BurgerMenu = () => {
         </>
       ) : (
         <>
+          {isSmallScreen && isAuth && (
+            <NavLink to="/user">
+              <UserBtn />
+            </NavLink>
+          )}
+
           {isMediumScreen && !isAuth && <AuthNav />}
           {isMediumScreen && auth && (
             <div className={css.userNav}>

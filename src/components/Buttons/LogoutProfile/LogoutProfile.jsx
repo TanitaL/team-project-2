@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logoutThunk } from 'redux/auth/thunks';
-
 import ModalApproveAction from 'components/Modals/ModalApproveAction/ModalApproveAction';
-
 import sprite from 'assets/svg/sprite-cards.svg';
 import css from 'components/Buttons/LogoutProfile/LogoutProfile.module.css';
 
