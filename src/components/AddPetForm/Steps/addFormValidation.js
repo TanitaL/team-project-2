@@ -30,7 +30,7 @@ export const stepTwoValidationSchema = Yup.object().shape({
     .min(2, '2 symbols minimum')
     .max(16, '16 symbols maximum')
     .required('Pet name is required'),
-  date: Yup.date().required('Birth date is required').nullable(),
+  date: Yup.date().required('Birth date is required').nullable().max(new Date(), 'Birth date cannot be later than the current date'),
   // date: Yup.string()
   //   .matches(
   //     /^(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[0-2])-\d{4}$/,
