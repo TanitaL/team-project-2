@@ -28,7 +28,7 @@ export const fetchPets = createAsyncThunk(
           pages = response.data.pages;
         }
       } else if (category === MYPET) {
-        const response = await instance.get('/notices/mypets');
+        const response = await instance.get('/notices/myads');
         notices = response.data.notices;
         pages = response.data.pages;
       } else if (category === FAVORITE) {

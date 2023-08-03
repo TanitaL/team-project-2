@@ -10,18 +10,21 @@ export const fetchNews = async (searchNews, page, perPage) => {
     articlesCount: perPage,
     articlesSortBy: 'date',
     articlesSortByAsc: false,
-    articlesArticleBodyLen: 99,
+    articlesArticleBodyLen: 1000,
     resultType: 'articles',
     dataType: ['news'],
     lang: 'eng',
     apiKey: YOUR_API_KEY,
   });
 
-  return await axios.get(`/?${searchParams}`).then(response => {
-    return {
-      articles: response.data.articles.results,
-      totalResults: response.data.articles.totalResults,
-      pages: response.data.articles.pages,
-    };
-  });
+  return await axios
+    .get(`/?${searchParams}`)
+    .then(response => {
+      return {
+        articles: response.data.articles.results,
+        pages: response.data.articles.pages,
+        info: response.data.info || null,
+      };
+    })
+    .catch(error => error);
 };
