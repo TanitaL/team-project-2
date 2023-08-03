@@ -17,11 +17,14 @@ export const fetchNews = async (searchNews, page, perPage) => {
     apiKey: YOUR_API_KEY,
   });
 
-  return await axios.get(`/?${searchParams}`).then(response => {
-    return {
-      articles: response.data.articles.results,
-      pages: response.data.articles.pages,
-      info: response.data.info || null,
-    };
-  });
+  return await axios
+    .get(`/?${searchParams}`)
+    .then(response => {
+      return {
+        articles: response.data.articles.results,
+        pages: response.data.articles.pages,
+        info: response.data.info || null,
+      };
+    })
+    .catch(error => error);
 };
