@@ -53,7 +53,6 @@ const CategoryItem = ({
 
   const addToFavorites = () => {
     if (!isUserRegistered) {
-      console.log(isAttentionModalOpen);
       setIsAttentionModalOpen(true);
       return;
     }

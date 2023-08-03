@@ -7,7 +7,7 @@ import AuthNav from './AuthNav/AuthNav';
 import UserNav from './UserNav/UserNav';
 import css from './Navigation.module.css';
 
-const Navigation = ({ closeBurgerMenu }) => {
+const Navigation = () => {
   const isAuth = useSelector(authSelector);
   const isDesktopScreen = useMediaQuery('(min-width: 1280px)');
 

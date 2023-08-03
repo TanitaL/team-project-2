@@ -1,17 +1,8 @@
-.logo {
-  width: 116px;
-  height: 20px;
-}
-
-@media screen and (min-width: 768px) {
-  .logo {
-    width: 162px;
-    height: 28px;
-  }
-}
-
 @media screen and (min-width: 1280px) {
   .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-right: 159px;
   }
 }
