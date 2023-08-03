@@ -4,11 +4,8 @@ import NewsList from '../../components/Cards/News/NewsList/NewsList';
 import SearchComponent from 'components/SearchComponent/SearchComponent';
 import { fetchNews } from 'service/api/apiNews';
 import Container from 'components/Container/Container/Container';
-<<<<<<< HEAD
+
 import LoaderPet from '../../components/LoaderPet/LoaderPet';
-=======
-import { LoaderPet } from 'pages/AuthNavPages';
->>>>>>> main
 
 import Paginations from 'components/Pagination/Paginations';
 import css from '../../components/Cards/News/NewsList/NewsItems/NewsItems.module.css';
@@ -70,17 +67,6 @@ const NewsPage = () => {
   console.log('error-->', error);
 
   return (
-<<<<<<< HEAD
-    <>
-      <>{isLoading && <LoaderPet />}</>
-      <Container>
-        <h1 className={css.textNoticesPage}>News</h1>
-        <SearchComponent onSearch={handleSearch} />
-
-        {!isLoading && (
-          <>
-            <NewsList news={newsItems} />
-=======
     <Container>
       <h1 className={css.textNoticesPage}>News</h1>
       <SearchComponent onSearch={handleSearch} onClearSearch={onClearSearch} />
@@ -101,18 +87,13 @@ const NewsPage = () => {
         <>
           <NewsList news={newsItems} />
           {newsItems.length !== 0 ? (
->>>>>>> main
+
             <Paginations
               currentPage={page}
               totalPages={pages}
               handlePaginationChange={handlePageChange}
             />
-<<<<<<< HEAD
-          </>
-        )}
-      </Container>
-    </>
-=======
+
           ) : (
             <p
               style={{
@@ -128,7 +109,7 @@ const NewsPage = () => {
         </>
       )}
     </Container>
->>>>>>> main
+
   );
 };
 
