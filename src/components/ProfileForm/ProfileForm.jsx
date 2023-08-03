@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import AvatarUpload from 'components/ProfileForm/AvatarUpload/AvatarUpload';
 import LogoutProfile from 'components/Buttons/LogoutProfile/LogoutProfile';
-import Loader from 'components/Loader/Loader';
+import LoaderPet from '../LoaderPet/LoaderPet'
 
 import { austOperationThunk } from 'pages/AuthNavPages';
 import { userSelector } from 'redux/auth/selectors';
@@ -113,7 +113,7 @@ const ProfileForm = () => {
   if (isUserDataPending) {
     return (
       <div className={css.boxSimulation}>
-        <Loader />
+        <LoaderPet/>
       </div>
     );
   }

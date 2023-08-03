@@ -4,7 +4,8 @@ import NewsList from '../../components/Cards/News/NewsList/NewsList';
 import SearchComponent from 'components/SearchComponent/SearchComponent';
 import { fetchNews } from 'service/api/apiNews';
 import Container from 'components/Container/Container/Container';
-import { LoaderPet } from 'pages/AuthNavPages';
+
+import LoaderPet from '../../components/LoaderPet/LoaderPet';
 
 import Paginations from 'components/Pagination/Paginations';
 import css from '../../components/Cards/News/NewsList/NewsItems/NewsItems.module.css';
@@ -86,11 +87,13 @@ const NewsPage = () => {
         <>
           <NewsList news={newsItems} />
           {newsItems.length !== 0 ? (
+
             <Paginations
               currentPage={page}
               totalPages={pages}
               handlePaginationChange={handlePageChange}
             />
+
           ) : (
             <p
               style={{
@@ -106,6 +109,7 @@ const NewsPage = () => {
         </>
       )}
     </Container>
+
   );
 };
 

@@ -17,7 +17,7 @@ import {
   LoaderPet,
   validateInLoginForm,
   notify,
-} from './index';
+} from './index'; 
 
 const LoginPage = () => {
   const error = useSelector(errorSelector);
@@ -27,7 +27,7 @@ const LoginPage = () => {
   useEffect(() => {
     if (!error) {
       return;
-    }
+}  
 
     notify.error(error.data.message);
   }, [error]);

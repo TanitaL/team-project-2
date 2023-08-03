@@ -12,6 +12,8 @@ import Paginations from 'components/Pagination/Paginations';
 import { getFavoritesPets, getPets, getPages } from 'redux/pets/selectors';
 
 import { useDispatch, useSelector } from 'react-redux';
+
+import LoaderPet from '../../components/LoaderPet/LoaderPet';
 import { Outlet, useParams } from 'react-router-dom';
 import { noticeCategories } from 'constants/noticeCategories';
 import {
@@ -22,14 +24,12 @@ import {
 import { authSelector } from 'redux/auth/selectors';
 import Container from 'components/Container/Container/Container';
 import ModalAttention from 'components/Modals/ModalAttention/ModalAttention';
-import LoaderPet from '../../components/LoaderPet/LoaderPet';
 
 const { SELL, LOSTFOUND, FORFREE, MYPET, FAVORITE } = noticeCategories;
 
 const NoticesPage = () => {
   const pets = useSelector(getPets);
   const pages = useSelector(getPages);
-  // const isLoading = useSelector(getIsLoading);
 
   const isAuth = useSelector(authSelector);
   const favorites = useSelector(getFavoritesPets);
@@ -111,7 +111,8 @@ const NoticesPage = () => {
   };
 
   return (
-    <Container>
+
+  <Container>
       {isAttentionModalOpen && !isAuth && (
         <ModalAttention modalOpen={setIsAttentionModalOpen} />
       )}
@@ -126,7 +127,7 @@ const NoticesPage = () => {
           </div>
         </div>
       </div>
-      {/* {isLoading && <LoaderPet />} */}
+
       <Suspense fallback={<LoaderPet />}>
         <Outlet />
       </Suspense>

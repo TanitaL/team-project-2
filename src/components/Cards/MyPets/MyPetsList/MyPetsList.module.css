@@ -29,3 +29,23 @@
   justify-content: center;
   color: red;
 }
+
+.noAdsImg {
+  width: 280px;
+}
+
+@media screen and (min-width: 768px) {
+  .noAdsImg {
+    width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .noAdsImg {
+    width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

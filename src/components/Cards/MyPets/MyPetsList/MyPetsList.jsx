@@ -1,10 +1,12 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMyPets, deletePet } from 'redux/pets/operations';
-import { getMyPets, getIsLoading, getError } from 'redux/pets/selectors';
+import { getMyPets, getError } from 'redux/pets/selectors';
+
+import noAds1x from '../../../../assets/images/no-ads-img-1x.png';
+import noAds2x from '../../../../assets/images/no-ads-img-2x.png';
 
 import MyPetsItem from 'components/Cards/MyPets/MyPetsList/MyPetsItem/MyPetItem';
-import Loader from 'components/Loader/Loader';
 
 import css from 'components/Cards/MyPets/MyPetsList/MyPetsList.module.css';
 
@@ -12,7 +14,6 @@ const MyPetsList = () => {
   const dispatch = useDispatch();
 
   const notices = useSelector(getMyPets);
-  const isPending = useSelector(getIsLoading);
   const errorMyPets = useSelector(getError);
 
   
@@ -35,14 +36,6 @@ const MyPetsList = () => {
     />
   );
 
-  if (isPending) {
-    return (
-      <div className={css.centerBox}>
-        <Loader />
-      </div>
-    );
-  }
-
   if (errorMyPets) {
     dispatch(fetchMyPets());
   }
@@ -50,7 +43,12 @@ const MyPetsList = () => {
   if (notices.length === 0) {
     return (
       <div className={css.centerBox}>
-        <p>You don't have any pets</p>
+        <img
+          className={css.noAdsImg}
+          srcSet={(noAds1x, noAds2x)}
+          src={noAds1x}
+          alt="pets"
+        />
       </div>
     );
   }
