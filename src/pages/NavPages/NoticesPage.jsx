@@ -87,6 +87,10 @@ const NoticesPage = () => {
     }
   };
 
+  const onClearSearch = () => {
+    setQuery('');
+  };
+
   const handlePageChange = pageNumber => {
     setPage(pageNumber);
   };
@@ -97,7 +101,7 @@ const NoticesPage = () => {
         <ModalAttention modalOpen={setIsAttentionModalOpen} />
       )}
       <h1 className={css.textNoticesPage}>Find your favorite pet</h1>
-      <SearchComponent onSearch={handleSearch} />
+      <SearchComponent onSearch={handleSearch} onClearSearch={onClearSearch} />
       <div className={css.container}>
         <div className={css.categoryFilterWrapper}>
           <NoticesCategoriesNav />

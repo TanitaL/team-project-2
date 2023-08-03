@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import './SearchComponent.scss';
 
-const SearchComponent = ({ onSearch }) => {
+const SearchComponent = ({ onSearch, onClearSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const handleInputChange = (event) => {
+  const handleInputChange = event => {
     setSearchTerm(event.target.value);
   };
 
   const handleClearSearch = () => {
     setSearchTerm('');
+    onClearSearch()
   };
 
-  const handleSearchSubmit = (event) => {
+  const handleSearchSubmit = event => {
     event.preventDefault();
     onSearch(searchTerm);
   };
@@ -26,6 +27,9 @@ const SearchComponent = ({ onSearch }) => {
         onChange={handleInputChange}
         className="search-component__input"
       />
+      <button type="submit" className="search-component__search-button">
+        <i className="fas fa-search"></i>
+      </button>
       {searchTerm && (
         <button
           type="button"
@@ -35,9 +39,6 @@ const SearchComponent = ({ onSearch }) => {
           <i className="fas fa-times"></i>
         </button>
       )}
-      <button type="submit" className="search-component__search-button">
-        <i className="fas fa-search"></i>
-      </button>
     </form>
   );
 };
