@@ -35,7 +35,8 @@
     background-color 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
 
   &:hover {
-    background-color: #54adff;
+    // background-color: #54adff;
+    background: var(--gradient-blue);
     color: #fef9f9;
   }
 }

@@ -10,7 +10,7 @@ import { addPet } from 'redux/pets/operations';
 import stepsLable from 'constants/stepsLable';
 import { useNavigate } from 'react-router-dom';
 import { getIsLoading, getIsNavigate } from 'redux/pets/selectors';
-import Loader from 'components/LoaderPort/LoaderPortal';
+import LoaderPet from '../../LoaderPet/LoaderPet';
 import makeformData from 'service/addPetHelpers/makeformData';
 
 const initialValues = {
@@ -74,29 +74,31 @@ const AddPetForm = () => {
   ];
 
   return (
-    <section
-      className={
-        currentStep === 2 && data.category !== petCategory[0]
-          ? css.notMyPetstepSection
-          : css.section
-      }
-    >
-      {isLoading && <Loader />}
-      {(currentStep === 0 || data.category === petCategory[0]) && (
-        <h1 className={css.title}>Add pet</h1>
-      )}
-      {currentStep !== 0 && data.category === petCategory[1] && (
-        <h1 className={css.title}>Add pet for sale</h1>
-      )}
-      {currentStep !== 0 && data.category === petCategory[2] && (
-        <h1 className={css.title}>Add lost pet</h1>
-      )}
-      {currentStep !== 0 && data.category === petCategory[3] && (
-        <h1 className={css.title}>Add pet in good hands</h1>
-      )}
-      <FormStepper currentStep={currentStep} steps={stepsLable} />
-      {steps[currentStep]}
-    </section>
+    <>
+      {isLoading && <LoaderPet />}
+      <section
+        className={
+          currentStep === 2 && data.category !== petCategory[0]
+            ? css.notMyPetstepSection
+            : css.section
+        }
+      >
+        {(currentStep === 0 || data.category === petCategory[0]) && (
+          <h1 className={css.title}>Add pet</h1>
+        )}
+        {currentStep !== 0 && data.category === petCategory[1] && (
+          <h1 className={css.title}>Add pet for sale</h1>
+        )}
+        {currentStep !== 0 && data.category === petCategory[2] && (
+          <h1 className={css.title}>Add lost pet</h1>
+        )}
+        {currentStep !== 0 && data.category === petCategory[3] && (
+          <h1 className={css.title}>Add pet in good hands</h1>
+        )}
+        <FormStepper currentStep={currentStep} steps={stepsLable} />
+        {steps[currentStep]}
+      </section>
+    </>
   );
 };
 
