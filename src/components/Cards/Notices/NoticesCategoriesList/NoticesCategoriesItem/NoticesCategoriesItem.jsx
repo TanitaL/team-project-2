@@ -98,6 +98,7 @@ const CategoryItem = ({
   };
 
   return (
+    <div>
     <li key={id} className={css.item}>
       <div className={css.imageWrapper}>
         <img
@@ -165,15 +166,15 @@ const CategoryItem = ({
           </svg>
         </button>
       </div>
-
+      </li>
       {isModalOpen && (
-        <PetModal
-          id={id}
-          onClose={handleCloseModal}
-          isFavorite={favorite}
-          addToFavotire={addToFavorites}
-        />
-      )}
+          <PetModal
+            id={id}
+            onClose={handleCloseModal}
+            isFavorite={favorite}
+            addToFavotire={addToFavorites}
+          />
+        )}
 
       {isDeleteModalOpen && (
         <ModalAcces
@@ -187,7 +188,7 @@ const CategoryItem = ({
       {isAttentionModalOpen && !isUserRegistered && (
         <ModalAttention modalOpen={setIsAttentionModalOpen} />
       )}
-    </li>
+      </div>
   );
 };
 
