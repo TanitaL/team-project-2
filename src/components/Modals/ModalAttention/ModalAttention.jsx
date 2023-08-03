@@ -1,12 +1,28 @@
 import css from './ModalAttention.module.css';
 import { useNavigate } from 'react-router-dom';
 import sprite from 'assets/svg/sprite-cards.svg';
+import { useEffect } from 'react';
 
 const ModalAttention = ({ modalOpen }) => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const handleEscape = ({ code }) => {
+      code === `Escape` && modalOpen();
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  });
+
+  const handleOverlay = event => {
+    event.target === event.currentTarget && modalOpen();
+  };
+
   return (
-    <div className={css.modalOverlay}>
+    <div className={css.modalOverlay} onClick={handleOverlay}>
       <div className={css.modalContainer}>
         <div className={css.modalHeader}>
           <button

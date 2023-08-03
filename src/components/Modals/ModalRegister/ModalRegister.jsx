@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import css from './ModalRegister.module.css';
 import PawPrintBtn from 'components/Buttons/PawPrintBtn/PawPrintBtn';
 import { useNavigate } from 'react-router-dom';
@@ -13,8 +13,22 @@ const ModalRegister = () => {
     navigate('/notices');
     dispatch(closeModal());
   };
+
+  useEffect(() => {
+    const handleEscape = ({ code }) => {
+      code === `Escape` && handleSuccess();
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  });
+  const handleOverlay = event => {
+    event.target === event.currentTarget && handleSuccess();
+  };
+
   return (
-    <div className={css.modalOverlay}>
+    <div className={css.modalOverlay} onClick={handleOverlay}>
       <div className={css.modalContainer}>
         <div className={css.modalHeader}>
           <button

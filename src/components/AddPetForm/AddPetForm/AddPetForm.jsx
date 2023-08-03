@@ -10,7 +10,9 @@ import { addPet } from 'redux/pets/operations';
 import stepsLable from 'constants/stepsLable';
 import { useNavigate } from 'react-router-dom';
 import { getIsLoading, getIsNavigate } from 'redux/pets/selectors';
+
 import LoaderPet from '../../LoaderPet/LoaderPet';
+
 import makeformData from 'service/addPetHelpers/makeformData';
 
 const initialValues = {
@@ -36,9 +38,7 @@ const AddPetForm = () => {
   const isLoading = useSelector(getIsLoading);
   const isNavigate = useSelector(getIsNavigate);
 
-  
   useEffect(() => {
-    
     if (isNavigate) {
       if (data.category === MYPET.label) {
         navigate('/user');
@@ -54,7 +54,7 @@ const AddPetForm = () => {
 
     if (final) {
       const formData = makeformData(newData);
-      dispatsh(addPet(formData))
+      dispatsh(addPet(formData));
 
       return;
     }
