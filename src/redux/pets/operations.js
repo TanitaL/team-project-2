@@ -20,33 +20,28 @@ export const fetchPets = createAsyncThunk(
           );
           notices = response.data.notices;
           pages = response.data.pages;
-          // return response.data.notices;
         } else {
           const response = await instance.get(
             `/notices?category=${category}&limit=12&page=${page}`
           );
           notices = response.data.notices;
           pages = response.data.pages;
-          // return response.data.notices;
         }
-
-        // return response.data.notices;
       } else if (category === MYPET) {
         const response = await instance.get('/notices/mypets');
-        return response.data;
+        notices = response.data.notices;
+        pages = response.data.pages;
       } else if (category === FAVORITE) {
         const response = await instance.get('/notices/favoriteads');
-        return response.data;
+        notices = response.data.notices;
+        pages = response.data.pages;
       }
-
-      // const notices = response.data.notices;
 
       const updatedNotices = notices.map(item => ({
         ...item,
         favorite: false,
       }));
       return { updatedNotices, pages };
-      // return response.data.notices;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }

@@ -51,6 +51,10 @@ const NoticesPage = () => {
   }, [dispatch, isAuth]);
 
   useEffect(() => {
+    setPage(1);
+  }, [categoryName]);
+
+  useEffect(() => {
     switch (categoryName) {
       case SELL:
         dispatch(fetchPets({ category: SELL, query, page }));
@@ -87,6 +91,7 @@ const NoticesPage = () => {
     const trimedQuery = searchTerm.trim();
     if (trimedQuery) {
       setQuery(trimedQuery);
+      setPage(1);
     }
   };
 
