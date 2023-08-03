@@ -15,8 +15,9 @@ const NewsPage = () => {
   const [page, setPage] = useState(1);
   const [perPage] = useState(9);
   const [pages, setPages] = useState(0);
+  const [infoRequest, setInfoRequest] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
 
   const handleSetPage = () => {
     setPage(1);
@@ -35,9 +36,10 @@ const NewsPage = () => {
   useEffect(() => {
     try {
       setIsLoading(true);
-      fetchNews(searchNews, page, perPage).then(({ articles, pages }) => {
+      fetchNews(searchNews, page, perPage).then(({ articles, pages, info }) => {
         setNewsItems(articles);
         setPages(pages);
+        setInfoRequest(info);
       });
       setIsLoading(false);
     } catch (error) {
@@ -46,15 +48,21 @@ const NewsPage = () => {
     }
   }, [searchNews, page, perPage]);
 
+  useEffect(() => {
+    if (newsItems.length === 0) setPages(0);
+  }, [pages, newsItems.length]);
+
   const handlePageChange = pageNumber => {
     setPage(pageNumber);
   };
+
+  console.log('searchNews-->', searchNews);
 
   if (error === '404') {
     return (
       <div>
         <img src="https://http.cat/407" alt="Error 404" />
-        <p>Oops! Something went wrong.</p>
+        <p>{error.message}</p>
       </div>
     );
   }
@@ -67,11 +75,24 @@ const NewsPage = () => {
       {!isLoading && (
         <>
           <NewsList news={newsItems} />
-          <Paginations
-            currentPage={page}
-            totalPages={pages}
-            handlePaginationChange={handlePageChange}
-          />
+          {newsItems.length !== 0 ? (
+            <Paginations
+              currentPage={page}
+              totalPages={pages}
+              handlePaginationChange={handlePageChange}
+            />
+          ) : (
+            <p
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '20px',
+              }}
+            >
+              {infoRequest}
+            </p>
+          )}
         </>
       )}
     </Container>
