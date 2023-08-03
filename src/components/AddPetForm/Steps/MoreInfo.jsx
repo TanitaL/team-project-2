@@ -1,14 +1,15 @@
-import PawPrintBtn from 'components/Buttons/PawPrintBtn/PawPrintBtn';
+import { useRef } from 'react';
 import { petCategory } from 'constants/petCategory';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { stepThreeValidationSchema } from './addFormValidation';
 import { BsGenderFemale, BsGenderMale, BsPlusLg } from 'react-icons/bs';
 
-import { BiEditAlt } from 'react-icons/bi';
 import css from './steps.module.css';
 import ArrowLeftBtn from 'components/Buttons/ArrowLeftBtn/ArrowLeftBtn';
-import { useRef } from 'react';
 import PreviewImage from 'components/PreviewImage/PreviewImage';
+import PawPrintBtn from 'components/Buttons/PawPrintBtn/PawPrintBtn';
+import sprite from 'assets/svg/sprite-cards.svg';
+
 
 const MoreInfo = ({ data, next, prev }) => {
   const fileRef = useRef(null);
@@ -21,9 +22,6 @@ const MoreInfo = ({ data, next, prev }) => {
   return (
     <Formik
       initialValues={data}
-      // onSubmit={(values, actions) => {
-      //   console.log('🚀 ~ MoreInfo ~ actions:', actions);
-      // }}
       onSubmit={(values, actions) => handleSubmit(values, actions)}
       validationSchema={stepThreeValidationSchema}
     >
@@ -136,11 +134,9 @@ const MoreInfo = ({ data, next, prev }) => {
                           width="112"
                           height="112"
                         />
-                        <BiEditAlt
-                          color="#54ADFF"
-                          className={css.editIcon}
-                          size="30px"
-                        />
+                        <svg width="24" height="24" className={css.editIcon}>
+                          <use href={`${sprite}#icon-edit`}></use>
+                        </svg>
                       </>
                     )}
                   </button>
