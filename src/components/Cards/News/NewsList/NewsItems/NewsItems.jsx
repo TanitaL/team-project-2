@@ -21,8 +21,12 @@ const NewsItems = ({ title, body, date, image, url }) => {
       />
 
       <div className={css.itemBox}>
-        <h2 className={css.title}>{title}</h2>
-        <p className={css.text}>{body}</p>
+        <div>
+          <h2 className={css.title}>{title}</h2>
+          <div className={css.textWrap}>
+            <p className={css.text}>{body}</p>
+          </div>
+        </div>
         <div className={css.itemWrapper}>
           <p className={css.date}>{formattedDate}</p>
           <a

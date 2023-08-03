@@ -26,6 +26,7 @@ export const petSlice = createSlice({
   name: 'pets',
   initialState: {
     items: [],
+    pages: 0,
     myPets: [],
     favorites: [],
     isLoading: false,
@@ -36,7 +37,8 @@ export const petSlice = createSlice({
     builder
       .addCase(fetchPets.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = action.payload;
+        state.items = action.payload.updatedNotices;
+        state.pages = action.payload.pages;
         state.error = null;
       })
       .addCase(fetchFavoritePets.fulfilled, (state, action) => {
@@ -118,8 +120,6 @@ export const petSlice = createSlice({
         state.isLoading = false;
         state.isNavigate = false;
         state.error = action.payload;
-        // notify.error('Oops! Something went wrong. Please try again');
-        // console.log('🚀 ~ .addMatcher ~ action.payload:', action.payload);
       }),
 });
 

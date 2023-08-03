@@ -14,6 +14,7 @@ import { addToFavorit, deletePet } from 'redux/pets/operations';
 import ModalAttention from 'components/Modals/ModalAttention/ModalAttention';
 
 import { useParams } from 'react-router-dom';
+import { noticeCategories } from 'constants/noticeCategories';
 
 const CategoryItem = ({
   id,
@@ -38,6 +39,16 @@ const CategoryItem = ({
   const dispatch = useDispatch();
 
   const isUserRegistered = useSelector(authSelector);
+
+  const updateCategory = () => {
+    if (category === noticeCategories.FORFREE) {
+      return 'In good hands';
+    } else {
+      return category;
+    }
+  };
+
+  const updatedCategory = updateCategory();
 
   useEffect(() => {
     if (sex === 'female') {
@@ -97,6 +108,7 @@ const CategoryItem = ({
   };
 
   return (
+    <div>
     <li key={id} className={css.item}>
       <div className={css.imageWrapper}>
         <img
@@ -106,7 +118,7 @@ const CategoryItem = ({
           src={imageError ? 'https://http.cat/407' : file}
           onError={handleImageError}
         />
-        <p className={css.category}>{category}</p>
+        <p className={css.category}>{updatedCategory}</p>
         <button className={css.addToFavoritesButton} onClick={addToFavorites}>
           {favorite ? (
             <svg width="24" height="24">
@@ -164,15 +176,15 @@ const CategoryItem = ({
           </svg>
         </button>
       </div>
-
+      </li>
       {isModalOpen && (
-        <PetModal
-          id={id}
-          onClose={handleCloseModal}
-          isFavorite={favorite}
-          addToFavotire={addToFavorites}
-        />
-      )}
+          <PetModal
+            id={id}
+            onClose={handleCloseModal}
+            isFavorite={favorite}
+            addToFavotire={addToFavorites}
+          />
+        )}
 
       {isDeleteModalOpen && (
         <ModalAcces
@@ -186,7 +198,7 @@ const CategoryItem = ({
       {isAttentionModalOpen && !isUserRegistered && (
         <ModalAttention modalOpen={setIsAttentionModalOpen} />
       )}
-    </li>
+      </div>
   );
 };
 

@@ -10,7 +10,11 @@ import { addPet } from 'redux/pets/operations';
 import stepsLable from 'constants/stepsLable';
 import { useNavigate } from 'react-router-dom';
 import { getIsLoading, getIsNavigate } from 'redux/pets/selectors';
+<<<<<<< HEAD
 import LoadPet from '../../LoaderPet/LoaderPet';
+=======
+import LoaderPet from '../../LoaderPet/LoaderPet';
+>>>>>>> main
 import makeformData from 'service/addPetHelpers/makeformData';
 
 const initialValues = {
@@ -73,7 +77,11 @@ const AddPetForm = () => {
 
   return (
     <>
+<<<<<<< HEAD
       <>{isLoading && <LoadPet />}</>
+=======
+      {isLoading && <LoaderPet />}
+>>>>>>> main
       <section
         className={
           currentStep === 2 && data.category !== petCategory[0]

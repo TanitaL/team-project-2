@@ -7,6 +7,9 @@ const Paginations = ({ currentPage, totalPages, handlePaginationChange }) => {
     handlePaginationChange(value);
   };
 
+  console.log('currentPage-->', currentPage);
+  console.log('totalPages-->', totalPages);
+
   return (
     <div
       style={{
@@ -16,35 +19,36 @@ const Paginations = ({ currentPage, totalPages, handlePaginationChange }) => {
         padding: '20px',
       }}
     >
-      <Pagination
-        page={currentPage}
-        onChange={handleChange}
-        count={totalPages >= 99 ? 99 : totalPages}
-        variant="outlined"
-        //color="primary"
-        size="large"
-        sx={{
-          'Button.MuiPaginationItem-circular.Mui-selected': {
-            bgcolor: '#54ADFF',
-            color: '#fff',
-            border: '1px solid #54ADFF',
-          },
-          button: {
-            color: '#111111',
-            backgroundColor: '#fff',
-            border: '1px solid #54ADFF',
-          },
-        }}
-        renderItem={item => (
-          <PaginationItem
-            components={{
-              previous: LiaLongArrowAltLeftSolid,
-              next: LiaLongArrowAltRightSolid,
-            }}
-            {...item}
-          />
-        )}
-      />
+      {totalPages !== 0 && (
+        <Pagination
+          page={currentPage}
+          onChange={handleChange}
+          count={totalPages >= 99 ? 99 : totalPages}
+          variant="outlined"
+          size="large"
+          sx={{
+            'Button.MuiPaginationItem-circular.Mui-selected': {
+              bgcolor: '#54ADFF',
+              color: '#fff',
+              border: '1px solid #54ADFF',
+            },
+            button: {
+              color: '#111111',
+              backgroundColor: '#fff',
+              border: '1px solid #54ADFF',
+            },
+          }}
+          renderItem={item => (
+            <PaginationItem
+              components={{
+                previous: LiaLongArrowAltLeftSolid,
+                next: LiaLongArrowAltRightSolid,
+              }}
+              {...item}
+            />
+          )}
+        />
+      )}
     </div>
   );
 };
