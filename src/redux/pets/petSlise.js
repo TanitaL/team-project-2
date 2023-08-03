@@ -119,7 +119,7 @@ export const petSlice = createSlice({
         state.isNavigate = false;
         state.error = action.payload;
         // notify.error('Oops! Something went wrong. Please try again');
-        console.log('🚀 ~ .addMatcher ~ action.payload:', action.payload);
+        // console.log('🚀 ~ .addMatcher ~ action.payload:', action.payload);
       }),
 });
 

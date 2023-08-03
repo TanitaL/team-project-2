@@ -3,17 +3,13 @@ import { useDispatch } from 'react-redux';
 import { logoutThunk } from 'redux/auth/thunks';
 import ModalApproveAction from 'components/Modals/ModalApproveAction/ModalApproveAction';
 import LogoutBtn from 'components/Buttons/LogoutBtn/LogoutBtn';
-import sprite from 'assets/svg/sprite-cards.svg';
 import { useBurgerContext } from 'context/BurgerProvider';
+import sprite from 'assets/svg/sprite-cards.svg';
 
 const Logout = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const dispatch = useDispatch();
   const { menuOpen, setMenuOpen } = useBurgerContext();
-
-  console.log(menuOpen);
-
-  // const navigate = useNavigate();
 
   const handleSuccess = () => {
     dispatch(logoutThunk());
@@ -21,8 +17,6 @@ const Logout = () => {
     if (menuOpen) {
       setMenuOpen(false);
     }
-    // closeBurgerMenu(true);
-    // navigate('/notices');
   };
 
   const handleCancel = () => {
