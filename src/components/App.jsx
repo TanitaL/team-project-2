@@ -20,10 +20,6 @@ const NewsPage = lazy(() => import('../pages/NavPages/NewsPage'));
 const PageNotFound = lazy(() => import('../pages/PageNotFound/PageNotFound'));
 const AfterVerifEmail = lazy(() => import('../pages/Other/AfterVerifEmail'));
 
-// const NoticesCategoriesList = lazy(() =>
-//   import('../components/NoticesCategoriesList/NoticesCategoriesList')
-// );
-
 export const App = () => {
   const dispatch = useDispatch();
 

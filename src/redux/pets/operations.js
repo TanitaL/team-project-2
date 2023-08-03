@@ -10,7 +10,7 @@ const { SELL, LOSTFOUND, FORFREE, MYPET, FAVORITE } = noticeCategories;
 export const fetchPets = createAsyncThunk(
   'pets/fetchAll',
 
-  async ({category,query}, thunkAPI) => {
+  async ({ category, query }, thunkAPI) => {
     try {
       let notices;
       if (category === SELL || category === LOSTFOUND || category === FORFREE) {
@@ -33,7 +33,6 @@ export const fetchPets = createAsyncThunk(
         const response = await instance.get('/notices/mypets');
         return response.data.notices;
       } else if (category === FAVORITE) {
-
         const response = await instance.get('/notices/favoriteads');
         return response.data.notices;
       }
@@ -89,14 +88,14 @@ export const addFlagFavorite = createAsyncThunk(
 export const addPet = createAsyncThunk(
   'pets/addPet',
   async (data, thunkAPI) => {
-    console.log('Це addPet до запита');
+    // console.log('Це addPet до запита');
     try {
       const response = await instance.post('/notices', data);
-      console.log('Це addPet після запита');
+      // console.log('Це addPet після запита');
 
       return response.data.notice;
     } catch (error) {
-      console.log('🚀 ~ error.message:', error.message);
+      // console.log('🚀 ~ error.message:', error.message);
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }

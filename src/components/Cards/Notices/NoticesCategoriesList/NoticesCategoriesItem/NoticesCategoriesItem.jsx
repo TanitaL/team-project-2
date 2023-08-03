@@ -4,7 +4,6 @@ import { authSelector, userIdSelector } from 'redux/auth/selectors';
 
 import PetModal from 'components/PetModal/PetModal';
 import ModalAcces from '../../../../Modals/ModalAcces/ModalAcces';
-import WarningModal from '../../../../Modals/WarningModal/WarningModal';
 
 import 'react-toastify/dist/ReactToastify.css';
 import css from './NoticesCategoriesItem.module.css';
@@ -12,8 +11,9 @@ import css from './NoticesCategoriesItem.module.css';
 import sprite from 'assets/svg/sprite-cards.svg';
 import { addToFavorit, deletePet } from 'redux/pets/operations';
 
-import { useParams } from 'react-router-dom';
+import ModalAttention from 'components/Modals/ModalAttention/ModalAttention';
 
+import { useParams } from 'react-router-dom';
 
 const CategoryItem = ({
   id,
@@ -28,10 +28,11 @@ const CategoryItem = ({
 }) => {
   const [imageError, setImageError] = useState(false);
   const userId = useSelector(userIdSelector);
-const { categoryName } = useParams();
+  const { categoryName } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [isWarningModalOpen, setIsWarningModalOpen] = useState(false);
+
+  const [isAttentionModalOpen, setIsAttentionModalOpen] = useState(false);
 
   const [sexIcon, setSexIcon] = useState('icon-male');
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ const { categoryName } = useParams();
 
   const addToFavorites = () => {
     if (!isUserRegistered) {
+      setIsAttentionModalOpen(true);
       return;
     }
     dispatch(
@@ -94,10 +96,6 @@ const { categoryName } = useParams();
     setIsDeleteModalOpen(false);
   };
 
-   const handleWarningModalClose = () => {
-    setIsWarningModalOpen(false);
-   };
-  
   return (
     <li key={id} className={css.item}>
       <div className={css.imageWrapper}>
@@ -112,7 +110,7 @@ const { categoryName } = useParams();
         <button className={css.addToFavoritesButton} onClick={addToFavorites}>
           {favorite ? (
             <svg width="24" height="24">
-              <use href={`${sprite}#icon-heart-off`} fill="#54ADFF" ></use>
+              <use href={`${sprite}#icon-heart-off`} fill="#54ADFF"></use>
             </svg>
           ) : (
             <svg width="24" height="24">
@@ -152,7 +150,7 @@ const { categoryName } = useParams();
             <span className={css.texProperty}>{sex}</span>
           </p>
         </div>
-      </div>  
+      </div>
 
       <div className={css.itemBox}>
         <h2 className={css.title}>{title}</h2>
@@ -171,7 +169,7 @@ const { categoryName } = useParams();
         <PetModal
           id={id}
           onClose={handleCloseModal}
-          isFavorite={false}
+          isFavorite={favorite}
           addToFavotire={addToFavorites}
         />
       )}
@@ -185,10 +183,8 @@ const { categoryName } = useParams();
         />
       )}
 
-      {isWarningModalOpen && (
-        <WarningModal
-          onClose={handleWarningModalClose}
-        />
+      {isAttentionModalOpen && !isUserRegistered && (
+        <ModalAttention modalOpen={setIsAttentionModalOpen} />
       )}
     </li>
   );

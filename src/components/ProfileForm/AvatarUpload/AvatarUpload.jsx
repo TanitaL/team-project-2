@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import Loader from 'components/Loader/Loader';
 import defaultAvatar from 'assets/images/Photodefault.jpg';
-import { BsPlusLg } from 'react-icons/bs';
 
 import sprite from 'assets/svg/sprite-cards.svg';
 import css from 'components/ProfileForm/AvatarUpload/AvatarUpload.module.css';
@@ -96,7 +95,6 @@ const AvatarUpload = ({ userFile, isEditing, setImage }) => {
         disabled={!isEditing || isAvatarChanged}
       />
       <div className={css.img} onClick={chooseAvatar}>
-        <div className={css.positionRelative}>
           {preview ? (
             <img
               className={css.avatarUpload}
@@ -106,8 +104,6 @@ const AvatarUpload = ({ userFile, isEditing, setImage }) => {
           ) : (
             <Loader className={css.center} />
           )}
-          {!userFile && isEditing && <BsPlusLg className={css.center} />}
-        </div>
       </div>
 
       {/* ----------------------------------------------------- */}
