@@ -9,10 +9,9 @@ import NoticesFilters from 'components/NoticesFilters/NoticesFilters';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
 
 // import Pagination from 'components/Pagination/Pagination';
-import { getFavoritesPets, getIsLoading, getPets } from 'redux/pets/selectors';
+import { getFavoritesPets, getPets } from 'redux/pets/selectors';
 
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from 'components/Loader/Loader';
 import { Outlet, useParams } from 'react-router-dom';
 import { noticeCategories } from 'constants/noticeCategories';
 import {
@@ -23,12 +22,13 @@ import {
 import { authSelector } from 'redux/auth/selectors';
 import Container from 'components/Container/Container/Container';
 import ModalAttention from 'components/Modals/ModalAttention/ModalAttention';
+import LoaderPet from '../../components/LoaderPet/LoaderPet';
 
 const { SELL, LOSTFOUND, FORFREE, MYPET, FAVORITE } = noticeCategories;
 
 const NoticesPage = () => {
   const pets = useSelector(getPets);
-  const isLoading = useSelector(getIsLoading);
+  // const isLoading = useSelector(getIsLoading);
   const isAuth = useSelector(authSelector);
   const favorites = useSelector(getFavoritesPets);
 
@@ -122,8 +122,8 @@ const NoticesPage = () => {
           </div>
         </div>
       </div>
-      {isLoading && <Loader />}
-      <Suspense fallback={<div>Loading...</div>}>
+      {/* {isLoading && <Loader />} */}
+      <Suspense fallback={<LoaderPet />}>
         <Outlet />
       </Suspense>
       {/* <Pagination
