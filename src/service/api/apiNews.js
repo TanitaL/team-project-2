@@ -10,7 +10,7 @@ export const fetchNews = async (searchNews, page, perPage) => {
     articlesCount: perPage,
     articlesSortBy: 'date',
     articlesSortByAsc: false,
-    articlesArticleBodyLen: 99,
+    articlesArticleBodyLen: 1000,
     resultType: 'articles',
     dataType: ['news'],
     lang: 'eng',
