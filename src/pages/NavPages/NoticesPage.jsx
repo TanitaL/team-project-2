@@ -1,8 +1,7 @@
 import React, { useEffect, Suspense, useState } from 'react';
-// import CategoryList from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCategoriesList';
+
 import css from '../../components/Cards/Notices/NoticesCategoriesList/NoticesCategoriesItem/NoticesCategoriesItem.module.css';
 
-// import { instance } from 'service/api/api';
 import SearchComponent from '../../components/SearchComponent/SearchComponent';
 import NoticesCategoriesNav from '../../components/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesFilters from 'components/NoticesFilters/NoticesFilters';
@@ -17,7 +16,7 @@ import {
 } from 'redux/pets/selectors';
 
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from 'components/Loader/Loader';
+import { LoaderPet } from 'pages/AuthNavPages';
 import { Outlet, useParams } from 'react-router-dom';
 import { noticeCategories } from 'constants/noticeCategories';
 import {
@@ -41,9 +40,6 @@ const NoticesPage = () => {
   const [isAttentionModalOpen, setIsAttentionModalOpen] = useState(false);
   const [page, setPage] = useState(1);
 
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [totalPages, setTotalPages] = useState(0);
-  // const itemsPerPage = 10;
   const [query, setQuery] = useState('');
   const { categoryName } = useParams();
   const dispatch = useDispatch();
@@ -87,31 +83,12 @@ const NoticesPage = () => {
     }
   }, [dispatch, favorites, isAuth, pets?.length]);
 
-  // useEffect(() => {
-
-  // const visiblePets = pets.filter(notice =>
-  //   notice.title.toLowerCase().includes(query.toLowerCase())
-  // );
-
   const handleSearch = async searchTerm => {
     const trimedQuery = searchTerm.trim();
     if (trimedQuery) {
       setQuery(trimedQuery);
     }
   };
-
-  // useEffect(() => {
-  //   const pages = Math.ceil(pets.length / itemsPerPage);
-  //   setTotalPages(pages);
-  // }, [pets.length]);
-
-  // const handlePageChange = pageNumber => {
-  //   setCurrentPage(pageNumber);
-  // };
-
-  // const indexOfLastItem = currentPage * itemsPerPage;
-  // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  // const currentItems = visiblePets.slice(indexOfFirstItem, indexOfLastItem);
 
   const handlePageChange = pageNumber => {
     setPage(pageNumber);
@@ -133,7 +110,7 @@ const NoticesPage = () => {
           </div>
         </div>
       </div>
-      {isLoading && <Loader />}
+      {isLoading && <LoaderPet />}
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
