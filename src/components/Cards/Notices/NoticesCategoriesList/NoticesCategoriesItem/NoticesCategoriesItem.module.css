@@ -11,6 +11,7 @@
   position: relative;
   margin-bottom: 24px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
@@ -31,7 +32,8 @@
   }
 }
 
-.item:hover {
+.item:hover,
+.item:focus {
   transform: scale(1.02);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
@@ -218,7 +220,8 @@
   text-overflow: ellipsis;
 }
 
-.location:hover {
+.location:hover,
+.location:focus {
   background: var(--unnamed, #54adff);
   color: rgb(253, 247, 242);
   border: none;
@@ -238,7 +241,8 @@
   transition: background-color 0.3s;
 }
 
-.year:hover {
+.year:hover,
+.year:focus {
   background: var(--unnamed, #54adff);
   color: rgb(253, 247, 242);
   border: none;
@@ -258,7 +262,8 @@
   transition: background-color 0.3s;
 }
 
-.sex:hover {
+.sex:hover,
+.sex:focus {
   background: var(--unnamed, #54adff);
   color: rgb(253, 247, 242);
   border: none;
@@ -311,7 +316,8 @@
   }
 }
 
-.learnMoreButton:hover {
+.learnMoreButton:hover,
+.learnMoreButton:focus {
   background: var(--gr-blue, linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%));
   color: rgb(253, 247, 242);
   border: none;
@@ -324,7 +330,8 @@
   display: none;
 }
 
-.learnMoreButton:hover svg {
+.learnMoreButton:hover svg,
+.learnMoreButton:focus svg {
   fill: #ffffff;
   display: inline-block;
   margin-left: 12px;
