@@ -1,6 +1,6 @@
 import axios from 'axios';
 axios.defaults.baseURL = 'https://eventregistry.org/api/v1/article/getArticles';
-const YOUR_API_KEY = '2da62d3c-4d43-49a3-b513-7097a7b6bb72';
+const YOUR_API_KEY = '77852f88-58cb-4ab5-a399-b12e44588c59';
 
 export const fetchNews = async (searchNews, page, perPage) => {
   const searchParams = new URLSearchParams({
@@ -10,7 +10,7 @@ export const fetchNews = async (searchNews, page, perPage) => {
     articlesCount: perPage,
     articlesSortBy: 'date',
     articlesSortByAsc: false,
-    articlesArticleBodyLen: 99,
+    articlesArticleBodyLen: 1000,
     resultType: 'articles',
     dataType: ['news'],
     lang: 'eng',
