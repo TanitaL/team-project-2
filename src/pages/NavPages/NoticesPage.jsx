@@ -30,7 +30,6 @@ const { SELL, LOSTFOUND, FORFREE, MYPET, FAVORITE } = noticeCategories;
 const NoticesPage = () => {
   const pets = useSelector(getPets);
   const pages = useSelector(getPages);
-  // const isLoading = useSelector(getIsLoading);
 
   const isAuth = useSelector(authSelector);
   const favorites = useSelector(getFavoritesPets);
@@ -118,7 +117,7 @@ const NoticesPage = () => {
           </div>
         </div>
       </div>
-      
+
       <Suspense fallback={<LoaderPet />}>
         <Outlet />
       </Suspense>
