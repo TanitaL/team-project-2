@@ -87,13 +87,11 @@ const NewsPage = () => {
         <>
           <NewsList news={newsItems} />
           {newsItems.length !== 0 ? (
-
             <Paginations
               currentPage={page}
               totalPages={pages}
               handlePaginationChange={handlePageChange}
             />
-
           ) : (
             <p
               style={{
@@ -109,7 +107,6 @@ const NewsPage = () => {
         </>
       )}
     </Container>
-
   );
 };
 

@@ -28,14 +28,12 @@ const CategoryList = () => {
   return (
     <>
       {renderImg ? (
-        <div>
           <img
             className={css.noAdsImg}
             srcSet={(noAds1x, noAds2x)}
             src={noAds1x}
             alt="pets"
           />
-        </div>
       ) : (
         <ul className={css.list}>
           {pets.map(

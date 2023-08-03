@@ -1,6 +1,7 @@
 import { LiaLongArrowAltRightSolid } from 'react-icons/lia';
 import { LiaLongArrowAltLeftSolid } from 'react-icons/lia';
 import { Pagination, PaginationItem } from '@mui/material';
+import css from './Paginations.module.css';
 
 const Paginations = ({ currentPage, totalPages, handlePaginationChange }) => {
   const handleChange = (_, value) => {
@@ -11,18 +12,15 @@ const Paginations = ({ currentPage, totalPages, handlePaginationChange }) => {
   console.log('totalPages-->', totalPages);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '20px',
-      }}
-    >
+    <div className={css.pagContainer}>
       {totalPages !== 0 && (
         <Pagination
           page={currentPage}
           onChange={handleChange}
+          // count={99}
+          // defaultPage={1}
+          // boundaryCount={0}
+          // siblingCount={1}
           count={totalPages >= 99 ? 99 : totalPages}
           variant="outlined"
           size="large"
