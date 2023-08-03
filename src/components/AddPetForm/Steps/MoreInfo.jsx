@@ -17,9 +17,6 @@ const MoreInfo = ({ data, next, prev }) => {
     next(values, true, actions);
   };
 
-  const handleBackClick = values => {
-    prev(values);
-  };
 
   return (
     <Formik
@@ -205,7 +202,7 @@ const MoreInfo = ({ data, next, prev }) => {
             <ArrowLeftBtn
               title="Back"
               type="button"
-              handleBackClick={handleBackClick}
+              handleBackClick={() => prev(values)}
             />
           </div>
           {/* <button type="submit">Next</button> */}

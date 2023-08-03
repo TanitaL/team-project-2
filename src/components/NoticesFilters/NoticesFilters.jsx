@@ -62,10 +62,9 @@ const NoticesFilters = ({ onFilter, filters }) => {
                                             className={styles.input}
                                             type="checkbox"
                                             name="date"
-                                            value="0-12 m"
-                                            checked={filters.includes('0-12 m')}
+                                            value="3-12m"
                                         />
-                                        0-12 m
+                                        3-12m
                                     </label>
                                     <label className={styles.label}>
                                         <input
@@ -73,8 +72,7 @@ const NoticesFilters = ({ onFilter, filters }) => {
                                             onChange={handleCheckboxChange}
                                             type="checkbox"
                                             name="date"
-                                            value="1 year"
-                                            checked={filters.includes('1 year')}
+                                            value="1y"
                                         />
                                         1 year
                                     </label>
@@ -84,10 +82,9 @@ const NoticesFilters = ({ onFilter, filters }) => {
                                             onChange={handleCheckboxChange}
                                             type="checkbox"
                                             name="date"
-                                            value="2 years +"
-                                            checked={filters.includes('2 years +')}
+                                            value="2y"
                                         />
-                                        2 year +
+                                        2 year 
                                     </label>
                                 </form>
                             )}
@@ -115,7 +112,6 @@ const NoticesFilters = ({ onFilter, filters }) => {
                                             type="checkbox"
                                             name="sex"
                                             value="male"
-                                            checked={filters.includes('male')}
                                         />
                                         male
                                     </label>
@@ -126,7 +122,6 @@ const NoticesFilters = ({ onFilter, filters }) => {
                                             type="checkbox"
                                             name="sex"
                                             value="female"
-                                            checked={filters.includes('female')}
                                         />
                                         female
                                     </label>

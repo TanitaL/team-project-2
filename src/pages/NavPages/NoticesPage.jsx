@@ -7,16 +7,11 @@ import NoticesCategoriesNav from '../../components/NoticesCategoriesNav/NoticesC
 import NoticesFilters from 'components/NoticesFilters/NoticesFilters';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
 
+// import Pagination from 'components/Pagination/Pagination';
 import Paginations from 'components/Pagination/Paginations';
-import {
-  getFavoritesPets,
-  getIsLoading,
-  getPets,
-  getPages,
-} from 'redux/pets/selectors';
+import { getFavoritesPets, getPets, getPages } from 'redux/pets/selectors';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { LoaderPet } from 'pages/AuthNavPages';
 import { Outlet, useParams } from 'react-router-dom';
 import { noticeCategories } from 'constants/noticeCategories';
 import {
@@ -27,13 +22,15 @@ import {
 import { authSelector } from 'redux/auth/selectors';
 import Container from 'components/Container/Container/Container';
 import ModalAttention from 'components/Modals/ModalAttention/ModalAttention';
+import LoaderPet from '../../components/LoaderPet/LoaderPet';
 
 const { SELL, LOSTFOUND, FORFREE, MYPET, FAVORITE } = noticeCategories;
 
 const NoticesPage = () => {
   const pets = useSelector(getPets);
   const pages = useSelector(getPages);
-  const isLoading = useSelector(getIsLoading);
+  // const isLoading = useSelector(getIsLoading);
+
   const isAuth = useSelector(authSelector);
   const favorites = useSelector(getFavoritesPets);
 
@@ -49,6 +46,10 @@ const NoticesPage = () => {
       dispatch(fetchFavoritePets());
     }
   }, [dispatch, isAuth]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [categoryName]);
 
   useEffect(() => {
     switch (categoryName) {
@@ -87,7 +88,12 @@ const NoticesPage = () => {
     const trimedQuery = searchTerm.trim();
     if (trimedQuery) {
       setQuery(trimedQuery);
+      setPage(1);
     }
+  };
+
+  const onClearSearch = () => {
+    setQuery('');
   };
 
   const handlePageChange = pageNumber => {
@@ -100,7 +106,7 @@ const NoticesPage = () => {
         <ModalAttention modalOpen={setIsAttentionModalOpen} />
       )}
       <h1 className={css.textNoticesPage}>Find your favorite pet</h1>
-      <SearchComponent onSearch={handleSearch} />
+      <SearchComponent onSearch={handleSearch} onClearSearch={onClearSearch} />
       <div className={css.container}>
         <div className={css.categoryFilterWrapper}>
           <NoticesCategoriesNav />
@@ -110,8 +116,8 @@ const NoticesPage = () => {
           </div>
         </div>
       </div>
-      {isLoading && <LoaderPet />}
-      <Suspense fallback={<div>Loading...</div>}>
+      {/* {isLoading && <LoaderPet />} */}
+      <Suspense fallback={<LoaderPet />}>
         <Outlet />
       </Suspense>
       <Paginations

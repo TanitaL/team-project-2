@@ -12,9 +12,6 @@ const PersonalDetails = ({ data, next, prev }) => {
     next(values);
   };
 
-  const handleBackClick = values => {
-    prev(values);
-  };
 
   return (
     <Formik
@@ -59,19 +56,6 @@ const PersonalDetails = ({ data, next, prev }) => {
               type="date"
               placeholder="Type date of birth"
             />
-            {/* <input
-              className={css.input}
-              name="date"
-              type="date"
-              placeholder="Type date of birth"
-              onChange={event => {
-                // setFieldValue('date', formatDate(event.target.value));
-                setFieldValue(
-                  'date',
-                  new Date(event.target.value).toISOString()
-                );
-              }}
-            /> */}
             <ErrorMessage className={css.error} name="date" component="div" />
           </div>
           <div className={css.inptWrapper}>
@@ -90,7 +74,7 @@ const PersonalDetails = ({ data, next, prev }) => {
             <ArrowLeftBtn
               title="Back"
               type="button"
-              handleBackClick={handleBackClick}
+              handleBackClick={()=>prev(values)}
             />
           </div>
         </Form>
