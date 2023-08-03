@@ -12,7 +12,7 @@ import AddPetButton from 'components/AddPetButton/AddPetButton';
 import { getFavoritesPets, getIsLoading, getPets } from 'redux/pets/selectors';
 
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from 'components/Loader/Loader';
+import LoaderPet from '../../components/LoaderPet/LoaderPet';
 import { Outlet, useParams } from 'react-router-dom';
 import { noticeCategories } from 'constants/noticeCategories';
 import {
@@ -107,7 +107,8 @@ const NoticesPage = () => {
   // const currentItems = visiblePets.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
-    <Container>
+    <><>
+  </><Container>
       {isAttentionModalOpen && !isAuth && (
         <ModalAttention modalOpen={setIsAttentionModalOpen} />
       )}
@@ -122,16 +123,15 @@ const NoticesPage = () => {
           </div>
         </div>
       </div>
-      {isLoading && <Loader />}
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
       {/* <Pagination
-      currentPage={currentPage}
-      totalPages={totalPages}
-      onPageChange={handlePageChange}
-      /> */}
-    </Container>
+  currentPage={currentPage}
+  totalPages={totalPages}
+  onPageChange={handlePageChange}
+  /> */}
+    </Container></>
   );
 };
 

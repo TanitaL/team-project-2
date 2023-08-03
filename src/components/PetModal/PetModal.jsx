@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import { instance } from 'service/api/api';
 import transformCategory from 'service/addPetHelpers/transformCategory';
 import notify from 'service/addPetHelpers/toast';
-import Loader from 'components/Loader/Loader';
+import LoaderPet from 'components/LoaderPet/LoaderPet';
 import ImageLoader from 'components/Loader/ImageLoader';
 
 import sprite from 'assets/svg/sprite-cards.svg';
@@ -78,7 +78,7 @@ const PetModal = ({ id, onClose, isFavorite, addToFavotire }) => {
     return (
       <>
         <div className={css.backdrop} onClick={onClose}>
-          <Loader />
+          <LoaderPet />
         </div>
       </>
     );

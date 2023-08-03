@@ -4,7 +4,7 @@ import NewsList from '../../components/Cards/News/NewsList/NewsList';
 import SearchComponent from 'components/SearchComponent/SearchComponent';
 import { fetchNews } from 'service/api/apiNews';
 import Container from 'components/Container/Container/Container';
-import Loader from 'components/Loader/Loader';
+import LoaderPet from '../../components/LoaderPet/LoaderPet';
 
 import Paginations from 'components/Pagination/Paginations';
 import css from '../../components/Cards/News/NewsList/NewsItems/NewsItems.module.css';
@@ -60,21 +60,24 @@ const NewsPage = () => {
   }
 
   return (
-    <Container>
-      <h1 className={css.textNoticesPage}>News</h1>
-      <SearchComponent onSearch={handleSearch} />
-      {isLoading && <Loader />}
-      {!isLoading && (
-        <>
-          <NewsList news={newsItems} />
-          <Paginations
-            currentPage={page}
-            totalPages={pages}
-            handlePaginationChange={handlePageChange}
-          />
-        </>
-      )}
-    </Container>
+    <>
+      <>{isLoading && <LoaderPet />}</>
+      <Container>
+        <h1 className={css.textNoticesPage}>News</h1>
+        <SearchComponent onSearch={handleSearch} />
+
+        {!isLoading && (
+          <>
+            <NewsList news={newsItems} />
+            <Paginations
+              currentPage={page}
+              totalPages={pages}
+              handlePaginationChange={handlePageChange}
+            />
+          </>
+        )}
+      </Container>
+    </>
   );
 };
 

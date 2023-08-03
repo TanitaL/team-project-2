@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PawPrintBtn from 'components/Buttons/PawPrintBtn/PawPrintBtn';
 import css from './ModalVerificationEmail.module.css';
 import sprite from 'assets/svg/sprite-cards.svg';
 
 const ModalVerificeteEmail = ({ handleSuccess, handleClose }) => {
+  useEffect(() => {
+    const handleEscape = ({ code }) => {
+      code === `Escape` && handleClose();
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  });
+  const handleOverlay = event => {
+    event.target === event.currentTarget && handleClose();
+  };
+
   return (
-    <div className={css.modalOverlay}>
+    <div className={css.modalOverlay} onClick={handleOverlay}>
       <div className={css.modalContainer}>
         <div className={css.modalHeader}>
           <button
