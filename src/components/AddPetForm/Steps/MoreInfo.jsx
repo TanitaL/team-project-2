@@ -112,7 +112,6 @@ const MoreInfo = ({ data, next, prev }) => {
                     ref={fileRef}
                     hidden
                     type="file"
-                    // name="file"
                     onChange={event => {
                       setFieldValue('file', event.target.files[0]);
                     }}
@@ -176,7 +175,6 @@ const MoreInfo = ({ data, next, prev }) => {
                   />
                 </div>
               )}
-              {/* <ErrorMessage className={css.error} name="price" component="div" /> */}
               <div className={css.inptWrapper}>
                 <label className={css.lable} htmlFor="comments">
                   Comments
@@ -190,9 +188,6 @@ const MoreInfo = ({ data, next, prev }) => {
               </div>
             </div>
           </div>
-          {/* <button type="button" onClick={() => prev(values)}>
-            Back
-          </button> */}
           <div className={css.btnWrapper}>
             <PawPrintBtn title="Done" type="submit" />
             <ArrowLeftBtn
@@ -201,7 +196,6 @@ const MoreInfo = ({ data, next, prev }) => {
               handleBackClick={() => prev(values)}
             />
           </div>
-          {/* <button type="submit">Next</button> */}
         </Form>
       )}
     </Formik>

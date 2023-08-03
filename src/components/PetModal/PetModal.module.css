@@ -186,6 +186,7 @@
   color: var(--yellow, #ffc107);
   text-decoration-line: underline;
   opacity: 0.75;
+  cursor: pointer;
 }
 .goldValue:hover,
 .goldValue:focus {

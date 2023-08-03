@@ -36,6 +36,7 @@ const NoticesPage = () => {
 
   const [isAttentionModalOpen, setIsAttentionModalOpen] = useState(false);
   const [page, setPage] = useState(1);
+  const [queryParams, setQueryParams] = useState('');
 
   const [query, setQuery] = useState('');
   const { categoryName } = useParams();
@@ -54,15 +55,15 @@ const NoticesPage = () => {
   useEffect(() => {
     switch (categoryName) {
       case SELL:
-        dispatch(fetchPets({ category: SELL, query, page }));
+        dispatch(fetchPets({ category: SELL, query, page, queryParams }));
         break;
 
       case MYPET:
-        dispatch(fetchPets({ category: MYPET, query, page }));
+        dispatch(fetchPets({ category: MYPET, query, page, queryParams }));
         break;
 
       case LOSTFOUND:
-        dispatch(fetchPets({ category: LOSTFOUND, query, page }));
+        dispatch(fetchPets({ category: LOSTFOUND, query, page, queryParams }));
         break;
 
       case FORFREE:
@@ -76,7 +77,7 @@ const NoticesPage = () => {
       default:
         break;
     }
-  }, [categoryName, dispatch, query, page]);
+  }, [categoryName, dispatch, query, page, queryParams]);
 
   useEffect(() => {
     if (isAuth && favorites?.length > 0 && pets?.length > 0) {
@@ -96,6 +97,15 @@ const NoticesPage = () => {
     setQuery('');
   };
 
+  const handleFilter = filterValues => {
+    const queryParams = filterValues
+      .map(filter => `${filter.name}=${filter.value}`)
+      .join('&');
+    console.log("🚀 ~ handleFilter ~ queryParams:", queryParams)
+    setQueryParams(queryParams);
+    // dispatch(fetchPets({ category: categoryName, query, page, queryParams }));
+  };
+
   const handlePageChange = pageNumber => {
     setPage(pageNumber);
   };
@@ -111,7 +121,7 @@ const NoticesPage = () => {
         <div className={css.categoryFilterWrapper}>
           <NoticesCategoriesNav />
           <div className={css.noticeFilter}>
-            <NoticesFilters onFilter={handleSearch} />
+            <NoticesFilters onFilter={handleFilter} />
             <AddPetButton modalOpen={setIsAttentionModalOpen} />
           </div>
         </div>

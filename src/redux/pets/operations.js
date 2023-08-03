@@ -9,20 +9,21 @@ const { SELL, LOSTFOUND, FORFREE, MYPET, FAVORITE } = noticeCategories;
 
 export const fetchPets = createAsyncThunk(
   'pets/fetchAll',
-  async ({ category, query, page }, thunkAPI) => {
+  async ({ category, query, page, queryParams }, thunkAPI) => {
     try {
       let notices;
       let pages;
+      const queryString = queryParams ? `&${queryParams}` : '';
       if (category === SELL || category === LOSTFOUND || category === FORFREE) {
         if (query) {
           const response = await instance.get(
-            `/notices?category=${category}&limit=12&page=${page}&query=${query}`
+            `/notices?category=${category}&limit=12&page=${page}&query=${query}${queryString}`
           );
           notices = response.data.notices;
           pages = response.data.pages;
         } else {
           const response = await instance.get(
-            `/notices?category=${category}&limit=12&page=${page}`
+            `/notices?category=${category}&limit=12&page=${page}${queryString}`
           );
           notices = response.data.notices;
           pages = response.data.pages;
@@ -106,7 +107,8 @@ export const deletePet = createAsyncThunk(
     try {
       const response = await instance.delete(`/notices/${id}`);
       console.log('🚀 ~ response:', response);
-      return id;
+      return response.data.notice;
+      // return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }

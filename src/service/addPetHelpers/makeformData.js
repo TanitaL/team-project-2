@@ -10,9 +10,9 @@ const makeformData = (values) => {
       formData.append(value, newValues[value]);
     }
 
-    for (let property of formData.entries()) {
-      console.log(property[0], property[1]);
-    }
+    // for (let property of formData.entries()) {
+    //   console.log(property[0], property[1]);
+    // }
     return formData;
 }
 
