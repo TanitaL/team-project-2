@@ -52,7 +52,7 @@
 
   @media screen and (min-width: 768px) {
     gap: 24px;
-    /* width: 395px; */
+   
   }
 }
 
@@ -234,9 +234,9 @@ input[type='radio']:checked + .gender {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0; /* Начальное значение прозрачности - иконка скрыта */
-  visibility: hidden; /* Иконка скрыта, но занимает место */
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1); /* Плавное появление */
+  opacity: 0; 
+  visibility: hidden; 
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1); 
 }
 
 .addImgBtn:hover,
@@ -249,7 +249,7 @@ input[type='radio']:checked + .gender {
 
 .addImgBtn:hover .editIcon,
 .addImgBtn:focus .editIcon {
-  opacity: 1; /* При ховере на кнопку, иконка становится видимой */
+  opacity: 1; 
   visibility: visible;
 }
 

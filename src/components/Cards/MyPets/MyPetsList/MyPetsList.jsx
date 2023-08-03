@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMyPets, deletePet } from 'redux/pets/operations';
 import { getMyPets, getError } from 'redux/pets/selectors';
@@ -16,10 +16,7 @@ const MyPetsList = () => {
   const notices = useSelector(getMyPets);
   const errorMyPets = useSelector(getError);
 
-  useEffect(() => {
-    dispatch(fetchMyPets());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  
 
   const onDelete = deleteId => {
     return async () => {

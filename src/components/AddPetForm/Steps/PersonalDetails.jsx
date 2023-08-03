@@ -19,7 +19,7 @@ const PersonalDetails = ({ data, next, prev }) => {
       onSubmit={handleSubmit}
       validationSchema={stepTwoValidationSchema}
     >
-      {({ values, setFieldValue, touched, errors }) => (
+      {({ values }) => (
         <Form className={css.wrapper}>
           {values.category !== petCategory[0] && (
             <div className={css.inptWrapper}>
