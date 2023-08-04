@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-  baseURL: 'http://localhost:3003',
+  baseURL: 'https://final-project-node-5vh7.onrender.com',
 });
 
 export const setToken = token => {
