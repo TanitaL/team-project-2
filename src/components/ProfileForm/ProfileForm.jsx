@@ -188,7 +188,6 @@ const ProfileForm = () => {
                     disabled={!isEditing}
                   />
                 </div>
-
                 <ErrorMessage
                   name="birthday"
                   component="div"
