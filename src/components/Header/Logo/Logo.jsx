@@ -11,16 +11,18 @@ const Logo = () => {
   return (
     <NavLink key={'/'} to={'/'}>
       {isSmallScreen && (
-        <svg width="116" height="20">
-          <use href={`${sprite}#icon-logo-mobile`}></use>
-        </svg>
+        <div className={css.logo}>
+          <svg width="116" height="20">
+            <use href={`${sprite}#icon-logo-mobile`}></use>
+          </svg>
+        </div>
       )}
       {isMediumScreen && (
-        <span className={css.logo}>
-          <svg width="116" height="20">
+        <div className={css.logo}>
+          <svg width="162" height="28">
             <use href={`${sprite}#icon-logo-desktop-tablet`}></use>
           </svg>
-        </span>
+        </div>
       )}
     </NavLink>
   );

@@ -1,7 +1,5 @@
 # <div align=center>Welcome to "Your Pet" website!</div>
 
-[![Your pet] (src/assets/images/pets-website.png)]
-
 ## <div align=center>Features:</div>
 
 - Find a pet by searching in different catagories, see the detailed information

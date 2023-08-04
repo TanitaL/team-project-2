@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { FcGoogle } from 'react-icons/fc';
 
 import {
   css,
@@ -17,7 +18,7 @@ import {
   LoaderPet,
   validateInLoginForm,
   notify,
-} from './index'; 
+} from './index';
 
 const LoginPage = () => {
   const error = useSelector(errorSelector);
@@ -27,7 +28,7 @@ const LoginPage = () => {
   useEffect(() => {
     if (!error) {
       return;
-}  
+    }
 
     notify.error(error.data.message);
   }, [error]);
@@ -78,6 +79,18 @@ const LoginPage = () => {
                     type="submit"
                   >
                     Login
+                  </button>
+                  <button
+                    className={css.FormRegister__Button_Login_Google}
+                    type="button"
+                    onClick={() =>
+                      dispatch(austOperationThunk({ endpoint: 'google' }))
+                    }
+                  >
+                    <div className={css.Container_GoogleImg}>
+                      <FcGoogle size="24px" />
+                    </div>
+                    <p>Sign in with Google</p>
                   </button>
                   <p className={css.FormRegister__Text}>
                     Don't have an account?
