@@ -50,11 +50,11 @@
   font-size: 12px;
   line-height: 16px;
 
-  color: #ffffff;
+  color: var(--white-color);
 }
 
 .iconBig {
-  stroke: var(---white-color);
+  stroke: var(--white-color);
   display: block;
 }
 
@@ -79,7 +79,7 @@
     text-decoration: none;
 
     position: relative;
-    color: #ffffff;
+    color: var(--white-color);
 
     flex-direction: row;
     gap: 8px;
@@ -90,7 +90,7 @@
   }
 
   .iconSmall {
-    stroke: #ffffff;
+    stroke: var(--white-color);
     display: block;
   }
 
@@ -99,6 +99,6 @@
     font-size: 16px;
     line-height: 22px;
     letter-spacing: 0.04em;
-    color: #ffffff;
+    color: var(--white-color);
   }
 }
