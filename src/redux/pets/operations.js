@@ -69,7 +69,6 @@ export const fetchMyPets = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await instance.get('/notices/mypets');
-      console.log(response.data.pages);
       return response.data.notices;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);

@@ -93,6 +93,11 @@
 .flexContainer {
   display: flex;
   justify-content: space-between;
+  gap: 8px;
+
+  @media screen and (min-width: 768px) {
+    gap: 16px;
+  }
 }
 
 .label {
@@ -119,6 +124,7 @@
 
   padding: 4px 12px;
   border-radius: 20px;
+  outline: none;
   border: 1px solid rgba(84, 173, 255, 1);
 
   @media screen and (min-width: 768px) {
