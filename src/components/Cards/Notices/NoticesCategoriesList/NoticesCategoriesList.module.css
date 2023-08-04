@@ -1,5 +1,4 @@
 .list {
-  margin-top: 24px;
   margin-left: auto;
   margin-right: auto;
   list-style: none;
@@ -10,7 +9,8 @@
   align-items: center;
   max-width: 1280px;
   margin: 0 auto;
-  gap: 32px;
+  gap: 24px 32px;
+  margin-bottom: 68px;
 }
 
 .list-item {
