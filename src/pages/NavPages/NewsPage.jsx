@@ -63,7 +63,7 @@ const NewsPage = () => {
   const onClearSearch = () => {
     setSearchNews('pet');
   };
-  //
+
   return (
     <Container>
       <h1 className={css.textNoticesPage}>News</h1>
