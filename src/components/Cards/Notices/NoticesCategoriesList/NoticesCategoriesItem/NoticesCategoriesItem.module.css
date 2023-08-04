@@ -24,7 +24,7 @@
 
 @media screen and (min-width: 1280px) {
   .item {
-    width: 280px;
+    width: 288px;
     height: 456px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -55,7 +55,7 @@
 
 @media screen and (min-width: 1280px) {
   .image {
-    width: 280px;
+    width: 288px;
     height: 288px;
   }
 }
