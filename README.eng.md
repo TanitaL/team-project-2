@@ -1,6 +1,8 @@
 # <div align=center>Welcome to "Your Pet" website!</div>
 
-[![Your Pet](src/assets/images/pet-website.jpg)](https://tanital.github.io/team-project-2/)
+[(src/assets/images/pets-website.jpg)]
+
+![Your pet](https://github.com/TanitaL/team-project-2/raw/main/src/images/pets-website.jpg)
 
 ## <div align=center>Features:</div>
 
