@@ -80,7 +80,7 @@ const NoticesPage = () => {
   }, [categoryName, dispatch, query, page, queryParams]);
 
   useEffect(() => {
-    if (isAuth && favorites?.length > 0 && pets?.length > 0) {
+    if (isAuth  && pets?.length > 0) {
       dispatch(addFlagFavorite());
     }
   }, [dispatch, favorites, isAuth, pets?.length]);
