@@ -185,13 +185,11 @@
 
 @media screen and (max-width: 767px) {
   .dropdownContainer {
-    // right: 0;
-    // top: 0;
-    // display: block;
+    top: 35px;
     margin-left: auto;
     margin-right: auto;
     width: 152px;
-    right: -12px;
+    right: -80px;
   }
   .openBtn {
     left: 40px;
