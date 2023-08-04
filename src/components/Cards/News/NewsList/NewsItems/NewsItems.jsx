@@ -1,15 +1,9 @@
-import React, { useState } from 'react';
 import noImgAvailable from '../../../../../assets/images/no-image-available.jpg';
 import css from './NewsItems.module.css';
 import dayjs from 'dayjs';
 
 const NewsItems = ({ title, body, date, image, url }) => {
   const formattedDate = dayjs(date).format('DD/MM/YYYY');
-  const [imageError, setImageError] = useState(false);
-
-  const handleImageError = () => {
-    setImageError(true);
-  };
 
   return (
     <li className={css.item}>
@@ -17,8 +11,7 @@ const NewsItems = ({ title, body, date, image, url }) => {
         alt={title}
         loading="lazy"
         className={css.image}
-        src={imageError ? noImgAvailable : image}
-        onError={handleImageError}
+        src={image || noImgAvailable}
       />
 
       <div className={css.itemBox}>
