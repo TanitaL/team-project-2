@@ -64,7 +64,6 @@ const NewsPage = () => {
     setSearchNews('pet');
   };
 
-
   return (
     <Container>
       <h1 className={css.textNoticesPage}>News</h1>
@@ -77,6 +76,7 @@ const NewsPage = () => {
             alignItems: 'center',
             justifyContent: 'center',
             padding: '20px',
+            fontSize: '2rem',
           }}
         >
           {error}
@@ -98,6 +98,7 @@ const NewsPage = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 padding: '20px',
+                fontSize: '2rem',
               }}
             >
               {infoRequest}
