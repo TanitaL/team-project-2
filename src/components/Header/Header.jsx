@@ -7,7 +7,6 @@ import css from './Header.module.css';
 
 const Header = () => {
   const isMediumScreen = useMediaQuery('(max-width: 1279px)');
-
   return (
     <header className={css.header}>
       <Logo />
