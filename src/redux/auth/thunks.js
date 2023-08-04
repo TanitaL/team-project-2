@@ -37,6 +37,14 @@ export const austOperationThunk = createAsyncThunk(
         return thunkAPI.rejectWithValue(error);
       }
     }
+    if (endpoint === 'google') {
+      try {
+        const { data } = await instance.get(`auth/${endpoint}`);
+        window.location.replace(data.redirectUrl);
+      } catch (error) {
+        return thunkAPI.rejectWithValue(error);
+      }
+    }
   }
 );
 
