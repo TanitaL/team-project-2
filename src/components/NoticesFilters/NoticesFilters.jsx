@@ -35,9 +35,6 @@ const NoticesFilters = ({ onFilter, filters }) => {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
 
   useEffect(() => {
-    if (selectedCheckboxes.length === 0) {
-      return;
-    }
     onFilter(selectedCheckboxes);
   }, [onFilter, selectedCheckboxes]);
 
@@ -60,7 +57,7 @@ const NoticesFilters = ({ onFilter, filters }) => {
       setSelectedCheckboxes(prevSelected => [...prevSelected, { name, value }]);
     } else {
       setSelectedCheckboxes(prevSelected =>
-        prevSelected.filter(item => item.name !== name || item.value !== value)
+        prevSelected.filter(item => item.name !== name)
       );
     }
   };
@@ -101,8 +98,8 @@ const NoticesFilters = ({ onFilter, filters }) => {
                       onChange={handleCheckboxChange}
                       className={styles.input}
                       type="checkbox"
-                      name="date"
-                      value="3-12m"
+                      name="dateone"
+                      value="1"
                     />
                     3-12m
                   </label>
@@ -111,8 +108,8 @@ const NoticesFilters = ({ onFilter, filters }) => {
                       className={styles.input}
                       onChange={handleCheckboxChange}
                       type="checkbox"
-                      name="date"
-                      value="1y"
+                      name="datetwo"
+                      value="1"
                     />
                     1 year
                   </label>
@@ -121,8 +118,8 @@ const NoticesFilters = ({ onFilter, filters }) => {
                       className={styles.input}
                       onChange={handleCheckboxChange}
                       type="checkbox"
-                      name="date"
-                      value="2y"
+                      name="datethree"
+                      value="1"
                     />
                     2 year
                   </label>
