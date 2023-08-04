@@ -9,9 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addPet } from 'redux/pets/operations';
 import stepsLable from 'constants/stepsLable';
 import { useNavigate } from 'react-router-dom';
-import { getIsLoading, getIsNavigate } from 'redux/pets/selectors';
+import {  getIsNavigate } from 'redux/pets/selectors';
 
-import LoaderPet from '../../LoaderPet/LoaderPet';
 
 import makeformData from 'service/addPetHelpers/makeformData';
 
@@ -35,7 +34,6 @@ const AddPetForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const dispatsh = useDispatch();
   const navigate = useNavigate();
-  const isLoading = useSelector(getIsLoading);
   const isNavigate = useSelector(getIsNavigate);
 
   useEffect(() => {
@@ -75,7 +73,6 @@ const AddPetForm = () => {
 
   return (
     <>
-      {isLoading && <LoaderPet />}
       <section
         className={
           currentStep === 2 && data.category !== petCategory[0]
