@@ -80,7 +80,7 @@ const NoticesPage = () => {
   }, [categoryName, dispatch, query, page, queryParams]);
 
   useEffect(() => {
-    if (isAuth && favorites?.length > 0 && pets?.length > 0) {
+    if (isAuth  && pets?.length > 0) {
       dispatch(addFlagFavorite());
     }
   }, [dispatch, favorites, isAuth, pets?.length]);
@@ -101,7 +101,7 @@ const NoticesPage = () => {
     const queryParams = filterValues
       .map(filter => `${filter.name}=${filter.value}`)
       .join('&');
-    console.log("🚀 ~ handleFilter ~ queryParams:", queryParams)
+    // console.log("🚀 ~ handleFilter ~ queryParams:", queryParams)
     setQueryParams(queryParams);
     // dispatch(fetchPets({ category: categoryName, query, page, queryParams }));
   };
@@ -111,8 +111,7 @@ const NoticesPage = () => {
   };
 
   return (
-
-  <Container>
+    <Container>
       {isAttentionModalOpen && !isAuth && (
         <ModalAttention modalOpen={setIsAttentionModalOpen} />
       )}

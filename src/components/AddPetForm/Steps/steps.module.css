@@ -155,7 +155,7 @@ input[type='radio']:checked + .btn {
 .gender {
   display: flex;
   gap: 12px;
-  padding: 8px 16px 8px 16px;
+  padding: 5.5px 16px 5.5px 16px;
   align-items: center;
   color: var(--grey-color);
   cursor: pointer;
@@ -205,6 +205,8 @@ input[type='radio']:checked + .gender {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
+    margin-top: 36px
+    ;
   }
 }
 
@@ -256,11 +258,29 @@ input[type='radio']:checked + .gender {
 .textarea {
   composes: input;
   resize: none;
+  
+font-family: Manrope;
+font-size: 14px;
+font-weight: 400;
+line-height: 20px;
+letter-spacing: 0px;
 
   height: 92px;
   border-radius: 20px;
   @media screen and (min-width: 768px) {
     height: 79px;
+  }
+}
+
+
+.textareaLost {
+  composes: input;
+  resize: none;
+
+  height: 92px;
+  border-radius: 20px;
+   @media screen and (min-width: 768px) {
+    height: 182px;
   }
 }
 

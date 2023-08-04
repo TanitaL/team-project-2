@@ -1,15 +1,14 @@
 .item {
   border-radius: 40px;
-  background: #ffffff;
+  background: var(--white-color);
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-  color: #111111;
+  color: var(--text-color);
   display: flex;
   flex-direction: column;
   width: 280px;
   height: 456px;
   flex-shrink: 0;
   position: relative;
-  /* margin-bottom: 24px; */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
@@ -25,7 +24,7 @@
 
 @media screen and (min-width: 1280px) {
   .item {
-    width: 280px;
+    width: 288px;
     height: 456px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -56,7 +55,7 @@
 
 @media screen and (min-width: 1280px) {
   .image {
-    width: 280px;
+    width: 288px;
     height: 288px;
   }
 }
@@ -71,7 +70,7 @@
   flex-shrink: 0;
   top: 12px;
   left: 228px;
-  background-color: #cce4fb;
+  background-color: var(--light-blue-color);
   border: none;
   border-radius: 50px;
   cursor: pointer;
@@ -101,7 +100,7 @@
   height: 40px;
   top: 68px;
   left: 228px;
-  background-color: #cce4fb;
+  background-color: var(--light-blue-color);
   border: none;
   border-radius: 50px;
   cursor: pointer;
@@ -141,7 +140,7 @@
 }
 
 .category {
-  color: var(--unnamed, #111);
+  color: var(--text-color);
   text-align: center;
   font-family: Manrope;
   font-size: 14px;
@@ -158,7 +157,7 @@
   height: 32px;
   justify-content: center;
 
-  background-color: #cce4fb;
+  background-color: var(--light-blue-color);
   border-radius: 0 16px 16px 0;
 }
 
@@ -182,7 +181,7 @@
   .infoWrapper {
     gap: 12px;
     top: 248px;
-    left: 8px;
+    left: 12px;
   }
 }
 
@@ -194,7 +193,7 @@
   height: 28px;
   padding: 2px 4px;
 
-  background-color: #cce4fb;
+  background-color: var(--light-blue-color);
   border-radius: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -207,7 +206,7 @@
 }
 
 .texProperty {
-  color: var(--unnamed, #111);
+  color: var(--text-color);
   font-family: Manrope;
   font-size: 12px;
   font-style: normal;
@@ -222,7 +221,7 @@
 
 .location:hover,
 .location:focus {
-  background: var(--unnamed, #54adff);
+  background: var(--blue-color);
   color: rgb(253, 247, 242);
   border: none;
 }
@@ -236,14 +235,14 @@
   align-items: center;
 
   border-radius: 16px;
-  background: #cce4fb;
+  background: var(--light-blue-color);
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .year:hover,
 .year:focus {
-  background: var(--unnamed, #54adff);
+  background: var(--blue-color);
   color: rgb(253, 247, 242);
   border: none;
 }
@@ -257,14 +256,14 @@
   align-items: center;
 
   border-radius: 16px;
-  background: #cce4fb;
+  background: var(--light-blue-color);
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .sex:hover,
 .sex:focus {
-  background: var(--unnamed, #54adff);
+  background: var(--blue-color);
   color: rgb(253, 247, 242);
   border: none;
 }
@@ -274,7 +273,7 @@
 .sex:hover svg {
   width: 24px;
   height: 24px;
-  --color1: #ffffff;
+  --color1: var(--white-color);
 }
 
 .learnMoreButton {
@@ -290,14 +289,14 @@
   position: relative;
   margin-left: 16px;
 
-  background-color: #ffffff;
-  color: var(--unnamed, #54adff);
+  background-color: var(--white-color);
+  color: var(--blue-color);
 
   flex-direction: row;
   padding: 8px 28px;
   width: 248px;
   height: auto;
-  border: 2px solid var(--unnamed, #54adff);
+  border: 2px solid var(--blue-color);
   border-radius: 40px;
 
   cursor: pointer;
@@ -312,7 +311,7 @@
 
 @media screen and (min-width: 1280px) {
   .learnMoreButton {
-    margin-left: 16px;
+    margin-left: 20px;
   }
 }
 
@@ -326,19 +325,19 @@
 .learnMoreButton svg {
   width: 24px;
   height: 24px;
-  fill: #54adff;
+  fill: var(--blue-color);
   display: none;
 }
 
 .learnMoreButton:hover svg,
 .learnMoreButton:focus svg {
-  fill: #ffffff;
+  fill: var(--white-color);
   display: inline-block;
   margin-left: 12px;
 }
 
 .textNoticesPage {
-  color: var(--unnamed, #111);
+  color: var(--text-color);
   font-family: Manrope;
   font-size: 24px;
   font-style: normal;
@@ -372,7 +371,6 @@
 }
 
 .noticeFilter {
-  /* margin: auto 0; */
   display: flex;
   gap: 12px;
 }
