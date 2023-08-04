@@ -17,7 +17,7 @@ const NewsItems = ({ title, body, date, image, url }) => {
         alt={title}
         loading="lazy"
         className={css.image}
-        src={imageError ? { noImgAvailable } : image}
+        src={imageError ? noImgAvailable : image}
         onError={handleImageError}
       />
 
