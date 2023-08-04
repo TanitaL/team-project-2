@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import AvatarUpload from 'components/ProfileForm/AvatarUpload/AvatarUpload';
 import LogoutProfile from 'components/Buttons/LogoutProfile/LogoutProfile';
-import LoaderPet from '../LoaderPet/LoaderPet'
+import LoaderPet from '../LoaderPet/LoaderPet';
 
 import { austOperationThunk } from 'pages/AuthNavPages';
 import { userSelector } from 'redux/auth/selectors';
 
 import { instance } from 'service/api/api';
 import { validateProfileForm } from 'service/ValidateInForm/ValidateInForm';
+import parseDate from 'service/addPetHelpers/parseDate';
 import notify from 'service/addPetHelpers/toast';
 import preparePutData from 'service/addPetHelpers/preparePutData';
 
@@ -73,14 +74,10 @@ const ProfileForm = () => {
     };
   };
 
-  const formatDate = val => {
-    return val.split('-').reverse().join('-');
-  };
-
   const onSubmit = async values => {
     setIsUserDataPending(true);
     try {
-      const { avatar, ...putData } = values;
+      const { avatar, ...putData } = parseDate(values);
       await instance.put('/users', preparePutData(putData));
 
       if (avatar && typeof avatar !== 'string') {
@@ -101,7 +98,7 @@ const ProfileForm = () => {
   };
 
   useEffect(() => {
-    setUserData(prev => ({ ...prev, ...currentUserData }));
+    setUserData(prev => ({ ...prev, ...parseDate(currentUserData) }));
   }, [currentUserData]);
 
   useEffect(() => {
@@ -113,7 +110,7 @@ const ProfileForm = () => {
   if (isUserDataPending) {
     return (
       <div className={css.boxSimulation}>
-        <LoaderPet/>
+        <LoaderPet />
       </div>
     );
   }
@@ -167,7 +164,7 @@ const ProfileForm = () => {
                     name="email"
                     id="email"
                     className={css.input}
-                    disabled={!isEditing}
+                    disabled={true}
                   />
                 </div>
                 <ErrorMessage
@@ -183,21 +180,12 @@ const ProfileForm = () => {
                     Birthday:
                   </label>
                   <Field
-                    type="text"
-                    onFocus={e => (e.target.type = 'date')}
-                    onBlur={e => {
-                      e.target.type = 'text';
-                      e.target.value = values.birthday;
-                    }}
-                    onChange={e => {
-                      setFieldValue('birthday', formatDate(e.target.value));
-                      e.target.value = formatDate(e.target.value);
-                    }}
+                    className={css.input}
                     name="birthday"
                     id="birthday"
-                    className={css.input}
-                    disabled={!isEditing}
+                    type="date"
                     placeholder="00.00.0000"
+                    disabled={!isEditing}
                   />
                 </div>
 
@@ -217,6 +205,7 @@ const ProfileForm = () => {
                     type="tel"
                     name="phone"
                     id="phone"
+                    maxLength="12"
                     className={css.input}
                     disabled={!isEditing}
                     placeholder="+380000000000"
