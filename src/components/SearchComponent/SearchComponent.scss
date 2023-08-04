@@ -19,21 +19,47 @@
     outline: none;
     font-size: 16px;
     padding: 8px;
+    color: #888;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.8px;
   }
 
-  &__clear-button,
-  &__search-button {
+  &__clear-button {
     border: none;
     background: transparent;
     cursor: pointer;
     font-size: 20px;
     padding: 8px;
+    color: #ffc107;
+  }
+
+  &__search-button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 20px;
     color: #88c6fd;
-    cursor: url('../../assets/svg/pawCursor.svg'), auto;
+    margin-top: 8px;
   }
 
   @media screen and (max-width: 767px) {
     width: 280px;
     margin: 20px auto;
+
+    .search-component {
+      &__input {
+        color: #888;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: 0.56px;
+      }
+    }
   }
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import noImgAvailable from '../../../../../assets/images/no-image-available.jpg';
 import css from './NewsItems.module.css';
 import dayjs from 'dayjs';
 
@@ -16,7 +17,7 @@ const NewsItems = ({ title, body, date, image, url }) => {
         alt={title}
         loading="lazy"
         className={css.image}
-        src={imageError ? 'https://http.cat/407' : image}
+        src={imageError ? { noImgAvailable } : image}
         onError={handleImageError}
       />
 

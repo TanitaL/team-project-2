@@ -64,7 +64,6 @@ const NewsPage = () => {
     setSearchNews('pet');
   };
 
-  console.log('error-->', error);
 
   return (
     <Container>
@@ -87,13 +86,11 @@ const NewsPage = () => {
         <>
           <NewsList news={newsItems} />
           {newsItems.length !== 0 ? (
-
             <Paginations
               currentPage={page}
               totalPages={pages}
               handlePaginationChange={handlePageChange}
             />
-
           ) : (
             <p
               style={{
@@ -109,7 +106,6 @@ const NewsPage = () => {
         </>
       )}
     </Container>
-
   );
 };
 

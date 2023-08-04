@@ -1,4 +1,8 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
+
+import { fetchMyPets } from 'redux/pets/operations';
 
 import Container from 'components/Container/Container/Container';
 import ProfileForm from 'components/ProfileForm/ProfileForm';
@@ -6,14 +10,11 @@ import MyPetsList from 'components/Cards/MyPets/MyPetsList/MyPetsList';
 
 import sprite from 'assets/svg/sprite-cards.svg';
 import css from 'pages/UserPage/UserPage.module.css';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchMyPets } from 'redux/pets/operations';
 
 const AddPetBtn = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(fetchMyPets());
   }, [dispatch]);

@@ -14,7 +14,6 @@
   position: absolute;
   right: 0;
   top: 0;
-  cursor: url('../../assets/svg/pawCursor.svg'), auto;
 
   display: flex;
   justify-content: center;
@@ -31,7 +30,6 @@
     color: #ffffff;
     border: none;
     background-color: transparent;
-    cursor: url('../../assets/svg/pawCursor.svg'), auto;
 
     &::before {
       opacity: 1;
@@ -196,8 +194,7 @@
     right: -12px;
   }
   .openBtn {
-    top: -40px;
-    position: initial;
+    left: 40px;
   }
 }
 

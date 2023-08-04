@@ -11,7 +11,7 @@ const AfterVerifEmail = () => {
   const navigate = useNavigate();
   const { verificationToken } = useParams();
   const dispatch = useDispatch();
-  const isLoading = useSelector(loadingSelector)
+  const isLoading = useSelector(loadingSelector);
 
   useEffect(() => {
     dispatch(
@@ -31,7 +31,7 @@ const AfterVerifEmail = () => {
 
   return (
     <>
-      {isLoading && <LoaderPet/>}
+      {isLoading && <LoaderPet />}
       <ModalVerificeteEmail
         handleClose={handleClose}
         handleSuccess={handleSuccess}

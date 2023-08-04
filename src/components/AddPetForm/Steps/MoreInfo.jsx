@@ -179,7 +179,16 @@ const MoreInfo = ({ data, next, prev }) => {
                 <label className={css.lable} htmlFor="comments">
                   Comments
                 </label>
-                <Field className={css.textarea} name="comments" as="textarea" />
+                <Field
+                  className={
+                    values.category === petCategory[0] ||
+                    values.category === petCategory[1]
+                      ? css.textarea
+                      : css.textareaLost
+                  }
+                  name="comments"
+                  as="textarea"
+                />
                 <ErrorMessage
                   className={css.error}
                   name="comments"
