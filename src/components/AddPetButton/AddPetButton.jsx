@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import {  useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as PlusIcon } from '../../assets/svg/plus.svg';
 import { ReactComponent as PlusSmallIcon } from '../../assets/svg/plus-small.svg';
@@ -18,7 +18,7 @@ const AddPetButton = ({ modalOpen }) => {
       modalOpen(true);
       return;
     }
-    navigate('/add-pet');
+    navigate('/add-pet', {state: {from: location} });
   };
 
   return (
