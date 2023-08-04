@@ -181,7 +181,7 @@
   .infoWrapper {
     gap: 12px;
     top: 248px;
-    left: 8px;
+    left: 12px;
   }
 }
 
@@ -311,7 +311,7 @@
 
 @media screen and (min-width: 1280px) {
   .learnMoreButton {
-    margin-left: 16px;
+    margin-left: 20px;
   }
 }
 
