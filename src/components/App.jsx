@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Suspense, lazy, useEffect } from 'react';
 import { austOperationThunk } from '../redux/auth/thunks';
@@ -8,6 +8,7 @@ import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
 import NoticesCategoriesList from './Cards/Notices/NoticesCategoriesList';
 import LoaderPet from './LoaderPet/LoaderPet';
+import { addGooglToken } from 'redux/auth/slice';
 
 const MainPage = lazy(() => import('../pages/NavPages/MainPage/MainPage'));
 const NoticesPage = lazy(() => import('../pages/NavPages/NoticesPage'));
@@ -22,14 +23,19 @@ const AfterVerifEmail = lazy(() => import('../pages/Other/AfterVerifEmail'));
 
 export const App = () => {
   const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get('token');
 
   useEffect(() => {
+    if (token) {
+      dispatch(addGooglToken(token));
+    }
     dispatch(
       austOperationThunk({
         endpoint: 'current',
       })
     );
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   return (
     <Suspense fallback={<LoaderPet />}>

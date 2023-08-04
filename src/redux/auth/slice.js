@@ -61,6 +61,11 @@ const authSlice = createSlice({
         state.modalOpen = false;
       },
     },
+    addGooglToken: {
+      reducer(state, actions) {
+        state.token = actions.payload;
+      },
+    },
   },
   extraReducers: builder => {
     builder
@@ -72,5 +77,5 @@ const authSlice = createSlice({
       .addMatcher(action => action.type.endsWith('/rejected'), handleRejected);
   },
 });
-export const { closeModal } = authSlice.actions;
+export const { closeModal, addGooglToken } = authSlice.actions;
 export const authReducer = authSlice.reducer;
