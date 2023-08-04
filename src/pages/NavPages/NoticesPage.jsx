@@ -101,7 +101,7 @@ const NoticesPage = () => {
     const queryParams = filterValues
       .map(filter => `${filter.name}=${filter.value}`)
       .join('&');
-    console.log("🚀 ~ handleFilter ~ queryParams:", queryParams)
+    // console.log("🚀 ~ handleFilter ~ queryParams:", queryParams)
     setQueryParams(queryParams);
     // dispatch(fetchPets({ category: categoryName, query, page, queryParams }));
   };
@@ -111,8 +111,7 @@ const NoticesPage = () => {
   };
 
   return (
-
-  <Container>
+    <Container>
       {isAttentionModalOpen && !isAuth && (
         <ModalAttention modalOpen={setIsAttentionModalOpen} />
       )}

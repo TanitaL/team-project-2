@@ -52,9 +52,6 @@ export const petSlice = createSlice({
         state.error = null;
       })
       .addCase(addFlagFavorite.fulfilled, (state, action) => {
-        // const favorites = action.payload;
-        // console.log('🚀 ~ .addCase ~ favorites:', favorites);
-
         state.items.map((item, index) => {
           const isFavorite = state.favorites.find(
             favorite => favorite.id === item.id
@@ -97,18 +94,15 @@ export const petSlice = createSlice({
       })
       .addCase(deletePet.fulfilled, (state, action) => {
         const { id, category } = action.payload;
-        const index = state.items.findIndex(
-          item => item.id === id
-        );
-        
+        const index = state.items.findIndex(item => item.id === id);
+
         state.items.splice(index, 1);
         state.isLoading = false;
         state.error = null;
-        if (category === "my-pet") {
+        if (category === 'my-pet') {
           const index = state.myPets.findIndex(item => item.id === id);
           state.myPets.splice(index, 1);
         }
-       console.log('🚀 ~ .addCase ~ action.payload:', action.payload);
         notify.success('Advertisement  deleted successfully');
       })
       .addMatcher(isAnyOf(...getActions('pending')), state => {

@@ -64,7 +64,6 @@ const NewsPage = () => {
     setSearchNews('pet');
   };
 
-  console.log('error-->', error);
 
   return (
     <Container>
