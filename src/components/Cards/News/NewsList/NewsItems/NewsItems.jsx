@@ -10,7 +10,7 @@ const NewsItems = ({ title, body, date, image, url }) => {
   const handleImageError = () => {
     setImageError(true);
   };
-
+//
   return (
     <li className={css.item}>
       <img
