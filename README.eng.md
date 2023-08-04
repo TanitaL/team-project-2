@@ -1,6 +1,6 @@
 # <div align=center>Welcome to "Your Pet" website!</div>
 
-![Your pet] (./src/assets/images/pets-website.jpg)
+![Your pet] (src/assets/images/pets-website.jpg)
 
 ## <div align=center>Features:</div>
 
