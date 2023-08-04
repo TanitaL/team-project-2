@@ -1,11 +1,32 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { ReactComponent as FiltersIcon } from '../../assets/svg/filters.svg';
-import { ReactComponent as ChevronUpIcon } from '../../assets/svg/chevron-up.svg';
-import { ReactComponent as ChevronDownIcon } from '../../assets/svg/chevron-down.svg';
-
 import styles from './notices-filters.module.scss';
+import sprite from 'assets/svg/sprite-cards.svg';
+
+const ChevronUpIcon = ({ className }) => {
+  return (
+    <svg className={className} width="24" height="24">
+      <use href={`${sprite}#icon-chevron-up`}></use>
+    </svg>
+  );
+};
+
+const ChevronDownIcon = ({ className }) => {
+  return (
+    <svg className={className} width="24" height="24">
+      <use href={`${sprite}#icon-chevron-down`}></use>
+    </svg>
+  );
+};
+
+const FiltersIcon = ({ className }) => {
+  return (
+    <svg className={className} width="24" height="24">
+      <use href={`${sprite}#icon-filters-3`}></use>
+    </svg>
+  );
+};
 
 const NoticesFilters = ({ onFilter, filters }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,7 +74,7 @@ const NoticesFilters = ({ onFilter, filters }) => {
         aria-label="toggle filters"
       >
         <span className={styles.openBtnLabel}>Filter</span>
-        <FiltersIcon className={styles.openBtnIcon} width={24} height={24} />
+        <FiltersIcon className={styles.openBtnIcon} />
       </button>
       {isOpen && (
         <div className={styles.dropdownContainer}>
@@ -67,17 +88,9 @@ const NoticesFilters = ({ onFilter, filters }) => {
                 aria-label="toggle age options"
               >
                 {ageOpen ? (
-                  <ChevronUpIcon
-                    className={styles.icon}
-                    width={24}
-                    height={24}
-                  />
+                  <ChevronUpIcon className={styles.icon} />
                 ) : (
-                  <ChevronDownIcon
-                    className={styles.icon}
-                    width={24}
-                    height={24}
-                  />
+                  <ChevronDownIcon className={styles.icon} />
                 )}
                 <span className={styles.btnLabel}>By age</span>
               </button>
@@ -124,17 +137,9 @@ const NoticesFilters = ({ onFilter, filters }) => {
                 aria-label="toggle gender options"
               >
                 {genderOpen ? (
-                  <ChevronUpIcon
-                    className={styles.icon}
-                    width={24}
-                    height={24}
-                  />
+                  <ChevronUpIcon className={styles.icon} />
                 ) : (
-                  <ChevronDownIcon
-                    className={styles.icon}
-                    width={24}
-                    height={24}
-                  />
+                  <ChevronDownIcon className={styles.icon} />
                 )}
                 <span className={styles.btnLabel}>By gender</span>
               </button>
